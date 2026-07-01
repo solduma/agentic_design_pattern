@@ -1,0 +1,134 @@
+/* ChapterNav — prev/next chapter navigation */
+
+.nav {
+  display: flex;
+  gap: 1rem;
+  margin: 2.5rem 0 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200, #e0e0e0);
+}
+
+.side {
+  flex: 1;
+  min-width: 0;
+}
+
+.sideRight {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--ifm-color-emphasis-300, #ccc);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--ifm-font-color-base, #1c1e21);
+  background-color: var(--ifm-background-color, #fff);
+  transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+  max-width: 100%;
+}
+
+.card:hover {
+  border-color: var(--ifm-color-primary, #2e86de);
+  background-color: var(--ifm-color-primary-lightest, #f0f7ff);
+  box-shadow: 0 2px 8px rgba(46, 134, 222, 0.12);
+  text-decoration: none;
+  color: var(--ifm-font-color-base, #1c1e21);
+}
+
+.prevCard {
+  text-align: left;
+}
+
+.nextCard {
+  text-align: right;
+  flex-direction: row-reverse;
+}
+
+.nextCard .cardContent {
+  align-items: flex-end;
+}
+
+.direction {
+  font-size: 0.85rem;
+  color: var(--ifm-color-primary, #2e86de);
+  flex-shrink: 0;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.label {
+  font-size: 0.75rem;
+  color: var(--ifm-color-emphasis-600, #888);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ifm-font-color-base, #1c1e21);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.empty {
+  display: block;
+}
+
+/* Dark mode */
+[data-theme='dark'] .nav {
+  border-top-color: var(--ifm-color-emphasis-300, #444);
+}
+
+[data-theme='dark'] .card {
+  border-color: var(--ifm-color-emphasis-400, #444);
+  background-color: var(--ifm-background-color, #1b1b1d);
+  color: var(--ifm-font-color-base, #e3e3e3);
+}
+
+[data-theme='dark'] .card:hover {
+  border-color: var(--ifm-color-primary, #6db3f2);
+  background-color: rgba(109, 179, 242, 0.08);
+  color: var(--ifm-font-color-base, #e3e3e3);
+}
+
+[data-theme='dark'] .direction {
+  color: var(--ifm-color-primary, #6db3f2);
+}
+
+[data-theme='dark'] .label {
+  color: var(--ifm-color-emphasis-600, #999);
+}
+
+[data-theme='dark'] .title {
+  color: var(--ifm-font-color-base, #e3e3e3);
+}
+
+/* Responsive: stack on narrow screens */
+@media (max-width: 600px) {
+  .nav {
+    flex-direction: column;
+  }
+  .sideRight {
+    justify-content: flex-start;
+  }
+  .nextCard {
+    flex-direction: row;
+    text-align: left;
+  }
+  .nextCard .cardContent {
+    align-items: flex-start;
+  }
+}

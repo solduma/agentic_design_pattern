@@ -1,0 +1,38 @@
+/* CrossRef — inline cross-reference link */
+
+.link {
+  color: var(--ifm-link-color, #2e86de);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--ifm-link-color, #2e86de);
+  font-size: inherit;
+  transition: color 0.15s ease, border-bottom-color 0.15s ease;
+}
+
+.link:hover {
+  color: var(--ifm-link-hover-color, #1a5276);
+  border-bottom-style: solid;
+  text-decoration: none;
+}
+
+.unresolved {
+  color: var(--ifm-color-emphasis-600, #888);
+  border-bottom: 1px dashed var(--ifm-color-emphasis-400, #bbb);
+  cursor: help;
+  font-size: inherit;
+}
+
+/* Dark mode */
+[data-theme='dark'] .link {
+  color: var(--ifm-link-color, #6db3f2);
+  border-bottom-color: var(--ifm-link-color, #6db3f2);
+}
+
+[data-theme='dark'] .link:hover {
+  color: var(--ifm-link-hover-color, #9ecdf7);
+  border-bottom-color: var(--ifm-link-hover-color, #9ecdf7);
+}
+
+[data-theme='dark'] .unresolved {
+  color: var(--ifm-color-emphasis-500, #777);
+  border-bottom-color: var(--ifm-color-emphasis-500, #555);
+}
