@@ -1,0 +1,62 @@
+[
+  {
+    "lang": "python",
+    "code": "from the previously mentioned models, or entirely novel designs that emerge from the\nfrom the need to optimize for specific performance metrics, handle highly dynamic"
+  },
+  {
+    "lang": "text",
+    "code": "for robustness, and the acceptable communication overhead. Future advancements in"
+  },
+  {
+    "lang": "python",
+    "code": "import os \nfrom dotenv import load_dotenv \nfrom crewai import Agent, Task, Crew, Process \nfrom langchain_google_genai import ChatGoogleGenerativeAI \n \ndef setup_environment(): \n   \"\"\"Loads environment variables and checks for the required API \nkey.\"\"\" \n   load_dotenv() \n   if not os.getenv(\"GOOGLE_API_KEY\"): \n       raise ValueError(\"GOOGLE_API_KEY not found. Please set it in \nyour .env file.\") \n \ndef main(): \n   \"\"\" \n   Initializes and runs the AI crew for content creation using the \nlatest Gemini model. \n   \"\"\" \n   setup_environment() \n \n   # Define the language model to use."
+  },
+  {
+    "lang": "text",
+    "code": "# Updated to a model from the Gemini 2.0 series for better \nperformance and features. \n   # For cutting-edge (preview) capabilities, you could use \n\"gemini-2.5-flash\". \n   llm = ChatGoogleGenerativeAI(model=\"gemini-2.0-flash\") \n \n   # Define Agents with specific roles and goals \n   researcher = Agent( \n       role='Senior Research Analyst', \n       goal='Find and summarize the latest trends in AI.', \n       backstory=\"You are an experienced research analyst with a \nknack for identifying key trends and synthesizing information.\", \n       verbose=True, \n       allow_delegation=False, \n   ) \n \n   writer = Agent( \n       role='Technical Content Writer', \n       goal='Write a clear and engaging blog post based on research \nfindings.', \n       backstory=\"You are a skilled writer who can translate complex \ntechnical topics into accessible content.\", \n       verbose=True, \n       allow_delegation=False, \n   ) \n \n   # Define Tasks for the agents \n   research_task = Task( \n       description=\"Research the top 3 emerging trends in Artificial \nIntelligence in 2024-2025. Focus on practical applications and \npotential impact.\", \n       expected_output=\"A detailed summary of the top 3 AI trends, \nincluding key points and sources.\", \n       agent=researcher, \n   ) \n \n   writing_task = Task( \n       description=\"Write a 500-word blog post based on the research \nfindings. The post should be engaging and easy for a general audience \nto understand.\", \n       expected_output=\"A complete 500-word blog post about the \nlatest AI trends.\", \n       agent=writer, \n       context=[research_task], \n   ) \n \n   # Create the Crew"
+  },
+  {
+    "lang": "text",
+    "code": "blog_creation_crew = Crew( \n       agents=[researcher, writer], \n       tasks=[research_task, writing_task], \n       process=Process.sequential, \n       llm=llm, \n       verbose=2 # Set verbosity for detailed crew execution logs \n   ) \n \n   # Execute the Crew \n   print(\"## Running the blog creation crew with Gemini 2.0 Flash... \n##\") \n   try: \n       result = blog_creation_crew.kickoff() \n       print(\"\\n------------------\\n\") \n       print(\"## Crew Final Output ##\") \n       print(result) \n   except Exception as e: \n       print(f\"\\nAn unexpected error occurred: {e}\") \n \n \nif __name__ == \"__main__\": \n   main()"
+  },
+  {
+    "lang": "python",
+    "code": "from google.adk.agents import LlmAgent, BaseAgent \nfrom google.adk.agents.invocation_context import InvocationContext \nfrom google.adk.events import Event \nfrom typing import AsyncGenerator \n \n# Correctly implement a custom agent by extending BaseAgent \nclass TaskExecutor(BaseAgent): \n   \"\"\"A specialized agent with custom, non-LLM behavior.\"\"\" \n   name: str = \"TaskExecutor\" \n   description: str = \"Executes a predefined task.\" \n \n   async def _run_async_impl(self, context: InvocationContext) -> \nAsyncGenerator[Event, None]: \n       \"\"\"Custom implementation logic for the task.\"\"\" \n       # This is where your custom logic would go. \n       # For this example, we'll just yield a simple event. \n       yield Event(author=self.name, content=\"Task finished \nsuccessfully.\") \n \n# Define individual agents with proper initialization \n# LlmAgent requires a model to be specified. \ngreeter = LlmAgent( \n   name=\"Greeter\", \n   model=\"gemini-2.0-flash-exp\", \n   instruction=\"You are a friendly greeter.\" \n) \ntask_doer = TaskExecutor() # Instantiate our concrete custom agent \n \n# Create a parent agent and assign its sub-agents \n# The parent agent's description and instructions should guide its \ndelegation logic. \ncoordinator = LlmAgent( \n   name=\"Coordinator\", \n   model=\"gemini-2.0-flash-exp\", \n   description=\"A coordinator that can greet users and execute \ntasks.\", \n   instruction=\"When asked to greet, delegate to the Greeter. When \nasked to perform a task, delegate to the TaskExecutor.\", \n   sub_agents=[ \n       greeter, \n       task_doer \n   ] \n) \n \n# The ADK framework automatically establishes the parent-child"
+  },
+  {
+    "lang": "text",
+    "code": "relationships. \n# These assertions will pass if checked after initialization. \nassert greeter.parent_agent == coordinator \nassert task_doer.parent_agent == coordinator \n \nprint(\"Agent hierarchy created successfully.\")\nif it's the final step. A LoopAgent named StatusPoller is created. StatusPoller is"
+  },
+  {
+    "lang": "python",
+    "code": "import asyncio \nfrom typing import AsyncGenerator \nfrom google.adk.agents import LoopAgent, LlmAgent, BaseAgent \nfrom google.adk.events import Event, EventActions \nfrom google.adk.agents.invocation_context import InvocationContext \n \n# Best Practice: Define custom agents as complete, self-describing \nclasses. \nclass ConditionChecker(BaseAgent): \n   \"\"\"A custom agent that checks for a 'completed' status in the \nsession state.\"\"\" \n   name: str = \"ConditionChecker\" \n   description: str = \"Checks if a process is complete and signals \nthe loop to stop.\" \n \n   async def _run_async_impl( \n       self, context: InvocationContext \n   ) -> AsyncGenerator[Event, None]: \n       \"\"\"Checks state and yields an event to either continue or stop \nthe loop.\"\"\" \n       status = context.session.state.get(\"status\", \"pending\")"
+  },
+  {
+    "lang": "text",
+    "code": "is_done = (status == \"completed\") \n \n       if is_done: \n           # Escalate to terminate the loop when the condition is \nmet. \n           yield Event(author=self.name, \nactions=EventActions(escalate=True)) \n       else: \n           # Yield a simple event to continue the loop. \n           yield Event(author=self.name, content=\"Condition not met, \ncontinuing loop.\") \n \n# Correction: The LlmAgent must have a model and clear instructions. \nprocess_step = LlmAgent( \n   name=\"ProcessingStep\", \n   model=\"gemini-2.0-flash-exp\", \n   instruction=\"You are a step in a longer process. Perform your \ntask. If you are the final step, update session state by setting \n'status' to 'completed'.\" \n) \n \n# The LoopAgent orchestrates the workflow. \npoller = LoopAgent( \n   name=\"StatusPoller\", \n   max_iterations=10, \n   sub_agents=[ \n       process_step, \n       ConditionChecker() # Instantiating the well-defined custom \nagent. \n   ] \n) \n \n# This poller will now execute 'process_step'  \n# and then 'ConditionChecker' \n# repeatedly until the status is 'completed' or 10 iterations  \n# have passed."
+  },
+  {
+    "lang": "python",
+    "code": "from google.adk.agents import SequentialAgent, Agent \n \n# This agent's output will be saved to session.state[\"data\"] \nstep1 = Agent(name=\"Step1_Fetch\", output_key=\"data\") \n \n# This agent will use the data from the previous step. \n# We instruct it on how to find and use this data. \nstep2 = Agent( \n   name=\"Step2_Process\", \n   instruction=\"Analyze the information found in state['data'] and \nprovide a summary.\" \n) \n \npipeline = SequentialAgent( \n   name=\"MyPipeline\", \n   sub_agents=[step1, step2] \n) \n \n# When the pipeline is run with an initial input, Step1 will execute, \n# its response will be stored in session.state[\"data\"], and then \n# Step2 will execute, using the information from the state as \ninstructed."
+  },
+  {
+    "lang": "python",
+    "code": "from google.adk.agents import Agent, ParallelAgent \n \n# It's better to define the fetching logic as tools for the agents \n# For simplicity in this example, we'll embed the logic in the \nagent's instruction. \n# In a real-world scenario, you would use tools. \n \n# Define the individual agents that will run in parallel \nweather_fetcher = Agent( \n   name=\"weather_fetcher\", \n   model=\"gemini-2.0-flash-exp\", \n   instruction=\"Fetch the weather for the given location and return \nonly the weather report.\", \n   output_key=\"weather_data\"  # The result will be stored in \nsession.state[\"weather_data\"] \n) \n \nnews_fetcher = Agent( \n   name=\"news_fetcher\", \n   model=\"gemini-2.0-flash-exp\", \n   instruction=\"Fetch the top news story for the given topic and \nreturn only that story.\", \n   output_key=\"news_data\"      # The result will be stored in \nsession.state[\"news_data\"] \n) \n \n# Create the ParallelAgent to orchestrate the sub-agents \ndata_gatherer = ParallelAgent( \n   name=\"data_gatherer\", \n   sub_agents=[ \n       weather_fetcher, \n       news_fetcher \n   ] \n)"
+  },
+  {
+    "lang": "text",
+    "code": "with that prompt. Finally, the generated image (or mock data) is returned back up"
+  },
+  {
+    "lang": "python",
+    "code": "from google.adk.agents import LlmAgent \nfrom google.adk.tools import agent_tool \nfrom google.genai import types \n \n# 1. A simple function tool for the core capability. \n# This follows the best practice of separating actions from \nreasoning. \ndef generate_image(prompt: str) -> dict: \n   \"\"\" \n   Generates an image based on a textual prompt. \n \n   Args: \n       prompt: A detailed description of the image to generate. \n \n   Returns: \n       A dictionary with the status and the generated image bytes. \n   \"\"\" \n   print(f\"TOOL: Generating image for prompt: '{prompt}'\") \n   # In a real implementation, this would call an image generation \nAPI. \n   # For this example, we return mock image data. \n   mock_image_bytes = b\"mock_image_data_for_a_cat_wearing_a_hat\" \n   return { \n       \"status\": \"success\", \n       # The tool returns the raw bytes, the agent will handle the \nPart creation. \n       \"image_bytes\": mock_image_bytes, \n       \"mime_type\": \"image/png\" \n   } \n \n# 2. Refactor the ImageGeneratorAgent into an LlmAgent. \n# It now correctly uses the input passed to it."
+  },
+  {
+    "lang": "text",
+    "code": "image_generator_agent = LlmAgent( \n   name=\"ImageGen\", \n   model=\"gemini-2.0-flash\", \n   description=\"Generates an image based on a detailed text prompt.\", \n   instruction=( \n       \"You are an image generation specialist. Your task is to take \nthe user's request \" \n       \"and use the `generate_image` tool to create the image. \" \n       \"The user's entire request should be used as the 'prompt' \nargument for the tool. \" \n       \"After the tool returns the image bytes, you MUST output the \nimage.\" \n   ), \n   tools=[generate_image] \n) \n \n# 3. Wrap the corrected agent in an AgentTool. \n# The description here is what the parent agent sees. \nimage_tool = agent_tool.AgentTool( \n   agent=image_generator_agent, \n   description=\"Use this tool to generate an image. The input should \nbe a descriptive prompt of the desired image.\" \n) \n \n# 4. The parent agent remains unchanged. Its logic was correct. \nartist_agent = LlmAgent( \n   name=\"Artist\", \n   model=\"gemini-2.0-flash\", \n   instruction=( \n       \"You are a creative artist. First, invent a creative and \ndescriptive prompt for an image. \" \n       \"Then, use the `ImageGen` tool to generate the image using \nyour prompt.\" \n   ), \n   tools=[image_tool] \n)"
+  },
+  {
+    "lang": "text",
+    "code": "for problems that benefit from diverse expertise, parallel processing, or a structured"
+  }
+]
