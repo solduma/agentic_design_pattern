@@ -659,3 +659,21 @@ flowchart LR
 1. Google AI Safety Principles: https://ai.google/principles/
 2. OpenAI API Moderation Guide: https://platform.openai.com/docs/guides/moderation
 3. Prompt injection: https://en.wikipedia.org/wiki/Prompt_injection
+
+<figure>
+
+```mermaid
+flowchart LR
+    사용자([사용자]) --> 프롬프트[프롬프트]
+    방어프롬프팅[방어적 프롬프팅] --> 에이전트[에이전트]
+    프롬프트 --> 입력검증[입력 검증 및 정제]
+    입력검증 --> 에이전트
+    에이전트 --> 출력검증[출력 검증]
+    출력검증 -- 예 --> 사용자
+    출력검증 -- 아니오 --> 프롬프트
+    출력검증 -- 예 --> 출력([출력])
+```
+
+<figcaption>그림 1: 가드레일 설계 패턴 — 입력 검증·방어적 프롬프팅·출력 검증을 통해 안전한 응답 보장</figcaption>
+</figure>
+

@@ -459,3 +459,37 @@ flowchart LR
 3. Survey on Evaluation of LLM-based Agents: https://arxiv.org/abs/2503.16416
 4. Agent-as-a-Judge: Evaluate Agents with Agents: https://arxiv.org/abs/2410.10934
 5. Agent Companion, gulli et al: https://www.kaggle.com/whitepaper-agent-companion
+
+<figure>
+
+```mermaid
+flowchart TD
+    계약제출[계약 제출] --> 계약평가[계약 평가\n실현 가능성·비용·기간 검토]
+    계약평가 -- "수정 요청" --> 계약수정[계약 수정\n모호성·비용 등 수정 제안]
+    계약평가 -- "계약 수락" --> 계약실행[계약 실행\n계획 생성·작업 수행·하위계약 생성]
+    계약수정 -- "수정 수락/거절" --> 계약평가
+    계약실행 -- "수정 제안" --> 계약수정
+    계약실행 --> 작업해결[작업 해결\n후보 생성·검토·점수·순위·진화]
+    작업해결 --> 납품물[납품물]
+    계약실행 -- "하위계약 생성" --> 계약실행
+```
+
+<figcaption>그림 2: 에이전트 간 계약 실행 예시 — 계약 제출 → 평가 → 수정 또는 실행 → 작업 해결 → 납품물</figcaption>
+</figure>
+
+<figure>
+
+```mermaid
+flowchart LR
+    사용자([사용자]) --> 프롬프트[프롬프트]
+    프롬프트 --> 에이전트[에이전트]
+    에이전트 --> 출력([출력])
+    에이전트 --> 관찰자[관찰자 메트릭]
+    관찰자 --> 알람[알람]
+    알람 --> 에이전트
+    출력 --> 사용자
+```
+
+<figcaption>그림 4: 평가 및 모니터링 설계 패턴 — 에이전트 출력이 관찰자 메트릭을 통해 알람으로 연결되고 개선 피드백 루프 형성</figcaption>
+</figure>
+

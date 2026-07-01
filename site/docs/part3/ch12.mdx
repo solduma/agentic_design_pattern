@@ -163,3 +163,31 @@ flowchart LR
 1. McConnell, S. (2004). Code Complete (2nd ed.). Microsoft Press.
 2. Shi, Y., Pei, H., Feng, L., Zhang, Y., &amp; Yao, D. (2024). Towards Fault Tolerance in Multi-Agent Reinforcement Learning. arXiv preprint arXiv:2412.00534.
 3. O'Neill, V. (2022). Improving Fault Tolerance and Reliability of Heterogeneous Multi-Agent IoT Systems Using Intelligence Transfer. Electronics, 11(17), 2724.
+
+<figure>
+
+```mermaid
+flowchart LR
+    오류감지["① 오류 감지"] --> 오류처리["② 오류 처리"]
+    오류처리 --> 복구["③ 복구"]
+    복구 --> 오류감지
+```
+
+<figcaption>그림 1: AI 에이전트 예외 처리의 핵심 구성요소 — 오류 감지 → 오류 처리 → 복구 사이클</figcaption>
+</figure>
+
+<figure>
+
+```mermaid
+flowchart LR
+    사용자([사용자]) --> 프롬프트[프롬프트]
+    프롬프트 --> 에이전트[에이전트]
+    에이전트 --> 예외처리[예외 처리]
+    예외처리 --> 에이전트
+    에이전트 --> 출력([출력])
+    출력 --> 사용자
+```
+
+<figcaption>그림 2: 예외 처리 설계 패턴 — 에이전트 출력의 예외를 감지하고 재처리하는 피드백 루프</figcaption>
+</figure>
+

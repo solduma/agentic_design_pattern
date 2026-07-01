@@ -392,3 +392,20 @@ flowchart LR
 5. Google AgentDiscovery - [https://a2a-protocol.org/latest/](https://a2a-protocol.org/latest/)
 6. Communication between different AI frameworks such as LangGraph, CrewAI, and Google ADK [https://www.trickle.so/blog/how-to-build-google-a2a-project](https://www.trickle.so/blog/how-to-build-google-a2a-project)
 7. Designing Collaborative Multi-Agent Systems with the A2A Protocol [https://www.oreilly.com/radar/designing-collaborative-multi-agent-systems-with-the-a2a-protocol/](https://www.oreilly.com/radar/designing-collaborative-multi-agent-systems-with-the-a2a-protocol/)
+
+<figure>
+
+```mermaid
+flowchart LR
+    사용자([사용자]) --> 프롬프트[프롬프트]
+    프롬프트 --> 에이전트[에이전트]
+    에이전트 <--> 서브에이전트1[에이전트]
+    에이전트 <--> 점점점[...]
+    에이전트 <--> 서브에이전트N[에이전트]
+    에이전트 --> 출력([출력])
+    출력 --> 사용자
+```
+
+<figcaption>그림 2: A2A 에이전트 간 통신 패턴 — 중앙 에이전트가 여러 서브 에이전트와 양방향 통신</figcaption>
+</figure>
+

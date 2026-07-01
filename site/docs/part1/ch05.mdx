@@ -748,3 +748,50 @@ flowchart LR
 2. Google Agent Developer Kit (ADK) Documentation (Tools): [https://google.github.io/adk-docs/tools/](https://google.github.io/adk-docs/tools/)
 3. OpenAI Function Calling Documentation: [https://platform.openai.com/docs/guides/function-calling](https://platform.openai.com/docs/guides/function-calling)
 4. CrewAI Documentation (Tools): [https://docs.crewai.com/concepts/tools](https://docs.crewai.com/concepts/tools)
+
+<figure>
+
+```mermaid
+flowchart LR
+    사용자([사용자]) --> 프롬프트[프롬프트]
+    프롬프트 --> 에이전트[에이전트]
+    에이전트 --> 다중도구호출[다중 단계 도구 호출]
+    subgraph 프록시도구["프록시 도구"]
+        메모리[메모리]
+        DB[데이터베이스]
+        저장소[저장소]
+        웹브라우저[웹 브라우저]
+        웹검색[웹 검색]
+        에이전트도구[도구로서의 에이전트]
+        채팅[채팅]
+        지도[지도]
+        더보기[추가 도구...]
+    end
+    다중도구호출 --> 메모리
+    다중도구호출 --> DB
+    다중도구호출 --> 저장소
+    다중도구호출 --> 웹브라우저
+    다중도구호출 --> 웹검색
+    다중도구호출 --> 에이전트도구
+    다중도구호출 --> 채팅
+    다중도구호출 --> 지도
+    다중도구호출 --> 더보기
+```
+
+<figcaption>그림 1: 도구 사용 패턴 — 에이전트가 메모리·DB·저장소·웹·검색 등 다양한 프록시 도구를 활용</figcaption>
+</figure>
+
+<figure>
+
+```mermaid
+flowchart LR
+    사용자([사용자]) --> 프롬프트[프롬프트]
+    프롬프트 --> 에이전트[에이전트]
+    에이전트 <--> 도구[도구]
+    에이전트 --> 출력([출력])
+    출력 --> 사용자
+```
+
+<figcaption>그림 2: 도구 사용 설계 패턴 — 에이전트가 도구와 상호작용하며 출력을 생성</figcaption>
+</figure>
+

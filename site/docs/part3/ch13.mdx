@@ -181,6 +181,21 @@ flowchart LR
 
 ---
 
+
+<figure>
+
+```mermaid
+flowchart LR
+    사용자([사용자]) --> 프롬프트[프롬프트]
+    프롬프트 --> 에이전트[에이전트]
+    에이전트 <--> 인간[인간]
+    에이전트 --> 출력([출력])
+    출력 --> 사용자
+```
+
+<figcaption>그림 1: 휴먼인더루프(Human-in-the-Loop) 설계 패턴 — 에이전트가 인간 피드백을 받아 응답을 개선</figcaption>
+</figure>
+
 <ChapterNav
   prev={{ title: "12장", href: "/docs/part3/ch12" }}
   next={{ title: "14장 — 지식 검색 (RAG)", href: "/docs/part3/ch14" }}

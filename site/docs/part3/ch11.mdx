@@ -411,3 +411,34 @@ flowchart LR
 ## 참고 문헌
 
 1. SMART Goals Framework. https://en.wikipedia.org/wiki/SMART_criteria
+
+<figure>
+
+```mermaid
+flowchart TD
+    사용자([사용자]) --> 프롬프트[프롬프트]
+    프롬프트 --> 코드[코드]
+    코드 --> 검토[자기 검토 + 품질 체크리스트]
+    검토 --> 판정{품질 충족?}
+    판정 -- 참 --> 출력([출력])
+    판정 -- 거짓 --> 코드
+    출력 --> 사용자
+```
+
+<figcaption>그림 1: 목표 설정 및 모니터링 예시 — 사용자 프롬프트로부터 코드를 생성하고 자기 검토 후 조건에 따라 출력 또는 재시도</figcaption>
+</figure>
+
+<figure>
+
+```mermaid
+flowchart LR
+    사용자([사용자]) --> 프롬프트[프롬프트]
+    프롬프트 --> 에이전트[에이전트]
+    에이전트 <--> 목표["목표 1\n목표 2\n목표 3\n목표 4\n목표 5"]
+    에이전트 --> 출력([출력])
+    출력 --> 사용자
+```
+
+<figcaption>그림 2: 목표 설계 패턴 — 에이전트가 다중 목표를 참조하여 실행하고 출력을 반환</figcaption>
+</figure>
+

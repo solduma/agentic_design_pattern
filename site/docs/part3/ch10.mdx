@@ -360,3 +360,23 @@ flowchart LR
 2. FastMCP Documentation. FastMCP. https://github.com/jlowin/fastmcp
 3. MCP Tools for Genmedia Services. MCP Tools for Genmedia Services. https://google.github.io/adk-docs/mcp/#mcp-servers-for-google-cloud-genmedia
 4. MCP Toolbox for Databases Documentation. (Latest). MCP Toolbox for Databases. https://google.github.io/adk-docs/mcp/databases/
+
+<figure>
+
+```mermaid
+flowchart LR
+    사용자([사용자]) --> 프롬프트[프롬프트]
+    프롬프트 --> 에이전트["에이전트\n(MCP 클라이언트)"]
+    에이전트 <--> MCP서버[MCP 서버]
+    MCP서버 --> 도구[도구]
+    MCP서버 --> API[API]
+    MCP서버 --> 레거시[레거시 서비스]
+    MCP서버 --> 데이터["데이터 서비스\n(웹페이지, 외부 DB 등)"]
+    MCP서버 --> 래퍼[래퍼]
+    에이전트 --> 출력([출력])
+    출력 --> 사용자
+```
+
+<figcaption>그림 1: 모델 컨텍스트 프로토콜(MCP) — MCP 클라이언트 에이전트가 MCP 서버를 통해 도구·API·레거시 서비스·데이터 서비스·래퍼에 접근</figcaption>
+</figure>
+
