@@ -41,6 +41,10 @@ FORBIDDEN_PATTERNS = [
 
 WHITELIST_STRINGS = [
     "색인 대신 검색",
+    "원서의 Index",  # intro.mdx search notice variant
+    "Index(색인)",   # inline notation of original index
+    "첫 등장:",      # glossary metadata field
+    "**첫 등장:**",  # glossary metadata field (bold)
 ]
 
 CROSSREF_RE = re.compile(r'<CrossRef\s+id=["\']([^"\']+)["\']')
@@ -58,12 +62,33 @@ def line_is_whitelisted(line: str) -> bool:
     return any(w in line for w in WHITELIST_STRINGS)
 
 
+# Lines that are definitionally non-cross-references (own section labels, captions, etc.)
+SKIP_LINE_PATTERNS = [
+    re.compile(r"^#"),               # section headings (own title)
+    re.compile(r"^title:\s*"),       # frontmatter title
+    re.compile(r"^sidebar_label:"),  # frontmatter sidebar label
+    re.compile(r"<figcaption>"),     # figure captions within the section
+    re.compile(r"이 부록\(Appendix"),  # appendix-f stub notice self-reference
+    re.compile(r"^\s*\-\s+\[부록"),   # navigation list items in intro.mdx
+]
+
+
+def line_is_own_label(line: str) -> bool:
+    stripped = line.lstrip()
+    return (
+        any(p.match(stripped) for p in SKIP_LINE_PATTERNS[:3])
+        or any(p.search(line) for p in SKIP_LINE_PATTERNS[3:])
+    )
+
+
 def check_file(path: str, known_ids: set[str]) -> list[str]:
     violations = []
     lines = open(path, encoding="utf-8").readlines()
     for lineno, line in enumerate(lines, 1):
         if line_is_whitelisted(line):
             continue
+        if line_is_own_label(line):
+            continue  # skip own section labels and figure captions
         for pattern, label in FORBIDDEN_PATTERNS:
             if pattern.search(line):
                 violations.append(

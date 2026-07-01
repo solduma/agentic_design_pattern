@@ -1,20 +1,22 @@
 {
-  "_note": "Calibrated from Ch1 (n=1) with sigma floors + prior seed (W5-H1/H3/W6-M1). Recalibrate as more chapters merge.",
+  "_note": "Calibrated from all 33 translated sections (excl. glossary auto-gen) using manifest prose token_count as baseline (W3-H6 contract) + strip_code (fenced blocks only). ch08 is included in corpus; its low ratio (0.657) is flagged as a real content-completeness failure. Recalibrate when more chapters merge.",
   "tokenizer": "cl100k_base",
   "para_ratio_min": 0.85,
+  "code_ratio_threshold": 0.3,
   "strata": {
     "prose": {
-      "mu": 1.907,
-      "sigma": 0.286,
-      "lower": 1.335,
-      "upper": 2.765
+      "mu": 1.904,
+      "sigma": 0.463,
+      "lower": 0.977,
+      "upper": 3.294,
+      "n": 33
     },
     "code-heavy": {
-      "mu": 1.907,
+      "mu": 1.904,
       "sigma": 0.477,
-      "lower": 0.953,
-      "upper": 3.337
+      "lower": 0.950,
+      "upper": 3.335,
+      "n": 0
     }
-  },
-  "code_ratio_threshold": 0.3
+  }
 }

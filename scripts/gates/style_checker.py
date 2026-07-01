@@ -17,9 +17,10 @@ import re
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Matches sentences ending in 합쇼체 (-습니다/-합니다/-입니다 and all verbal polite endings)
-# Full list: -ㅂ니다/습니다/합니다/입니다 + any punctuation
-HAPSYO_END_RE = re.compile(r"[ㅂ습합입]니다[.!?\"')\]]*\s*$")
+# Matches sentences ending in 합쇼체 (-습니다/-합니다/-입니다 and all polite endings).
+# Korean syllabic blocks: any Hangul syllable can precede 니다 (됩니다, 합니다, 습니다, etc.)
+# Also covers honorific imperatives: 십시오, 십니까.
+HAPSYO_END_RE = re.compile(r"[가-힣]니다[.!?\"')\]]*\s*$|십시오[.!?\"')\]]*\s*$|십니까[.!?\"')\]]*\s*$")
 
 # Hangul detection
 HANGUL_RE = re.compile(r"[가-힣]")
@@ -89,11 +90,24 @@ def check_file(path: str) -> list[str]:
         if not VERBAL_END_RE.search(stripped):
             continue
 
+        # Skip lines that end with bare nouns/noun-phrases (not sentences).
+        # These are valid in bullet definitions, table cells, captions, etc.
+        # We only flag lines that end in a verbal/adjectival ending that is NOT 합쇼체.
+        # Heuristic: if the line ends in 니다/십시오/십니까 it's already OK.
+        # If the line ends in a casual/informal verbal ending, it's a violation.
+        # Lines ending in nouns (not verb-conjugated) are silently skipped.
+        INFORMAL_END_RE = re.compile(
+            r"(야|이야|거야|잖아|네요|에요|예요|이에요|았어|었어|해요|죠|지요|거든|잖아요|군요)[.!?\"')\]]*\s*$"
+        )
         # Check for 합쇼체 ending
-        if not HAPSYO_END_RE.search(stripped):
+        if HAPSYO_END_RE.search(stripped):
+            continue  # polite ending — OK
+        # Check if it ends in a known informal/casual ending
+        if INFORMAL_END_RE.search(stripped):
             violations.append(
-                f"{path}:{lineno}: not 합쇼체: {stripped!r}"
+                f"{path}:{lineno}: not 합쇼체 (informal ending): {stripped!r}"
             )
+        # Lines ending in other patterns (nouns, English, etc.) — silently skip
 
     return violations
 

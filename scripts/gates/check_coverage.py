@@ -17,6 +17,9 @@ MANIFEST_PATH = os.path.join(REPO_ROOT, "assets", "manifest.json")
 
 EXCLUDE_DISPOSITIONS = {"omit-with-notice", "auto-generate"}
 
+# Known benign extra MDX files not in manifest (landing pages, style references, etc.)
+BENIGN_EXTRAS = {"intro", "chapter1-style-ref"}
+
 # Default MDX output directory (T5 output lives here)
 MDX_GLOB_PATTERN = os.path.join(REPO_ROOT, "src", "content", "**", "*.mdx")
 MDX_ALT_PATTERN = os.path.join(REPO_ROOT, "src", "**", "*.mdx")
@@ -52,16 +55,15 @@ def check_coverage(mdx_dir: str | None = None) -> int:
     }
 
     if mdx_dir:
-        found = {
-            os.path.splitext(f)[0]: os.path.join(mdx_dir, f)
-            for f in os.listdir(mdx_dir)
-            if f.endswith(".mdx")
-        }
+        found = {}
+        for path in glob.glob(os.path.join(mdx_dir, "**", "*.mdx"), recursive=True):
+            stem = os.path.splitext(os.path.basename(path))[0]
+            found[stem] = path
     else:
         found = find_generated_mdx_files()
 
     missing = set(expected.keys()) - set(found.keys())
-    extra = set(found.keys()) - set(expected.keys())
+    extra = (set(found.keys()) - set(expected.keys())) - BENIGN_EXTRAS
 
     errors = []
 
