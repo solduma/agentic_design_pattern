@@ -1,30 +1,20 @@
 {
-  "_note": "Placeholder thresholds. To be calibrated by T2a-core-calibrate.",
-  "strata": [
-    {
-      "code_ratio_min": 0.0,
-      "code_ratio_max": 0.1,
-      "thresholds": {
-        "para_ratio_min": 0.85,
-        "token_ratio_min": 0.50
-      }
+  "_note": "Calibrated from Ch1 (n=1) with sigma floors + prior seed (W5-H1/H3/W6-M1). Recalibrate as more chapters merge.",
+  "tokenizer": "cl100k_base",
+  "para_ratio_min": 0.85,
+  "strata": {
+    "prose": {
+      "mu": 1.907,
+      "sigma": 0.286,
+      "lower": 1.335,
+      "upper": 2.765
     },
-    {
-      "code_ratio_min": 0.1,
-      "code_ratio_max": 0.3,
-      "thresholds": {
-        "para_ratio_min": 0.85,
-        "token_ratio_min": 0.50
-      }
-    },
-    {
-      "code_ratio_min": 0.3,
-      "code_ratio_max": 1.0,
-      "thresholds": {
-        "para_ratio_min": 0.80,
-        "token_ratio_min": 0.50
-      }
+    "code-heavy": {
+      "mu": 1.907,
+      "sigma": 0.477,
+      "lower": 0.953,
+      "upper": 3.337
     }
-  ],
-  "sections": {}
+  },
+  "code_ratio_threshold": 0.3
 }
