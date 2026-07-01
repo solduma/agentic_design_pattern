@@ -1,0 +1,179 @@
+# negative_terms.txt
+# Terms the term-drift scanner must NOT flag as untranslated/variant misuse.
+# These are common Korean compound nouns / technical phrases that appear
+# naturally in all chapters and do not require glossary entries.
+#
+# Format: one term per line; lines starting with # are comments.
+
+# General processing/execution phrases
+처리 방식
+실행 환경
+입력 값
+출력 값
+반환 값
+기본 값
+설정 값
+초기 값
+최종 값
+결과 값
+
+# Common action phrases
+데이터 처리
+파일 처리
+요청 처리
+응답 처리
+오류 처리
+예외 처리
+이벤트 처리
+메시지 처리
+작업 처리
+배치 처리
+
+# Infrastructure / runtime
+실행 시간
+빌드 시간
+컴파일 시간
+런타임 환경
+개발 환경
+테스트 환경
+프로덕션 환경
+로컬 환경
+클라우드 환경
+서버 환경
+
+# Common Korean tech phrases
+소스 코드
+코드 베이스
+코드 블록
+코드 스니펫
+함수 정의
+클래스 정의
+메서드 호출
+변수 선언
+타입 정의
+인터페이스 정의
+
+# Document/content terms
+섹션 제목
+페이지 번호
+챕터 번호
+목차 항목
+각주 번호
+참고 문헌
+출처 정보
+인용 번호
+색인 항목
+검색 결과
+
+# Generic quality/performance
+성능 향상
+품질 개선
+정확도 향상
+속도 개선
+효율 향상
+안정성 향상
+신뢰성 향상
+가용성 향상
+확장성 향상
+유지 보수성
+
+# System components (generic)
+시스템 구성
+모듈 구성
+컴포넌트 구성
+서비스 구성
+아키텍처 구성
+네트워크 구성
+데이터베이스 구성
+인프라 구성
+클러스터 구성
+노드 구성
+
+# Data related (generic)
+데이터 구조
+데이터 형식
+데이터 타입
+데이터 모델
+데이터 스키마
+데이터 파이프라인
+데이터 흐름
+데이터 변환
+데이터 저장
+데이터 관리
+
+# UI/UX generic
+사용자 인터페이스
+사용자 경험
+사용자 입력
+사용자 출력
+화면 구성
+레이아웃 설정
+스타일 설정
+테마 설정
+색상 설정
+폰트 설정
+
+# Development workflow generic
+개발 프로세스
+배포 프로세스
+테스트 프로세스
+리뷰 프로세스
+빌드 프로세스
+릴리즈 프로세스
+버전 관리
+브랜치 관리
+병합 요청
+코드 리뷰
+
+# AI/ML generic non-glossary phrases
+모델 출력
+모델 입력
+모델 파라미터
+모델 가중치
+학습 데이터
+테스트 데이터
+검증 데이터
+훈련 과정
+추론 과정
+예측 결과
+
+# Common Korean connective phrases
+이를 통해
+이에 따라
+따라서
+그러나
+하지만
+또한
+뿐만 아니라
+특히
+일반적으로
+구체적으로
+예를 들어
+즉
+다시 말해
+결과적으로
+궁극적으로
+
+# Numbers and measurements (generic)
+수백만 개
+수천 개
+수백 개
+수십 개
+몇 가지
+여러 가지
+다양한 방법
+여러 방법
+몇 가지 방법
+다양한 접근
+
+# Common compound verbs turned nouns
+실행 방법
+구현 방법
+설정 방법
+사용 방법
+활용 방법
+적용 방법
+개선 방법
+최적화 방법
+자동화 방법
+통합 방법

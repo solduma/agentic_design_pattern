@@ -1,0 +1,8 @@
+TERMS_FROZEN
+Generated: 2026-07-01T05:09:17.956849Z
+Term count: 405
+Negative list size: 145
+Freeze tag: terms-freeze-v1
+
+This file marks the term dictionary as frozen for the glossary round-trip.
+Changes after freeze must follow the hotfix protocol in docs/HOTFIX.md.
