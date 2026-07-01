@@ -361,6 +361,38 @@ flowchart LR
 
 ---
 
+
+<figure>
+
+```mermaid
+flowchart LR
+    사용자([사용자]) --> 프롬프트[프롬프트]
+    프롬프트 --> 에이전트[에이전트]
+    에이전트 --> 출력([출력])
+    에이전트 --> 반성[반성]
+    반성 --> 에이전트
+    출력 --> 사용자
+```
+
+<figcaption>그림 1: 반성(Reflection) 설계 패턴 — 에이전트가 자기 출력을 반성하여 개선</figcaption>
+</figure>
+
+<figure>
+
+```mermaid
+flowchart LR
+    사용자([사용자]) --> 프롬프트[프롬프트]
+    프롬프트 --> 생산자[에이전트: 생산자]
+    생산자 --> 비평[에이전트: 비평]
+    비평 --> 반성[반성]
+    반성 --> 생산자
+    생산자 --> 출력([출력])
+    출력 --> 사용자
+```
+
+<figcaption>그림 2: 반성 설계 패턴 — 생산자 에이전트와 비평 에이전트의 협업</figcaption>
+</figure>
+
 <ChapterNav
   prev={{ title: "3장 — 병렬화", href: "/docs/part1/ch03" }}
   next={{ title: "5장 — 툴 사용", href: "/docs/part1/ch05" }}

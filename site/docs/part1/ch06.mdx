@@ -312,6 +312,26 @@ flowchart LR
 
 ---
 
+
+<figure>
+<img src="/img/diagrams/img-p105-0.png" alt="Deep Research 에이전트 웹 검색 진행 중 스크린샷" />
+<figcaption>Google Deep Research 에이전트가 유럽 VC 투자 분석을 위해 웹사이트를 조사하는 화면</figcaption>
+</figure>
+
+<figure>
+
+```mermaid
+flowchart LR
+    사용자([사용자]) --> 프롬프트[프롬프트]
+    프롬프트 --> 에이전트[에이전트]
+    에이전트 <--> 계획["계획 1\n계획 2\n계획 3\n계획 ..."]
+    에이전트 --> 출력([출력])
+    출력 --> 사용자
+```
+
+<figcaption>계획 설계 패턴 — 에이전트가 여러 계획 옵션을 생성하고 최적 계획을 선택하여 실행</figcaption>
+</figure>
+
 <ChapterNav
   prev={{ title: "5장 — 툴 사용(tool use)", href: "/docs/part1/ch05" }}
   next={{ title: "7장 — 멀티 에이전트 협업", href: "/docs/part1/ch07" }}

@@ -434,3 +434,18 @@ flowchart LR
 1. Google's Agent Development Kit (ADK): https://google.github.io/adk-docs/
 2. Gemini Flash 2.5 & Gemini 2.5 Pro: https://aistudio.google.com/
 3. OpenRouter: https://openrouter.ai/docs/quickstart
+
+<figure>
+
+```mermaid
+flowchart LR
+    사용자([사용자]) --> 프롬프트[프롬프트]
+    프롬프트 --> 에이전트[에이전트]
+    에이전트 <--> 예산[예산]
+    에이전트 --> 출력([출력])
+    출력 --> 사용자
+```
+
+<figcaption>그림 2: 리소스 인식 최적화 설계 패턴 — 에이전트가 예산 제약 내에서 작업을 수행</figcaption>
+</figure>
+

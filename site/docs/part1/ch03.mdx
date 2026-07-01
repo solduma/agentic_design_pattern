@@ -501,3 +501,42 @@ flowchart LR
 ```text
 3.​ Python asyncio Documentation: https://docs.python.org/3/library/asyncio.html
 ```
+
+<figure>
+
+```mermaid
+flowchart LR
+    subgraph 병렬에이전트["병렬 에이전트"]
+        SA1[서브에이전트 1]
+        SA2[서브에이전트 2]
+        SA3[서브에이전트 3]
+    end
+    입력([입력]) --> SA1
+    입력 --> SA2
+    입력 --> SA3
+    SA1 --> O1([출력 1])
+    SA2 --> O2([출력 2])
+    SA3 --> O3([출력 3])
+```
+
+<figcaption>그림 1: 병렬화 예시 — 단일 입력이 병렬 에이전트로 분기되어 각각 출력을 생성</figcaption>
+</figure>
+
+<figure>
+
+```mermaid
+flowchart LR
+    사용자([사용자]) --> 프롬프트[프롬프트]
+    프롬프트 --> 에이전트1[에이전트]
+    프롬프트 --> 점점점[...]
+    프롬프트 --> 에이전트N[에이전트]
+    에이전트1 --> 출력1([출력])
+    에이전트N --> 출력N([출력])
+    출력1 --> 사용자
+    점점점 --> 에이전트N
+    출력N --> 사용자
+```
+
+<figcaption>그림 2: 병렬화 설계 패턴 — 프롬프트에서 여러 에이전트가 병렬로 실행되어 사용자에게 출력을 반환</figcaption>
+</figure>
+

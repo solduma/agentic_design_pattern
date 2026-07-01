@@ -524,3 +524,68 @@ flowchart LR
 4. "ReAct: Synergizing Reasoning and Acting in Language Models" — Yao et al. (2023)
 5. Inference Scaling Laws: An Empirical Analysis of Compute-Optimal Inference for LLM Problem-Solving, 2024
 6. Multi-Agent Design: Optimizing Agents with Better Prompts and Topologies, https://arxiv.org/abs/2502.02533
+
+<figure>
+
+```mermaid
+flowchart TD
+    입력([입력]) --> A[A]
+    A --> B[B]
+    B --> 점점점[...]
+    점점점 --> Z[Z]
+    Z --> 답변["답변\nA + B + ... + Z"]
+```
+
+<figcaption>그림 1: 연쇄적 사고(CoT) — 입력에서 단계별 추론(A→B→…→Z)을 거쳐 최종 답변 도출</figcaption>
+</figure>
+
+<figure>
+
+```mermaid
+flowchart TD
+    입력([입력]) --> A1[A]
+    입력 --> A2["A*"]
+    입력 --> A3[A]
+    A1 --> B1[B]
+    A2 --> B2["B*"]
+    A3 --> B3[B]
+    A3 --> B4[B]
+    B1 --> C1[C]
+    B2 --> C2["C*"]
+    B3 --> C3[C]
+    C2 --> 점점점[...]
+    점점점 --> 답변["답변\nA* + B* + C* + ..."]
+```
+
+<figcaption>그림 2: 사고의 나무(ToT) — 입력에서 여러 추론 경로가 분기되어 최적 경로를 선택해 답변 도출</figcaption>
+</figure>
+
+<figure>
+
+```mermaid
+flowchart TD
+    질문([질문]) --> 쿼리생성[쿼리 생성]
+    쿼리생성 --> 웹검색[웹 검색]
+    웹검색 -- "검색 결과" --> 반성[반성]
+    반성 -- "추가 조사 필요" --> 웹검색
+    반성 -- "컨텍스트 충분" --> 답변생성[답변 생성]
+    답변생성 --> 답변([답변])
+```
+
+<figcaption>그림 6: 다중 반성 단계를 포함한 DeepSearch 예시 — 질문 → 쿼리 생성 → 웹 검색 → 반성 루프 → 답변 생성</figcaption>
+</figure>
+
+<figure>
+
+```mermaid
+flowchart LR
+    사용자([사용자]) --> 프롬프트[프롬프트]
+    프롬프트 --> 에이전트[에이전트]
+    에이전트 <--> 사고[사고]
+    에이전트 --> 출력([출력])
+    출력 --> 사용자
+```
+
+<figcaption>그림 7: 추론 설계 패턴 — 에이전트가 사고(Thinking) 모듈과 상호작용하며 출력 생성</figcaption>
+</figure>
+

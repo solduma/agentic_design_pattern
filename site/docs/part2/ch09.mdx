@@ -203,3 +203,18 @@ flowchart LR
 5. Robeyns, M., Aitchison, L., &amp; Szummer, M. (2025). A Self-Improving Coding Agent. arXiv:2504.15228v2. https://arxiv.org/pdf/2504.15228 / https://github.com/MaximeRobeyns/self_improving_coding_agent
 6. AlphaEvolve blog: https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/
 7. OpenEvolve: https://github.com/codelion/openevolve
+
+<figure>
+
+```mermaid
+flowchart LR
+    사용자([사용자]) --> 프롬프트[프롬프트]
+    프롬프트 --> 에이전트[에이전트]
+    에이전트 <--> 학습["학습 1\n학습 2\n학습 3\n학습 4\n학습 n"]
+    에이전트 --> 출력([출력])
+    출력 --> 사용자
+```
+
+<figcaption>그림 4: 학습 및 적응 설계 패턴 — 에이전트가 학습 내용을 활용하여 지속적으로 개선</figcaption>
+</figure>
+
