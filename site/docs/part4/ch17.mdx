@@ -157,7 +157,26 @@ revolutionize the development of new pharmaceuticals.
 
 사고의 나무(Tree of Thoughts, ToT)는 연쇄 사고(CoT)를 기반으로 구축된 추론 기법입니다. 이를 통해 대규모 언어 모델은 트리 구조를 형성하는 서로 다른 중간 단계로 분기하여 여러 추론 경로를 탐색할 수 있습니다(<span>그림 2</span> 참조). 이 접근법은 역추적(backtracking), 자기 수정, 대안 솔루션 탐색을 가능하게 하여 복잡한 문제 해결을 지원합니다. 가능성의 트리를 유지함으로써 모델은 최종 답변을 확정하기 전에 다양한 추론 궤적을 평가할 수 있습니다. 이 반복적 과정은 전략적 계획과 의사 결정이 필요한 어려운 작업을 처리하는 모델의 능력을 향상시킵니다.
 
-<figure><figcaption>다이어그램 img-p266-0 (준비 중)</figcaption></figure>
+<figure>
+
+```mermaid
+flowchart TD
+    입력([입력]) --> A1[A]
+    입력 --> A2["A*"]
+    입력 --> A3[A]
+    A1 --> B1[B]
+    A2 --> B2["B*"]
+    A3 --> B3[B]
+    A3 --> B4[B]
+    B1 --> C1[C]
+    B2 --> C2["C*"]
+    B3 --> C3[C]
+    C2 --> 점점점[...]
+    점점점 --> 답변["답변\nA* + B* + C* + ..."]
+```
+
+<figcaption>그림 2: 사고의 나무(ToT) — 입력에서 여러 추론 경로가 분기되어 최적 경로를 선택해 답변 도출</figcaption>
+</figure>
 
 *그림 2: 사고의 나무(Tree of Thoughts) 예시.*
 
@@ -302,7 +321,10 @@ agent_tool.AgentTool(agent=coding_agent)],
 
 ReAct(추론 및 행동, Reasoning and Acting)는 연쇄 사고(CoT) 프롬프팅과 에이전트가 도구를 통해 외부 환경과 상호작용하는 능력을 통합하는 패러다임입니다(<span>그림 3</span> 참조. KB는 지식 베이스를 나타냅니다). 최종 답변을 생성하는 생성 모델과 달리, ReAct 에이전트는 취해야 할 행동에 대해 추론합니다. 이 추론 단계는 CoT와 유사한 내부 계획 과정을 포함하며, 에이전트는 다음 단계를 결정하고, 사용 가능한 도구를 고려하며, 결과를 예측합니다. 이어서 에이전트는 데이터베이스 쿼리, 계산 수행, API와의 상호작용 등 도구 또는 함수 호출을 실행하여 행동합니다.
 
-<figure><figcaption>다이어그램 img-p271-0 (준비 중)</figcaption></figure>
+<figure>
+<img src="/img/diagrams/img-p272-0.png" alt="ReAct(추론 및 행동) — 프롬프트에서 ReAct 루프를 통해 공개/비공개 지식 베이스를 조회하는 다이어그램" />
+<figcaption>그림 3: ReAct(추론 및 행동) — 프롬프트에서 ReAct 루프를 통해 공개/비공개 지식 베이스를 조회하여 답변 생성</figcaption>
+</figure>
 
 *그림 3: 추론 및 행동(ReAct).*
 
@@ -458,7 +480,19 @@ graph = builder.compile(name="pro-search-agent")
 
 ## 시각적 요약
 
-<figure><figcaption>다이어그램 img-p282-0 (준비 중)</figcaption></figure>
+<figure>
+
+```mermaid
+flowchart LR
+    사용자([사용자]) --> 프롬프트[프롬프트]
+    프롬프트 --> 에이전트[에이전트]
+    에이전트 <--> 사고[사고]
+    에이전트 --> 출력([출력])
+    출력 --> 사용자
+```
+
+<figcaption>그림 7: 추론 설계 패턴 — 에이전트가 사고(Thinking) 모듈과 상호작용하며 출력 생성</figcaption>
+</figure>
 
 *그림 7: 추론 설계 패턴.*
 
