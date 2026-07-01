@@ -1,0 +1,9 @@
+{
+  "name": "gates",
+  "version": "1.0.0",
+  "description": "Gate scripts node helpers",
+  "private": true,
+  "dependencies": {
+    "@mdx-js/mdx": "^3.0.0"
+  }
+}

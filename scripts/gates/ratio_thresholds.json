@@ -1,0 +1,30 @@
+{
+  "_note": "Placeholder thresholds. To be calibrated by T2a-core-calibrate.",
+  "strata": [
+    {
+      "code_ratio_min": 0.0,
+      "code_ratio_max": 0.1,
+      "thresholds": {
+        "para_ratio_min": 0.85,
+        "token_ratio_min": 0.50
+      }
+    },
+    {
+      "code_ratio_min": 0.1,
+      "code_ratio_max": 0.3,
+      "thresholds": {
+        "para_ratio_min": 0.85,
+        "token_ratio_min": 0.50
+      }
+    },
+    {
+      "code_ratio_min": 0.3,
+      "code_ratio_max": 1.0,
+      "thresholds": {
+        "para_ratio_min": 0.80,
+        "token_ratio_min": 0.50
+      }
+    }
+  ],
+  "sections": {}
+}

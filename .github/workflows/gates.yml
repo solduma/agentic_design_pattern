@@ -1,0 +1,88 @@
+name: Gate Checks (T5 PR)
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'src/**/*.mdx'
+      - 'docs/**/*.mdx'
+
+jobs:
+  gates:
+    name: Run terms-independent gates
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: pip install tiktoken
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Node dependencies (MDX compiler)
+        working-directory: scripts/gates
+        run: npm ci
+
+      - name: Check coverage (manifest 1:1)
+        run: python3 scripts/gates/check_coverage.py
+
+      - name: Check T5 coverage
+        run: python3 scripts/gates/check_t5_coverage.py
+
+      - name: Run xref checker on changed MDX files
+        run: |
+          changed=$(git diff --name-only origin/${{ github.base_ref }}...HEAD -- '*.mdx' | tr '\n' ' ')
+          if [ -n "$changed" ]; then
+            python3 scripts/gates/xref_checker.py $changed
+          else
+            echo "No MDX files changed."
+          fi
+
+      - name: Run style checker on changed MDX files
+        run: |
+          changed=$(git diff --name-only origin/${{ github.base_ref }}...HEAD -- '*.mdx' | tr '\n' ' ')
+          if [ -n "$changed" ]; then
+            python3 scripts/gates/style_checker.py $changed
+          else
+            echo "No MDX files changed."
+          fi
+
+      - name: Run MDX compile check on changed MDX files
+        run: |
+          changed=$(git diff --name-only origin/${{ github.base_ref }}...HEAD -- '*.mdx' | tr '\n' ' ')
+          if [ -n "$changed" ]; then
+            for f in $changed; do
+              python3 scripts/gates/check_mdx.py "$f"
+            done
+          else
+            echo "No MDX files changed."
+          fi
+
+      - name: Run code integrity check on changed MDX files
+        run: |
+          for f in $(git diff --name-only origin/${{ github.base_ref }}...HEAD -- '*.mdx'); do
+            sid=$(basename "$f" .mdx)
+            if [ -f "assets/sections/${sid}.txt" ]; then
+              python3 scripts/gates/check_code_integrity.py "$sid" "$f"
+            fi
+          done
+
+      - name: Run ratio check on changed MDX files
+        run: |
+          for f in $(git diff --name-only origin/${{ github.base_ref }}...HEAD -- '*.mdx'); do
+            sid=$(basename "$f" .mdx)
+            if [ -f "assets/sections/${sid}.txt" ]; then
+              python3 scripts/gates/check_ratio.py "$sid" "$f"
+            fi
+          done
