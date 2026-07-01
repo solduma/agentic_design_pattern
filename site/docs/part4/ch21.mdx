@@ -1,0 +1,322 @@
+---
+title: "21장 — 탐색과 발견"
+sidebar_position: 21
+---
+
+import { KeyPoints, Diagram, CrossRef } from '@site/src/components';
+
+<KeyPoints
+  items={[
+    "탐색과 발견(Exploration and Discovery) 패턴은 지능형 에이전트가 새로운 정보를 능동적으로 탐색하고, 새로운 가능성을 발굴하며, 운영 환경 내의 미지의 미지수(unknown unknowns)를 식별할 수 있도록 합니다.",
+    "이 패턴은 사전 정의된 솔루션 공간 내에서의 반응적 행동이나 최적화와는 달리, 에이전트가 낯선 영역을 적극적으로 탐험하고 새로운 지식을 생성하는 데 중점을 둡니다.",
+    "Google AI 공동 과학자(AI Co-scientist)는 가설 생성, 평가, 발전이라는 반복적 접근 방식을 사용하는 멀티 에이전트 프레임워크의 대표적 사례입니다.",
+    "Agent Laboratory는 문헌 검토, 실험, 보고서 작성을 자동화하여 인간 연구자의 역량을 증강하는 자율 연구 워크플로우 프레임워크입니다.",
+    "탐색과 발견 패턴은 솔루션 공간이 완전히 정의되지 않은 개방형·복잡·급변하는 도메인에서 활용하는 것이 이상적입니다.",
+  ]}
+/>
+
+# 21장: 탐색과 발견
+
+이 장에서는 지능형 에이전트가 운영 환경 내에서 새로운 정보를 능동적으로 탐색하고, 새로운 가능성을 발굴하며, 미지의 미지수(unknown unknowns)를 식별할 수 있도록 하는 패턴을 살펴봅니다. 탐색과 발견(Exploration and Discovery)은 반응적 행동이나 사전 정의된 솔루션 공간 내에서의 최적화와는 다릅니다. 이 패턴은 에이전트가 낯선 영역을 적극적으로 탐험하고, 새로운 접근 방식을 실험하며, 새로운 지식이나 이해를 생성하는 데 집중합니다. 이 패턴은 정적 지식이나 미리 프로그래밍된 솔루션으로는 부족한 개방형·복잡·급변하는 도메인에서 운영되는 에이전트에게 매우 중요합니다. 이 패턴은 에이전트가 자신의 이해와 역량을 확장하는 능력을 강조합니다.
+
+## 실용적 응용 사례
+
+AI 에이전트는 지능적으로 우선순위를 정하고 탐색하는 능력을 보유하고 있으며, 이는 다양한 도메인에 걸친 응용으로 이어집니다. 에이전트는 잠재적 행동을 자율적으로 평가하고 순서를 정함으로써 복잡한 환경을 탐색하고, 숨겨진 인사이트를 발굴하며, 혁신을 이끌 수 있습니다. 이 우선순위 기반 탐색 능력 덕분에 에이전트는 프로세스를 최적화하고, 새로운 지식을 발견하며, 콘텐츠를 생성할 수 있습니다.
+
+예시:
+
+- **과학 연구 자동화**: 에이전트가 실험을 설계·실행하고, 결과를 분석하며, 새로운 재료·신약 후보·과학 원리를 발견하기 위한 새로운 가설을 수립합니다.
+- **게임 플레이 및 전략 생성**: 에이전트가 게임 상태를 탐색하여 창발적 전략을 발견하거나 게임 환경의 취약점을 식별합니다(예: AlphaGo).
+- **시장 조사 및 트렌드 발굴**: 에이전트가 비정형 데이터(소셜 미디어, 뉴스, 보고서)를 스캔하여 트렌드, 소비자 행동, 또는 시장 기회를 식별합니다.
+- **보안 취약점 발견**: 에이전트가 시스템이나 코드베이스를 탐색하여 보안 결함이나 공격 벡터를 찾습니다.
+- **창의적 콘텐츠 생성**: 에이전트가 스타일·테마·데이터 조합을 탐색하여 예술 작품, 음악 작곡, 또는 문학 작품을 생성합니다.
+- **맞춤형 교육 및 훈련**: AI 튜터가 학생의 진도, 학습 스타일, 개선이 필요한 영역을 바탕으로 학습 경로와 콘텐츠 제공을 우선순위에 따라 조정합니다.
+
+## Google AI 공동 과학자
+
+AI 공동 과학자(AI Co-scientist)는 Google Research가 개발한 AI 시스템으로, 계산적 과학 협력자로 설계되었습니다. 이 시스템은 가설 생성, 제안 정제, 실험 설계 등 연구의 여러 측면에서 인간 과학자를 지원합니다. 이 시스템은 Gemini LLM 위에서 작동합니다.
+
+AI 공동 과학자 개발은 과학 연구의 여러 과제를 해결합니다. 이 과제에는 대량의 정보 처리, 검증 가능한 가설 생성, 실험 계획 관리 등이 포함됩니다. AI 공동 과학자는 대규모 정보 처리 및 합성을 포함하는 작업을 수행하여 연구자를 지원하며, 잠재적으로 데이터 내의 관계를 밝혀냅니다. 이 시스템의 목적은 초기 단계 연구의 계산적으로 부담이 큰 측면을 처리함으로써 인간의 인지 과정을 증강하는 것입니다.
+
+**시스템 아키텍처 및 방법론**: AI 공동 과학자의 아키텍처는 협업적이고 반복적인 프로세스를 모방하도록 구조화된 멀티 에이전트 프레임워크를 기반으로 합니다. 이 설계는 연구 목표에 기여하는 특정 역할을 가진 전문화된 AI 에이전트들을 통합합니다. 슈퍼바이저 에이전트는 계산 자원의 유연한 확장을 허용하는 비동기 작업 실행 프레임워크 내에서 개별 에이전트의 활동을 관리하고 조율합니다.
+
+핵심 에이전트와 기능은 다음과 같습니다(그림 1 참조):
+
+- **생성 에이전트(Generation agent)**: 문헌 탐색과 모의 과학 토론을 통해 초기 가설을 생성하여 프로세스를 시작합니다.
+- **반영 에이전트(Reflection agent)**: 동료 심사자 역할을 하며, 생성된 가설의 정확성, 참신성, 품질을 비판적으로 평가합니다.
+- **순위 에이전트(Ranking agent)**: 모의 과학 토론을 통해 Elo 기반 토너먼트를 활용하여 가설을 비교·순위 결정·우선순위화합니다.
+- **발전 에이전트(Evolution agent)**: 개념을 단순화하고, 아이디어를 합성하며, 비관습적 추론을 탐색함으로써 최상위 가설을 지속적으로 정제합니다.
+- **근접성 에이전트(Proximity agent)**: 유사한 아이디어를 클러스터링하고 가설 공간 탐색을 지원하기 위해 근접 그래프를 계산합니다.
+- **메타 검토 에이전트(Meta-review agent)**: 모든 검토 및 토론에서 인사이트를 합성하여 공통 패턴을 식별하고 피드백을 제공함으로써 시스템이 지속적으로 개선될 수 있도록 합니다.
+
+시스템의 운영 기반은 언어 이해, 추론, 생성 능력을 제공하는 Gemini에 의존합니다. 시스템은 출력을 반복적으로 추론하고 향상시키기 위해 증가된 계산 자원을 할당하는 메커니즘인 "테스트 타임 컴퓨팅 스케일링(test-time compute scaling)"을 도입합니다. 시스템은 학술 문헌, 웹 기반 데이터, 데이터베이스 등 다양한 소스에서 정보를 처리하고 합성합니다.
+
+<Diagram id="img-p337-0" />
+
+시스템은 과학적 방법을 반영하는 반복적인 "생성, 토론, 발전" 접근 방식을 따릅니다. 인간 과학자로부터 과학적 문제를 입력받은 후, 시스템은 가설 생성, 평가, 정제의 자기 개선 사이클에 참여합니다. 가설은 에이전트 간 내부 평가와 토너먼트 기반 순위 결정 메커니즘을 포함한 체계적 평가를 거칩니다.
+
+**검증 및 결과**: AI 공동 과학자의 유용성은 자동화 벤치마크, 전문가 검토, 엔드 투 엔드 습식 실험실 실험을 통해 성능을 평가하는 여러 검증 연구, 특히 바이오의학 분야에서 입증되었습니다.
+
+**자동화 및 전문가 평가**: 어려운 GPQA 벤치마크에서 시스템의 내부 Elo 등급은 결과의 정확도와 일치함을 보였으며, 어려운 "다이아몬드 세트"에서 78.4%의 상위 1 정확도를 달성했습니다. 200개 이상의 연구 목표에 대한 분석은 테스트 타임 컴퓨팅 확장이 Elo 등급으로 측정된 가설의 품질을 일관되게 향상시킨다는 것을 보여주었습니다. 15개의 어려운 문제로 구성된 선별된 세트에서 AI 공동 과학자는 다른 최첨단 AI 모델과 인간 전문가가 제공한 "최선의 추측" 솔루션을 능가했습니다. 소규모 평가에서 바이오의학 전문가들은 공동 과학자의 출력이 다른 베이스라인 모델에 비해 더 참신하고 영향력 있다고 평가했습니다. NIH Specific Aims 페이지 형식으로 작성된 약물 재목적화 제안은 여섯 명의 전문 종양학자 패널에 의해 높은 품질로 평가받았습니다.
+
+**엔드 투 엔드 실험 검증**:
+
+*약물 재목적화*: 급성 골수성 백혈병(AML)의 경우, 시스템이 새로운 약물 후보를 제안했습니다. KIRA6와 같은 일부는 AML에서의 사용에 대한 사전 전임상 증거가 전혀 없는 완전히 새로운 제안이었습니다. 이후 시험관 내 실험에서 KIRA6 및 기타 제안된 약물이 여러 AML 세포주에서 임상적으로 관련된 농도로 종양 세포 생존력을 억제한다는 것이 확인되었습니다.
+
+*새로운 표적 발견*: 시스템이 간 섬유증에 대한 새로운 후성유전학적 표적을 식별했습니다. 인간 간 오르가노이드를 사용한 실험실 실험이 이 발견을 검증했으며, 제안된 후성유전학적 조절자를 표적으로 하는 약물이 유의미한 항섬유화 활성을 가짐을 보여주었습니다. 식별된 약물 중 하나는 이미 다른 질환에 대해 FDA 승인을 받아 재목적화 기회를 열어줍니다.
+
+*항균 내성*: AI 공동 과학자가 미발표 실험 결과를 독립적으로 재현했습니다. 특정 이동성 유전 인자(cf-PICIs)가 많은 세균 종에 걸쳐 발견되는 이유를 설명하도록 지시받았습니다. 이틀 만에 시스템의 최상위 가설은 cf-PICIs가 다양한 파지 꼬리와 상호작용하여 숙주 범위를 확장한다는 것이었습니다. 이는 독립적인 연구 그룹이 10년 이상의 연구 끝에 도달한 새롭고 실험적으로 검증된 발견을 반영했습니다.
+
+**증강 및 한계**: AI 공동 과학자 뒤에 있는 설계 철학은 인간 연구의 완전한 자동화가 아닌 증강을 강조합니다. 연구자들은 자연어를 통해 시스템과 상호작용하고 안내하며, 피드백을 제공하고, 자신의 아이디어를 기여하며, "루프 내 과학자(scientist-in-the-loop)" 협업 패러다임으로 AI의 탐색 프로세스를 지시합니다. 그러나 시스템에는 몇 가지 한계가 있습니다. 오픈 액세스 문헌에 대한 의존으로 인해 유료 장벽 뒤의 중요한 선행 연구를 놓칠 수 있습니다. 또한 경험 있는 과학자에게는 매우 중요하지만 거의 발표되지 않는 부정적 실험 결과에 대한 접근도 제한적입니다. 더 나아가, 시스템은 사실적 부정확성이나 "환각(hallucinations)"의 가능성을 포함한 기반 LLM의 한계를 물려받습니다.
+
+**안전**: 안전은 중요한 고려 사항이며, 시스템은 여러 안전장치를 포함합니다. 모든 연구 목표는 입력 시 안전성 검토를 받으며, 생성된 가설도 시스템이 안전하지 않거나 비윤리적인 연구에 사용되는 것을 방지하기 위해 확인됩니다. 1,200개의 적대적 연구 목표를 사용한 예비 안전 평가에서 시스템이 위험한 입력을 강력하게 거부할 수 있음이 확인되었습니다. 책임 있는 개발을 보장하기 위해 시스템은 실제 피드백을 수집하기 위한 신뢰할 수 있는 테스터 프로그램(Trusted Tester Program)을 통해 더 많은 과학자들에게 제공되고 있습니다.
+
+## 실습 코드 예제
+
+탐색과 발견을 위한 에이전틱 AI의 구체적인 예를 살펴보겠습니다: MIT 라이센스 하에 Samuel Schmidgall이 개발한 프로젝트인 Agent Laboratory입니다.
+
+"Agent Laboratory"는 인간 과학적 노력을 대체하는 것이 아니라 증강하도록 설계된 자율 연구 워크플로우 프레임워크입니다. 이 시스템은 전문화된 LLM을 활용하여 과학 연구 프로세스의 다양한 단계를 자동화함으로써, 인간 연구자가 개념화와 비판적 분석에 더 많은 인지 자원을 투자할 수 있도록 합니다.
+
+프레임워크는 자율 연구 에이전트를 위한 탈중앙화 저장소인 "AgentRxiv"를 통합합니다. AgentRxiv는 연구 결과물의 저장, 검색, 개발을 촉진합니다.
+
+Agent Laboratory는 다음과 같은 별개의 단계를 통해 연구 프로세스를 안내합니다:
+
+1. **문헌 검토**: 초기 단계에서 전문화된 LLM 기반 에이전트들이 관련 학술 문헌의 자율적 수집과 비판적 분석을 수행합니다. 여기에는 arXiv와 같은 외부 데이터베이스를 활용하여 관련 연구를 식별·합성·분류하고, 후속 단계를 위한 포괄적인 지식 베이스를 효과적으로 구축하는 작업이 포함됩니다.
+2. **실험**: 이 단계는 실험 설계의 협업적 수립, 데이터 준비, 실험 실행, 결과 분석을 포함합니다. 에이전트들은 코드 생성·실행을 위한 Python과 모델 접근을 위한 Hugging Face와 같은 통합 도구를 활용하여 자동화된 실험을 수행합니다. 시스템은 실시간 결과를 기반으로 에이전트가 실험 절차를 적응·최적화할 수 있는 반복적 정제를 위해 설계되었습니다.
+3. **보고서 작성**: 최종 단계에서 시스템이 포괄적인 연구 보고서 생성을 자동화합니다. 이는 실험 단계의 발견을 문헌 검토의 인사이트와 합성하고, 학술 관례에 따라 문서를 구조화하며, 전문적인 형식 지정과 그림 생성을 위한 LaTeX와 같은 외부 도구를 통합하는 작업을 포함합니다.
+4. **지식 공유**: AgentRxiv는 자율 연구 에이전트들이 과학적 발견을 공유하고, 접근하며, 협업적으로 발전시킬 수 있는 플랫폼입니다. 에이전트들이 이전 발견을 기반으로 구축하여 누적적 연구 진보를 촉진합니다.
+
+Agent Laboratory의 모듈형 아키텍처는 계산적 유연성을 보장합니다. 목표는 인간 연구자를 유지하면서 일상적인 작업을 자동화하여 연구 생산성을 향상시키는 것입니다.
+
+**코드 분석**: 포괄적인 코드 분석은 이 책의 범위를 벗어나지만, 몇 가지 핵심 인사이트를 제공하고 직접 코드를 탐색하도록 권장합니다.
+
+**판단(Judgment)**: 인간의 평가 프로세스를 모방하기 위해, 시스템은 출력을 평가하기 위한 삼중 에이전틱 판단 메커니즘을 사용합니다. 이는 각각 특정 관점에서 생산물을 평가하도록 구성된 세 개의 별개 자율 에이전트를 배치하여, 인간 판단의 미묘하고 다면적인 특성을 집합적으로 모방합니다. 이 접근 방식은 단일 지표를 넘어 더 풍부한 질적 평가를 포착하여 보다 강력하고 포괄적인 평가를 가능하게 합니다.
+
+```python
+class ReviewersAgent:
+   def __init__(self, model="gpt-4o-mini", notes=None,
+openai_api_key=None):
+       if notes is None: self.notes = []
+       else: self.notes = notes
+       self.model = model
+       self.openai_api_key = openai_api_key
+
+   def inference(self, plan, report):
+       reviewer_1 = "You are a harsh but fair reviewer and expect
+good experiments that lead to insights for the research topic."
+       review_1 = get_score(outlined_plan=plan, latex=report,
+reward_model_llm=self.model, reviewer_type=reviewer_1,
+openai_api_key=self.openai_api_key)
+
+       reviewer_2 = "You are a harsh and critical but fair reviewer
+who is looking for an idea that would be impactful in the field."
+       review_2 = get_score(outlined_plan=plan, latex=report,
+reward_model_llm=self.model, reviewer_type=reviewer_2,
+openai_api_key=self.openai_api_key)
+
+       reviewer_3 = "You are a harsh but fair open-minded reviewer
+that is looking for novel ideas that have not been proposed before."
+       review_3 = get_score(outlined_plan=plan, latex=report,
+reward_model_llm=self.model, reviewer_type=reviewer_3,
+openai_api_key=self.openai_api_key)
+
+       return f"Reviewer #1:\n{review_1}, \nReviewer #2:\n{review_2},
+\nReviewer #3:\n{review_3}"
+```
+
+판단 에이전트들은 인간 심사자가 일반적으로 사용하는 인지 프레임워크와 평가 기준을 면밀히 모방하는 특정 프롬프트(프롬프트)로 설계되었습니다. 이 프롬프트는 에이전트들이 관련성, 일관성, 사실적 정확성, 전반적 품질과 같은 요소를 고려하여 인간 전문가가 하는 것과 유사한 렌즈를 통해 출력을 분석하도록 안내합니다. 이러한 프롬프트를 인간 검토 프로토콜을 반영하도록 작성함으로써, 시스템은 인간과 유사한 분별력에 접근하는 수준의 평가 정교함을 달성하는 것을 목표로 합니다.
+
+`````python
+def get_score(outlined_plan, latex, reward_model_llm,
+reviewer_type=None, attempts=3, openai_api_key=None):
+   e = str()
+   for _attempt in range(attempts):
+       try:
+
+           template_instructions = """
+           Respond in the following format:
+
+           THOUGHT:
+           <THOUGHT>
+
+           REVIEW JSON:
+           ```json
+           <JSON>
+           ```
+
+           In <THOUGHT>, first briefly discuss your intuitions
+           and reasoning for the evaluation.
+           Detail your high-level arguments, necessary choices
+           and desired outcomes of the review.
+           Do not make generic comments here, but be specific
+           to your current paper.
+           Treat this as the note-taking phase of your review.
+
+           In <JSON>, provide the review in JSON format with
+           the following fields in the order:
+           - "Summary": A summary of the paper content and
+           its contributions.
+           - "Strengths": A list of strengths of the paper.
+           - "Weaknesses": A list of weaknesses of the paper.
+           - "Originality": A rating from 1 to 4
+             (low, medium, high, very high).
+           - "Quality": A rating from 1 to 4
+             (low, medium, high, very high).
+           - "Clarity": A rating from 1 to 4
+             (low, medium, high, very high).
+           - "Significance": A rating from 1 to 4
+             (low, medium, high, very high).
+           - "Questions": A set of clarifying questions to be
+              answered by the paper authors.
+           - "Limitations": A set of limitations and potential
+              negative societal impacts of the work.
+           - "Ethical Concerns": A boolean value indicating
+              whether there are ethical concerns.
+           - "Soundness": A rating from 1 to 4
+              (poor, fair, good, excellent).
+           - "Presentation": A rating from 1 to 4
+              (poor, fair, good, excellent).
+           - "Contribution": A rating from 1 to 4
+             (poor, fair, good, excellent).
+           - "Overall": A rating from 1 to 10
+             (very strong reject to award quality).
+           - "Confidence": A rating from 1 to 5
+             (low, medium, high, very high, absolute).
+           - "Decision": A decision that has to be one of the
+             following: Accept, Reject.
+
+           For the "Decision" field, don't use Weak Accept,
+           Borderline Accept, Borderline Reject, or Strong Reject.
+           Instead, only use Accept or Reject.
+           This JSON will be automatically parsed, so ensure
+           the format is precise.
+           """
+`````
+
+이 멀티 에이전트 시스템에서 연구 프로세스는 전문화된 역할을 중심으로 구조화되며, 일반적인 학문적 계층구조를 반영하여 워크플로우를 간소화하고 출력을 최적화합니다.
+
+**Professor Agent**: Professor Agent는 주요 연구 책임자로 기능하며, 연구 의제를 수립하고, 연구 질문을 정의하며, 다른 에이전트에게 작업을 위임하는 역할을 합니다. 이 에이전트는 전략적 방향을 설정하고 프로젝트 목표와의 일치를 보장합니다.
+
+````python
+class ProfessorAgent(BaseAgent):
+   def __init__(self, model="gpt4omini", notes=None, max_steps=100,
+openai_api_key=None):
+       super().__init__(model, notes, max_steps, openai_api_key)
+       self.phases = ["report writing"]
+
+   def generate_readme(self):
+       sys_prompt = f"""You are {self.role_description()} \n Here is
+the written paper \n{self.report}. Task instructions: Your goal is to
+integrate all of the knowledge, code, reports, and notes provided to
+you and generate a readme.md for a github repository."""
+       history_str = "\n".join([_[1] for _ in self.history])
+       prompt = (
+           f"""History: {history_str}\n{'~' * 10}\n"""
+           f"Please produce the readme below in markdown:\n")
+       model_resp = query_model(model_str=self.model,
+system_prompt=sys_prompt, prompt=prompt,
+openai_api_key=self.openai_api_key)
+       return model_resp.replace("```markdown", "")
+````
+
+**PostDoc Agent**: PostDoc Agent의 역할은 연구를 실행하는 것입니다. 여기에는 문헌 검토 수행, 실험 설계 및 구현, 논문과 같은 연구 결과물 생성이 포함됩니다. 중요하게도, PostDoc Agent는 코드를 작성하고 실행하는 능력을 갖추고 있어 실험 프로토콜과 데이터 분석의 실질적인 구현이 가능합니다. 이 에이전트는 연구 아티팩트의 주요 생산자입니다.
+
+```python
+class PostdocAgent(BaseAgent):
+   def __init__(self, model="gpt4omini", notes=None, max_steps=100,
+openai_api_key=None):
+       super().__init__(model, notes, max_steps, openai_api_key)
+       self.phases = ["plan formulation", "results interpretation"]
+
+   def context(self, phase):
+       sr_str = str()
+       if self.second_round:
+           sr_str = (
+               f"The following are results from the previous
+experiments\n",
+               f"Previous Experiment code:
+{self.prev_results_code}\n"
+               f"Previous Results: {self.prev_exp_results}\n"
+               f"Previous Interpretation of results:
+{self.prev_interpretation}\n"
+               f"Previous Report: {self.prev_report}\n"
+               f"{self.reviewer_response}\n\n\n"
+           )
+       if phase == "plan formulation":
+           return (
+               sr_str,
+               f"Current Literature Review: {self.lit_review_sum}",
+           )
+       elif phase == "results interpretation":
+           return (
+               sr_str,
+               f"Current Literature Review: {self.lit_review_sum}\n"
+               f"Current Plan: {self.plan}\n"
+               f"Current Dataset code: {self.dataset_code}\n"
+               f"Current Experiment code: {self.results_code}\n"
+               f"Current Results: {self.exp_results}"
+           )
+       return ""
+```
+
+**Reviewer Agents**: Reviewer 에이전트들은 PostDoc Agent의 연구 결과물에 대한 비판적 평가를 수행하며, 논문과 실험 결과의 품질, 타당성, 과학적 엄밀성을 평가합니다. 이 평가 단계는 최종 확정 전 높은 연구 결과물 기준을 보장하기 위해 학술 환경의 동료 검토 프로세스를 모방합니다.
+
+**ML Engineering Agents**: Machine Learning Engineering Agents는 머신러닝 엔지니어로서 박사 과정 학생과 대화식 협업을 통해 코드를 개발합니다. 핵심 기능은 제공된 문헌 검토와 실험 프로토콜에서 도출된 인사이트를 통합하여 데이터 전처리를 위한 단순한 코드를 생성하는 것입니다. 이는 데이터가 지정된 실험에 적합하게 형식화되고 준비되도록 보장합니다.
+
+```text
+"You are a machine learning engineer being directed by a PhD student
+who will help you write the code, and you can interact with them
+through dialogue.\n"
+"Your goal is to produce code that prepares the data for the provided
+experiment. You should aim for simple code to prepare the data, not
+complex code. You should integrate the provided literature review and
+the plan and come up with code to prepare data for this
+experiment.\n"
+```
+
+**SWEngineerAgents**: Software Engineering Agents는 Machine Learning Engineer Agents를 안내합니다. 이들의 주요 목적은 Machine Learning Engineer Agent가 특정 실험을 위한 간단한 데이터 준비 코드를 작성하도록 지원하는 것입니다. Software Engineer Agent는 제공된 문헌 검토와 실험 계획을 통합하여 생성된 코드가 단순하고 연구 목표와 직접적으로 관련되도록 합니다.
+
+```text
+"You are a software engineer directing a machine learning engineer,
+where the machine learning engineer will be writing the code, and you
+can interact with them through dialogue.\n"
+"Your goal is to help the ML engineer produce code that prepares the
+data for the provided experiment. You should aim for very simple code
+to prepare the data, not complex code. You should integrate the
+provided literature review and the plan and come up with code to
+prepare data for this experiment.\n"
+```
+
+요약하면, "Agent Laboratory"는 자율 과학 연구를 위한 정교한 프레임워크를 나타냅니다. 핵심 연구 단계를 자동화하고 협업적 AI 기반 지식 생성을 촉진함으로써 인간 연구 역량을 증강하도록 설계되었습니다. 시스템은 인간 감독을 유지하면서 일상적인 작업을 관리하여 연구 효율성을 높이는 것을 목표로 합니다.
+
+## 한눈에 보기
+
+**무엇을(What)**: AI 에이전트는 종종 사전 정의된 지식 내에서 운영되어, 새로운 상황이나 개방형 문제를 처리하는 능력이 제한됩니다. 복잡하고 동적인 환경에서 이 정적이고 미리 프로그래밍된 정보는 진정한 혁신이나 발견을 위해서는 불충분합니다. 근본적인 과제는 에이전트가 단순한 최적화를 넘어 능동적으로 새로운 정보를 탐색하고 "미지의 미지수"를 식별할 수 있도록 하는 것입니다. 이는 순수하게 반응적인 행동에서 시스템 자신의 이해와 역량을 확장하는 에이전틱(Agentic) 탐색으로의 패러다임 전환을 필요로 합니다.
+
+**왜(Why)**: 표준화된 솔루션은 자율 탐색과 발견을 위해 특별히 설계된 에이전틱 AI 시스템을 구축하는 것입니다. 이러한 시스템은 전문화된 LLM이 과학적 방법과 같은 프로세스를 모방하기 위해 협업하는 멀티 에이전트 프레임워크를 종종 활용합니다. 예를 들어, 별개의 에이전트들이 가설 생성, 비판적 검토, 가장 유망한 개념의 발전을 담당할 수 있습니다. 이 구조화되고 협업적인 방법론은 시스템이 광대한 정보 환경을 지능적으로 탐색하고, 실험을 설계·실행하며, 진정으로 새로운 지식을 생성할 수 있도록 합니다. 탐색의 노동 집약적 측면을 자동화함으로써 이러한 시스템은 인간 지성을 증강하고 발견의 속도를 크게 가속화합니다.
+
+**경험 법칙(Rule of thumb)**: 솔루션 공간이 완전히 정의되지 않은 개방형·복잡·급변하는 도메인에서 운영할 때 탐색과 발견 패턴을 사용하십시오. 과학 연구, 시장 분석, 창의적 콘텐츠 생성과 같이 새로운 가설, 전략, 인사이트를 생성해야 하는 작업에 이상적입니다. 이 패턴은 알려진 프로세스를 단순히 최적화하는 것이 아니라 "미지의 미지수"를 발굴하는 것이 목표일 때 필수적입니다.
+
+## 시각적 요약
+
+<Diagram id="img-p346-0" />
+
+## 핵심 시사점
+
+- AI의 탐색과 발견(Exploration and Discovery)은 에이전트가 새로운 정보와 가능성을 능동적으로 추구할 수 있게 하며, 이는 복잡하고 진화하는 환경을 탐색하는 데 필수적입니다.
+- Google AI 공동 과학자(AI Co-scientist)와 같은 시스템은 에이전트들이 자율적으로 가설을 생성하고 실험을 설계하여 인간 과학 연구를 보완할 수 있음을 보여줍니다.
+- Agent Laboratory의 전문화된 역할로 예시되는 멀티 에이전트 프레임워크는 문헌 검토, 실험, 보고서 작성의 자동화를 통해 연구를 향상시킵니다.
+- 궁극적으로, 이 에이전트들은 계산 집약적인 작업을 관리함으로써 인간의 창의성과 문제 해결을 향상시키고, 혁신과 발견을 가속화하는 것을 목표로 합니다.
+
+## 결론
+
+결론적으로, 탐색과 발견 패턴은 진정으로 에이전틱한 시스템의 본질이며, AI가 수동적인 지시 이행을 넘어 환경을 적극적으로 탐색하는 능력을 정의합니다. 이 내재된 에이전틱 동력이 AI를 복잡한 도메인에서 자율적으로 운영할 수 있도록 하며, 단순히 작업을 실행하는 것이 아니라 독립적으로 새로운 정보를 발굴하기 위한 하위 목표를 설정합니다. 이 고급 에이전틱 행동은 각 에이전트가 더 큰 협업 프로세스에서 특정한 능동적 역할을 구현하는 멀티 에이전트 프레임워크를 통해 가장 강력하게 실현됩니다. 예를 들어, Google의 공동 과학자라는 고도로 에이전틱한 시스템은 과학적 가설을 자율적으로 생성하고, 토론하며, 발전시키는 에이전트들을 특징으로 합니다.
+
+Agent Laboratory와 같은 프레임워크는 인간 연구 팀을 모방하는 에이전틱 계층 구조를 생성하여 시스템이 전체 발견 생명주기를 자기 관리할 수 있도록 함으로써 이를 더욱 구조화합니다. 이 패턴의 핵심은 창발적 에이전틱 행동을 조율하여 시스템이 최소한의 인간 개입으로 장기적이고 개방형 목표를 추구할 수 있도록 하는 것입니다. 이는 인간-AI 파트너십을 격상시켜, AI를 탐색 작업의 자율적 실행을 처리하는 진정한 에이전틱 협력자로 위치시킵니다. 이 능동적 발견 작업을 에이전틱 시스템에 위임함으로써 인간 지성이 크게 증강되어 혁신이 가속화됩니다. 이렇게 강력한 에이전틱 역량의 개발은 안전과 윤리적 감독에 대한 강한 헌신을 필요로 합니다. 궁극적으로, 이 패턴은 진정으로 에이전틱한 AI를 만들기 위한 청사진을 제공하여, 계산 도구를 지식 추구에 있어 독립적이고 목표 지향적인 파트너로 변환합니다.
+
+## 참고문헌
+
+1. 탐색-활용 딜레마(Exploration-Exploitation Dilemma): 강화학습과 불확실성 하의 의사결정에서 근본적인 문제. https://en.wikipedia.org/wiki/Exploration%E2%80%93exploitation_dilemma
+2. Google AI 공동 과학자(Co-Scientist): https://research.google/blog/accelerating-scientific-breakthroughs-with-an-ai-co-scientist/
+3. Agent Laboratory: Using LLM Agents as Research Assistants — https://github.com/SamuelSchmidgall/AgentLaboratory
+4. AgentRxiv: Towards Collaborative Autonomous Research — https://agentrxiv.github.io/
