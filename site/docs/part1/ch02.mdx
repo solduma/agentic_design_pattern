@@ -1,0 +1,453 @@
+---
+title: "2장 — 라우팅"
+sidebar_position: 2
+---
+
+import { KeyPoints, Diagram, CrossRef, ChapterNav } from '@site/src/components';
+
+<KeyPoints
+  items={[
+    "라우팅(Routing)은 에이전트가 입력 조건이나 시스템 상태에 따라 다음 단계의 흐름을 동적으로 결정하는 패턴으로, 선형 실행을 넘어선 적응형 시스템의 핵심입니다.",
+    "라우팅 메커니즘은 LLM 기반, 임베딩 기반, 규칙 기반, 머신러닝 모델 기반 등 다양한 방식으로 구현할 수 있습니다.",
+    "LangChain의 RunnableBranch와 Google ADK의 sub_agents(Auto-Flow)는 각각 다른 방식으로 라우팅 로직을 구조화합니다.",
+    "라우팅은 에이전트가 고객 지원, 데이터 처리 파이프라인, 다중 도구 시스템 등 다양한 도메인에서 상황 인식적 결정을 내릴 수 있게 합니다.",
+    "정적 실행 경로를 유연한 조건부 워크플로로 전환함으로써, 라우팅은 에이전틱 시스템의 기능적 다양성과 견고성을 크게 향상시킵니다.",
+  ]}
+/>
+
+# 2장: 라우팅
+
+## 라우팅 패턴 개요
+
+프롬프트 체이닝을 통한 순차 처리는 언어 모델로 결정론적이고 선형적인 워크플로를 실행하는 기반 기법이지만, 적응적 응답이 필요한 시나리오에서는 적용에 한계가 있습니다. 실제 에이전틱 시스템은 환경 상태, 사용자 입력, 또는 이전 연산의 결과 같은 조건적 요인에 따라 여러 잠재적 행동 중 하나를 중재해야 하는 경우가 많습니다. 제어 흐름을 다양한 특화 기능, 도구, 또는 서브프로세스로 안내하는 이러한 동적 의사결정 능력은 라우팅(Routing)이라는 메커니즘을 통해 달성됩니다.
+
+라우팅은 에이전트의 운영 프레임워크에 조건부 논리를 도입하여, 고정된 실행 경로에서 에이전트가 특정 기준을 동적으로 평가하여 가능한 다음 행동 집합 중 하나를 선택하는 모델로의 전환을 가능하게 합니다. 이를 통해 더욱 유연하고 상황 인식적인 시스템 동작이 가능해집니다.
+
+예를 들어, 라우팅 기능을 갖춘 고객 문의 처리 에이전트는 먼저 들어오는 쿼리를 분류하여 사용자의 의도를 파악할 수 있습니다. 이 분류를 바탕으로, 직접 질문 답변을 위한 특화 에이전트, 계정 정보를 위한 데이터베이스 검색 도구, 또는 복잡한 문제를 위한 에스컬레이션 절차로 쿼리를 안내할 수 있습니다 — 단일의 미리 정해진 응답 경로로 기본 설정되는 대신에 말입니다. 따라서 라우팅을 활용하는 더 정교한 에이전트는 다음과 같이 동작할 수 있습니다.
+
+1. 사용자의 쿼리를 분석합니다.
+2. 의도에 따라 쿼리를 라우팅합니다.
+   - 의도가 "주문 상태 확인"이면, 주문 데이터베이스와 상호작용하는 서브에이전트 또는 도구 체인으로 라우팅합니다.
+   - 의도가 "제품 정보"이면, 제품 카탈로그를 검색하는 서브에이전트 또는 체인으로 라우팅합니다.
+   - 의도가 "기술 지원"이면, 문제 해결 가이드에 접근하거나 사람에게 에스컬레이션하는 다른 체인으로 라우팅합니다.
+   - 의도가 불명확하면, 명확화 서브에이전트 또는 프롬프트 체인으로 라우팅합니다.
+
+라우팅 패턴의 핵심 구성 요소는 평가를 수행하고 흐름을 안내하는 메커니즘입니다. 이 메커니즘은 여러 방식으로 구현할 수 있습니다.
+
+- **LLM 기반 라우팅**: 언어 모델 자체가 입력을 분석하고 다음 단계 또는 목적지를 나타내는 특정 식별자나 지시사항을 출력하도록 프롬프팅될 수 있습니다. 예를 들어, 프롬프트는 LLM에게 "다음 사용자 쿼리를 분석하고 카테고리만 출력하십시오: 'Order Status', 'Product Info', 'Technical Support', 또는 'Other'."라고 요청할 수 있습니다. 에이전틱 시스템은 이 출력을 읽어 워크플로를 해당 방향으로 안내합니다.
+- **임베딩 기반 라우팅**: 입력 쿼리는 벡터 임베딩(embedding)으로 변환될 수 있습니다(검색 증강 생성(RAG), 14장 참조). 이 임베딩은 다양한 경로나 기능을 나타내는 임베딩과 비교됩니다. 쿼리는 임베딩이 가장 유사한 경로로 라우팅됩니다. 이는 키워드가 아닌 입력의 의미에 기반하여 결정이 내려지는 의미론적 라우팅에 유용합니다.
+- **규칙 기반 라우팅**: 입력에서 추출된 키워드, 패턴, 또는 구조화된 데이터를 기반으로 사전 정의된 규칙이나 논리(예: if-else 문, switch 문)를 사용합니다. LLM 기반 라우팅보다 빠르고 결정론적일 수 있지만, 미묘하거나 새로운 입력을 처리하는 데 유연성이 떨어집니다.
+- **머신러닝 모델 기반 라우팅**: 라우팅 작업을 수행하기 위해 소규모 레이블 데이터 코퍼스로 특별히 학습된 분류기 같은 판별 모델을 사용합니다. 임베딩 기반 방법과 개념적 유사성을 공유하지만, 핵심 특성은 라우팅 기능을 생성하기 위해 모델의 파라미터를 조정하는 지도 파인튜닝(SFT) 과정입니다. 이 기법은 의사결정 구성 요소가 추론 시 프롬프트를 실행하는 생성 모델이 아니기 때문에 LLM 기반 라우팅과 구별됩니다. 대신, 라우팅 논리는 파인튜닝된 모델의 학습된 가중치 내에 인코딩됩니다. LLM은 훈련 세트를 보강하기 위한 합성 데이터 생성의 전처리 단계에서 사용될 수 있지만, 실시간 라우팅 결정 자체에는 관여하지 않습니다.
+
+라우팅 메커니즘은 에이전트의 운영 주기 내 여러 지점에서 구현될 수 있습니다. 주요 작업을 분류하기 위한 초기 단계, 처리 체인 내 중간 지점에서 후속 행동을 결정하기 위한 단계, 또는 서브루틴에서 주어진 집합 중 가장 적합한 도구를 선택하기 위한 단계에 적용될 수 있습니다. LangChain, LangGraph, Google의 에이전트 개발 키트(ADK) 같은 계산 프레임워크는 이러한 조건부 논리를 정의하고 관리하기 위한 명시적 구조를 제공합니다. LangGraph는 상태 기반 그래프 아키텍처를 통해 전체 시스템의 누적 상태에 따라 결정이 내려지는 복잡한 라우팅 시나리오에 특히 적합합니다. 마찬가지로, Google의 ADK는 에이전트의 기능과 상호작용 모델을 구조화하는 기반 구성 요소를 제공하며, 이는 라우팅 논리 구현의 토대가 됩니다. 이러한 프레임워크가 제공하는 실행 환경 내에서 개발자는 가능한 운영 경로와 계산 그래프의 노드 간 전환을 결정하는 함수 또는 모델 기반 평가를 정의합니다.
+
+라우팅의 구현은 시스템이 결정론적 순차 처리를 넘어설 수 있게 합니다. 더 광범위한 입력과 상태 변화에 동적으로 적절하게 반응할 수 있는 더 적응적인 실행 흐름의 개발을 촉진합니다.
+
+---
+
+## 실용적 응용 및 사용 사례
+
+라우팅 패턴은 적응형 에이전틱 시스템 설계에서 중요한 제어 메커니즘으로, 가변적인 입력과 내부 상태에 반응하여 실행 경로를 동적으로 변경할 수 있게 합니다. 필요한 조건부 논리 계층을 제공함으로써 여러 도메인에 걸쳐 유용성을 발휘합니다.
+
+가상 비서나 AI 기반 튜터 같은 인간-컴퓨터 상호작용에서 라우팅은 사용자 의도를 해석하는 데 활용됩니다. 자연어 쿼리의 초기 분석은 특정 정보 검색 도구 호출, 사람 운영자에게의 에스컬레이션, 또는 사용자 성취도에 기반한 커리큘럼의 다음 모듈 선택 등 가장 적절한 후속 행동을 결정합니다. 이를 통해 시스템은 선형 대화 흐름을 넘어 맥락적으로 반응할 수 있습니다.
+
+자동화된 데이터 및 문서 처리 파이프라인 내에서 라우팅은 분류 및 배포 기능으로 작동합니다. 이메일, 지원 티켓, API 페이로드 같은 수신 데이터는 내용, 메타데이터, 또는 형식을 기반으로 분석됩니다. 그런 다음 시스템은 각 항목을 영업 리드 수집 프로세스, JSON 또는 CSV 형식을 위한 특정 데이터 변환 기능, 또는 긴급 이슈 에스컬레이션 경로 같은 해당 워크플로로 안내합니다.
+
+여러 특화 도구나 에이전트를 포함하는 복잡한 시스템에서 라우팅은 고수준 디스패처 역할을 합니다. 검색, 요약, 분석 정보를 위한 별도 에이전트로 구성된 연구 시스템은 현재 목표에 따라 가장 적합한 에이전트에 작업을 할당하기 위해 라우터를 사용합니다. 마찬가지로, AI 코딩 어시스턴트는 코드 스니펫을 올바른 특화 도구로 전달하기 전에 프로그래밍 언어와 사용자의 의도(디버그, 설명, 또는 번역)를 파악하기 위해 라우팅을 사용합니다.
+
+궁극적으로, 라우팅은 기능적으로 다양하고 상황 인식적인 시스템을 만드는 데 필수적인 논리적 중재 능력을 제공합니다. 에이전트를 미리 정의된 시퀀스의 정적 실행자에서 변화하는 조건 하에서 작업을 가장 효과적으로 수행하는 방법에 대한 결정을 내릴 수 있는 동적 시스템으로 변환합니다.
+
+---
+
+## 실습 코드 예제 (LangChain)
+
+코드에서 라우팅을 구현하는 것은 가능한 경로와 어떤 경로를 선택할지 결정하는 논리를 정의하는 것을 포함합니다. LangChain과 LangGraph 같은 프레임워크는 이를 위한 특정 구성 요소와 구조를 제공합니다. LangGraph의 상태 기반 그래프 구조는 라우팅 논리를 시각화하고 구현하는 데 특히 직관적입니다.
+
+이 코드는 LangChain과 Google의 Generative AI를 사용하는 간단한 에이전트 유사 시스템을 보여줍니다. 요청의 의도(예약, 정보, 또는 불명확)에 따라 사용자 요청을 다양한 시뮬레이션된 "서브에이전트" 핸들러로 라우팅하는 "코디네이터"를 설정합니다. 시스템은 언어 모델을 사용하여 요청을 분류한 다음 적절한 핸들러 함수에 위임하며, 멀티 에이전트 협업 아키텍처에서 자주 볼 수 있는 기본 위임 패턴을 시뮬레이션합니다.
+
+먼저 필요한 라이브러리가 설치되어 있는지 확인하십시오.
+
+```bash
+pip install langchain langgraph google-cloud-aiplatform
+langchain-google-genai google-adk deprecated pydantic
+```
+
+선택한 언어 모델(예: OpenAI, Google Gemini, Anthropic)의 API 키로 환경을 설정해야 합니다.
+
+```python
+# Copyright (c) 2025 Marco Fago
+# https://www.linkedin.com/in/marco-fago/
+#
+# This code is licensed under the MIT License.
+# See the LICENSE file in the repository for the full license text.
+
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.runnables import RunnablePassthrough,
+RunnableBranch
+
+# --- Configuration ---
+# Ensure your API key environment variable is set (e.g.,
+GOOGLE_API_KEY)
+try:
+   llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash",
+```
+
+```python
+temperature=0)
+   print(f"Language model initialized: {llm.model}")
+except Exception as e:
+   print(f"Error initializing language model: {e}")
+   llm = None
+
+# --- Define Simulated Sub-Agent Handlers (equivalent to ADK
+sub_agents) ---
+
+def booking_handler(request: str) -> str:
+   """Simulates the Booking Agent handling a request."""
+   print("\n--- DELEGATING TO BOOKING HANDLER ---")
+   return f"Booking Handler processed request: '{request}'. Result:
+Simulated booking action."
+
+def info_handler(request: str) -> str:
+   """Simulates the Info Agent handling a request."""
+   print("\n--- DELEGATING TO INFO HANDLER ---")
+   return f"Info Handler processed request: '{request}'. Result:
+Simulated information retrieval."
+
+def unclear_handler(request: str) -> str:
+   """Handles requests that couldn't be delegated."""
+   print("\n--- HANDLING UNCLEAR REQUEST ---")
+   return f"Coordinator could not delegate request: '{request}'.
+Please clarify."
+
+# --- Define Coordinator Router Chain (equivalent to ADK
+coordinator's instruction) ---
+# This chain decides which handler to delegate to.
+coordinator_router_prompt = ChatPromptTemplate.from_messages([
+   ("system", """Analyze the user's request and determine which
+specialist handler should process it.
+    - If the request is related to booking flights or hotels,
+      output 'booker'.
+    - For all other general information questions, output 'info'.
+    - If the request is unclear or doesn't fit either category,
+      output 'unclear'.
+    ONLY output one word: 'booker', 'info', or 'unclear'."""),
+   ("user", "{request}")
+])
+
+if llm:
+   coordinator_router_chain = coordinator_router_prompt | llm |
+StrOutputParser()
+
+# --- Define the Delegation Logic (equivalent to ADK's Auto-Flow
+```
+
+```python
+based on sub_agents) ---
+# Use RunnableBranch to route based on the router chain's output.
+
+# Define the branches for the RunnableBranch
+branches = {
+   "booker": RunnablePassthrough.assign(output=lambda x:
+booking_handler(x['request']['request'])),
+   "info": RunnablePassthrough.assign(output=lambda x:
+info_handler(x['request']['request'])),
+   "unclear": RunnablePassthrough.assign(output=lambda x:
+unclear_handler(x['request']['request'])),
+}
+
+# Create the RunnableBranch. It takes the output of the router chain
+# and routes the original input ('request') to the corresponding
+handler.
+delegation_branch = RunnableBranch(
+   (lambda x: x['decision'].strip() == 'booker', branches["booker"]),
+# Added .strip()
+   (lambda x: x['decision'].strip() == 'info', branches["info"]),
+# Added .strip()
+   branches["unclear"] # Default branch for 'unclear' or any other
+output
+)
+
+# Combine the router chain and the delegation branch into a single
+runnable
+# The router chain's output ('decision') is passed along with the
+original input ('request')
+# to the delegation_branch.
+coordinator_agent = {
+   "decision": coordinator_router_chain,
+   "request": RunnablePassthrough()
+} | delegation_branch | (lambda x: x['output']) # Extract the final
+output
+
+# --- Example Usage ---
+def main():
+   if not llm:
+       print("\nSkipping execution due to LLM initialization
+failure.")
+       return
+
+   print("--- Running with a booking request ---")
+   request_a = "Book me a flight to London."
+   result_a = coordinator_agent.invoke({"request": request_a})
+   print(f"Final Result A: {result_a}")
+```
+
+```text
+   print("\n--- Running with an info request ---")
+   request_b = "What is the capital of Italy?"
+   result_b = coordinator_agent.invoke({"request": request_b})
+   print(f"Final Result B: {result_b}")
+
+   print("\n--- Running with an unclear request ---")
+   request_c = "Tell me about quantum physics."
+   result_c = coordinator_agent.invoke({"request": request_c})
+   print(f"Final Result C: {result_c}")
+
+if __name__ == "__main__":
+   main()
+```
+
+앞서 언급했듯이, 이 Python 코드는 LangChain 라이브러리와 Google의 Generative AI 모델인 gemini-2.5-flash를 사용하는 간단한 에이전트 유사 시스템을 구성합니다. 세 가지 시뮬레이션된 서브에이전트 핸들러를 정의합니다: `booking_handler`, `info_handler`, `unclear_handler` — 각각 특정 유형의 요청을 처리하도록 설계되었습니다.
+
+핵심 구성 요소는 `coordinator_router_chain`으로, `ChatPromptTemplate`을 활용하여 언어 모델이 들어오는 사용자 요청을 'booker', 'info', 또는 'unclear' 세 가지 카테고리 중 하나로 분류하도록 지시합니다. 이 라우터 체인의 출력은 `RunnableBranch`가 원래 요청을 해당 핸들러 함수로 위임하는 데 사용됩니다. `RunnableBranch`는 언어 모델의 결정을 확인하고 요청 데이터를 `booking_handler`, `info_handler`, 또는 `unclear_handler`로 안내합니다. `coordinator_agent`는 이러한 구성 요소를 결합하여 먼저 결정을 위해 요청을 라우팅한 다음 선택된 핸들러로 요청을 전달합니다. 최종 출력은 핸들러의 응답에서 추출됩니다.
+
+`main` 함수는 세 가지 예시 요청으로 시스템의 사용법을 보여주며, 서로 다른 입력이 시뮬레이션된 에이전트들에 의해 라우팅되고 처리되는 방식을 설명합니다. 언어 모델 초기화를 위한 오류 처리가 포함되어 견고성을 보장합니다. 코드 구조는 중앙 코디네이터가 의도에 따라 특화 에이전트들에게 작업을 위임하는 기본 멀티 에이전트 협업 프레임워크를 모방합니다.
+
+---
+
+## 실습 코드 예제 (Google ADK)
+
+에이전트 개발 키트(ADK)는 에이전틱 시스템을 엔지니어링하기 위한 프레임워크로, 에이전트의 기능과 동작을 정의하기 위한 구조화된 환경을 제공합니다. 명시적 계산 그래프 기반 아키텍처와 대조적으로, ADK 패러다임 내에서의 라우팅은 일반적으로 에이전트의 기능을 나타내는 이산적인 "도구" 집합을 정의하여 구현됩니다. 사용자 쿼리에 대한 응답으로 적절한 도구를 선택하는 것은 사용자 의도를 올바른 기능적 핸들러와 매칭하기 위해 기본 모델을 활용하는 프레임워크의 내부 논리에 의해 관리됩니다.
+
+이 Python 코드는 Google의 ADK 라이브러리를 사용하는 에이전트 개발 키트(ADK) 애플리케이션의 예를 보여줍니다. 정의된 지시사항에 따라 사용자 요청을 특화 서브에이전트("Booker"는 예약용, "Info"는 일반 정보용)로 라우팅하는 "Coordinator" 에이전트를 설정합니다. 그런 다음 서브에이전트들은 특정 도구를 사용하여 요청을 처리하는 것을 시뮬레이션하며, 에이전트 시스템 내의 기본 위임 패턴을 보여줍니다.
+
+```python
+# Copyright (c) 2025 Marco Fago
+#
+# This code is licensed under the MIT License.
+# See the LICENSE file in the repository for the full license text.
+
+import uuid
+from typing import Dict, Any, Optional
+
+from google.adk.agents import Agent
+from google.adk.runners import InMemoryRunner
+from google.adk.tools import FunctionTool
+from google.genai import types
+from google.adk.events import Event
+
+# --- Define Tool Functions ---
+# These functions simulate the actions of the specialist agents.
+
+def booking_handler(request: str) -> str:
+   """
+   Handles booking requests for flights and hotels.
+   Args:
+       request: The user's request for a booking.
+   Returns:
+       A confirmation message that the booking was handled.
+   """
+   print("-------------------------- Booking Handler Called
+----------------------------")
+   return f"Booking action for '{request}' has been simulated."
+
+def info_handler(request: str) -> str:
+   """
+   Handles general information requests.
+   Args:
+```
+
+```python
+       request: The user's question.
+   Returns:
+       A message indicating the information request was handled.
+   """
+   print("-------------------------- Info Handler Called
+----------------------------")
+   return f"Information request for '{request}'. Result: Simulated
+information retrieval."
+
+def unclear_handler(request: str) -> str:
+   """Handles requests that couldn't be delegated."""
+   return f"Coordinator could not delegate request: '{request}'.
+Please clarify."
+
+# --- Create Tools from Functions ---
+booking_tool = FunctionTool(booking_handler)
+info_tool = FunctionTool(info_handler)
+
+# Define specialized sub-agents equipped with their respective tools
+booking_agent = Agent(
+   name="Booker",
+   model="gemini-2.0-flash",
+   description="A specialized agent that handles all flight
+           and hotel booking requests by calling the booking tool.",
+   tools=[booking_tool]
+)
+
+info_agent = Agent(
+   name="Info",
+   model="gemini-2.0-flash",
+   description="A specialized agent that provides general information
+      and answers user questions by calling the info tool.",
+   tools=[info_tool]
+)
+
+# Define the parent agent with explicit delegation instructions
+coordinator = Agent(
+   name="Coordinator",
+   model="gemini-2.0-flash",
+   instruction=(
+       "You are the main coordinator. Your only task is to analyze
+        incoming user requests "
+       "and delegate them to the appropriate specialist agent.
+        Do not try to answer the user directly.\n"
+       "- For any requests related to booking flights or hotels,
+         delegate to the 'Booker' agent.\n"
+       "- For all other general information questions, delegate to
+```
+
+```python
+the 'Info' agent."
+   ),
+   description="A coordinator that routes user requests to the
+     correct specialist agent.",
+   # The presence of sub_agents enables LLM-driven delegation
+(Auto-Flow) by default.
+   sub_agents=[booking_agent, info_agent]
+)
+
+# --- Execution Logic ---
+
+async
+ def run_coordinator(runner: InMemoryRunner, request: str):
+   """Runs the coordinator agent with a given request and
+delegates."""
+   print(f"\n--- Running Coordinator with request: '{request}' ---")
+   final_result = ""
+   try:
+       user_id = "user_123"
+       session_id = str(uuid.uuid4())
+       await
+ runner.session_service.create_session(
+           app_name=runner.app_name, user_id=user_id,
+session_id=session_id
+       )
+
+       for event in runner.run(
+           user_id=user_id,
+           session_id=session_id,
+           new_message=types.Content(
+               role='user',
+               parts=[types.Part(text=request)]
+           ),
+       ):
+           if event.is_final_response() and event.content:
+               # Try to get text directly from event.content
+               # to avoid iterating parts
+               if hasattr(event.content, 'text') and
+event.content.text:
+                    final_result = event.content.text
+               elif event.content.parts:
+                   # Fallback: Iterate through parts and extract text
+(might trigger warning)
+                   text_parts = [part.text for part in
+event.content.parts if part.text]
+                   final_result = "".join(text_parts)
+               # Assuming the loop should break after the final
+```
+
+```python
+response
+               break
+
+       print(f"Coordinator Final Response: {final_result}")
+       return final_result
+   except Exception as e:
+       print(f"An error occurred while processing your request: {e}")
+       return f"An error occurred while processing your request: {e}"
+
+async
+ def main():
+   """Main function to run the ADK example."""
+   print("--- Google ADK Routing Example (ADK Auto-Flow Style) ---")
+   print("Note: This requires Google ADK installed and
+authenticated.")
+
+   runner = InMemoryRunner(coordinator)
+   # Example Usage
+   result_a = await run_coordinator(runner, "Book me a hotel in
+Paris.")
+   print(f"Final Output A: {result_a}")
+   result_b = await run_coordinator(runner, "What is the highest
+mountain in the world?")
+   print(f"Final Output B: {result_b}")
+   result_c = await run_coordinator(runner, "Tell me a random fact.")
+# Should go to Info
+   print(f"Final Output C: {result_c}")
+   result_d = await run_coordinator(runner, "Find flights to Tokyo
+next month.") # Should go to Booker
+   print(f"Final Output D: {result_d}")
+
+if __name__ == "__main__":
+   import nest_asyncio
+   nest_asyncio.apply()
+   await main()
+```
+
+이 스크립트는 메인 Coordinator 에이전트와 두 가지 특화된 `sub_agents`로 구성됩니다: Booker와 Info. 각 특화 에이전트는 행동을 시뮬레이션하는 Python 함수를 래핑하는 `FunctionTool`을 갖추고 있습니다. `booking_handler` 함수는 항공편 및 호텔 예약 처리를 시뮬레이션하고, `info_handler` 함수는 일반 정보 검색을 시뮬레이션합니다. `unclear_handler`는 코디네이터가 위임할 수 없는 요청의 폴백으로 포함되어 있지만, 현재 코디네이터 로직은 메인 `run_coordinator` 함수에서 위임 실패에 이를 명시적으로 사용하지 않습니다.
+
+지시사항에 정의된 대로 Coordinator 에이전트의 주요 역할은 들어오는 사용자 메시지를 분석하고 Booker 또는 Info 에이전트에게 위임하는 것입니다. 이 위임은 Coordinator에 `sub_agents`가 정의되어 있기 때문에 ADK의 Auto-Flow 메커니즘에 의해 자동으로 처리됩니다. `run_coordinator` 함수는 `InMemoryRunner`를 설정하고, 사용자 및 세션 ID를 생성한 다음, 러너를 사용하여 코디네이터 에이전트를 통해 사용자의 요청을 처리합니다. `runner.run` 메서드는 요청을 처리하고 이벤트를 생성하며, 코드는 `event.content`에서 최종 응답 텍스트를 추출합니다.
+
+`main` 함수는 서로 다른 요청으로 코디네이터를 실행하여 예약 요청은 Booker로, 정보 요청은 Info 에이전트로 위임하는 방식을 보여줌으로써 시스템 사용법을 설명합니다.
+
+---
+
+## 한눈에 보기
+
+**무엇이 문제인가**: 에이전틱 시스템은 단일 선형 프로세스로 처리할 수 없는 다양한 입력과 상황에 자주 응답해야 합니다. 단순한 순차 워크플로는 컨텍스트에 기반한 결정을 내리는 능력이 없습니다. 특정 작업에 올바른 도구나 서브프로세스를 선택하는 메커니즘 없이는 시스템이 경직되고 적응하지 못합니다. 이 한계는 실제 사용자 요청의 복잡성과 가변성을 관리할 수 있는 정교한 애플리케이션을 구축하기 어렵게 만듭니다.
+
+**왜 라우팅인가**: 라우팅 패턴은 에이전트의 운영 프레임워크에 조건부 논리를 도입하여 표준화된 솔루션을 제공합니다. 시스템이 먼저 들어오는 쿼리를 분석하여 의도나 성격을 파악할 수 있게 합니다. 이 분석을 바탕으로 에이전트는 가장 적절한 특화 도구, 기능, 또는 서브에이전트로 제어 흐름을 동적으로 안내합니다. 이 결정은 LLM 프롬프팅, 사전 정의된 규칙 적용, 또는 임베딩 기반 의미 유사도 등 다양한 방법으로 이루어질 수 있습니다. 궁극적으로, 라우팅은 정적이고 미리 결정된 실행 경로를 최선의 가능한 행동을 선택할 수 있는 유연하고 상황 인식적인 워크플로로 변환합니다.
+
+**경험 법칙**: 에이전트가 사용자의 입력이나 현재 상태에 따라 여러 개의 독립적인 워크플로, 도구, 또는 서브에이전트 중 하나를 결정해야 할 때 라우팅 패턴을 사용하십시오. 영업 문의, 기술 지원, 계정 관리 질문을 구별하는 고객 지원 봇 같이, 다양한 유형의 작업을 처리하기 위해 들어오는 요청을 분류하거나 트리아지해야 하는 애플리케이션에 필수적입니다.
+
+### 시각적 요약
+
+<Diagram id="img-p48-0" caption="그림 1 — 라우터 패턴: LLM을 라우터로 사용하여 입력을 분류하고 적절한 서브에이전트 또는 도구로 안내하는 방식을 보여줍니다." alt="LLM 기반 라우터 패턴 다이어그램: 입력이 분류되어 여러 처리 경로 중 하나로 안내되는 흐름" />
+
+---
+
+## 핵심 정리
+
+- **라우팅(Routing)** 은 에이전트가 조건에 따라 워크플로의 다음 단계에 대한 동적 결정을 내릴 수 있게 합니다.
+- 에이전트가 다양한 입력을 처리하고 동작을 적응시켜 선형 실행을 넘어설 수 있게 합니다.
+- 라우팅 논리는 LLM, 규칙 기반 시스템, 또는 임베딩 유사도를 사용하여 구현할 수 있습니다.
+- LangGraph와 Google ADK 같은 프레임워크는 각기 다른 아키텍처 방식을 취하지만, 에이전트 워크플로 내에서 라우팅을 정의하고 관리하는 구조화된 방법을 제공합니다.
+
+---
+
+## 결론
+
+라우팅 패턴은 진정으로 동적이고 반응적인 에이전틱 시스템을 구축하는 데 중요한 단계입니다. 라우팅을 구현함으로써 단순하고 선형적인 실행 흐름을 넘어서 에이전트가 정보를 처리하고, 사용자 입력에 반응하며, 사용 가능한 도구나 서브에이전트를 활용하는 방법에 대한 지능적인 결정을 내릴 수 있도록 힘을 부여합니다.
+
+고객 서비스 챗봇에서 복잡한 데이터 처리 파이프라인에 이르기까지 다양한 도메인에서 라우팅이 어떻게 적용될 수 있는지를 살펴보았습니다. 입력을 분석하고 조건부로 워크플로를 안내하는 능력은 실제 작업의 본질적인 가변성을 처리할 수 있는 에이전트를 만드는 데 근본적입니다.
+
+LangChain과 Google ADK를 사용한 코드 예제는 라우팅을 구현하는 두 가지 다르지만 효과적인 접근 방식을 보여줍니다. LangGraph의 그래프 기반 구조는 상태와 전환을 정의하는 시각적이고 명시적인 방법을 제공하여 복잡한 다단계 워크플로와 복잡한 라우팅 논리에 이상적입니다. 반면 Google ADK는 종종 독립적인 기능(도구)을 정의하는 데 초점을 맞추고 프레임워크의 능력에 의존하여 사용자 요청을 적절한 도구 핸들러로 라우팅합니다. 이는 잘 정의된 이산적 행동 집합을 가진 에이전트에게 더 단순할 수 있습니다.
+
+라우팅 패턴을 마스터하는 것은 다양한 시나리오를 지능적으로 탐색하고 컨텍스트에 기반한 맞춤형 응답이나 행동을 제공할 수 있는 에이전트를 구축하는 데 필수적입니다. 다재다능하고 견고한 에이전틱 애플리케이션을 만드는 핵심 구성 요소입니다.
+
+---
+
+## 참고 문헌
+
+1. LangGraph Documentation: https://www.langchain.com/
+2. Google Agent Developer Kit Documentation: https://google.github.io/adk-docs/
+
+---
+
+<ChapterNav
+  prev={{ title: "1장 — 프롬프트 체이닝", href: "/docs/part1/ch01" }}
+  next={{ title: "3장 — 병렬화", href: "/docs/part1/ch03" }}
+/>
