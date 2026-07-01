@@ -21,14 +21,16 @@ import json
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 CODE_BLOCKS_DIR = os.path.join(REPO_ROOT, "assets", "code_blocks")
 
-FENCED_CODE_RE = re.compile(r"```[\w]*\n(.*?)```", re.DOTALL)
+FENCED_CODE_RE = re.compile(r"(`{3,})[\w]*\n(.*?)\1", re.DOTALL)
 COMMENT_LINE_RE = re.compile(r"^\s*(#|//|/\*|\*|<!--)")
 
 
 def extract_mdx_code_lines(text: str) -> list[str]:
     """Return all lines from fenced code blocks in an MDX file."""
     lines = []
-    for block in FENCED_CODE_RE.findall(text):
+    for match in FENCED_CODE_RE.findall(text):
+        # match is a tuple (fence_chars, content) due to two capture groups
+        block = match[1] if isinstance(match, tuple) else match
         lines.extend(block.splitlines())
     return lines
 
