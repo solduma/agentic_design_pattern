@@ -1,42 +1,10 @@
 [
   {
     "lang": "python",
-    "code": "from language models. This requires understanding the capabilities and limitations of"
-  },
-  {
-    "lang": "text",
-    "code": "yield different results. Documenting attempts is vital for learning and improvement.\nfor classification tasks (where the model needs to categorize input into\nwith long context modeling, they are becoming highly effective at utilizing\nfor three family-friendly activities in Tokyo, leveraging the existing conversational"
+    "code": "from pydantic import BaseModel, EmailStr, Field, ValidationError\nfrom typing import List, Optional\nfrom datetime import date\n\n# --- Pydantic Model Definition (from above) ---\nclass User(BaseModel):\n   name: str = Field(..., description=\"The full name of the user.\")\n   email: EmailStr = Field(..., description=\"The user's email\naddress.\")\n   date_of_birth: Optional[date] = Field(None, description=\"The\nuser's date of birth.\")\n   interests: List[str] = Field(default_factory=list, description=\"A\nlist of the user's interests.\")\n\n# --- Hypothetical LLM Output ---\nllm_output_json = \"\"\"\n{\n   \"name\": \"Alice Wonderland\",\n   \"email\": \"alice.w@example.com\",\n   \"date_of_birth\": \"1995-07-21\","
   },
   {
     "lang": "python",
-    "code": "from merely answering a question to building a comprehensive operational picture for"
-  },
-  {
-    "lang": "text",
-    "code": "for data validation and settings management using Python type annotations. By"
-  },
-  {
-    "lang": "python",
-    "code": "from pydantic import BaseModel, EmailStr, Field, ValidationError \nfrom typing import List, Optional \nfrom datetime import date \n \n# --- Pydantic Model Definition (from above) --- \nclass User(BaseModel): \n   name: str = Field(..., description=\"The full name of the user.\") \n   email: EmailStr = Field(..., description=\"The user's email \naddress.\") \n   date_of_birth: Optional[date] = Field(None, description=\"The \nuser's date of birth.\") \n   interests: List[str] = Field(default_factory=list, description=\"A \nlist of the user's interests.\") \n \n# --- Hypothetical LLM Output --- \nllm_output_json = \"\"\" \n{ \n   \"name\": \"Alice Wonderland\", \n   \"email\": \"alice.w@example.com\", \n   \"date_of_birth\": \"1995-07-21\","
-  },
-  {
-    "lang": "text",
-    "code": "\"interests\": [ \n       \"Natural Language Processing\", \n       \"Python Programming\", \n       \"Gardening\" \n   ] \n} \n\"\"\" \n \n# --- Parsing and Validation --- \ntry: \n   # Use the model_validate_json class method to parse the JSON \nstring. \n   # This single step parses the JSON and validates the data against \nthe User model. \n   user_object = User.model_validate_json(llm_output_json) \n \n   # Now you can work with a clean, type-safe Python object. \n   print(\"Successfully created User object!\") \n   print(f\"Name: {user_object.name}\") \n   print(f\"Email: {user_object.email}\") \n   print(f\"Date of Birth: {user_object.date_of_birth}\") \n   print(f\"First Interest: {user_object.interests[0]}\") \n \n   # You can access the data like any other Python object attribute. \n   # Pydantic has already converted the 'date_of_birth' string to a \ndatetime.date object. \n   print(f\"Type of date_of_birth: {type(user_object.date_of_birth)}\") \n \n \nexcept ValidationError as e: \n   # If the JSON is malformed or the data doesn't match the model's \ntypes, \n   # Pydantic will raise a ValidationError. \n   print(\"Failed to validate JSON from LLM.\") \n   print(e)"
-  },
-  {
-    "lang": "text",
-    "code": "for how to perform the reasoning and structure its response, often leading to\nexceptions briefly, concludes True.\nfor its invocation. The model does not execute the tool directly. Instead, it generates a\n\"tool_code\": \"get_current_weather\",​\n  \"tool_name\": \"get_current_weather\",​\n  \"parameters\": {​\n    \"city\": \"London\"​\nfor the specific task."
-  },
-  {
-    "lang": "python",
-    "code": "from a knowledge base (e.g., a database, a set of documents, the web). This retrieved"
-  },
-  {
-    "lang": "text",
-    "code": "with no prior knowledge of the subject. Explain it simply and use analogies they\nwith requesting structured output like JSON or XML."
-  },
-  {
-    "lang": "python",
-    "code": "from a simple text generator into a truly sophisticated agent, capable of performing"
+    "code": "   \"interests\": [\n       \"Natural Language Processing\",\n       \"Python Programming\",\n       \"Gardening\"\n   ]\n}\n\"\"\"\n\n# --- Parsing and Validation ---\ntry:\n   # Use the model_validate_json class method to parse the JSON\nstring.\n   # This single step parses the JSON and validates the data against\nthe User model.\n   user_object = User.model_validate_json(llm_output_json)\n\n   # Now you can work with a clean, type-safe Python object.\n   print(\"Successfully created User object!\")\n   print(f\"Name: {user_object.name}\")\n   print(f\"Email: {user_object.email}\")\n   print(f\"Date of Birth: {user_object.date_of_birth}\")\n   print(f\"First Interest: {user_object.interests[0]}\")\n\n   # You can access the data like any other Python object attribute.\n   # Pydantic has already converted the 'date_of_birth' string to a\ndatetime.date object.\n   print(f\"Type of date_of_birth: {type(user_object.date_of_birth)}\")\n\n\nexcept ValidationError as e:\n   # If the JSON is malformed or the data doesn't match the model's\ntypes,\n   # Pydantic will raise a ValidationError.\n   print(\"Failed to validate JSON from LLM.\")\n   print(e)"
   }
 ]
