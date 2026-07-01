@@ -1,0 +1,1380 @@
+[
+  {
+    "en": "Prompt",
+    "ko": "프롬프트",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "프롬프트"
+    ],
+    "definition_en": "A prompt is the input, typically in the form of a question, instruction, or statement, that a user provides to an AI model to elicit a response. The quality and structure of the prompt heavily influence the model's output, making prompt engineering a key skill for effectively using AI.",
+    "definition_ko": "프롬프트는 사용자가 AI 모델에 응답을 유도하기 위해 제공하는 입력으로, 일반적으로 질문·지시·진술의 형태를 취합니다. 프롬프트의 품질과 구조는 모델 출력에 큰 영향을 미치므로, 프롬프트 엔지니어링은 AI를 효과적으로 활용하는 핵심 기술입니다."
+  },
+  {
+    "en": "Context Window",
+    "ko": "컨텍스트 윈도우",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "컨텍스트 창"
+    ],
+    "definition_en": "The context window is the maximum number of tokens an AI model can process at once, including both the input and its generated output. This fixed size is a critical limitation, as information outside the window is ignored, while larger windows enable more complex conversations and document analysis.",
+    "definition_ko": "컨텍스트 윈도우는 AI 모델이 한 번에 처리할 수 있는 최대 토큰 수로, 입력과 생성 출력을 모두 포함합니다. 이 고정된 크기는 핵심적인 제약이며, 윈도우 밖의 정보는 무시됩니다. 반면 더 큰 윈도우는 더 복잡한 대화와 문서 분석을 가능하게 합니다."
+  },
+  {
+    "en": "In-Context Learning",
+    "ko": "인컨텍스트 학습",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "문맥 내 학습",
+      "인-컨텍스트 러닝"
+    ],
+    "definition_en": "In-context learning is an AI's ability to learn a new task from examples provided directly in the prompt, without requiring any retraining. This powerful feature allows a single, general-purpose model to be adapted to countless specific tasks on the fly.",
+    "definition_ko": "인컨텍스트 학습은 AI가 재학습 없이 프롬프트에 직접 제공된 예시만으로 새로운 과제를 학습하는 능력입니다. 이 강력한 기능 덕분에 범용 모델 하나를 즉석에서 수많은 특정 과제에 적응시킬 수 있습니다."
+  },
+  {
+    "en": "Zero-Shot, One-Shot, & Few-Shot Prompting",
+    "ko": "제로샷·원샷·퓨샷 프롬프팅",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "제로샷 프롬프팅",
+      "퓨샷 프롬프팅",
+      "원샷 프롬프팅"
+    ],
+    "definition_en": "These are prompting techniques where a model is given zero, one, or a few examples of a task to guide its response. Providing more examples generally helps the model better understand the user's intent and improves its accuracy for the specific task.",
+    "definition_ko": "모델에게 과제 예시를 0개, 1개, 또는 몇 개 제공하여 응답을 유도하는 프롬프팅 기법입니다. 예시를 더 많이 제공할수록 모델이 사용자의 의도를 더 잘 이해하고 특정 과제에서 정확도가 향상됩니다."
+  },
+  {
+    "en": "Multimodality",
+    "ko": "멀티모달리티",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "멀티모달",
+      "다중 모달리티"
+    ],
+    "definition_en": "Multimodality is an AI's ability to understand and process information across multiple data types like text, images, and audio. This allows for more versatile and human-like interactions, such as describing an image or answering a spoken question.",
+    "definition_ko": "멀티모달리티는 AI가 텍스트·이미지·오디오 등 여러 데이터 유형에 걸쳐 정보를 이해하고 처리하는 능력입니다. 이를 통해 이미지 설명이나 음성 질문 답변 같은 보다 다재다능하고 인간적인 상호작용이 가능해집니다."
+  },
+  {
+    "en": "Grounding",
+    "ko": "그라운딩",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "사실 기반화"
+    ],
+    "definition_en": "Grounding is the process of connecting a model's outputs to verifiable, real-world information sources to ensure factual accuracy and reduce hallucinations. This is often achieved with techniques like RAG to make AI systems more trustworthy.",
+    "definition_ko": "그라운딩은 모델의 출력을 검증 가능한 실세계 정보 소스에 연결하여 사실 정확성을 확보하고 환각(hallucination)을 줄이는 과정입니다. 이는 RAG 같은 기법을 통해 구현되며 AI 시스템의 신뢰성을 높입니다."
+  },
+  {
+    "en": "Transformers",
+    "ko": "트랜스포머",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "트랜스포머 아키텍처"
+    ],
+    "definition_en": "The Transformer is the foundational neural network architecture for most modern LLMs. Its key innovation is the self-attention mechanism, which efficiently processes long sequences of text and captures complex relationships between words.",
+    "definition_ko": "트랜스포머는 대부분의 현대 LLM을 지탱하는 기반 신경망 아키텍처입니다. 핵심 혁신은 자기 어텐션(self-attention) 메커니즘으로, 긴 텍스트 시퀀스를 효율적으로 처리하고 단어 간 복잡한 관계를 포착합니다."
+  },
+  {
+    "en": "Recurrent Neural Network (RNN)",
+    "ko": "순환 신경망(RNN)",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "RNN",
+      "순환신경망"
+    ],
+    "definition_en": "The Recurrent Neural Network is a foundational architecture that preceded the Transformer. RNNs process information sequentially, using loops to maintain a 'memory' of previous inputs, which made them suitable for tasks like text and speech processing.",
+    "definition_ko": "순환 신경망(RNN)은 트랜스포머 이전의 기반 아키텍처입니다. RNN은 루프를 이용해 이전 입력의 '기억'을 유지하면서 정보를 순차적으로 처리하여, 텍스트 및 음성 처리 같은 과제에 적합했습니다."
+  },
+  {
+    "en": "Mixture of Experts (MoE)",
+    "ko": "전문가 혼합(MoE)",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "MoE",
+      "전문가 혼합 모델"
+    ],
+    "definition_en": "Mixture of Experts is an efficient model architecture where a 'router' network dynamically selects a small subset of 'expert' networks to handle any given input. This allows models to have a massive number of parameters while keeping computational costs manageable.",
+    "definition_ko": "전문가 혼합(MoE)은 '라우터' 네트워크가 주어진 입력을 처리할 '전문가' 네트워크의 소규모 부분집합을 동적으로 선택하는 효율적인 모델 아키텍처입니다. 이를 통해 계산 비용을 관리 가능한 수준으로 유지하면서 막대한 수의 파라미터를 보유할 수 있습니다."
+  },
+  {
+    "en": "Diffusion Models",
+    "ko": "확산 모델",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "디퓨전 모델"
+    ],
+    "definition_en": "Diffusion models are generative models that excel at creating high-quality images. They work by adding random noise to data and then training a model to meticulously reverse the process, allowing them to generate novel data from a random starting point.",
+    "definition_ko": "확산 모델은 고품질 이미지 생성에 탁월한 생성 모델입니다. 데이터에 무작위 노이즈를 추가한 뒤 이 과정을 역전시키도록 모델을 학습시켜, 임의의 시작점에서 새로운 데이터를 생성할 수 있습니다."
+  },
+  {
+    "en": "Mamba",
+    "ko": "맘바",
+    "first_chapter": "Glossary",
+    "aliases": [],
+    "definition_en": "Mamba is a recent AI architecture using a Selective State Space Model (SSM) to process sequences with high efficiency, especially for very long contexts. Its selective mechanism allows it to focus on relevant information while filtering out noise, making it a potential alternative to the Transformer.",
+    "definition_ko": "맘바는 선택적 상태 공간 모델(SSM)을 사용하여 시퀀스를 높은 효율로 처리하는 최신 AI 아키텍처로, 특히 매우 긴 컨텍스트에서 강점을 발휘합니다. 선택적 메커니즘을 통해 관련 정보에 집중하고 노이즈를 걸러내어 트랜스포머의 잠재적 대안으로 주목받고 있습니다."
+  },
+  {
+    "en": "Pre-training",
+    "ko": "사전 학습",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "프리트레이닝"
+    ],
+    "definition_en": "Pre-training is the initial phase of LLM development where a massive base model is built by training it on a vast dataset of general internet text to learn language, reasoning, and world knowledge.",
+    "definition_ko": "사전 학습은 LLM 개발의 초기 단계로, 방대한 인터넷 텍스트 데이터셋으로 대규모 기반 모델을 학습시켜 언어·추론·세계 지식을 습득하는 과정입니다."
+  },
+  {
+    "en": "Fine-tuning",
+    "ko": "파인튜닝(fine-tuning)",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "파인 튜닝",
+      "미세 조정"
+    ],
+    "definition_en": "Fine-tuning is a specialization phase where the general pre-trained model is further trained on smaller, task-specific datasets to adapt its capabilities for a particular purpose.",
+    "definition_ko": "파인튜닝(fine-tuning)은 범용 사전 학습 모델을 더 작은 과제별 데이터셋으로 추가 학습시켜 특정 목적에 맞게 역량을 적응시키는 특화 단계입니다."
+  },
+  {
+    "en": "Alignment",
+    "ko": "정렬(Alignment)",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "AI 정렬",
+      "얼라인먼트"
+    ],
+    "definition_en": "Alignment is the process of ensuring an AI model's behavior aligns with human values and expectations, making it helpful and harmless. The most prominent technique is RLHF, where a reward model trained on human preferences guides the AI's learning process.",
+    "definition_ko": "정렬(Alignment)은 AI 모델의 행동이 인간의 가치와 기대에 부합하도록 보장하여 유용하고 무해하게 만드는 과정입니다. 가장 대표적인 기법은 RLHF로, 인간 선호도로 학습된 보상 모델이 AI의 학습 과정을 안내합니다."
+  },
+  {
+    "en": "Causal Language Modeling (CLM)",
+    "ko": "인과적 언어 모델링(CLM)",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "CLM",
+      "인과 언어 모델링"
+    ],
+    "definition_en": "Causal Language Modeling is a pre-training objective where the model predicts the next word in a sentence, learning the causal structure of language.",
+    "definition_ko": "인과적 언어 모델링(CLM)은 모델이 문장에서 다음 단어를 예측하는 사전 학습 목표로, 언어의 인과 구조를 학습합니다."
+  },
+  {
+    "en": "Masked Language Modeling (MLM)",
+    "ko": "마스크드 언어 모델링(MLM)",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "MLM",
+      "마스킹 언어 모델링"
+    ],
+    "definition_en": "Masked Language Modeling is a pre-training technique where the model fills in intentionally hidden (masked) words in a text.",
+    "definition_ko": "마스크드 언어 모델링(MLM)은 모델이 텍스트에서 의도적으로 숨겨진(마스킹된) 단어를 채우는 사전 학습 기법입니다."
+  },
+  {
+    "en": "Supervised Fine-Tuning (SFT)",
+    "ko": "지도 파인튜닝(SFT)",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "SFT",
+      "지도학습 파인튜닝"
+    ],
+    "definition_en": "Supervised Fine-Tuning is the most common fine-tuning approach where the model is trained on labeled examples of correct input-output pairs.",
+    "definition_ko": "지도 파인튜닝(SFT)은 올바른 입력-출력 쌍의 레이블된 예시로 모델을 학습시키는 가장 일반적인 파인튜닝 방식입니다."
+  },
+  {
+    "en": "Reinforcement Learning from Human Feedback (RLHF)",
+    "ko": "인간 피드백 강화학습(RLHF)",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "RLHF",
+      "인간 피드백 기반 강화학습"
+    ],
+    "definition_en": "RLHF is an alignment technique where a reward model trained on human preferences guides the AI's learning process, often using Proximal Policy Optimization (PPO) for stability.",
+    "definition_ko": "RLHF는 인간 선호도로 학습된 보상 모델이 AI의 학습 과정을 안내하는 정렬 기법으로, 안정성을 위해 근위 정책 최적화(PPO)를 자주 사용합니다."
+  },
+  {
+    "en": "Direct Preference Optimization (DPO)",
+    "ko": "직접 선호 최적화(DPO)",
+    "first_chapter": "Chapter 9",
+    "aliases": [
+      "DPO"
+    ],
+    "definition_en": "Direct Preference Optimization bypasses the need for a separate reward model, directly optimizing the language model on human preference data.",
+    "definition_ko": "직접 선호 최적화(DPO)는 별도의 보상 모델 없이 인간 선호 데이터로 언어 모델을 직접 최적화하는 기법입니다."
+  },
+  {
+    "en": "Kahneman-Tversky Optimization (KTO)",
+    "ko": "카너먼-트버스키 최적화(KTO)",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "KTO"
+    ],
+    "definition_en": "Kahneman-Tversky Optimization is an alignment technique that simplifies data collection further compared to DPO, inspired by Kahneman-Tversky prospect theory.",
+    "definition_ko": "카너먼-트버스키 최적화(KTO)는 카너먼-트버스키 전망 이론에서 영감을 받아 DPO보다 데이터 수집을 더욱 단순화한 정렬 기법입니다."
+  },
+  {
+    "en": "Guardrails",
+    "ko": "가드레일",
+    "first_chapter": "Chapter 18",
+    "aliases": [
+      "안전 장치",
+      "가드레일"
+    ],
+    "definition_en": "Guardrails are implemented as a final safety layer to filter outputs and block harmful actions in real-time, ensuring safe deployment of AI systems.",
+    "definition_ko": "가드레일은 출력을 필터링하고 유해한 행동을 실시간으로 차단하는 최종 안전 계층으로, AI 시스템의 안전한 배포를 보장합니다."
+  },
+  {
+    "en": "Chain of Thought (CoT)",
+    "ko": "연쇄 사고(Chain of Thought)",
+    "first_chapter": "Chapter 17",
+    "aliases": [
+      "CoT",
+      "사고 연쇄",
+      "체인 오브 소트"
+    ],
+    "definition_en": "Chain of Thought is a prompting technique that encourages a model to explain its reasoning step-by-step before giving a final answer. This process of 'thinking out loud' often leads to more accurate results on complex reasoning tasks.",
+    "definition_ko": "연쇄 사고(CoT)는 모델이 최종 답을 내놓기 전에 추론 과정을 단계별로 설명하도록 유도하는 프롬프팅 기법입니다. '소리 내어 생각하기'라는 이 과정은 복잡한 추론 과제에서 더 정확한 결과를 낳는 경우가 많습니다."
+  },
+  {
+    "en": "Tree of Thoughts (ToT)",
+    "ko": "사고의 나무(Tree of Thoughts)",
+    "first_chapter": "Chapter 17",
+    "aliases": [
+      "ToT",
+      "트리 오브 소트"
+    ],
+    "definition_en": "Tree of Thoughts is an advanced reasoning framework where an agent explores multiple reasoning paths simultaneously, like branches on a tree. It allows the agent to self-evaluate different lines of thought and choose the most promising one to pursue.",
+    "definition_ko": "사고의 나무(ToT)는 에이전트가 나무의 가지처럼 여러 추론 경로를 동시에 탐색하는 고급 추론 프레임워크입니다. 에이전트가 다양한 사고 흐름을 자체 평가하고 가장 유망한 경로를 선택할 수 있어 복잡한 문제 해결에 효과적입니다."
+  },
+  {
+    "en": "ReAct (Reason and Act)",
+    "ko": "ReAct(추론 및 행동)",
+    "first_chapter": "Chapter 17",
+    "aliases": [
+      "ReAct",
+      "리액트 에이전트"
+    ],
+    "definition_en": "ReAct is an agent framework that combines reasoning and acting in a loop. The agent first 'thinks' about what to do, then takes an 'action' using a tool, and uses the resulting observation to inform its next thought, making it highly effective at solving complex tasks.",
+    "definition_ko": "ReAct(추론 및 행동)는 추론과 행동을 루프로 결합한 에이전트 프레임워크입니다. 에이전트는 먼저 무엇을 할지 '생각'한 뒤 도구를 사용해 '행동'을 취하고, 그 결과 관찰을 다음 사고에 반영합니다. 이를 통해 복잡한 과제를 매우 효과적으로 해결합니다."
+  },
+  {
+    "en": "Planning",
+    "ko": "계획 수립",
+    "first_chapter": "Chapter 6",
+    "aliases": [
+      "플래닝",
+      "계획"
+    ],
+    "definition_en": "Planning is an agent's ability to break down a high-level goal into a sequence of smaller, manageable sub-tasks. The agent then creates a plan to execute these steps in order, allowing it to handle complex, multi-step assignments.",
+    "definition_ko": "계획 수립은 에이전트가 고수준 목표를 더 작고 관리 가능한 하위 과제의 순서로 분해하는 능력입니다. 에이전트는 이 단계들을 순서대로 실행할 계획을 세워 복잡한 다단계 과제를 처리합니다."
+  },
+  {
+    "en": "Deep Research",
+    "ko": "심층 연구",
+    "first_chapter": "Chapter 6",
+    "aliases": [
+      "딥 리서치",
+      "심층 조사"
+    ],
+    "definition_en": "Deep research refers to an agent's capability to autonomously explore a topic in-depth by iteratively searching for information, synthesizing findings, and identifying new questions. This allows the agent to build a comprehensive understanding of a subject far beyond a single search query.",
+    "definition_ko": "심층 연구는 에이전트가 정보를 반복적으로 검색하고 결과를 종합하며 새로운 질문을 도출하여 주제를 자율적으로 심도 있게 탐구하는 능력입니다. 단순한 단일 검색을 훨씬 넘어서는 포괄적인 이해를 구축할 수 있습니다."
+  },
+  {
+    "en": "Critique Model",
+    "ko": "비평 모델",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "크리틱 모델",
+      "비판 모델"
+    ],
+    "definition_en": "A critique model is a specialized AI model trained to review, evaluate, and provide feedback on the output of another AI model. It acts as an automated critic, helping to identify errors, improve reasoning, and ensure the final output meets a desired quality standard.",
+    "definition_ko": "비평 모델은 다른 AI 모델의 출력을 검토·평가하고 피드백을 제공하도록 학습된 특화 AI 모델입니다. 자동화된 비평가 역할을 하여 오류를 식별하고 추론을 개선하며 최종 출력이 원하는 품질 기준을 충족하는지 확인합니다."
+  },
+  {
+    "en": "LoRA (Low-Rank Adaptation)",
+    "ko": "LoRA(저계수 적응)",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "LoRA",
+      "저랭크 적응"
+    ],
+    "definition_en": "LoRA is a Parameter-Efficient Fine-Tuning method that only updates a small number of parameters by decomposing weight updates into low-rank matrices, making fine-tuning more efficient.",
+    "definition_ko": "LoRA는 가중치 업데이트를 저계수 행렬로 분해하여 소수의 파라미터만 업데이트하는 파라미터 효율적 파인튜닝(PEFT) 기법으로, 파인튜닝을 더욱 효율적으로 만듭니다."
+  },
+  {
+    "en": "QLoRA",
+    "ko": "QLoRA",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "양자화 LoRA"
+    ],
+    "definition_en": "QLoRA is a memory-optimized version of LoRA that uses quantization to reduce memory requirements during fine-tuning.",
+    "definition_ko": "QLoRA는 파인튜닝 중 양자화를 사용하여 메모리 요구사항을 줄인 LoRA의 메모리 최적화 버전입니다."
+  },
+  {
+    "en": "Retrieval-Augmented Generation (RAG)",
+    "ko": "검색 증강 생성(RAG)",
+    "first_chapter": "Chapter 14",
+    "aliases": [
+      "RAG",
+      "검색 증강 생성",
+      "래그"
+    ],
+    "definition_en": "Retrieval-Augmented Generation enhances a language model by connecting it to an external knowledge source during inference, retrieving relevant documents to ground its responses.",
+    "definition_ko": "검색 증강 생성(RAG)은 추론 시 언어 모델을 외부 지식 소스에 연결하여 관련 문서를 검색함으로써 응답을 사실에 기반하게 강화하는 기법입니다."
+  },
+  {
+    "en": "Denoising Objectives",
+    "ko": "잡음 제거 목표",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "디노이징 목표"
+    ],
+    "definition_en": "Denoising objectives are pre-training techniques where the model learns to restore a corrupted input to its original state.",
+    "definition_ko": "잡음 제거 목표는 모델이 손상된 입력을 원래 상태로 복원하도록 학습하는 사전 학습 기법입니다."
+  },
+  {
+    "en": "Agent",
+    "ko": "에이전트",
+    "first_chapter": "Introduction",
+    "aliases": [
+      "AI 에이전트"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Agentic Systems",
+    "ko": "에이전틱 시스템",
+    "first_chapter": "Introduction",
+    "aliases": [
+      "에이전틱 AI"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Agentic Design Patterns",
+    "ko": "에이전틱 디자인 패턴",
+    "first_chapter": "Introduction",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Agentic RAG",
+    "ko": "에이전틱 RAG",
+    "first_chapter": "Chapter 14",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Prompt Chaining",
+    "ko": "프롬프트 체이닝(prompt chaining)",
+    "first_chapter": "Chapter 1",
+    "aliases": [
+      "프롬프트 연쇄"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Routing",
+    "ko": "라우팅",
+    "first_chapter": "Chapter 2",
+    "aliases": [
+      "라우팅 패턴"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Parallelization",
+    "ko": "병렬화",
+    "first_chapter": "Chapter 3",
+    "aliases": [
+      "병렬 처리"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Reflection",
+    "ko": "반성적 검토",
+    "first_chapter": "Chapter 4",
+    "aliases": [
+      "리플렉션",
+      "자기 성찰"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Tool Use",
+    "ko": "툴 사용(tool use)",
+    "first_chapter": "Chapter 5",
+    "aliases": [
+      "도구 사용",
+      "툴 유즈"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Multi-Agent Collaboration",
+    "ko": "멀티 에이전트 협업",
+    "first_chapter": "Chapter 7",
+    "aliases": [
+      "다중 에이전트 협업"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Memory Management",
+    "ko": "메모리 관리",
+    "first_chapter": "Chapter 8",
+    "aliases": [
+      "기억 관리"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Learning and Adaptation",
+    "ko": "학습과 적응",
+    "first_chapter": "Chapter 9",
+    "aliases": [
+      "학습 및 적응"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Model Context Protocol (MCP)",
+    "ko": "모델 컨텍스트 프로토콜(MCP)",
+    "first_chapter": "Chapter 10",
+    "aliases": [
+      "MCP"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Goal Setting",
+    "ko": "목표 설정",
+    "first_chapter": "Chapter 11",
+    "aliases": [
+      "목표 수립"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Exception Handling",
+    "ko": "예외 처리",
+    "first_chapter": "Chapter 12",
+    "aliases": [
+      "에러 처리",
+      "예외 핸들링"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Human-in-the-Loop (HITL)",
+    "ko": "인간 참여 루프(Human-in-the-Loop)",
+    "first_chapter": "Chapter 13",
+    "aliases": [
+      "HITL",
+      "인간 참여"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Knowledge Retrieval (RAG)",
+    "ko": "지식 검색(RAG)",
+    "first_chapter": "Chapter 14",
+    "aliases": [
+      "지식 검색"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Inter-Agent Communication (A2A)",
+    "ko": "에이전트 간 통신(A2A)",
+    "first_chapter": "Chapter 15",
+    "aliases": [
+      "A2A",
+      "에이전트 투 에이전트"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Resource-Aware Optimization",
+    "ko": "리소스 인식 최적화",
+    "first_chapter": "Chapter 16",
+    "aliases": [
+      "자원 인식 최적화"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Reasoning Techniques",
+    "ko": "추론 기법",
+    "first_chapter": "Chapter 17",
+    "aliases": [
+      "추론 기술"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Safety",
+    "ko": "안전성",
+    "first_chapter": "Chapter 18",
+    "aliases": [
+      "안전"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Evaluation and Monitoring",
+    "ko": "평가 및 모니터링",
+    "first_chapter": "Chapter 19",
+    "aliases": [
+      "모니터링 및 평가"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Prioritization",
+    "ko": "우선순위 결정",
+    "first_chapter": "Chapter 20",
+    "aliases": [
+      "우선순위화",
+      "우선순위 지정"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Exploration and Discovery",
+    "ko": "탐색과 발견",
+    "first_chapter": "Chapter 21",
+    "aliases": [
+      "탐색 및 발견"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Embedding",
+    "ko": "임베딩(embedding)",
+    "first_chapter": "Chapter 14",
+    "aliases": [
+      "임베딩"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Orchestration",
+    "ko": "오케스트레이션",
+    "first_chapter": "Chapter 7",
+    "aliases": [
+      "오케스트레이션",
+      "조율"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Prompt Engineering",
+    "ko": "프롬프트 엔지니어링",
+    "first_chapter": "Appendix A",
+    "aliases": [
+      "프롬프트 설계"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Function Calling",
+    "ko": "함수 호출",
+    "first_chapter": "Chapter 5",
+    "aliases": [
+      "펑션 콜링"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Structured Output",
+    "ko": "구조화된 출력",
+    "first_chapter": "Chapter 1",
+    "aliases": [
+      "구조화 출력"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Code Generation",
+    "ko": "코드 생성",
+    "first_chapter": "Chapter 1",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Context Engineering",
+    "ko": "컨텍스트 엔지니어링",
+    "first_chapter": "Chapter 1",
+    "aliases": [
+      "문맥 공학"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Agent Development Kit (ADK)",
+    "ko": "에이전트 개발 키트(ADK)",
+    "first_chapter": "Chapter 2",
+    "aliases": [
+      "ADK",
+      "Google ADK"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "LangChain",
+    "ko": "LangChain",
+    "first_chapter": "Chapter 1",
+    "aliases": [
+      "랭체인"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "LangGraph",
+    "ko": "LangGraph",
+    "first_chapter": "Chapter 1",
+    "aliases": [
+      "랭그래프"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Chunking",
+    "ko": "청킹",
+    "first_chapter": "Chapter 14",
+    "aliases": [
+      "청크 분할"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Vector Search",
+    "ko": "벡터 검색",
+    "first_chapter": "Chapter 14",
+    "aliases": [
+      "벡터 서치"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Semantic Similarity",
+    "ko": "의미 유사도",
+    "first_chapter": "Chapter 14",
+    "aliases": [
+      "시맨틱 유사도"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Episodic Memory",
+    "ko": "에피소드 기억",
+    "first_chapter": "Chapter 8",
+    "aliases": [
+      "에피소드 메모리"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Semantic Memory",
+    "ko": "의미 기억",
+    "first_chapter": "Chapter 8",
+    "aliases": [
+      "시맨틱 메모리"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Session",
+    "ko": "세션",
+    "first_chapter": "Chapter 8",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "State",
+    "ko": "상태",
+    "first_chapter": "Chapter 8",
+    "aliases": [
+      "스테이트"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Error Handling",
+    "ko": "오류 처리",
+    "first_chapter": "Chapter 12",
+    "aliases": [
+      "에러 핸들링"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "State Rollback",
+    "ko": "상태 롤백",
+    "first_chapter": "Chapter 12",
+    "aliases": [
+      "롤백"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Fault Tolerance",
+    "ko": "장애 허용성",
+    "first_chapter": "Chapter 18",
+    "aliases": [
+      "폴트 톨러런스"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Graceful Degradation",
+    "ko": "우아한 성능 저하",
+    "first_chapter": "Chapter 12",
+    "aliases": [
+      "그레이스풀 디그레이데이션"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Escalation Policies",
+    "ko": "에스컬레이션 정책",
+    "first_chapter": "Chapter 13",
+    "aliases": [
+      "에스컬레이션"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Human Oversight",
+    "ko": "인간 감독",
+    "first_chapter": "Chapter 13",
+    "aliases": [
+      "휴먼 오버사이트"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Human-on-the-loop",
+    "ko": "인간 루프 감시",
+    "first_chapter": "Chapter 13",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Intervention and Correction",
+    "ko": "개입 및 수정",
+    "first_chapter": "Chapter 13",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Decision Augmentation",
+    "ko": "의사결정 증강",
+    "first_chapter": "Chapter 13",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Monitoring",
+    "ko": "모니터링",
+    "first_chapter": "Chapter 11",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "SMART Goals",
+    "ko": "SMART 목표",
+    "first_chapter": "Chapter 11",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "LLM-as-a-Judge",
+    "ko": "판관 LLM",
+    "first_chapter": "Chapter 19",
+    "aliases": [
+      "LLM 판관",
+      "LLM 평가자"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Agent Trajectories",
+    "ko": "에이전트 궤적",
+    "first_chapter": "Chapter 19",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Anomaly Detection",
+    "ko": "이상 탐지",
+    "first_chapter": "Chapter 19",
+    "aliases": [
+      "이상 감지"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Drift Detection",
+    "ko": "드리프트 감지",
+    "first_chapter": "Chapter 19",
+    "aliases": [
+      "드리프트 탐지"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "A/B Testing",
+    "ko": "A/B 테스팅",
+    "first_chapter": "Chapter 3",
+    "aliases": [
+      "A/B 테스트"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Validation",
+    "ko": "검증",
+    "first_chapter": "Chapter 3",
+    "aliases": [
+      "밸리데이션"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Agent Cards",
+    "ko": "에이전트 카드",
+    "first_chapter": "Chapter 15",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Agent Discovery",
+    "ko": "에이전트 발견",
+    "first_chapter": "Chapter 15",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Streaming Updates",
+    "ko": "스트리밍 업데이트",
+    "first_chapter": "Chapter 15",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Webhooks",
+    "ko": "웹훅",
+    "first_chapter": "Chapter 15",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Asynchronous Polling",
+    "ko": "비동기 폴링",
+    "first_chapter": "Chapter 15",
+    "aliases": [
+      "비동기 풀링"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Dynamic Model Switching",
+    "ko": "동적 모델 전환",
+    "first_chapter": "Chapter 16",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Adaptive Task Allocation",
+    "ko": "적응형 작업 배분",
+    "first_chapter": "Chapter 16",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Chain of Debates (CoD)",
+    "ko": "토론 연쇄(CoD)",
+    "first_chapter": "Chapter 17",
+    "aliases": [
+      "CoD"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Graph of Debates (GoD)",
+    "ko": "토론 그래프(GoD)",
+    "first_chapter": "Chapter 17",
+    "aliases": [
+      "GoD"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Multi-Agent System Search (MASS)",
+    "ko": "멀티 에이전트 시스템 탐색(MASS)",
+    "first_chapter": "Chapter 17",
+    "aliases": [
+      "MASS"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Reinforcement Learning with Verifiable Rewards (RLVR)",
+    "ko": "검증 가능한 보상 강화학습(RLVR)",
+    "first_chapter": "Chapter 17",
+    "aliases": [
+      "RLVR"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Scaling Inference Law",
+    "ko": "추론 스케일링 법칙",
+    "first_chapter": "Chapter 17",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Self-Refinement",
+    "ko": "자기 개선",
+    "first_chapter": "Chapter 17",
+    "aliases": [
+      "셀프 리파인먼트"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Self-Correction",
+    "ko": "자기 수정",
+    "first_chapter": "Chapter 4",
+    "aliases": [
+      "셀프 코렉션"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Self-Consistency",
+    "ko": "자기 일관성",
+    "first_chapter": "Appendix A",
+    "aliases": [
+      "셀프 컨시스턴시"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Behavioral Constraints",
+    "ko": "행동 제약",
+    "first_chapter": "Chapter 18",
+    "aliases": [
+      "행동 제약 조건"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Input Validation/Sanitization",
+    "ko": "입력 검증/정제",
+    "first_chapter": "Chapter 18",
+    "aliases": [
+      "입력 검증"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Checkpoint and Rollback",
+    "ko": "체크포인트 및 롤백",
+    "first_chapter": "Chapter 18",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Jailbreaking",
+    "ko": "탈옥 공격",
+    "first_chapter": "Chapter 18",
+    "aliases": [
+      "탈옥",
+      "제일브레이킹"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Modularity",
+    "ko": "모듈성",
+    "first_chapter": "Chapter 18",
+    "aliases": [
+      "모듈화"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Structured Logging",
+    "ko": "구조화된 로깅",
+    "first_chapter": "Chapter 18",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Separation of Concerns",
+    "ko": "관심사 분리",
+    "first_chapter": "Chapter 18",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Reinforcement Learning",
+    "ko": "강화학습",
+    "first_chapter": "Chapter 9",
+    "aliases": [
+      "RL",
+      "강화 학습"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Supervised Learning",
+    "ko": "지도 학습",
+    "first_chapter": "Chapter 9",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Unsupervised Learning",
+    "ko": "비지도 학습",
+    "first_chapter": "Chapter 9",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Few-Shot Learning",
+    "ko": "퓨샷 학습",
+    "first_chapter": "Chapter 9",
+    "aliases": [
+      "few-shot learning"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Zero-Shot Learning",
+    "ko": "제로샷 학습",
+    "first_chapter": "Chapter 9",
+    "aliases": [
+      "zero-shot learning"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Memory-Based Learning",
+    "ko": "기억 기반 학습",
+    "first_chapter": "Chapter 9",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Expert Teams",
+    "ko": "전문가 팀",
+    "first_chapter": "Chapter 7",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Sequential Handoffs",
+    "ko": "순차적 핸드오프",
+    "first_chapter": "Chapter 7",
+    "aliases": [
+      "순차 핸드오프"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Hierarchical Structures",
+    "ko": "계층적 구조",
+    "first_chapter": "Chapter 7",
+    "aliases": [
+      "계층 구조"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Debate and Consensus",
+    "ko": "토론과 합의",
+    "first_chapter": "Chapter 7",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Proximal Policy Optimization (PPO)",
+    "ko": "근위 정책 최적화(PPO)",
+    "first_chapter": "Chapter 9",
+    "aliases": [
+      "PPO"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Agent-Computer Interfaces (ACIs)",
+    "ko": "에이전트-컴퓨터 인터페이스(ACI)",
+    "first_chapter": "Appendix B",
+    "aliases": [
+      "ACI"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "AI Co-scientist",
+    "ko": "AI 공동 과학자",
+    "first_chapter": "Chapter 21",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Contrastive Learning",
+    "ko": "대조 학습",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "콘트라스티브 러닝"
+    ],
+    "definition_en": "Contrastive learning is a pre-training technique where the model learns to distinguish between similar and dissimilar pieces of data.",
+    "definition_ko": "대조 학습은 모델이 유사한 데이터와 유사하지 않은 데이터를 구별하는 법을 학습하는 사전 학습 기법입니다."
+  },
+  {
+    "en": "Next Sentence Prediction (NSP)",
+    "ko": "다음 문장 예측(NSP)",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "NSP"
+    ],
+    "definition_en": "Next Sentence Prediction is a pre-training technique where the model determines if two sentences logically follow each other.",
+    "definition_ko": "다음 문장 예측(NSP)은 모델이 두 문장이 논리적으로 이어지는지 판단하는 사전 학습 기법입니다."
+  },
+  {
+    "en": "Parameter-Efficient Fine-Tuning (PEFT)",
+    "ko": "파라미터 효율적 파인튜닝(PEFT)",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "PEFT"
+    ],
+    "definition_en": "Parameter-Efficient Fine-Tuning methods adapt pre-trained models to new tasks by updating only a small subset of parameters, reducing computational cost.",
+    "definition_ko": "파라미터 효율적 파인튜닝(PEFT)은 소수의 파라미터만 업데이트하여 사전 학습 모델을 새로운 과제에 적응시키는 기법으로, 계산 비용을 줄입니다."
+  },
+  {
+    "en": "Instruction Tuning",
+    "ko": "명령어 튜닝",
+    "first_chapter": "Glossary",
+    "aliases": [
+      "인스트럭션 튜닝"
+    ],
+    "definition_en": "Instruction tuning is a fine-tuning variant that focuses on training the model to better follow user commands and instructions.",
+    "definition_ko": "명령어 튜닝은 모델이 사용자의 명령과 지시를 더 잘 따르도록 학습시키는 파인튜닝 변형 기법입니다."
+  },
+  {
+    "en": "Autonomy",
+    "ko": "자율성",
+    "first_chapter": "Introduction",
+    "aliases": [
+      "자율"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Token Usage",
+    "ko": "토큰 사용량",
+    "first_chapter": "Chapter 19",
+    "aliases": [
+      "토큰 사용"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Latency Monitoring",
+    "ko": "지연 모니터링",
+    "first_chapter": "Chapter 19",
+    "aliases": [
+      "레이턴시 모니터링"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Data Extraction",
+    "ko": "데이터 추출",
+    "first_chapter": "Chapter 1",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Action Selection",
+    "ko": "행동 선택",
+    "first_chapter": "Chapter 20",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Remote Agent",
+    "ko": "원격 에이전트",
+    "first_chapter": "Chapter 15",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Client Agent",
+    "ko": "클라이언트 에이전트",
+    "first_chapter": "Chapter 15",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Router Agent",
+    "ko": "라우터 에이전트",
+    "first_chapter": "Chapter 16",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Critique Agent",
+    "ko": "비평 에이전트",
+    "first_chapter": "Chapter 16",
+    "aliases": [
+      "크리틱 에이전트"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Hallucination",
+    "ko": "환각",
+    "first_chapter": "Introduction",
+    "aliases": [
+      "할루시네이션"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "External Moderation APIs",
+    "ko": "외부 검열 API",
+    "first_chapter": "Chapter 18",
+    "aliases": [
+      "외부 모더레이션 API"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Compliance",
+    "ko": "컴플라이언스",
+    "first_chapter": "Chapter 19",
+    "aliases": [
+      "규정 준수"
+    ],
+    "definition_en": "",
+    "definition_ko": ""
+  },
+  {
+    "en": "Hierarchical Decomposition",
+    "ko": "계층적 분해",
+    "first_chapter": "Chapter 19",
+    "aliases": [],
+    "definition_en": "",
+    "definition_ko": ""
+  }
+]
