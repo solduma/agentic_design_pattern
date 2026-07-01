@@ -1,0 +1,23 @@
+name: Waiver Re-check (post-merge)
+# Stub: owned by W6. Re-runs waiver-dependent checks after main branch merge.
+# TODO: W6 to fill in actual waiver logic.
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  waiver-recheck:
+    name: Post-merge waiver re-run (stub)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Stub — waiver re-check
+        run: |
+          echo "Waiver re-check stub. W6 to implement."
+          echo "Re-run any gates that may be affected by waiver changes post-merge."
+          exit 0
