@@ -1,27 +1,7 @@
 [
   {
-    "lang": "text",
-    "code": "for handling intricate tasks when leveraging large language models (LLMs). Rather than\nwith external systems, APIs, or databases, enriching its knowledge and abilities beyond its"
-  },
-  {
-    "lang": "python",
-    "code": "from step 1].\" This prompt is now more constrained and builds directly upon a validated"
-  },
-  {
     "lang": "json",
-    "code": "{ \n \"trends\": [ \n   { \n     \"trend_name\": \"AI-Powered Personalization\", \n     \"supporting_data\": \"73% of consumers prefer to do business with \nbrands that use personal information to make their shopping \nexperiences more relevant.\" \n   }, \n   { \n     \"trend_name\": \"Sustainable and Ethical Brands\", \n     \"supporting_data\": \"Sales of products with ESG-related claims \ngrew 28% over the last five years, compared to 20% for products \nwithout.\" \n   } \n ] \n}"
-  },
-  {
-    "lang": "python",
-    "code": "from each article can be performed concurrently for each source. This stage is"
-  },
-  {
-    "lang": "text",
-    "code": "for independent data gathering with prompt chaining for the dependent steps of"
-  },
-  {
-    "lang": "python",
-    "code": "from the failed attempt.\nfrom its capacity to decompose complex coding tasks into a series of manageable"
+    "code": "{\n \"trends\": [\n   {\n     \"trend_name\": \"AI-Powered Personalization\",\n     \"supporting_data\": \"73% of consumers prefer to do business with\nbrands that use personal information to make their shopping\nexperiences more relevant.\"\n   },\n   {\n     \"trend_name\": \"Sustainable and Ethical Brands\",\n     \"supporting_data\": \"Sales of products with ESG-related claims\ngrew 28% over the last five years, compared to 20% for products\nwithout.\"\n   }\n ]\n}"
   },
   {
     "lang": "bash",
@@ -29,10 +9,10 @@
   },
   {
     "lang": "python",
-    "code": "import os \nfrom langchain_openai import ChatOpenAI \nfrom langchain_core.prompts import ChatPromptTemplate \nfrom langchain_core.output_parsers import StrOutputParser \n \n# For better security, load environment variables from a .env file \n# from dotenv import load_dotenv"
+    "code": "import os\nfrom langchain_openai import ChatOpenAI\nfrom langchain_core.prompts import ChatPromptTemplate\nfrom langchain_core.output_parsers import StrOutputParser\n\n# For better security, load environment variables from a .env file\n# from dotenv import load_dotenv"
   },
   {
-    "lang": "text",
-    "code": "# load_dotenv() \n# Make sure your OPENAI_API_KEY is set in the .env file \n \n# Initialize the Language Model (using ChatOpenAI is recommended) \nllm = ChatOpenAI(temperature=0) \n \n# --- Prompt 1: Extract Information --- \nprompt_extract = ChatPromptTemplate.from_template( \n   \"Extract the technical specifications from the following \ntext:\\n\\n{text_input}\" \n) \n \n# --- Prompt 2: Transform to JSON --- \nprompt_transform = ChatPromptTemplate.from_template( \n   \"Transform the following specifications into a JSON object with \n'cpu', 'memory', and 'storage' as keys:\\n\\n{specifications}\" \n) \n \n# --- Build the Chain using LCEL --- \n# The StrOutputParser() converts the LLM's message output to a simple \nstring. \nextraction_chain = prompt_extract | llm | StrOutputParser() \n \n# The full chain passes the output of the extraction chain into the \n'specifications' \n# variable for the transformation prompt. \nfull_chain = ( \n   {\"specifications\": extraction_chain} \n   | prompt_transform \n   | llm \n   | StrOutputParser() \n) \n \n# --- Run the Chain --- \ninput_text = \"The new laptop model features a 3.5 GHz octa-core \nprocessor, 16GB of RAM, and a 1TB NVMe SSD.\" \n \n# Execute the chain with the input text dictionary. \nfinal_result = full_chain.invoke({\"text_input\": input_text}) \n \nprint(\"\\n--- Final JSON Output ---\") \nprint(final_result)"
+    "lang": "python",
+    "code": "# load_dotenv()\n# Make sure your OPENAI_API_KEY is set in the .env file\n\n# Initialize the Language Model (using ChatOpenAI is recommended)\nllm = ChatOpenAI(temperature=0)\n\n# --- Prompt 1: Extract Information ---\nprompt_extract = ChatPromptTemplate.from_template(\n   \"Extract the technical specifications from the following\ntext:\\n\\n{text_input}\"\n)\n\n# --- Prompt 2: Transform to JSON ---\nprompt_transform = ChatPromptTemplate.from_template(\n   \"Transform the following specifications into a JSON object with\n'cpu', 'memory', and 'storage' as keys:\\n\\n{specifications}\"\n)\n\n# --- Build the Chain using LCEL ---\n# The StrOutputParser() converts the LLM's message output to a simple\nstring.\nextraction_chain = prompt_extract | llm | StrOutputParser()\n\n# The full chain passes the output of the extraction chain into the\n'specifications'\n# variable for the transformation prompt.\nfull_chain = (\n   {\"specifications\": extraction_chain}\n   | prompt_transform\n   | llm\n   | StrOutputParser()\n)\n\n# --- Run the Chain ---\ninput_text = \"The new laptop model features a 3.5 GHz octa-core\nprocessor, 16GB of RAM, and a 1TB NVMe SSD.\"\n\n# Execute the chain with the input text dictionary.\nfinal_result = full_chain.invoke({\"text_input\": input_text})\n\nprint(\"\\n--- Final JSON Output ---\")\nprint(final_result)"
   }
 ]

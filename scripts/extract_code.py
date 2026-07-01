@@ -1,22 +1,28 @@
 #!/usr/bin/env python3
 """
-extract_code.py — Extract verbatim code blocks from PDF sections.
+extract_code.py — Extract verbatim code blocks from PDF sections using monospace font detection.
 
-For each section in assets/manifest.json that has code_ratio > 0,
-detects code regions using font/heuristic analysis and emits:
-  assets/code_blocks/{section_id}.json
+For each section in assets/manifest.json with code_ratio > threshold, detects code
+regions by identifying monospace font spans via pymupdf page.get_text("dict").
+Emits: assets/code_blocks/{section_id}.json
+  = [{ "lang": "python|bash|json|text|...", "code": "<verbatim>" }]
 
-Each JSON file is a list of:
-  { "lang": "python|bash|json|text|...", "code": "<verbatim>" }
+Strategy:
+  - Use page.get_text("dict") (no extra flags) to get span-level font info.
+  - A line is CODE if ANY non-empty span on that line uses a monospace font
+    (font name contains 'Mono', 'Courier', 'Consol', 'Menlo', 'Code',
+    'Fixed', 'Terminal', 'Inconsolata', 'Hack', 'Fira', 'JetBrains',
+    'Cascadia', 'Anonymous', 'DejaVu', 'Source Code').
+  - Consecutive code lines (with up to 2 intervening blank lines) form one block.
+  - NO heuristic line-content matching — font is the sole signal.
 
 Usage:
-  python3 scripts/extract_code.py               # all sections with code
-  python3 scripts/extract_code.py ch02 ch05     # specific sections
-  python3 scripts/extract_code.py --all         # force all (even code_ratio==0)
+  python3 scripts/extract_code.py               # all sections with code_ratio > threshold
+  python3 scripts/extract_code.py ch02 ch05     # specific sections only
+  python3 scripts/extract_code.py --all         # all sections including zero-ratio ones
 """
 
 import sys
-import os
 import json
 import re
 from pathlib import Path
@@ -31,184 +37,122 @@ MANIFEST_PATH = REPO_ROOT / "assets" / "manifest.json"
 PDF_PATH = REPO_ROOT / "pdf" / "Agentic_Design_Patterns.pdf"
 CODE_BLOCKS_DIR = REPO_ROOT / "assets" / "code_blocks"
 
-# Minimum code_ratio to attempt extraction (skip near-zero sections)
 CODE_RATIO_THRESHOLD = 0.005
 
-# Heuristics: lines that strongly indicate code
-CODE_LEADER_RE = re.compile(
-    r"^\s*("
-    r"import |from |def |class |async def |return |if |elif |else:|for |while |try:|except|with |"
-    r"@\w|print\(|raise |yield |lambda |pass$|break$|continue$|"
-    r"\$\s|%pip|%matplotlib|pip install|pip3 |python3? |"
-    r'"\w.*":\s*[{\["\d]|'   # JSON key-value
-    r"{\s*$|\[\s*$|}\s*,?\s*$|\]\s*,?\s*$|"  # JSON/dict braces
-    r"#!|#!/|"  # shebang
-    r"curl |wget |git |docker |kubectl |npm |yarn |poetry |"
-    r"model\s*=|agent\s*=|client\s*=|response\s*=|result\s*=|output\s*=|"
-    r'"""$|""".*"""$|'  # docstrings
-    r"[a-zA-Z_]\w*\([^)]*\)\s*:|"  # function def body
-    r"[a-zA-Z_]\w*\s*=\s*.+"  # assignment
-    r")"
+# Monospace font name fragments (case-insensitive substring match)
+MONOSPACE_HINTS = (
+    "mono", "courier", "consol", "menlo", "monaco",
+    "code", "fixed", "terminal", "inconsolata", "hack",
+    "fira", "jetbrain", "cascadia", "anonymous", "dejavu",
+    "sourcecodepro", "source code",
 )
 
-# Fonts that are typically monospace/code
-MONOSPACE_FONT_HINTS = {
-    "courier", "mono", "consol", "code", "inconsolata",
-    "sourcecodepro", "source code", "roboto mono", "droid sans mono",
-    "menlo", "monaco", "fira", "hack", "jetbrains", "cascadia",
-    "anonymous", "ubuntu mono", "dejavusans mono",
-}
 
-
-def is_monospace_font(font_name: str) -> bool:
+def is_monospace(font_name: str) -> bool:
     name = font_name.lower()
-    return any(h in name for h in MONOSPACE_FONT_HINTS)
-
-
-def looks_like_code_line(text: str) -> bool:
-    stripped = text.strip()
-    if not stripped:
-        return False
-    if CODE_LEADER_RE.match(stripped):
-        return True
-    # Indented (4+ spaces or tab) non-prose
-    if re.match(r"^(\t|    )", text) and not re.match(r"^\s{4,}[A-Z]", text):
-        return True
-    return False
+    return any(h in name for h in MONOSPACE_HINTS)
 
 
 def detect_lang(lines: list[str]) -> str:
+    """Heuristically determine language from code content."""
     joined = "\n".join(lines)
-    if any(re.search(r"^\s*(import |from |def |class |async def )", l) for l in lines):
+    # Python indicators (check all lines, not just first)
+    if re.search(r"(^|\n)\s*(import |from \w+ import|def |class |async def )", joined):
         return "python"
-    if any(re.search(r"^\s*(\$|pip |pip3 |python3? |curl |wget |git |docker )", l) for l in lines):
+    # Python assignments / calls that are clear Python
+    if re.search(r"(^|\n)\s*\w+ = \w|\w+\(", joined) and re.search(r"#", joined):
+        return "python"  # Python-style comment + assignments
+    # Bash
+    if re.search(r"(^|\n)\s*(\$\s?|pip3? |python3? |curl |wget |git |docker |npm |poetry )", joined):
         return "bash"
-    if re.search(r'^\s*\{', joined) and re.search(r'":\s*', joined):
+    # JSON
+    stripped = joined.strip()
+    if (stripped.startswith("{") or stripped.startswith("[")) and re.search(r'":\s*', joined):
         return "json"
-    if any(re.search(r"^\w+:", l) for l in lines) and any(
-        re.search(r"^\s+-\s+", l) for l in lines
-    ):
+    # YAML
+    if (re.search(r"(^|\n)\w[\w\s-]*:\s*", joined)
+            and re.search(r"(^|\n)\s+-\s+", joined)):
         return "yaml"
     return "text"
 
 
 def extract_code_blocks_from_pages(doc: fitz.Document, page_range: list) -> list[dict]:
     """
-    Extract code blocks from the given 1-based page range.
+    Extract code blocks from 1-based page_range using monospace font detection only.
     Returns list of {"lang": ..., "code": ...}.
     """
     start_page, end_page = page_range
     if start_page is None or end_page is None:
         return []
 
-    # Collect all spans with their font info and bbox, per page
-    code_runs: list[str] = []  # accumulator of current code run lines
     all_blocks: list[dict] = []
+    current_run: list[str] = []
+    blank_gap: int = 0
 
-    def flush_run():
-        nonlocal code_runs
-        if not code_runs:
-            return
-        # Filter: must have >= 2 non-blank lines to be a real block
-        non_blank = [l for l in code_runs if l.strip()]
-        if len(non_blank) >= 1:
-            lang = detect_lang(code_runs)
-            code = "\n".join(code_runs).strip()
-            all_blocks.append({"lang": lang, "code": code})
-        code_runs = []
+    def flush():
+        nonlocal current_run, blank_gap
+        # Strip trailing blank lines
+        while current_run and not current_run[-1].strip():
+            current_run.pop()
+        if current_run:
+            lang = detect_lang(current_run)
+            all_blocks.append({"lang": lang, "code": "\n".join(current_run)})
+        current_run = []
+        blank_gap = 0
 
-    for page_num in range(start_page - 1, end_page):  # 0-indexed
+    for page_num in range(start_page - 1, end_page):  # convert to 0-indexed
         if page_num >= len(doc):
             break
         page = doc[page_num]
 
-        # Use dict extraction to get font-level span info
-        page_dict = page.get_text("dict", flags=fitz.TEXT_PRESERVE_WHITESPACE)
+        # get_text("dict") without extra flags gives correct font names
+        page_dict = page.get_text("dict")
 
-        page_lines: list[tuple[bool, str]] = []  # (is_code, text)
+        # Collect (y0, is_code, text) for all lines on this page
+        line_records: list[tuple[float, bool, str]] = []
 
         for block in page_dict.get("blocks", []):
-            if block.get("type") != 0:  # type 0 = text
+            if block.get("type") != 0:
                 continue
             for line in block.get("lines", []):
                 spans = line.get("spans", [])
                 if not spans:
                     continue
                 line_text = "".join(s.get("text", "") for s in spans)
-                # Check if any span is monospace
-                has_mono = any(is_monospace_font(s.get("font", "")) for s in spans)
-                # Or check by heuristic
-                heuristic_code = looks_like_code_line(line_text)
-                page_lines.append((has_mono or heuristic_code, line_text))
+                # Code = any non-empty span is monospace
+                has_mono = any(
+                    is_monospace(s.get("font", ""))
+                    for s in spans
+                    if s.get("text", "").strip()
+                )
+                y0 = line.get("bbox", (0, 0, 0, 0))[1]
+                line_records.append((y0, has_mono, line_text))
 
-        # Group consecutive code lines into blocks, allowing up to 1 blank line gap
-        in_code = False
-        blank_gap = 0
-        current_run: list[str] = []
+        # Sort by vertical position to ensure reading order
+        line_records.sort(key=lambda r: r[0])
 
-        for is_code, text in page_lines:
+        for _y0, is_code, text in line_records:
             if is_code:
+                # Re-include any held blank lines into the current run
                 if blank_gap > 0 and current_run:
-                    # Add the blank lines back into the run
                     current_run.extend([""] * blank_gap)
                 blank_gap = 0
-                in_code = True
-                current_run.append(text)
+                current_run.append(text.rstrip())
             elif not text.strip():
-                if in_code:
+                if current_run:
                     blank_gap += 1
                     if blank_gap > 2:
-                        # End of block
-                        if current_run:
-                            non_blank = [l for l in current_run if l.strip()]
-                            if len(non_blank) >= 1:
-                                lang = detect_lang(current_run)
-                                code = "\n".join(current_run).strip()
-                                all_blocks.append({"lang": lang, "code": code})
-                            current_run = []
-                        in_code = False
-                        blank_gap = 0
+                        flush()
             else:
-                if in_code:
-                    # Non-code, non-blank: end the current code run
-                    if current_run:
-                        non_blank = [l for l in current_run if l.strip()]
-                        if len(non_blank) >= 1:
-                            lang = detect_lang(current_run)
-                            code = "\n".join(current_run).strip()
-                            all_blocks.append({"lang": lang, "code": code})
-                        current_run = []
-                    in_code = False
-                    blank_gap = 0
+                # Prose line — end any open code block
+                if current_run or blank_gap:
+                    flush()
 
-        # Flush any remaining run at end of page
-        if current_run:
-            non_blank = [l for l in current_run if l.strip()]
-            if len(non_blank) >= 1:
-                lang = detect_lang(current_run)
-                code = "\n".join(current_run).strip()
-                all_blocks.append({"lang": lang, "code": code})
+        # Flush at page boundary (code rarely spans pages in this PDF)
+        flush()
 
-    # Merge adjacent blocks of same lang that are likely part of the same snippet
-    merged = merge_adjacent_blocks(all_blocks)
-    return merged
-
-
-def merge_adjacent_blocks(blocks: list[dict]) -> list[dict]:
-    """Merge consecutive blocks of the same language that are small (< 5 lines each)."""
-    if not blocks:
-        return blocks
-    result = [blocks[0]]
-    for b in blocks[1:]:
-        prev = result[-1]
-        # Merge if same lang and both small
-        if (prev["lang"] == b["lang"] and
-                len(prev["code"].splitlines()) < 8 and
-                len(b["code"].splitlines()) < 8):
-            result[-1] = {"lang": prev["lang"], "code": prev["code"] + "\n" + b["code"]}
-        else:
-            result.append(b)
-    return result
+    flush()  # final safety flush
+    return all_blocks
 
 
 def process_section(doc: fitz.Document, section: dict, output_dir: Path) -> int:
@@ -217,13 +161,8 @@ def process_section(doc: fitz.Document, section: dict, output_dir: Path) -> int:
     page_range = section.get("page_range", [None, None])
     blocks = extract_code_blocks_from_pages(doc, page_range)
     out_path = output_dir / f"{sid}.json"
-    if blocks:
-        with open(out_path, "w", encoding="utf-8") as f:
-            json.dump(blocks, f, ensure_ascii=False, indent=2)
-    else:
-        # Write empty array for sections that had code_ratio > 0 but nothing detected
-        with open(out_path, "w", encoding="utf-8") as f:
-            json.dump([], f)
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(blocks, f, ensure_ascii=False, indent=2)
     return len(blocks)
 
 
@@ -250,7 +189,6 @@ def main():
         code_ratio = sec.get("code_ratio", 0.0)
         page_range = sec.get("page_range", [None, None])
 
-        # Skip sections with no page range (MISSING)
         if page_range[0] is None:
             continue
 
@@ -261,7 +199,7 @@ def main():
             continue
 
         n = process_section(doc, sec, CODE_BLOCKS_DIR)
-        status = f"{n} blocks" if n > 0 else "0 blocks (empty)"
+        status = f"{n} blocks" if n > 0 else "0 blocks"
         print(f"  {sid:20s}  ratio={code_ratio:.3f}  -> {status}")
         if n > 0:
             sections_with_code += 1
