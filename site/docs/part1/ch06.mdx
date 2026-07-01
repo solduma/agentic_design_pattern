@@ -181,7 +181,7 @@ response = client.responses.create(
 )
 ```
 
-```python
+````python
 # Access and print the final report from the response
 final_report = response.output[-1].content[0].text
 print(final_report)
@@ -238,13 +238,11 @@ try:
    print("\n[Found a Code Execution Step]")
    print("  Code Input:")
    print(f"  ```python\n{code_step.input}\n  ```")
-
-```python
    print("  Code Output:")
    print(f"  {code_step.output}")
 except StopIteration:
    print("\nNo code execution steps found.")
-```
+````
 
 이 코드 스니펫은 OpenAI API를 사용하여 "Deep Research" 작업을 수행합니다. OpenAI 클라이언트를 API 키로 초기화하는 것으로 시작합니다(인증에 필수적입니다). 그런 다음 AI 에이전트의 역할을 전문 연구원으로 정의하고 세마글루타이드의 경제적 영향에 관한 사용자의 연구 질문을 설정합니다. 코드는 정의된 시스템 메시지와 사용자 쿼리를 입력으로 제공하면서 o3-deep-research-2025-06-26 모델에 대한 API 호출을 구성합니다. 또한 추론의 자동 요약을 요청하고 웹 검색 기능을 활성화합니다. API 호출 후, 최종 생성된 보고서를 추출하고 출력합니다.
 
