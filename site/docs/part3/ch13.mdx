@@ -147,7 +147,19 @@ parts=[types.Part(text=personalization_note)]
 
 ## 시각적 요약
 
-<Diagram id="img-p211-0" caption="그림 1 — 인간 참여 루프 디자인 패턴" alt="AI와 인간 감독자가 피드백 루프를 통해 협력하는 인간 참여 루프 디자인 패턴 다이어그램" />
+<figure>
+
+```mermaid
+flowchart LR
+    사용자([사용자]) --> 프롬프트[프롬프트]
+    프롬프트 --> 에이전트[에이전트]
+    에이전트 <--> 인간[인간]
+    에이전트 --> 출력([출력])
+    출력 --> 사용자
+```
+
+<figcaption>그림 1 — 인간 참여 루프 디자인 패턴</figcaption>
+</figure>
 
 ## 핵심 정리
 

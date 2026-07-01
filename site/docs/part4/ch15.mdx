@@ -196,9 +196,12 @@ data.",
 
 ## A2A 대 MCP
 
-A2A는 Anthropic의 Model Context Protocol(MCP)을 보완하는 프로토콜입니다(<CrossRef id="img-p237-0" label="그림 1" /> 참조). MCP가 에이전트의 컨텍스트 구조화와 외부 데이터 및 도구와의 상호작용에 초점을 맞추는 반면, A2A는 에이전트 간의 조율과 통신을 촉진하여 태스크 위임과 협업을 가능하게 합니다.
+A2A는 Anthropic의 Model Context Protocol(MCP)을 보완하는 프로토콜입니다(<span>그림 1</span> 참조). MCP가 에이전트의 컨텍스트 구조화와 외부 데이터 및 도구와의 상호작용에 초점을 맞추는 반면, A2A는 에이전트 간의 조율과 통신을 촉진하여 태스크 위임과 협업을 가능하게 합니다.
 
-<Diagram id="img-p237-0" />
+<figure>
+<img src="/img/diagrams/img-p237-0.png" alt="A2A 프로토콜과 MCP 비교 다이어그램 (컬러 2패널)" />
+<figcaption>그림 1: A2A 프로토콜과 MCP 프로토콜 비교 — 에이전트 간 통신(A2A)과 모델-도구 통신(MCP)의 구조적 차이</figcaption>
+</figure>
 
 A2A의 목표는 복잡한 멀티 에이전트 AI 시스템 개발에서 효율성을 높이고, 통합 비용을 줄이며, 혁신과 상호운용성을 촉진하는 것입니다. 따라서 A2A의 핵심 구성 요소와 운영 방법에 대한 철저한 이해는 협업적이고 상호운용 가능한 AI 에이전트 시스템 구축에서 효과적인 설계, 구현, 적용을 위해 필수적입니다.
 
@@ -348,7 +351,21 @@ A2A에 대한 추가 탐구는 [https://www.trickle.so/blog/how-to-build-google-
 
 ## 시각적 요약
 
-<Diagram id="img-p243-0" />
+<figure>
+
+```mermaid
+flowchart LR
+    사용자([사용자]) --> 프롬프트[프롬프트]
+    프롬프트 --> 에이전트[에이전트]
+    에이전트 <--> 서브에이전트1[에이전트]
+    에이전트 <--> 점점점[...]
+    에이전트 <--> 서브에이전트N[에이전트]
+    에이전트 --> 출력([출력])
+    출력 --> 사용자
+```
+
+<figcaption>그림 2: A2A 에이전트 간 통신 패턴 — 중앙 에이전트가 여러 서브 에이전트와 양방향 통신</figcaption>
+</figure>
 
 ## 핵심 요점
 

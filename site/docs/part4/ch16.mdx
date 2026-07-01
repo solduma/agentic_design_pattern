@@ -365,7 +365,10 @@ OpenRouter는 주어진 요청을 처리하는 데 사용되는 연산 모델을
 
 OpenRouter는 누적 토큰 생산량을 기준으로 가용 AI 모델 순위를 제공하는 상세 리더보드(https://openrouter.ai/rankings)를 제공합니다. 또한 ChatGPT, Gemini, Claude 등 다양한 공급자의 최신 모델을 제공합니다(그림 1 참조).
 
-<Diagram id="img-p257-0" caption="그림 1 — OpenRouter 웹사이트 (https://openrouter.ai/)" alt="OpenRouter 웹사이트 스크린샷: 다양한 AI 모델의 리더보드와 API 접근 인터페이스" />
+<figure>
+<img src="/img/diagrams/img-p257-0.png" alt="OpenRouter 웹사이트 스크린샷: 다양한 AI 모델의 리더보드와 API 접근 인터페이스" />
+<figcaption>그림 1 — OpenRouter 웹사이트 (https://openrouter.ai/)</figcaption>
+</figure>
 
 ## 동적 모델 전환을 넘어서: 에이전트 자원 최적화의 스펙트럼
 
@@ -399,7 +402,19 @@ OpenRouter는 누적 토큰 생산량을 기준으로 가용 AI 모델 순위를
 
 ## 시각적 요약
 
-<Diagram id="img-p260-0" caption="그림 2 — 리소스 인식 최적화 디자인 패턴" alt="리소스 인식 최적화 디자인 패턴 다이어그램: 라우터 에이전트가 쿼리 복잡도에 따라 적절한 모델로 라우팅하는 흐름" />
+<figure>
+
+```mermaid
+flowchart LR
+    사용자([사용자]) --> 프롬프트[프롬프트]
+    프롬프트 --> 에이전트[에이전트]
+    에이전트 <--> 예산[예산]
+    에이전트 --> 출력([출력])
+    출력 --> 사용자
+```
+
+<figcaption>그림 2 — 리소스 인식 최적화 디자인 패턴</figcaption>
+</figure>
 
 ## 핵심 정리
 

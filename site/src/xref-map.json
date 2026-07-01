@@ -1,0 +1,146 @@
+{
+  "foreword": {
+    "anchor_slug": "foreword",
+    "title": "Foreword"
+  },
+  "preface": {
+    "anchor_slug": "preface",
+    "title": "Preface"
+  },
+  "frameworks-intro": {
+    "anchor_slug": "frameworks-intro",
+    "title": "Frameworks Introduction"
+  },
+  "ch01": {
+    "anchor_slug": "ch01",
+    "title": "Chapter 1: Prompt Chaining"
+  },
+  "ch02": {
+    "anchor_slug": "ch02",
+    "title": "Chapter 2: Routing"
+  },
+  "ch03": {
+    "anchor_slug": "ch03",
+    "title": "Chapter 3: Parallelization"
+  },
+  "ch04": {
+    "anchor_slug": "ch04",
+    "title": "Chapter 4: Reflection"
+  },
+  "ch05": {
+    "anchor_slug": "ch05",
+    "title": "Chapter 5: Tool Use (Function Calling)"
+  },
+  "ch06": {
+    "anchor_slug": "ch06",
+    "title": "Chapter 6: Planning"
+  },
+  "ch07": {
+    "anchor_slug": "ch07",
+    "title": "Chapter 7: Multi-Agent Collaboration"
+  },
+  "ch08": {
+    "anchor_slug": "ch08",
+    "title": "Chapter 8: Memory Management"
+  },
+  "ch09": {
+    "anchor_slug": "ch09",
+    "title": "Chapter 9: Learning and Adaptation"
+  },
+  "ch10": {
+    "anchor_slug": "ch10",
+    "title": "Chapter 10: Model Context Protocol"
+  },
+  "ch11": {
+    "anchor_slug": "ch11",
+    "title": "Chapter 11: Goal Setting and Monitoring"
+  },
+  "ch12": {
+    "anchor_slug": "ch12",
+    "title": "Chapter 12: Exception Handling"
+  },
+  "ch13": {
+    "anchor_slug": "ch13",
+    "title": "Chapter 13: Human-in-the-Loop"
+  },
+  "ch14": {
+    "anchor_slug": "ch14",
+    "title": "Chapter 14: Knowledge Retrieval (RAG)"
+  },
+  "ch15": {
+    "anchor_slug": "ch15",
+    "title": "Chapter 15: Inter-Agent Communication"
+  },
+  "ch16": {
+    "anchor_slug": "ch16",
+    "title": "Chapter 16: Resource-Aware Optimization"
+  },
+  "ch17": {
+    "anchor_slug": "ch17",
+    "title": "Chapter 17: Reasoning Techniques"
+  },
+  "ch18": {
+    "anchor_slug": "ch18",
+    "title": "Chapter 18: Guardrails/Safety Patterns"
+  },
+  "ch19": {
+    "anchor_slug": "ch19",
+    "title": "Chapter 19: Evaluation and Monitoring"
+  },
+  "ch20": {
+    "anchor_slug": "ch20",
+    "title": "Chapter 20: Prioritization"
+  },
+  "ch21": {
+    "anchor_slug": "ch21",
+    "title": "Chapter 21: Exploration and Discovery"
+  },
+  "appendix-a": {
+    "anchor_slug": "appendix-a",
+    "title": "Appendix A: Advanced Prompting Techniques"
+  },
+  "appendix-b": {
+    "anchor_slug": "appendix-b",
+    "title": "Appendix B: AI Agentic Interactions"
+  },
+  "appendix-c": {
+    "anchor_slug": "appendix-c",
+    "title": "Appendix C: Quick Overview of Agentic Frameworks"
+  },
+  "appendix-d": {
+    "anchor_slug": "appendix-d",
+    "title": "Appendix D: Building an Agent with ADK"
+  },
+  "appendix-e": {
+    "anchor_slug": "appendix-e",
+    "title": "Appendix E: AI Agents on the CLI"
+  },
+  "appendix-f": {
+    "anchor_slug": "appendix-f",
+    "title": "Appendix F"
+  },
+  "appendix-g": {
+    "anchor_slug": "appendix-g",
+    "title": "Appendix G: Coding Agents"
+  },
+  "conclusion": {
+    "anchor_slug": "conclusion",
+    "title": "Conclusion"
+  },
+  "glossary": {
+    "anchor_slug": "glossary",
+    "title": "Glossary"
+  },
+  "index": {
+    "anchor_slug": "index",
+    "title": "Index of Terms"
+  },
+  "gemini-transcript": {
+    "anchor_slug": "gemini-transcript",
+    "title": "Gemini Reasoning Transcript (FAQ sub-page)"
+  },
+  "faq": {
+    "anchor_slug": "faq",
+    "title": "Frequently Asked Questions"
+  }
+}
