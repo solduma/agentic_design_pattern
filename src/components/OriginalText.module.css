@@ -1,0 +1,81 @@
+/* OriginalText — 원문 펼치기 collapsible block */
+
+.details {
+  border: 1px solid var(--ifm-color-emphasis-300, #ccc);
+  border-radius: 6px;
+  margin: 1rem 0;
+  background-color: var(--ifm-background-surface-color, #f9f9f9);
+  overflow: hidden;
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1rem;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-700, #555);
+  user-select: none;
+  list-style: none;
+  background-color: var(--ifm-color-emphasis-100, #f0f0f0);
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.15s ease;
+}
+
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+.summary::before {
+  content: '\25B6';
+  display: inline-block;
+  font-size: 0.65rem;
+  transition: transform 0.2s ease;
+  color: var(--ifm-color-emphasis-600, #888);
+  margin-right: 0.2rem;
+}
+
+details[open] .summary::before {
+  transform: rotate(90deg);
+}
+
+details[open] .summary {
+  border-bottom-color: var(--ifm-color-emphasis-300, #ccc);
+  background-color: var(--ifm-color-emphasis-200, #e8e8e8);
+}
+
+.icon {
+  font-size: 0.95rem;
+}
+
+.content {
+  padding: 0.75rem 1rem;
+  font-family: var(--ifm-font-family-monospace, monospace);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--ifm-color-emphasis-800, #333);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Dark mode */
+[data-theme='dark'] .details {
+  border-color: var(--ifm-color-emphasis-400, #444);
+  background-color: var(--ifm-background-surface-color, #242526);
+}
+
+[data-theme='dark'] .summary {
+  color: var(--ifm-color-emphasis-600, #aaa);
+  background-color: var(--ifm-color-emphasis-200, #2d2d2d);
+}
+
+[data-theme='dark'] details[open] .summary {
+  background-color: var(--ifm-color-emphasis-300, #383838);
+  border-bottom-color: var(--ifm-color-emphasis-400, #444);
+}
+
+[data-theme='dark'] .content {
+  color: var(--ifm-color-emphasis-700, #ccc);
+}

@@ -1,0 +1,67 @@
+/* KeyPoints — 이 장의 핵심 callout */
+
+.keyPoints {
+  border: 1px solid var(--ifm-color-primary-light, #4a90e2);
+  border-left: 4px solid var(--ifm-color-primary, #2e86de);
+  border-radius: 6px;
+  margin: 1.5rem 0;
+  background-color: var(--ifm-background-color, #fff);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  background-color: var(--ifm-color-primary-lightest, #e8f4fd);
+  border-bottom: 1px solid var(--ifm-color-primary-light, #4a90e2);
+}
+
+.icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ifm-color-primary-darkest, #1a5276);
+  letter-spacing: 0.01em;
+}
+
+.body {
+  padding: 0.75rem 1rem;
+}
+
+.list {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.item {
+  margin: 0.3rem 0;
+  line-height: 1.6;
+  color: var(--ifm-font-color-base, #1c1e21);
+}
+
+/* Dark mode */
+[data-theme='dark'] .keyPoints {
+  border-color: var(--ifm-color-primary-dark, #1a73e8);
+  background-color: var(--ifm-background-color, #1b1b1d);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme='dark'] .header {
+  background-color: rgba(46, 134, 222, 0.12);
+  border-bottom-color: var(--ifm-color-primary-dark, #1a73e8);
+}
+
+[data-theme='dark'] .title {
+  color: var(--ifm-color-primary-lighter, #6db3f2);
+}
+
+[data-theme='dark'] .item {
+  color: var(--ifm-font-color-base, #e3e3e3);
+}
