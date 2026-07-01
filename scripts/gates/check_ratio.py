@@ -58,12 +58,23 @@ def get_thresholds(section_id: str, code_ratio: float) -> dict:
         if section_id in data.get("sections", {}):
             thresholds.update(data["sections"][section_id])
         elif "strata" in data:
-            for stratum in data["strata"]:
-                lo = stratum.get("code_ratio_min", 0.0)
-                hi = stratum.get("code_ratio_max", 1.0)
-                if lo <= code_ratio < hi:
-                    thresholds.update(stratum.get("thresholds", {}))
-                    break
+            strata = data["strata"]
+            code_threshold = data.get("code_ratio_threshold", 0.3)
+            # strata may be a dict {name: {mu, sigma, lower, upper}} or a list
+            if isinstance(strata, dict):
+                stratum_name = "code-heavy" if code_ratio >= code_threshold else "prose"
+                stratum_data = strata.get(stratum_name, strata.get("prose", {}))
+                lower = stratum_data.get("lower", TOKEN_RATIO_LOOSE)
+                upper = stratum_data.get("upper", 9999.0)
+                thresholds["token_ratio_min"] = lower
+                thresholds["token_ratio_max"] = upper
+            else:
+                for stratum in strata:
+                    lo = stratum.get("code_ratio_min", 0.0)
+                    hi = stratum.get("code_ratio_max", 1.0)
+                    if lo <= code_ratio < hi:
+                        thresholds.update(stratum.get("thresholds", {}))
+                        break
     return thresholds
 
 
@@ -101,31 +112,37 @@ def check_ratio(section_id: str, mdx_file: str) -> int:
 
     para_ratio = mdx_paras / orig_paras if orig_paras > 0 else 1.0
 
-    # Token counts
-    orig_tokens = tokenize(orig_no_code)
-    mdx_tokens = tokenize(mdx_no_code)
-    token_ratio = mdx_tokens / orig_tokens if orig_tokens > 0 else 1.0
-
-    # Get manifest info for code_ratio stratum
+    # Get manifest info — use manifest prose token_count as authoritative baseline (W3-H6)
     manifest_sec = load_manifest_section(section_id)
     code_ratio = manifest_sec.get("code_ratio", 0.0) if manifest_sec else 0.0
+
+    # Token counts: prefer manifest prose-only token_count (excludes code blocks per W3-H6 contract)
+    if manifest_sec and manifest_sec.get("token_count"):
+        orig_tokens = manifest_sec["token_count"]
+    else:
+        orig_tokens = tokenize(orig_no_code)
+    mdx_tokens = tokenize(mdx_no_code)
+    token_ratio = mdx_tokens / orig_tokens if orig_tokens > 0 else 1.0
 
     thresholds = get_thresholds(section_id, code_ratio)
     para_min = thresholds["para_ratio_min"]
     token_min = thresholds["token_ratio_min"]
+    token_max = thresholds.get("token_ratio_max", 9999.0)
 
-    ok = para_ratio >= para_min and token_ratio >= token_min
+    ok = para_ratio >= para_min and token_min <= token_ratio <= token_max
     status = "PASS" if ok else "FAIL"
     print(
         f"[check_ratio] {status}: {section_id} "
         f"para_ratio={para_ratio:.3f} (min={para_min}) "
-        f"token_ratio={token_ratio:.3f} (min={token_min})"
+        f"token_ratio={token_ratio:.3f} (band=[{token_min:.3f},{token_max:.3f}])"
     )
     if not ok:
         if para_ratio < para_min:
             print(f"  FAIL reason: para_ratio {para_ratio:.3f} < {para_min}", file=sys.stderr)
         if token_ratio < token_min:
-            print(f"  FAIL reason: token_ratio {token_ratio:.3f} < {token_min}", file=sys.stderr)
+            print(f"  FAIL reason: token_ratio {token_ratio:.3f} < lower bound {token_min:.3f}", file=sys.stderr)
+        if token_ratio > token_max:
+            print(f"  FAIL reason: token_ratio {token_ratio:.3f} > upper bound {token_max:.3f}", file=sys.stderr)
         return 1
     return 0
 
