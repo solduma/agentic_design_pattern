@@ -7,7 +7,8 @@
       "프롬프트"
     ],
     "definition_en": "A prompt is the input, typically in the form of a question, instruction, or statement, that a user provides to an AI model to elicit a response. The quality and structure of the prompt heavily influence the model's output, making prompt engineering a key skill for effectively using AI.",
-    "definition_ko": "프롬프트는 사용자가 AI 모델에 응답을 유도하기 위해 제공하는 입력으로, 일반적으로 질문·지시·진술의 형태를 취합니다. 프롬프트의 품질과 구조는 모델 출력에 큰 영향을 미치므로, 프롬프트 엔지니어링은 AI를 효과적으로 활용하는 핵심 기술입니다."
+    "definition_ko": "프롬프트는 사용자가 AI 모델에 응답을 유도하기 위해 제공하는 입력으로, 일반적으로 질문·지시·진술의 형태를 취합니다. 프롬프트의 품질과 구조는 모델 출력에 큰 영향을 미치므로, 프롬프트 엔지니어링은 AI를 효과적으로 활용하는 핵심 기술입니다.",
+    "definition_ko_sha1": "8ffd43fa6891f5aad5b69ebd52bfdb832b0c9ec1"
   },
   {
     "en": "Context Window",
@@ -17,7 +18,8 @@
       "컨텍스트 창"
     ],
     "definition_en": "The context window is the maximum number of tokens an AI model can process at once, including both the input and its generated output. This fixed size is a critical limitation, as information outside the window is ignored, while larger windows enable more complex conversations and document analysis.",
-    "definition_ko": "컨텍스트 윈도우는 AI 모델이 한 번에 처리할 수 있는 최대 토큰 수로, 입력과 생성 출력을 모두 포함합니다. 이 고정된 크기는 핵심적인 제약이며, 윈도우 밖의 정보는 무시됩니다. 반면 더 큰 윈도우는 더 복잡한 대화와 문서 분석을 가능하게 합니다."
+    "definition_ko": "컨텍스트 윈도우는 AI 모델이 한 번에 처리할 수 있는 최대 토큰 수로, 입력과 생성 출력을 모두 포함합니다. 이 고정된 크기는 핵심적인 제약이며, 윈도우 밖의 정보는 무시됩니다. 반면 더 큰 윈도우는 더 복잡한 대화와 문서 분석을 가능하게 합니다.",
+    "definition_ko_sha1": "4d04f12d7cf71f8ef734aa2eee3c9e9b7cae47bf"
   },
   {
     "en": "In-Context Learning",
@@ -28,7 +30,8 @@
       "인-컨텍스트 러닝"
     ],
     "definition_en": "In-context learning is an AI's ability to learn a new task from examples provided directly in the prompt, without requiring any retraining. This powerful feature allows a single, general-purpose model to be adapted to countless specific tasks on the fly.",
-    "definition_ko": "인컨텍스트 학습은 AI가 재학습 없이 프롬프트에 직접 제공된 예시만으로 새로운 과제를 학습하는 능력입니다. 이 강력한 기능 덕분에 범용 모델 하나를 즉석에서 수많은 특정 과제에 적응시킬 수 있습니다."
+    "definition_ko": "인컨텍스트 학습은 AI가 재학습 없이 프롬프트에 직접 제공된 예시만으로 새로운 과제를 학습하는 능력입니다. 이 강력한 기능 덕분에 범용 모델 하나를 즉석에서 수많은 특정 과제에 적응시킬 수 있습니다.",
+    "definition_ko_sha1": "5153ba02b20a5c459ae67560711664271d678966"
   },
   {
     "en": "Zero-Shot, One-Shot, & Few-Shot Prompting",
@@ -40,7 +43,8 @@
       "원샷 프롬프팅"
     ],
     "definition_en": "These are prompting techniques where a model is given zero, one, or a few examples of a task to guide its response. Providing more examples generally helps the model better understand the user's intent and improves its accuracy for the specific task.",
-    "definition_ko": "모델에게 과제 예시를 0개, 1개, 또는 몇 개 제공하여 응답을 유도하는 프롬프팅 기법입니다. 예시를 더 많이 제공할수록 모델이 사용자의 의도를 더 잘 이해하고 특정 과제에서 정확도가 향상됩니다."
+    "definition_ko": "모델에게 과제 예시를 0개, 1개, 또는 몇 개 제공하여 응답을 유도하는 프롬프팅 기법입니다. 예시를 더 많이 제공할수록 모델이 사용자의 의도를 더 잘 이해하고 특정 과제에서 정확도가 향상됩니다.",
+    "definition_ko_sha1": "0402f1d3dbf64f3693654c31ea141774b73522bc"
   },
   {
     "en": "Multimodality",
@@ -51,7 +55,8 @@
       "다중 모달리티"
     ],
     "definition_en": "Multimodality is an AI's ability to understand and process information across multiple data types like text, images, and audio. This allows for more versatile and human-like interactions, such as describing an image or answering a spoken question.",
-    "definition_ko": "멀티모달리티는 AI가 텍스트·이미지·오디오 등 여러 데이터 유형에 걸쳐 정보를 이해하고 처리하는 능력입니다. 이를 통해 이미지 설명이나 음성 질문 답변 같은 보다 다재다능하고 인간적인 상호작용이 가능해집니다."
+    "definition_ko": "멀티모달리티는 AI가 텍스트·이미지·오디오 등 여러 데이터 유형에 걸쳐 정보를 이해하고 처리하는 능력입니다. 이를 통해 이미지 설명이나 음성 질문 답변 같은 보다 다재다능하고 인간적인 상호작용이 가능해집니다.",
+    "definition_ko_sha1": "42fbe6be054fd0c681d2d46d02431e203a3d0337"
   },
   {
     "en": "Grounding",
@@ -61,7 +66,8 @@
       "사실 기반화"
     ],
     "definition_en": "Grounding is the process of connecting a model's outputs to verifiable, real-world information sources to ensure factual accuracy and reduce hallucinations. This is often achieved with techniques like RAG to make AI systems more trustworthy.",
-    "definition_ko": "그라운딩은 모델의 출력을 검증 가능한 실세계 정보 소스에 연결하여 사실 정확성을 확보하고 환각(hallucination)을 줄이는 과정입니다. 이는 RAG 같은 기법을 통해 구현되며 AI 시스템의 신뢰성을 높입니다."
+    "definition_ko": "그라운딩은 모델의 출력을 검증 가능한 실세계 정보 소스에 연결하여 사실 정확성을 확보하고 환각(hallucination)을 줄이는 과정입니다. 이는 RAG 같은 기법을 통해 구현되며 AI 시스템의 신뢰성을 높입니다.",
+    "definition_ko_sha1": "52c45781fad6ba2b0e64e413d26227c64b2b61cf"
   },
   {
     "en": "Transformers",
@@ -71,7 +77,8 @@
       "트랜스포머 아키텍처"
     ],
     "definition_en": "The Transformer is the foundational neural network architecture for most modern LLMs. Its key innovation is the self-attention mechanism, which efficiently processes long sequences of text and captures complex relationships between words.",
-    "definition_ko": "트랜스포머는 대부분의 현대 LLM을 지탱하는 기반 신경망 아키텍처입니다. 핵심 혁신은 자기 어텐션(self-attention) 메커니즘으로, 긴 텍스트 시퀀스를 효율적으로 처리하고 단어 간 복잡한 관계를 포착합니다."
+    "definition_ko": "트랜스포머는 대부분의 현대 LLM을 지탱하는 기반 신경망 아키텍처입니다. 핵심 혁신은 자기 어텐션(self-attention) 메커니즘으로, 긴 텍스트 시퀀스를 효율적으로 처리하고 단어 간 복잡한 관계를 포착합니다.",
+    "definition_ko_sha1": "297405982f6a79af329fc254998289b585b41655"
   },
   {
     "en": "Recurrent Neural Network (RNN)",
@@ -82,7 +89,8 @@
       "순환신경망"
     ],
     "definition_en": "The Recurrent Neural Network is a foundational architecture that preceded the Transformer. RNNs process information sequentially, using loops to maintain a 'memory' of previous inputs, which made them suitable for tasks like text and speech processing.",
-    "definition_ko": "순환 신경망(RNN)은 트랜스포머 이전의 기반 아키텍처입니다. RNN은 루프를 이용해 이전 입력의 '기억'을 유지하면서 정보를 순차적으로 처리하여, 텍스트 및 음성 처리 같은 과제에 적합했습니다."
+    "definition_ko": "순환 신경망(RNN)은 트랜스포머 이전의 기반 아키텍처입니다. RNN은 루프를 이용해 이전 입력의 '기억'을 유지하면서 정보를 순차적으로 처리하여, 텍스트 및 음성 처리 같은 과제에 적합했습니다.",
+    "definition_ko_sha1": "a75bbc87a1daf23a54b8938fdc93ce15a3401dc3"
   },
   {
     "en": "Mixture of Experts (MoE)",
@@ -93,7 +101,8 @@
       "전문가 혼합 모델"
     ],
     "definition_en": "Mixture of Experts is an efficient model architecture where a 'router' network dynamically selects a small subset of 'expert' networks to handle any given input. This allows models to have a massive number of parameters while keeping computational costs manageable.",
-    "definition_ko": "전문가 혼합(MoE)은 '라우터' 네트워크가 주어진 입력을 처리할 '전문가' 네트워크의 소규모 부분집합을 동적으로 선택하는 효율적인 모델 아키텍처입니다. 이를 통해 계산 비용을 관리 가능한 수준으로 유지하면서 막대한 수의 파라미터를 보유할 수 있습니다."
+    "definition_ko": "전문가 혼합(MoE)은 '라우터' 네트워크가 주어진 입력을 처리할 '전문가' 네트워크의 소규모 부분집합을 동적으로 선택하는 효율적인 모델 아키텍처입니다. 이를 통해 계산 비용을 관리 가능한 수준으로 유지하면서 막대한 수의 파라미터를 보유할 수 있습니다.",
+    "definition_ko_sha1": "5eaca019449242027f2078fcb826471076511578"
   },
   {
     "en": "Diffusion Models",
@@ -103,7 +112,8 @@
       "디퓨전 모델"
     ],
     "definition_en": "Diffusion models are generative models that excel at creating high-quality images. They work by adding random noise to data and then training a model to meticulously reverse the process, allowing them to generate novel data from a random starting point.",
-    "definition_ko": "확산 모델은 고품질 이미지 생성에 탁월한 생성 모델입니다. 데이터에 무작위 노이즈를 추가한 뒤 이 과정을 역전시키도록 모델을 학습시켜, 임의의 시작점에서 새로운 데이터를 생성할 수 있습니다."
+    "definition_ko": "확산 모델은 고품질 이미지 생성에 탁월한 생성 모델입니다. 데이터에 무작위 노이즈를 추가한 뒤 이 과정을 역전시키도록 모델을 학습시켜, 임의의 시작점에서 새로운 데이터를 생성할 수 있습니다.",
+    "definition_ko_sha1": "3d47119c6bb76c263c430abbf5f9f75cd6f03844"
   },
   {
     "en": "Mamba",
@@ -111,7 +121,8 @@
     "first_chapter": "Glossary",
     "aliases": [],
     "definition_en": "Mamba is a recent AI architecture using a Selective State Space Model (SSM) to process sequences with high efficiency, especially for very long contexts. Its selective mechanism allows it to focus on relevant information while filtering out noise, making it a potential alternative to the Transformer.",
-    "definition_ko": "맘바는 선택적 상태 공간 모델(SSM)을 사용하여 시퀀스를 높은 효율로 처리하는 최신 AI 아키텍처로, 특히 매우 긴 컨텍스트에서 강점을 발휘합니다. 선택적 메커니즘을 통해 관련 정보에 집중하고 노이즈를 걸러내어 트랜스포머의 잠재적 대안으로 주목받고 있습니다."
+    "definition_ko": "맘바는 선택적 상태 공간 모델(SSM)을 사용하여 시퀀스를 높은 효율로 처리하는 최신 AI 아키텍처로, 특히 매우 긴 컨텍스트에서 강점을 발휘합니다. 선택적 메커니즘을 통해 관련 정보에 집중하고 노이즈를 걸러내어 트랜스포머의 잠재적 대안으로 주목받고 있습니다.",
+    "definition_ko_sha1": "c61b7167cf07bcc4f93e976b1ef2df4d0204adb3"
   },
   {
     "en": "Pre-training",
@@ -121,18 +132,23 @@
       "프리트레이닝"
     ],
     "definition_en": "Pre-training is the initial phase of LLM development where a massive base model is built by training it on a vast dataset of general internet text to learn language, reasoning, and world knowledge.",
-    "definition_ko": "사전 학습은 LLM 개발의 초기 단계로, 방대한 인터넷 텍스트 데이터셋으로 대규모 기반 모델을 학습시켜 언어·추론·세계 지식을 습득하는 과정입니다."
+    "definition_ko": "사전 학습은 LLM 개발의 초기 단계로, 방대한 인터넷 텍스트 데이터셋으로 대규모 기반 모델을 학습시켜 언어·추론·세계 지식을 습득하는 과정입니다.",
+    "definition_ko_sha1": "b121e0cd0938de664c0f3ba2b3e74aa84b08cb6d"
   },
   {
     "en": "Fine-tuning",
     "ko": "파인튜닝(fine-tuning)",
     "first_chapter": "Glossary",
     "aliases": [
+      "Fine-tuning",
+      "fine tuning",
+      "미세 조정",
       "파인 튜닝",
-      "미세 조정"
+      "파인튜닝"
     ],
     "definition_en": "Fine-tuning is a specialization phase where the general pre-trained model is further trained on smaller, task-specific datasets to adapt its capabilities for a particular purpose.",
-    "definition_ko": "파인튜닝(fine-tuning)은 범용 사전 학습 모델을 더 작은 과제별 데이터셋으로 추가 학습시켜 특정 목적에 맞게 역량을 적응시키는 특화 단계입니다."
+    "definition_ko": "파인튜닝(fine-tuning)은 범용 사전 학습 모델을 더 작은 과제별 데이터셋으로 추가 학습시켜 특정 목적에 맞게 역량을 적응시키는 특화 단계입니다.",
+    "definition_ko_sha1": "b15444732f31a4651346a876f0a4f22df509b32c"
   },
   {
     "en": "Alignment",
@@ -143,7 +159,8 @@
       "얼라인먼트"
     ],
     "definition_en": "Alignment is the process of ensuring an AI model's behavior aligns with human values and expectations, making it helpful and harmless. The most prominent technique is RLHF, where a reward model trained on human preferences guides the AI's learning process.",
-    "definition_ko": "정렬(Alignment)은 AI 모델의 행동이 인간의 가치와 기대에 부합하도록 보장하여 유용하고 무해하게 만드는 과정입니다. 가장 대표적인 기법은 RLHF로, 인간 선호도로 학습된 보상 모델이 AI의 학습 과정을 안내합니다."
+    "definition_ko": "정렬(Alignment)은 AI 모델의 행동이 인간의 가치와 기대에 부합하도록 보장하여 유용하고 무해하게 만드는 과정입니다. 가장 대표적인 기법은 RLHF로, 인간 선호도로 학습된 보상 모델이 AI의 학습 과정을 안내합니다.",
+    "definition_ko_sha1": "b66ac4fb8d18cc8968675f2fd9450537d4b64d7f"
   },
   {
     "en": "Causal Language Modeling (CLM)",
@@ -154,7 +171,8 @@
       "인과 언어 모델링"
     ],
     "definition_en": "Causal Language Modeling is a pre-training objective where the model predicts the next word in a sentence, learning the causal structure of language.",
-    "definition_ko": "인과적 언어 모델링(CLM)은 모델이 문장에서 다음 단어를 예측하는 사전 학습 목표로, 언어의 인과 구조를 학습합니다."
+    "definition_ko": "인과적 언어 모델링(CLM)은 모델이 문장에서 다음 단어를 예측하는 사전 학습 목표로, 언어의 인과 구조를 학습합니다.",
+    "definition_ko_sha1": "afdb3488adb52e67ce1122fabf2756a7c73ba6d0"
   },
   {
     "en": "Masked Language Modeling (MLM)",
@@ -165,7 +183,8 @@
       "마스킹 언어 모델링"
     ],
     "definition_en": "Masked Language Modeling is a pre-training technique where the model fills in intentionally hidden (masked) words in a text.",
-    "definition_ko": "마스크드 언어 모델링(MLM)은 모델이 텍스트에서 의도적으로 숨겨진(마스킹된) 단어를 채우는 사전 학습 기법입니다."
+    "definition_ko": "마스크드 언어 모델링(MLM)은 모델이 텍스트에서 의도적으로 숨겨진(마스킹된) 단어를 채우는 사전 학습 기법입니다.",
+    "definition_ko_sha1": "4d00d4ca2f096bfb05a4e87572de128da36b0ee5"
   },
   {
     "en": "Supervised Fine-Tuning (SFT)",
@@ -176,7 +195,8 @@
       "지도학습 파인튜닝"
     ],
     "definition_en": "Supervised Fine-Tuning is the most common fine-tuning approach where the model is trained on labeled examples of correct input-output pairs.",
-    "definition_ko": "지도 파인튜닝(SFT)은 올바른 입력-출력 쌍의 레이블된 예시로 모델을 학습시키는 가장 일반적인 파인튜닝 방식입니다."
+    "definition_ko": "지도 파인튜닝(SFT)은 올바른 입력-출력 쌍의 레이블된 예시로 모델을 학습시키는 가장 일반적인 파인튜닝 방식입니다.",
+    "definition_ko_sha1": "db8d577a58b033a2728340b3a6f193b2765454ee"
   },
   {
     "en": "Reinforcement Learning from Human Feedback (RLHF)",
@@ -187,7 +207,8 @@
       "인간 피드백 기반 강화학습"
     ],
     "definition_en": "RLHF is an alignment technique where a reward model trained on human preferences guides the AI's learning process, often using Proximal Policy Optimization (PPO) for stability.",
-    "definition_ko": "RLHF는 인간 선호도로 학습된 보상 모델이 AI의 학습 과정을 안내하는 정렬 기법으로, 안정성을 위해 근위 정책 최적화(PPO)를 자주 사용합니다."
+    "definition_ko": "RLHF는 인간 선호도로 학습된 보상 모델이 AI의 학습 과정을 안내하는 정렬 기법으로, 안정성을 위해 근위 정책 최적화(PPO)를 자주 사용합니다.",
+    "definition_ko_sha1": "db1cf1ef2f9a0398d87313df776d4f0f566b492e"
   },
   {
     "en": "Direct Preference Optimization (DPO)",
@@ -197,7 +218,8 @@
       "DPO"
     ],
     "definition_en": "Direct Preference Optimization bypasses the need for a separate reward model, directly optimizing the language model on human preference data.",
-    "definition_ko": "직접 선호 최적화(DPO)는 별도의 보상 모델 없이 인간 선호 데이터로 언어 모델을 직접 최적화하는 기법입니다."
+    "definition_ko": "직접 선호 최적화(DPO)는 별도의 보상 모델 없이 인간 선호 데이터로 언어 모델을 직접 최적화하는 기법입니다.",
+    "definition_ko_sha1": "4cb4d83a15010c86a1a1ce886f5e5707e710af7f"
   },
   {
     "en": "Kahneman-Tversky Optimization (KTO)",
@@ -207,7 +229,8 @@
       "KTO"
     ],
     "definition_en": "Kahneman-Tversky Optimization is an alignment technique that simplifies data collection further compared to DPO, inspired by Kahneman-Tversky prospect theory.",
-    "definition_ko": "카너먼-트버스키 최적화(KTO)는 카너먼-트버스키 전망 이론에서 영감을 받아 DPO보다 데이터 수집을 더욱 단순화한 정렬 기법입니다."
+    "definition_ko": "카너먼-트버스키 최적화(KTO)는 카너먼-트버스키 전망 이론에서 영감을 받아 DPO보다 데이터 수집을 더욱 단순화한 정렬 기법입니다.",
+    "definition_ko_sha1": "a6e3b68967fd0d1f0c98f978d8b88d96b4dc229c"
   },
   {
     "en": "Guardrails",
@@ -218,7 +241,8 @@
       "가드레일"
     ],
     "definition_en": "Guardrails are implemented as a final safety layer to filter outputs and block harmful actions in real-time, ensuring safe deployment of AI systems.",
-    "definition_ko": "가드레일은 출력을 필터링하고 유해한 행동을 실시간으로 차단하는 최종 안전 계층으로, AI 시스템의 안전한 배포를 보장합니다."
+    "definition_ko": "가드레일은 출력을 필터링하고 유해한 행동을 실시간으로 차단하는 최종 안전 계층으로, AI 시스템의 안전한 배포를 보장합니다.",
+    "definition_ko_sha1": "07f7ee8841ac8244dce927e4f6f572d26e210210"
   },
   {
     "en": "Chain of Thought (CoT)",
@@ -230,7 +254,8 @@
       "체인 오브 소트"
     ],
     "definition_en": "Chain of Thought is a prompting technique that encourages a model to explain its reasoning step-by-step before giving a final answer. This process of 'thinking out loud' often leads to more accurate results on complex reasoning tasks.",
-    "definition_ko": "연쇄 사고(CoT)는 모델이 최종 답을 내놓기 전에 추론 과정을 단계별로 설명하도록 유도하는 프롬프팅 기법입니다. '소리 내어 생각하기'라는 이 과정은 복잡한 추론 과제에서 더 정확한 결과를 낳는 경우가 많습니다."
+    "definition_ko": "연쇄 사고(CoT)는 모델이 최종 답을 내놓기 전에 추론 과정을 단계별로 설명하도록 유도하는 프롬프팅 기법입니다. '소리 내어 생각하기'라는 이 과정은 복잡한 추론 과제에서 더 정확한 결과를 낳는 경우가 많습니다.",
+    "definition_ko_sha1": "a923c66ed35dd57395e88338805dd782fa9b90d5"
   },
   {
     "en": "Tree of Thoughts (ToT)",
@@ -241,7 +266,8 @@
       "트리 오브 소트"
     ],
     "definition_en": "Tree of Thoughts is an advanced reasoning framework where an agent explores multiple reasoning paths simultaneously, like branches on a tree. It allows the agent to self-evaluate different lines of thought and choose the most promising one to pursue.",
-    "definition_ko": "사고의 나무(ToT)는 에이전트가 나무의 가지처럼 여러 추론 경로를 동시에 탐색하는 고급 추론 프레임워크입니다. 에이전트가 다양한 사고 흐름을 자체 평가하고 가장 유망한 경로를 선택할 수 있어 복잡한 문제 해결에 효과적입니다."
+    "definition_ko": "사고의 나무(ToT)는 에이전트가 나무의 가지처럼 여러 추론 경로를 동시에 탐색하는 고급 추론 프레임워크입니다. 에이전트가 다양한 사고 흐름을 자체 평가하고 가장 유망한 경로를 선택할 수 있어 복잡한 문제 해결에 효과적입니다.",
+    "definition_ko_sha1": "941a8cf1164f4bec0bd610a1fa2227edc496f488"
   },
   {
     "en": "ReAct (Reason and Act)",
@@ -252,7 +278,8 @@
       "리액트 에이전트"
     ],
     "definition_en": "ReAct is an agent framework that combines reasoning and acting in a loop. The agent first 'thinks' about what to do, then takes an 'action' using a tool, and uses the resulting observation to inform its next thought, making it highly effective at solving complex tasks.",
-    "definition_ko": "ReAct(추론 및 행동)는 추론과 행동을 루프로 결합한 에이전트 프레임워크입니다. 에이전트는 먼저 무엇을 할지 '생각'한 뒤 도구를 사용해 '행동'을 취하고, 그 결과 관찰을 다음 사고에 반영합니다. 이를 통해 복잡한 과제를 매우 효과적으로 해결합니다."
+    "definition_ko": "ReAct(추론 및 행동)는 추론과 행동을 루프로 결합한 에이전트 프레임워크입니다. 에이전트는 먼저 무엇을 할지 '생각'한 뒤 도구를 사용해 '행동'을 취하고, 그 결과 관찰을 다음 사고에 반영합니다. 이를 통해 복잡한 과제를 매우 효과적으로 해결합니다.",
+    "definition_ko_sha1": "d7ea10220228f9e9cff306585ed8e5123d6c3076"
   },
   {
     "en": "Planning",
@@ -263,7 +290,8 @@
       "계획"
     ],
     "definition_en": "Planning is an agent's ability to break down a high-level goal into a sequence of smaller, manageable sub-tasks. The agent then creates a plan to execute these steps in order, allowing it to handle complex, multi-step assignments.",
-    "definition_ko": "계획 수립은 에이전트가 고수준 목표를 더 작고 관리 가능한 하위 과제의 순서로 분해하는 능력입니다. 에이전트는 이 단계들을 순서대로 실행할 계획을 세워 복잡한 다단계 과제를 처리합니다."
+    "definition_ko": "계획 수립은 에이전트가 고수준 목표를 더 작고 관리 가능한 하위 과제의 순서로 분해하는 능력입니다. 에이전트는 이 단계들을 순서대로 실행할 계획을 세워 복잡한 다단계 과제를 처리합니다.",
+    "definition_ko_sha1": "daa3196d58d1c8a43ee89b0dd2991809f8e02ce8"
   },
   {
     "en": "Deep Research",
@@ -274,7 +302,8 @@
       "심층 조사"
     ],
     "definition_en": "Deep research refers to an agent's capability to autonomously explore a topic in-depth by iteratively searching for information, synthesizing findings, and identifying new questions. This allows the agent to build a comprehensive understanding of a subject far beyond a single search query.",
-    "definition_ko": "심층 연구는 에이전트가 정보를 반복적으로 검색하고 결과를 종합하며 새로운 질문을 도출하여 주제를 자율적으로 심도 있게 탐구하는 능력입니다. 단순한 단일 검색을 훨씬 넘어서는 포괄적인 이해를 구축할 수 있습니다."
+    "definition_ko": "심층 연구는 에이전트가 정보를 반복적으로 검색하고 결과를 종합하며 새로운 질문을 도출하여 주제를 자율적으로 심도 있게 탐구하는 능력입니다. 단순한 단일 검색을 훨씬 넘어서는 포괄적인 이해를 구축할 수 있습니다.",
+    "definition_ko_sha1": "996606ffdacdcd199bf0880c9dc50d8e607401fe"
   },
   {
     "en": "Critique Model",
@@ -285,7 +314,8 @@
       "비판 모델"
     ],
     "definition_en": "A critique model is a specialized AI model trained to review, evaluate, and provide feedback on the output of another AI model. It acts as an automated critic, helping to identify errors, improve reasoning, and ensure the final output meets a desired quality standard.",
-    "definition_ko": "비평 모델은 다른 AI 모델의 출력을 검토·평가하고 피드백을 제공하도록 학습된 특화 AI 모델입니다. 자동화된 비평가 역할을 하여 오류를 식별하고 추론을 개선하며 최종 출력이 원하는 품질 기준을 충족하는지 확인합니다."
+    "definition_ko": "비평 모델은 다른 AI 모델의 출력을 검토·평가하고 피드백을 제공하도록 학습된 특화 AI 모델입니다. 자동화된 비평가 역할을 하여 오류를 식별하고 추론을 개선하며 최종 출력이 원하는 품질 기준을 충족하는지 확인합니다.",
+    "definition_ko_sha1": "f5648ef07d4089877d4bef033339b786ecc250e5"
   },
   {
     "en": "LoRA (Low-Rank Adaptation)",
@@ -296,7 +326,8 @@
       "저랭크 적응"
     ],
     "definition_en": "LoRA is a Parameter-Efficient Fine-Tuning method that only updates a small number of parameters by decomposing weight updates into low-rank matrices, making fine-tuning more efficient.",
-    "definition_ko": "LoRA는 가중치 업데이트를 저계수 행렬로 분해하여 소수의 파라미터만 업데이트하는 파라미터 효율적 파인튜닝(PEFT) 기법으로, 파인튜닝을 더욱 효율적으로 만듭니다."
+    "definition_ko": "LoRA는 가중치 업데이트를 저계수 행렬로 분해하여 소수의 파라미터만 업데이트하는 파라미터 효율적 파인튜닝(PEFT) 기법으로, 파인튜닝을 더욱 효율적으로 만듭니다.",
+    "definition_ko_sha1": "221c575bfb59614eac29ebdc1a7eedb609c836fc"
   },
   {
     "en": "QLoRA",
@@ -306,7 +337,8 @@
       "양자화 LoRA"
     ],
     "definition_en": "QLoRA is a memory-optimized version of LoRA that uses quantization to reduce memory requirements during fine-tuning.",
-    "definition_ko": "QLoRA는 파인튜닝 중 양자화를 사용하여 메모리 요구사항을 줄인 LoRA의 메모리 최적화 버전입니다."
+    "definition_ko": "QLoRA는 파인튜닝 중 양자화를 사용하여 메모리 요구사항을 줄인 LoRA의 메모리 최적화 버전입니다.",
+    "definition_ko_sha1": "3213eb26306684f1d4b6ea91568b6f113af75073"
   },
   {
     "en": "Retrieval-Augmented Generation (RAG)",
@@ -318,7 +350,8 @@
       "래그"
     ],
     "definition_en": "Retrieval-Augmented Generation enhances a language model by connecting it to an external knowledge source during inference, retrieving relevant documents to ground its responses.",
-    "definition_ko": "검색 증강 생성(RAG)은 추론 시 언어 모델을 외부 지식 소스에 연결하여 관련 문서를 검색함으로써 응답을 사실에 기반하게 강화하는 기법입니다."
+    "definition_ko": "검색 증강 생성(RAG)은 추론 시 언어 모델을 외부 지식 소스에 연결하여 관련 문서를 검색함으로써 응답을 사실에 기반하게 강화하는 기법입니다.",
+    "definition_ko_sha1": "b055dc3fad59e61ebcedc70126cc00f1fd5f371d"
   },
   {
     "en": "Denoising Objectives",
@@ -328,7 +361,8 @@
       "디노이징 목표"
     ],
     "definition_en": "Denoising objectives are pre-training techniques where the model learns to restore a corrupted input to its original state.",
-    "definition_ko": "잡음 제거 목표는 모델이 손상된 입력을 원래 상태로 복원하도록 학습하는 사전 학습 기법입니다."
+    "definition_ko": "잡음 제거 목표는 모델이 손상된 입력을 원래 상태로 복원하도록 학습하는 사전 학습 기법입니다.",
+    "definition_ko_sha1": "f9c7671d8a806b306db616d5a86ee3dad2d00fed"
   },
   {
     "en": "Agent",
@@ -577,6 +611,8 @@
     "ko": "임베딩(embedding)",
     "first_chapter": "Chapter 14",
     "aliases": [
+      "Embedding",
+      "embeddings",
       "임베딩"
     ],
     "definition_en": "",
@@ -1227,7 +1263,8 @@
       "콘트라스티브 러닝"
     ],
     "definition_en": "Contrastive learning is a pre-training technique where the model learns to distinguish between similar and dissimilar pieces of data.",
-    "definition_ko": "대조 학습은 모델이 유사한 데이터와 유사하지 않은 데이터를 구별하는 법을 학습하는 사전 학습 기법입니다."
+    "definition_ko": "대조 학습은 모델이 유사한 데이터와 유사하지 않은 데이터를 구별하는 법을 학습하는 사전 학습 기법입니다.",
+    "definition_ko_sha1": "e364eb18f5cd01c72a422e99bafd442f52588f32"
   },
   {
     "en": "Next Sentence Prediction (NSP)",
@@ -1237,7 +1274,8 @@
       "NSP"
     ],
     "definition_en": "Next Sentence Prediction is a pre-training technique where the model determines if two sentences logically follow each other.",
-    "definition_ko": "다음 문장 예측(NSP)은 모델이 두 문장이 논리적으로 이어지는지 판단하는 사전 학습 기법입니다."
+    "definition_ko": "다음 문장 예측(NSP)은 모델이 두 문장이 논리적으로 이어지는지 판단하는 사전 학습 기법입니다.",
+    "definition_ko_sha1": "3fb585bf8a81e8ad8bded4e2aee351ad89edb8c3"
   },
   {
     "en": "Parameter-Efficient Fine-Tuning (PEFT)",
@@ -1247,7 +1285,8 @@
       "PEFT"
     ],
     "definition_en": "Parameter-Efficient Fine-Tuning methods adapt pre-trained models to new tasks by updating only a small subset of parameters, reducing computational cost.",
-    "definition_ko": "파라미터 효율적 파인튜닝(PEFT)은 소수의 파라미터만 업데이트하여 사전 학습 모델을 새로운 과제에 적응시키는 기법으로, 계산 비용을 줄입니다."
+    "definition_ko": "파라미터 효율적 파인튜닝(PEFT)은 소수의 파라미터만 업데이트하여 사전 학습 모델을 새로운 과제에 적응시키는 기법으로, 계산 비용을 줄입니다.",
+    "definition_ko_sha1": "bfe0575101dcbc88b5f6c83c0bdfcee585ea40d6"
   },
   {
     "en": "Instruction Tuning",
@@ -1257,7 +1296,8 @@
       "인스트럭션 튜닝"
     ],
     "definition_en": "Instruction tuning is a fine-tuning variant that focuses on training the model to better follow user commands and instructions.",
-    "definition_ko": "명령어 튜닝은 모델이 사용자의 명령과 지시를 더 잘 따르도록 학습시키는 파인튜닝 변형 기법입니다."
+    "definition_ko": "명령어 튜닝은 모델이 사용자의 명령과 지시를 더 잘 따르도록 학습시키는 파인튜닝 변형 기법입니다.",
+    "definition_ko_sha1": "62917920681f635bda9bd8c4ccdd7fd03892d574"
   },
   {
     "en": "Autonomy",
@@ -1344,7 +1384,11 @@
     "ko": "환각",
     "first_chapter": "Introduction",
     "aliases": [
-      "할루시네이션"
+      "Hallucination",
+      "hallucinations",
+      "할루시네이션",
+      "허루시네이션",
+      "환각"
     ],
     "definition_en": "",
     "definition_ko": ""
@@ -1376,5 +1420,2610 @@
     "aliases": [],
     "definition_en": "",
     "definition_ko": ""
+  },
+  {
+    "en": "Orchestrator",
+    "ko": "오케스트레이터",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "오케스트레이터"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Subagent",
+    "ko": "서브에이전트",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "서브에이전트"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Tool call",
+    "ko": "도구 호출",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "도구 호출"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Handoff",
+    "ko": "핸드오프",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "핸드오프"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Evaluator-optimizer",
+    "ko": "평가자-최적화기",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "평가자-최적화기"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Human-in-the-loop",
+    "ko": "루프 내 인간 개입",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "루프 내 인간 개입"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Guardrail",
+    "ko": "가드레일",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "가드레일"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Token budget",
+    "ko": "토큰 예산",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "토큰 예산"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Scratchpad",
+    "ko": "스크래치패드",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "스크래치패드"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Extended thinking",
+    "ko": "확장 추론",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "확장 추론"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Prompt caching",
+    "ko": "프롬프트 캐싱",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "프롬프트 캐싱"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Batch processing",
+    "ko": "배치 처리",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "배치 처리"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Streaming",
+    "ko": "스트리밍",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "스트리밍"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Latency",
+    "ko": "지연 시간",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "지연 시간"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Throughput",
+    "ko": "처리량",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "처리량"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Chain-of-thought",
+    "ko": "사고의 연쇄",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "Chain-of-thought",
+      "CoT",
+      "chain of thought",
+      "사고의 연쇄"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Tree-of-thought",
+    "ko": "사고의 나무",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "사고의 나무"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Self-critique",
+    "ko": "자기 비판",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "자기 비판"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Tool schema",
+    "ko": "도구 스키마",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "도구 스키마"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "JSON mode",
+    "ko": "JSON 모드",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "JSON 모드"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "System prompt",
+    "ko": "시스템 프롬프트",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "시스템 프롬프트"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "User turn",
+    "ko": "사용자 턴",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "사용자 턴"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Assistant turn",
+    "ko": "어시스턴트 턴",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "어시스턴트 턴"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Multi-turn",
+    "ko": "멀티 턴",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "멀티 턴"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Context management",
+    "ko": "컨텍스트 관리",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "컨텍스트 관리"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Memory architecture",
+    "ko": "메모리 아키텍처",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "메모리 아키텍처"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Working memory",
+    "ko": "작업 기억",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "작업 기억"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Long-term memory",
+    "ko": "장기 기억",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "장기 기억"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Vector store",
+    "ko": "벡터 저장소",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "벡터 저장소"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Embedding model",
+    "ko": "임베딩 모델",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "임베딩 모델"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Similarity search",
+    "ko": "유사도 검색",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "유사도 검색"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Cosine similarity",
+    "ko": "코사인 유사도",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "코사인 유사도"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Chunking strategy",
+    "ko": "청킹 전략",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "청킹 전략"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Retrieval-augmented generation",
+    "ko": "검색 증강 생성",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "RAG",
+      "Retrieval Augmented Generation",
+      "검색 증강 생성"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Knowledge base",
+    "ko": "지식 베이스",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "지식 베이스"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Document retrieval",
+    "ko": "문서 검색",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "문서 검색"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Reranking",
+    "ko": "재순위화",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "재순위화"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Cross-encoder",
+    "ko": "크로스 인코더",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "크로스 인코더"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Bi-encoder",
+    "ko": "바이 인코더",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "바이 인코더"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Agent loop",
+    "ko": "에이전트 루프",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "에이전트 루프"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Task decomposition",
+    "ko": "작업 분해",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "작업 분해"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Subgoal",
+    "ko": "하위 목표",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "하위 목표"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Planning horizon",
+    "ko": "계획 지평선",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "계획 지평선"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Action space",
+    "ko": "행동 공간",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "행동 공간"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "State space",
+    "ko": "상태 공간",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "상태 공간"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Reward signal",
+    "ko": "보상 신호",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "보상 신호"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Policy",
+    "ko": "정책",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "정책"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Environment",
+    "ko": "환경",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "환경"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Observation",
+    "ko": "관찰",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "관찰"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Feedback loop",
+    "ko": "피드백 루프",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "피드백 루프"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Error recovery",
+    "ko": "오류 복구",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "오류 복구"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Retry logic",
+    "ko": "재시도 로직",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "재시도 로직"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Fallback",
+    "ko": "폴백",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "폴백"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Circuit breaker",
+    "ko": "서킷 브레이커",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "서킷 브레이커"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Rate limiting",
+    "ko": "속도 제한",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "속도 제한"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Backoff",
+    "ko": "백오프",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "백오프"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Idempotency",
+    "ko": "멱등성",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "멱등성"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Checkpoint",
+    "ko": "체크포인트",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "체크포인트"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "State persistence",
+    "ko": "상태 지속성",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "상태 지속성"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Serialization",
+    "ko": "직렬화",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "직렬화"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Deserialization",
+    "ko": "역직렬화",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "역직렬화"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Message passing",
+    "ko": "메시지 전달",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "메시지 전달"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Event-driven",
+    "ko": "이벤트 기반",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "이벤트 기반"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Pub-sub",
+    "ko": "발행-구독",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "발행-구독"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Queue",
+    "ko": "큐",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "큐"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Dead letter queue",
+    "ko": "데드 레터 큐",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "데드 레터 큐"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Observability",
+    "ko": "관찰 가능성",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "관찰 가능성"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Tracing",
+    "ko": "추적",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "추적"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Span",
+    "ko": "스팬",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "스팬"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Trace",
+    "ko": "트레이스",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "트레이스"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Metric",
+    "ko": "메트릭",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "메트릭"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Benchmark",
+    "ko": "벤치마크",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "벤치마크"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Evaluation harness",
+    "ko": "평가 하네스",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "평가 하네스"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Golden dataset",
+    "ko": "골든 데이터셋",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "골든 데이터셋"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Ground truth",
+    "ko": "정답 레이블",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "정답 레이블"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Precision",
+    "ko": "정밀도",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "정밀도"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Recall",
+    "ko": "재현율",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "재현율"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "F1 score",
+    "ko": "F1 점수",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "F1 점수"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "BLEU score",
+    "ko": "BLEU 점수",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "BLEU 점수"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "ROUGE score",
+    "ko": "ROUGE 점수",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "ROUGE 점수"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "LLM-as-judge",
+    "ko": "LLM 판사",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "LLM 판사"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Reward model",
+    "ko": "보상 모델",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "보상 모델"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "RLHF",
+    "ko": "인간 피드백 강화학습",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "인간 피드백 강화학습"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Constitutional AI",
+    "ko": "헌법적 AI",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "헌법적 AI"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Red teaming",
+    "ko": "레드 티밍",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "레드 티밍"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Adversarial testing",
+    "ko": "적대적 테스팅",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "적대적 테스팅"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Prompt injection",
+    "ko": "프롬프트 인젝션",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "프롬프트 인젝션"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Jailbreak",
+    "ko": "탈옥",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "탈옥"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Safety classifier",
+    "ko": "안전성 분류기",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "안전성 분류기"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Content moderation",
+    "ko": "콘텐츠 조절",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "콘텐츠 조절"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Data flywheel",
+    "ko": "데이터 플라이휠",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "데이터 플라이휠"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Synthetic data",
+    "ko": "합성 데이터",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "합성 데이터"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Data augmentation",
+    "ko": "데이터 증강",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "데이터 증강"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "PEFT",
+    "ko": "파라미터 효율적 미세 조정",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "파라미터 효율적 미세 조정"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "LoRA",
+    "ko": "저순위 적응",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "저순위 적응"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Quantization",
+    "ko": "양자화",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "양자화"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Distillation",
+    "ko": "지식 증류",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "지식 증류"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Speculative decoding",
+    "ko": "추측 디코딩",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "추측 디코딩"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "KV cache",
+    "ko": "KV 캐시",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "KV 캐시"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Attention mechanism",
+    "ko": "어텐션 메커니즘",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "어텐션 메커니즘"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Self-attention",
+    "ko": "자기 어텐션",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "자기 어텐션"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Cross-attention",
+    "ko": "교차 어텐션",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "교차 어텐션"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Positional encoding",
+    "ko": "위치 인코딩",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "위치 인코딩"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Tokenizer",
+    "ko": "토크나이저",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "토크나이저"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Vocabulary",
+    "ko": "어휘",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "어휘"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Logit",
+    "ko": "로짓",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "로짓"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Softmax",
+    "ko": "소프트맥스",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "소프트맥스"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Temperature",
+    "ko": "온도",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "온도"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Top-p sampling",
+    "ko": "상위 확률 샘플링",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "상위 확률 샘플링"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Top-k sampling",
+    "ko": "상위 K 샘플링",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "상위 K 샘플링"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Beam search",
+    "ko": "빔 서치",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "빔 서치"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Greedy decoding",
+    "ko": "탐욕적 디코딩",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "탐욕적 디코딩"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Stop sequence",
+    "ko": "종료 시퀀스",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "종료 시퀀스"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Max tokens",
+    "ko": "최대 토큰",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "최대 토큰"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Completion",
+    "ko": "완성",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "완성"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Chat completion",
+    "ko": "채팅 완성",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "채팅 완성"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Multimodal",
+    "ko": "멀티모달",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "멀티모달"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Vision model",
+    "ko": "비전 모델",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "비전 모델"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Audio model",
+    "ko": "오디오 모델",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "오디오 모델"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Code interpreter",
+    "ko": "코드 인터프리터",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "코드 인터프리터"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Sandbox",
+    "ko": "샌드박스",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "샌드박스"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Computer use",
+    "ko": "컴퓨터 사용",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "컴퓨터 사용"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Web browsing",
+    "ko": "웹 브라우징",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "웹 브라우징"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "File system",
+    "ko": "파일 시스템",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "파일 시스템"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Shell command",
+    "ko": "셸 명령",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "셸 명령"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "API integration",
+    "ko": "API 통합",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "API 통합"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "MCP",
+    "ko": "모델 컨텍스트 프로토콜",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "MCP",
+      "Model Context Protocol",
+      "모델 컨텍스트 프로토콜"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Model Context Protocol",
+    "ko": "모델 컨텍스트 프로토콜",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "모델 컨텍스트 프로토콜"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Agentic workflow",
+    "ko": "에이전틱 워크플로",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "에이전틱 워크플로"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Workflow automation",
+    "ko": "워크플로 자동화",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "워크플로 자동화"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Autonomous agent",
+    "ko": "자율 에이전트",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "자율 에이전트"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Cognitive architecture",
+    "ko": "인지 아키텍처",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "인지 아키텍처"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "ReAct",
+    "ko": "ReAct",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "ReAct",
+      "Reason+Act",
+      "리액트"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Reason and Act",
+    "ko": "추론과 행동",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "추론과 행동"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Plan and execute",
+    "ko": "계획 및 실행",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "계획 및 실행"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Reflexion",
+    "ko": "리플렉션",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "리플렉션"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "AutoGPT",
+    "ko": "AutoGPT",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "AutoGPT"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "BabyAGI",
+    "ko": "BabyAGI",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "BabyAGI"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "LlamaIndex",
+    "ko": "라마인덱스",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "라마인덱스"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Semantic Kernel",
+    "ko": "시맨틱 커널",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "시맨틱 커널"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "CrewAI",
+    "ko": "크루AI",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "크루AI"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "AutoGen",
+    "ko": "오토젠",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "오토젠"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Debate pattern",
+    "ko": "토론 패턴",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "토론 패턴"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Ensemble",
+    "ko": "앙상블",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "앙상블"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Majority voting",
+    "ko": "다수결 투표",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "다수결 투표"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Best-of-N",
+    "ko": "N개 중 최선",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "N개 중 최선"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Verifier",
+    "ko": "검증기",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "검증기"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Critic",
+    "ko": "비평가",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "비평가"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Persona",
+    "ko": "페르소나",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "페르소나"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Role-playing",
+    "ko": "역할극",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "역할극"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Multi-agent debate",
+    "ko": "멀티 에이전트 토론",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "멀티 에이전트 토론"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Consensus",
+    "ko": "합의",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "합의"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Specialization",
+    "ko": "전문화",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "전문화"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Delegation",
+    "ko": "위임",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "위임"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Coordination",
+    "ko": "조율",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "조율"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Negotiation",
+    "ko": "협상",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "협상"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Trust boundary",
+    "ko": "신뢰 경계",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "신뢰 경계"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Privilege escalation",
+    "ko": "권한 상승",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "권한 상승"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Capability",
+    "ko": "역량",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "역량"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Corrigibility",
+    "ko": "교정 가능성",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "교정 가능성"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Interpretability",
+    "ko": "해석 가능성",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "해석 가능성"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Explainability",
+    "ko": "설명 가능성",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "설명 가능성"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Transparency",
+    "ko": "투명성",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "투명성"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Audit trail",
+    "ko": "감사 추적",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "감사 추적"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Provenance",
+    "ko": "출처 추적",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "출처 추적"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Citation",
+    "ko": "인용",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "인용"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Grounded response",
+    "ko": "근거 있는 응답",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "근거 있는 응답"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Uncertainty quantification",
+    "ko": "불확실성 정량화",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "불확실성 정량화"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Calibration",
+    "ko": "보정",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "보정"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Confidence score",
+    "ko": "신뢰도 점수",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "신뢰도 점수"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Output validation",
+    "ko": "출력 검증",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "출력 검증"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Schema validation",
+    "ko": "스키마 검증",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "스키마 검증"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Type checking",
+    "ko": "타입 검사",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "타입 검사"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Input sanitization",
+    "ko": "입력 정제",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "입력 정제"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Output filtering",
+    "ko": "출력 필터링",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "출력 필터링"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Modular design",
+    "ko": "모듈식 설계",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "모듈식 설계"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Composability",
+    "ko": "조합 가능성",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "조합 가능성"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Interoperability",
+    "ko": "상호 운용성",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "상호 운용성"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Abstraction layer",
+    "ko": "추상화 계층",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "추상화 계층"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Interface",
+    "ko": "인터페이스",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "인터페이스"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Contract",
+    "ko": "계약",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "계약"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Dependency injection",
+    "ko": "의존성 주입",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "의존성 주입"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Inversion of control",
+    "ko": "제어의 역전",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "제어의 역전"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Middleware",
+    "ko": "미들웨어",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "미들웨어"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Plugin",
+    "ko": "플러그인",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "플러그인"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Extension",
+    "ko": "확장",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "확장"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Hook",
+    "ko": "훅",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "훅"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Callback",
+    "ko": "콜백",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "콜백"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Event handler",
+    "ko": "이벤트 핸들러",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "이벤트 핸들러"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Lifecycle",
+    "ko": "라이프사이클",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "라이프사이클"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Initialization",
+    "ko": "초기화",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "초기화"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Teardown",
+    "ko": "종료",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "종료"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Thread",
+    "ko": "스레드",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "스레드"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Async",
+    "ko": "비동기",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "비동기"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Concurrency",
+    "ko": "동시성",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "동시성"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Race condition",
+    "ko": "경쟁 조건",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "경쟁 조건"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Deadlock",
+    "ko": "교착 상태",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "교착 상태"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Timeout",
+    "ko": "타임아웃",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "타임아웃"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Backpressure",
+    "ko": "역압",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "역압"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Load balancing",
+    "ko": "부하 분산",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "부하 분산"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Horizontal scaling",
+    "ko": "수평 확장",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "수평 확장"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Vertical scaling",
+    "ko": "수직 확장",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "수직 확장"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Microservice",
+    "ko": "마이크로서비스",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "마이크로서비스"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Serverless",
+    "ko": "서버리스",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "서버리스"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Container",
+    "ko": "컨테이너",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "컨테이너"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Service mesh",
+    "ko": "서비스 메시",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "서비스 메시"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Gateway",
+    "ko": "게이트웨이",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "게이트웨이"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Proxy",
+    "ko": "프록시",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "프록시"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Caching layer",
+    "ko": "캐싱 계층",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "캐싱 계층"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "CDN",
+    "ko": "콘텐츠 전달 네트워크",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "콘텐츠 전달 네트워크"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Cost optimization",
+    "ko": "비용 최적화",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "비용 최적화"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Token efficiency",
+    "ko": "토큰 효율성",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "토큰 효율성"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Model selection",
+    "ko": "모델 선택",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "모델 선택"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Model routing",
+    "ko": "모델 라우팅",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "모델 라우팅"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Cascading",
+    "ko": "계단식",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "계단식"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Mixture of experts",
+    "ko": "전문가 혼합",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "전문가 혼합"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Sparse model",
+    "ko": "희소 모델",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "희소 모델"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Dense model",
+    "ko": "밀집 모델",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "밀집 모델"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Foundation model",
+    "ko": "기반 모델",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "기반 모델"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Base model",
+    "ko": "기본 모델",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "기본 모델"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Frontier model",
+    "ko": "프론티어 모델",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "프론티어 모델"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Small language model",
+    "ko": "소형 언어 모델",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "소형 언어 모델"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Edge deployment",
+    "ko": "엣지 배포",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "엣지 배포"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "On-device inference",
+    "ko": "온디바이스 추론",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "온디바이스 추론"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Privacy-preserving",
+    "ko": "프라이버시 보존",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "프라이버시 보존"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Data governance",
+    "ko": "데이터 거버넌스",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "데이터 거버넌스"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "PII",
+    "ko": "개인 식별 정보",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "개인 식별 정보"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "GDPR",
+    "ko": "일반 데이터 보호 규정",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "일반 데이터 보호 규정"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Responsible AI",
+    "ko": "책임 있는 AI",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "책임 있는 AI"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "AI governance",
+    "ko": "AI 거버넌스",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "AI 거버넌스"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Model card",
+    "ko": "모델 카드",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "모델 카드"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Datasheet",
+    "ko": "데이터시트",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "데이터시트"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Fairness",
+    "ko": "공정성",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "공정성"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Bias",
+    "ko": "편향",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "편향"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Debiasing",
+    "ko": "편향 제거",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "편향 제거"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Toxicity",
+    "ko": "독성",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "독성"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Harm avoidance",
+    "ko": "해악 회피",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "해악 회피"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Value alignment",
+    "ko": "가치 정렬",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "가치 정렬"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Human values",
+    "ko": "인간 가치",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "인간 가치"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Helpfulness",
+    "ko": "유용성",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "유용성"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Harmlessness",
+    "ko": "무해성",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "무해성"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "Honesty",
+    "ko": "정직성",
+    "first_chapter": "auto-mined",
+    "aliases": [
+      "정직성"
+    ],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "multi-agent",
+    "ko": "",
+    "first_chapter": "auto-mined",
+    "aliases": [],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "LlmAgent",
+    "ko": "",
+    "first_chapter": "auto-mined",
+    "aliases": [],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "ChatPromptTemplate",
+    "ko": "",
+    "first_chapter": "auto-mined",
+    "aliases": [],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "sub-agents",
+    "ko": "",
+    "first_chapter": "auto-mined",
+    "aliases": [],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "SequentialAgent",
+    "ko": "",
+    "first_chapter": "auto-mined",
+    "aliases": [],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "sub-tasks",
+    "ko": "",
+    "first_chapter": "auto-mined",
+    "aliases": [],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "InMemorySessionService",
+    "ko": "",
+    "first_chapter": "auto-mined",
+    "aliases": [],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "ParallelAgent",
+    "ko": "",
+    "first_chapter": "auto-mined",
+    "aliases": [],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "AgentSpace",
+    "ko": "",
+    "first_chapter": "auto-mined",
+    "aliases": [],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "ConversationBufferMemory",
+    "ko": "",
+    "first_chapter": "auto-mined",
+    "aliases": [],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "ToolContext",
+    "ko": "",
+    "first_chapter": "auto-mined",
+    "aliases": [],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "sub-agent",
+    "ko": "",
+    "first_chapter": "auto-mined",
+    "aliases": [],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "context-aware",
+    "ko": "",
+    "first_chapter": "auto-mined",
+    "aliases": [],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "BaseAgent",
+    "ko": "",
+    "first_chapter": "auto-mined",
+    "aliases": [],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "InvocationContext",
+    "ko": "",
+    "first_chapter": "auto-mined",
+    "aliases": [],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "MemoryService",
+    "ko": "",
+    "first_chapter": "auto-mined",
+    "aliases": [],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "VertexAiRagMemoryService",
+    "ko": "",
+    "first_chapter": "auto-mined",
+    "aliases": [],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "BaseModel",
+    "ko": "",
+    "first_chapter": "auto-mined",
+    "aliases": [],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "AgentExecutor",
+    "ko": "",
+    "first_chapter": "auto-mined",
+    "aliases": [],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "AgentTool",
+    "ko": "",
+    "first_chapter": "auto-mined",
+    "aliases": [],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "reasoning",
+    "ko": "",
+    "first_chapter": "auto-mined",
+    "aliases": [],
+    "definition_ko": "",
+    "definition_en": ""
+  },
+  {
+    "en": "TaskExecutor",
+    "ko": "",
+    "first_chapter": "auto-mined",
+    "aliases": [],
+    "definition_ko": "",
+    "definition_en": ""
   }
 ]
