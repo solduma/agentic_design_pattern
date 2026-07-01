@@ -1,0 +1,18 @@
+flowchart TD
+    subgraph 단순RAG["단순 RAG"]
+        NR1[Naive RAG] --> NR2[쿼리 벡터]
+        NR2 --> NR3[(벡터 DB)]
+        NR3 --> NR4[청크]
+        NR4 -- "모델에 전달" --> NR5[LLM]
+    end
+    subgraph 에이전틱RAG["에이전틱 RAG"]
+        AR1[에이전틱 RAG] -- "도구 선택" --> AR2[도구]
+        AR2 --> AR3[소스 1]
+        AR2 --> AR4[소스 2]
+        AR2 --> AR5[소스 3]
+        AR2 --> AR6[추가 소스...]
+        AR3 -- "모델에 전달" --> AR7[LLM]
+        AR4 -- "모델에 전달" --> AR7
+        AR5 -- "모델에 전달" --> AR7
+        AR6 -- "모델에 전달" --> AR7
+    end
