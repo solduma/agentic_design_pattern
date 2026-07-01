@@ -1,0 +1,34 @@
+[
+  {
+    "lang": "text",
+    "code": "# A simple LCEL chain conceptually \n# (This is not runnable code, just illustrates the flow) \nchain = prompt | model | output_parse"
+  },
+  {
+    "lang": "python",
+    "code": "# Graph state \nclass State(TypedDict): \n   topic: str \n   joke: str \n   story: str \n   poem: str \n   combined_output: str \n \n# Nodes \ndef call_llm_1(state: State): \n   \"\"\"First LLM call to generate initial joke\"\"\" \n \n   msg = llm.invoke(f\"Write a joke about {state['topic']}\") \n   return {\"joke\": msg.content}"
+  },
+  {
+    "lang": "python",
+    "code": "def call_llm_2(state: State): \n   \"\"\"Second LLM call to generate story\"\"\" \n \n   msg = llm.invoke(f\"Write a story about {state['topic']}\") \n   return {\"story\": msg.content} \n \ndef call_llm_3(state: State): \n   \"\"\"Third LLM call to generate poem\"\"\" \n \n   msg = llm.invoke(f\"Write a poem about {state['topic']}\") \n   return {\"poem\": msg.content} \n \ndef aggregator(state: State): \n   \"\"\"Combine the joke and story into a single output\"\"\" \n \n   combined = f\"Here's a story, joke, and poem about \n{state['topic']}!\\n\\n\" \n   combined += f\"STORY:\\n{state['story']}\\n\\n\" \n   combined += f\"JOKE:\\n{state['joke']}\\n\\n\" \n   combined += f\"POEM:\\n{state['poem']}\" \n   return {\"combined_output\": combined} \n \n# Build workflow \nparallel_builder = StateGraph(State) \n \n# Add nodes \nparallel_builder.add_node(\"call_llm_1\", call_llm_1) \nparallel_builder.add_node(\"call_llm_2\", call_llm_2) \nparallel_builder.add_node(\"call_llm_3\", call_llm_3) \nparallel_builder.add_node(\"aggregator\", aggregator) \n \n# Add edges to connect nodes \nparallel_builder.add_edge(START, \"call_llm_1\") \nparallel_builder.add_edge(START, \"call_llm_2\") \nparallel_builder.add_edge(START, \"call_llm_3\") \nparallel_builder.add_edge(\"call_llm_1\", \"aggregator\") \nparallel_builder.add_edge(\"call_llm_2\", \"aggregator\") \nparallel_builder.add_edge(\"call_llm_3\", \"aggregator\") \nparallel_builder.add_edge(\"aggregator\", END) \nparallel_workflow = parallel_builder.compile() \n \n# Show workflow \ndisplay(Image(parallel_workflow.get_graph().draw_mermaid_png())) \n \n# Invoke \nstate = parallel_workflow.invoke({\"topic\": \"cats\"}) \nprint(state[\"combined_output\"])"
+  },
+  {
+    "lang": "text",
+    "code": "for building and deploying applications composed of multiple, interacting AI agents. It\nwith a primary agent delegating tasks to specialized sub-agents. State and session"
+  },
+  {
+    "lang": "python",
+    "code": "from google.adk.agents import LlmAgent \nfrom google.adk.tools import google_Search \n \ndice_agent = LlmAgent("
+  },
+  {
+    "lang": "text",
+    "code": "model=\"gemini-2.0-flash-exp\",  \n   name=\"question_answer_agent\", \n   description=\"A helpful assistant agent that can answer \nquestions.\", \n   instruction=\"\"\"Respond to the query using google search\"\"\", \n   tools=[google_search], \n)"
+  },
+  {
+    "lang": "python",
+    "code": "@crew \ndef crew(self) -> Crew: \n   \"\"\"Creates the research crew\"\"\" \n   return Crew( \n     agents=self.agents, \n     tasks=self.tasks, \n     process=Process.sequential, \n     verbose=True, \n   )"
+  },
+  {
+    "lang": "text",
+    "code": "for complex agentic control flow and multi-agent orchestration are less developed\nfor enterprise-grade applications. A potential trade-off is that its design, optimized for\nwhile LangGraph introduces stateful, cyclical graphs for more complex reasoning."
+  }
+]
