@@ -1,22 +1,10 @@
 [
   {
     "lang": "python",
-    "code": "from making an update that is too different from the current strategy. This"
-  },
-  {
-    "lang": "text",
-    "code": "with traditional approaches where one agent might train another; SICA acts as both\nfor clearer understanding.\nfor specific tasks. Finally, a critical component is the asynchronous overseer, an LLM\nfor multiple programming languages and compatibility with OpenAI-compatible APIs\nfor any LLM. Furthermore, it incorporates multi-objective optimization, allows for"
-  },
-  {
-    "lang": "python",
     "code": "from openevolve import OpenEvolve"
   },
   {
-    "lang": "text",
-    "code": "# Initialize the system \nevolve = OpenEvolve( \n   initial_program_path=\"path/to/initial_program.py\", \n   evaluation_file=\"path/to/evaluator.py\", \n   config_path=\"path/to/config.yaml\" \n) \n \n# Run the evolution \nbest_program = await evolve.run(iterations=1000) \nprint(f\"Best program metrics:\") \nfor name, value in best_program.metrics.items(): \n   print(f\"  {name}: {value:.4f}\")"
-  },
-  {
-    "lang": "text",
-    "code": "with novel situations not anticipated during their initial design. Without the ability to"
+    "lang": "python",
+    "code": "# Initialize the system\nevolve = OpenEvolve(\n   initial_program_path=\"path/to/initial_program.py\",\n   evaluation_file=\"path/to/evaluator.py\",\n   config_path=\"path/to/config.yaml\"\n)\n\n# Run the evolution\nbest_program = await evolve.run(iterations=1000)\nprint(f\"Best program metrics:\")\nfor name, value in best_program.metrics.items():\n   print(f\"  {name}: {value:.4f}\")"
   }
 ]

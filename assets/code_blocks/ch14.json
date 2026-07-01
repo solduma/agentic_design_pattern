@@ -1,50 +1,86 @@
 [
   {
     "lang": "text",
-    "code": "1\nfor a very nuanced understanding of language.\n2\n3\n4\n5\n6\n7"
+    "code": "1"
+  },
+  {
+    "lang": "text",
+    "code": "2"
+  },
+  {
+    "lang": "text",
+    "code": "3"
+  },
+  {
+    "lang": "text",
+    "code": "4"
+  },
+  {
+    "lang": "text",
+    "code": "5"
+  },
+  {
+    "lang": "text",
+    "code": "6"
+  },
+  {
+    "lang": "text",
+    "code": "7"
   },
   {
     "lang": "text",
     "code": "8"
   },
   {
-    "lang": "python",
-    "code": "from google.adk.tools import google_search \nfrom google.adk.agents import Agent \n \nsearch_agent = Agent( \n   name=\"research_assistant\", \n   model=\"gemini-2.0-flash-exp\", \n   instruction=\"You help users research topics. When asked, use the \nGoogle Search tool\", \n   tools=[google_search] \n)"
-  },
-  {
-    "lang": "python",
-    "code": "# Import the necessary VertexAiRagMemoryService class from the \ngoogle.adk.memory module. \nfrom google.adk.memory import VertexAiRagMemoryService \n \nRAG_CORPUS_RESOURCE_NAME = \n\"projects/your-gcp-project-id/locations/us-central1/ragCorpora/your-c\norpus-id\" \n \n# Define an optional parameter for the number of top similar results \n9"
+    "lang": "text",
+    "code": "from google.adk.tools import google_search\nfrom google.adk.agents import Agent\n\nsearch_agent = Agent(\n   name=\"research_assistant\",\n   model=\"gemini-2.0-flash-exp\",\n   instruction=\"You help users research topics. When asked, use the\nGoogle Search tool\",\n   tools=[google_search]\n)"
   },
   {
     "lang": "text",
-    "code": "to retrieve. \n# This controls how many relevant document chunks the RAG service \nwill return. \nSIMILARITY_TOP_K = 5 \n \n# Define an optional parameter for the vector distance threshold. \n# This threshold determines the maximum semantic distance allowed for \nretrieved results; \n# results with a distance greater than this value might be filtered \nout. \nVECTOR_DISTANCE_THRESHOLD = 0.7 \n \n# Initialize an instance of VertexAiRagMemoryService. \n# This sets up the connection to your Vertex AI RAG Corpus. \n# - rag_corpus: Specifies the unique identifier for your RAG Corpus. \n# - similarity_top_k: Sets the maximum number of similar results to \nfetch. \n# - vector_distance_threshold: Defines the similarity threshold for \nfiltering results. \nmemory_service = VertexAiRagMemoryService( \n   rag_corpus=RAG_CORPUS_RESOURCE_NAME, \n   similarity_top_k=SIMILARITY_TOP_K, \n   vector_distance_threshold=VECTOR_DISTANCE_THRESHOLD \n)"
+    "code": "# Import the necessary VertexAiRagMemoryService class from the\ngoogle.adk.memory module.\nfrom google.adk.memory import VertexAiRagMemoryService\n\nRAG_CORPUS_RESOURCE_NAME =\n\"projects/your-gcp-project-id/locations/us-central1/ragCorpora/your-c\norpus-id\"\n\n# Define an optional parameter for the number of top similar results\n9"
   },
   {
     "lang": "python",
-    "code": "import os \nimport requests \nfrom typing import List, Dict, Any, TypedDict \nfrom langchain_community.document_loaders import TextLoader \n \nfrom langchain_core.documents import Document \nfrom langchain_core.prompts import ChatPromptTemplate \nfrom langchain_core.output_parsers import StrOutputParser \nfrom langchain_community.embeddings import OpenAIEmbeddings \nfrom langchain_community.vectorstores import Weaviate \nfrom langchain_openai import ChatOpenAI \nfrom langchain.text_splitter import CharacterTextSplitter \nfrom langchain.schema.runnable import RunnablePassthrough \nfrom langgraph.graph import StateGraph, END \nimport weaviate \nfrom weaviate.embedded import EmbeddedOptions \n10"
+    "code": "to retrieve.\n# This controls how many relevant document chunks the RAG service\nwill return.\nSIMILARITY_TOP_K = 5\n\n# Define an optional parameter for the vector distance threshold.\n# This threshold determines the maximum semantic distance allowed for\nretrieved results;\n# results with a distance greater than this value might be filtered\nout.\nVECTOR_DISTANCE_THRESHOLD = 0.7\n\n# Initialize an instance of VertexAiRagMemoryService.\n# This sets up the connection to your Vertex AI RAG Corpus.\n# - rag_corpus: Specifies the unique identifier for your RAG Corpus.\n# - similarity_top_k: Sets the maximum number of similar results to\nfetch.\n# - vector_distance_threshold: Defines the similarity threshold for\nfiltering results.\nmemory_service = VertexAiRagMemoryService(\n   rag_corpus=RAG_CORPUS_RESOURCE_NAME,\n   similarity_top_k=SIMILARITY_TOP_K,\n   vector_distance_threshold=VECTOR_DISTANCE_THRESHOLD\n)"
   },
   {
     "lang": "python",
-    "code": "import dotenv \n \n# Load environment variables (e.g., OPENAI_API_KEY) \ndotenv.load_dotenv() \n# Set your OpenAI API key (ensure it's loaded from .env or set here) \n# os.environ[\"OPENAI_API_KEY\"] = \"YOUR_OPENAI_API_KEY\" \n \n# --- 1. Data Preparation (Preprocessing) --- \n# Load data \nurl = \n\"https://github.com/langchain-ai/langchain/blob/master/docs/docs/how_\nto/state_of_the_union.txt\" \nres = requests.get(url) \n \nwith open(\"state_of_the_union.txt\", \"w\") as f: \n   f.write(res.text) \n \n \nloader = TextLoader('./state_of_the_union.txt') \ndocuments = loader.load() \n \n# Chunk documents \ntext_splitter = CharacterTextSplitter(chunk_size=500, \nchunk_overlap=50) \nchunks = text_splitter.split_documents(documents) \n \n# Embed and store chunks in Weaviate \nclient = weaviate.Client( \n   embedded_options = EmbeddedOptions() \n) \n \nvectorstore = Weaviate.from_documents( \n   client = client, \n   documents = chunks, \n   embedding = OpenAIEmbeddings(), \n   by_text = False \n) \n \n# Define the retriever \nretriever = vectorstore.as_retriever() \n \n# Initialize LLM \nllm = ChatOpenAI(model_name=\"gpt-3.5-turbo\", temperature=0) \n \n# --- 2. Define the State for LangGraph --- \nclass RAGGraphState(TypedDict): \n   question: str \n11"
+    "code": "import os\nimport requests\nfrom typing import List, Dict, Any, TypedDict\nfrom langchain_community.document_loaders import TextLoader\n\nfrom langchain_core.documents import Document\nfrom langchain_core.prompts import ChatPromptTemplate\nfrom langchain_core.output_parsers import StrOutputParser\nfrom langchain_community.embeddings import OpenAIEmbeddings\nfrom langchain_community.vectorstores import Weaviate\nfrom langchain_openai import ChatOpenAI\nfrom langchain.text_splitter import CharacterTextSplitter\nfrom langchain.schema.runnable import RunnablePassthrough\nfrom langgraph.graph import StateGraph, END\nimport weaviate\nfrom weaviate.embedded import EmbeddedOptions\n10"
   },
   {
     "lang": "python",
-    "code": "documents: List[Document] \n   generation: str \n \n# --- 3. Define the Nodes (Functions) --- \n \ndef retrieve_documents_node(state: RAGGraphState) -> RAGGraphState: \n   \"\"\"Retrieves documents based on the user's question.\"\"\" \n   question = state[\"question\"] \n   documents = retriever.invoke(question) \n   return {\"documents\": documents, \"question\": question, \n\"generation\": \"\"} \n \ndef generate_response_node(state: RAGGraphState) -> RAGGraphState: \n   \"\"\"Generates a response using the LLM based on retrieved \ndocuments.\"\"\" \n   question = state[\"question\"] \n   documents = state[\"documents\"] \n \n   # Prompt template from the PDF \n   template = \"\"\"You are an assistant for question-answering tasks. \nUse the following pieces of retrieved context to answer the question. \nIf you don't know the answer, just say that you don't know. \nUse three sentences maximum and keep the answer concise. \nQuestion: {question} \nContext: {context} \nAnswer: \n\"\"\" \n   prompt = ChatPromptTemplate.from_template(template) \n \n   # Format the context from the documents \n   context = \"\\n\\n\".join([doc.page_content for doc in documents]) \n \n   # Create the RAG chain \n   rag_chain = prompt | llm | StrOutputParser() \n \n   # Invoke the chain \n   generation = rag_chain.invoke({\"context\": context, \"question\": \nquestion}) \n   return {\"question\": question, \"documents\": documents, \n\"generation\": generation} \n \n# --- 4. Build the LangGraph Graph --- \n \nworkflow = StateGraph(RAGGraphState) \n \n# Add nodes \nworkflow.add_node(\"retrieve\", retrieve_documents_node) \n12"
+    "code": "import dotenv\n\n# Load environment variables (e.g., OPENAI_API_KEY)\ndotenv.load_dotenv()\n# Set your OpenAI API key (ensure it's loaded from .env or set here)\n# os.environ[\"OPENAI_API_KEY\"] = \"YOUR_OPENAI_API_KEY\"\n\n# --- 1. Data Preparation (Preprocessing) ---\n# Load data\nurl =\n\"https://github.com/langchain-ai/langchain/blob/master/docs/docs/how_\nto/state_of_the_union.txt\"\nres = requests.get(url)\n\nwith open(\"state_of_the_union.txt\", \"w\") as f:\n   f.write(res.text)\n\n\nloader = TextLoader('./state_of_the_union.txt')\ndocuments = loader.load()\n\n# Chunk documents\ntext_splitter = CharacterTextSplitter(chunk_size=500,\nchunk_overlap=50)\nchunks = text_splitter.split_documents(documents)\n\n# Embed and store chunks in Weaviate\nclient = weaviate.Client(\n   embedded_options = EmbeddedOptions()\n)\n\nvectorstore = Weaviate.from_documents(\n   client = client,\n   documents = chunks,\n   embedding = OpenAIEmbeddings(),\n   by_text = False\n)\n\n# Define the retriever\nretriever = vectorstore.as_retriever()\n\n# Initialize LLM\nllm = ChatOpenAI(model_name=\"gpt-3.5-turbo\", temperature=0)\n\n# --- 2. Define the State for LangGraph ---\nclass RAGGraphState(TypedDict):\n   question: str\n11"
+  },
+  {
+    "lang": "python",
+    "code": "   documents: List[Document]\n   generation: str\n\n# --- 3. Define the Nodes (Functions) ---\n\ndef retrieve_documents_node(state: RAGGraphState) -> RAGGraphState:\n   \"\"\"Retrieves documents based on the user's question.\"\"\"\n   question = state[\"question\"]\n   documents = retriever.invoke(question)\n   return {\"documents\": documents, \"question\": question,\n\"generation\": \"\"}\n\ndef generate_response_node(state: RAGGraphState) -> RAGGraphState:\n   \"\"\"Generates a response using the LLM based on retrieved\ndocuments.\"\"\"\n   question = state[\"question\"]\n   documents = state[\"documents\"]\n\n   # Prompt template from the PDF\n   template = \"\"\"You are an assistant for question-answering tasks.\nUse the following pieces of retrieved context to answer the question.\nIf you don't know the answer, just say that you don't know.\nUse three sentences maximum and keep the answer concise.\nQuestion: {question}\nContext: {context}\nAnswer:\n\"\"\"\n   prompt = ChatPromptTemplate.from_template(template)\n\n   # Format the context from the documents\n   context = \"\\n\\n\".join([doc.page_content for doc in documents])\n\n   # Create the RAG chain\n   rag_chain = prompt | llm | StrOutputParser()\n\n   # Invoke the chain\n   generation = rag_chain.invoke({\"context\": context, \"question\":\nquestion})\n   return {\"question\": question, \"documents\": documents,\n\"generation\": generation}\n\n# --- 4. Build the LangGraph Graph ---\n\nworkflow = StateGraph(RAGGraphState)\n\n# Add nodes\nworkflow.add_node(\"retrieve\", retrieve_documents_node)\n12"
+  },
+  {
+    "lang": "python",
+    "code": "workflow.add_node(\"generate\", generate_response_node)\n\n# Set the entry point\nworkflow.set_entry_point(\"retrieve\")\n\n# Add edges (transitions)\nworkflow.add_edge(\"retrieve\", \"generate\")\nworkflow.add_edge(\"generate\", END)\n\n# Compile the graph\napp = workflow.compile()\n\n# --- 5. Run the RAG Application ---\nif __name__ == \"__main__\":\n   print(\"\\n--- Running RAG Query ---\")\n   query = \"What did the president say about Justice Breyer\"\n   inputs = {\"question\": query}\n   for s in app.stream(inputs):\n       print(s)\n\n   print(\"\\n--- Running another RAG Query ---\")\n   query_2 = \"What did the president say about the economy?\"\n   inputs_2 = {\"question\": query_2}\n   for s in app.stream(inputs_2):\n       print(s)"
   },
   {
     "lang": "text",
-    "code": "workflow.add_node(\"generate\", generate_response_node) \n \n# Set the entry point \nworkflow.set_entry_point(\"retrieve\") \n \n# Add edges (transitions) \nworkflow.add_edge(\"retrieve\", \"generate\") \nworkflow.add_edge(\"generate\", END) \n \n# Compile the graph \napp = workflow.compile() \n \n# --- 5. Run the RAG Application --- \nif __name__ == \"__main__\": \n   print(\"\\n--- Running RAG Query ---\") \n   query = \"What did the president say about Justice Breyer\" \n   inputs = {\"question\": query} \n   for s in app.stream(inputs): \n       print(s) \n \n   print(\"\\n--- Running another RAG Query ---\") \n   query_2 = \"What did the president say about the economy?\" \n   inputs_2 = {\"question\": query_2} \n   for s in app.stream(inputs_2): \n       print(s)"
+    "code": "13"
   },
   {
     "lang": "text",
-    "code": "13\n14\n15"
-  },
-  {
-    "lang": "python",
-    "code": "from the public internet in response to user queries."
+    "code": "14"
   },
   {
     "lang": "text",
-    "code": "16\n17\n18"
+    "code": "15"
+  },
+  {
+    "lang": "text",
+    "code": "16"
+  },
+  {
+    "lang": "text",
+    "code": "17"
+  },
+  {
+    "lang": "text",
+    "code": "18"
   }
 ]
