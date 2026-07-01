@@ -1,0 +1,522 @@
+[
+  {
+    "id": "img-p2-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p2-0.png",
+    "caption_ko": "책 표지 장식 이미지",
+    "alt_ko": "파란색 추상적 소용돌이 패턴 — 책 표지 장식",
+    "source_page": 2
+  },
+  {
+    "id": "img-p14-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p14-0.png",
+    "caption_ko": "에이전틱 AI 문제 해결 5단계 프로세스: 임무 파악 → 상황 파악 → 심층 사고 → 행동 → 학습 및 개선",
+    "alt_ko": "에이전틱 AI 문제 해결 프로세스 깔때기 인포그래픽 (5단계)",
+    "source_page": 14
+  },
+  {
+    "id": "img-p15-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p15-0.png",
+    "caption_ko": "그림 1: LLM 워크플로우, RAG, AI 에이전트, 에이전틱 AI의 구조 비교",
+    "alt_ko": "LLM 워크플로우·RAG·AI 에이전트·에이전틱 AI 아키텍처 비교 다이어그램",
+    "source_page": 15
+  },
+  {
+    "id": "img-p18-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p18-0.png",
+    "caption_ko": "그림 3: 에이전트 복잡도 스펙트럼 — Level 0(핵심 추론 엔진)부터 Level 3(협력형 멀티 에이전트 시스템)까지",
+    "alt_ko": "에이전트 복잡도 수준을 나타내는 파란색 3D 피라미드",
+    "source_page": 18
+  },
+  {
+    "id": "img-p20-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p20-0.png",
+    "caption_ko": "그림 4: 에이전트의 미래에 관한 다섯 가지 가설",
+    "alt_ko": "에이전트의 미래 가설 5단계를 나타내는 초록색 3D 피라미드",
+    "source_page": 20
+  },
+  {
+    "id": "img-p31-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p31-0.png",
+    "caption_ko": "그림 1: 컨텍스트 엔지니어링(Context Engineering)은 RAG·프롬프트 엔지니어링·상태/히스토리·메모리를 포함하는 포괄적 분야",
+    "alt_ko": "컨텍스트 엔지니어링 구성요소를 나타내는 벤 다이어그램",
+    "source_page": 31
+  },
+  {
+    "id": "img-p34-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p34-0.mmd",
+    "caption_ko": "그림 2: 프롬프트 체이닝 패턴 — 사용자가 여러 프롬프트와 에이전트를 통해 출력을 반복적으로 생성",
+    "alt_ko": "프롬프트 체이닝 패턴 플로우차트: 사용자 → 프롬프트1~N → 에이전트1~N → 출력",
+    "source_page": 34
+  },
+  {
+    "id": "img-p48-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p48-0.mmd",
+    "caption_ko": "그림 1: 라우터 패턴 — LLM이 라우터 역할을 수행하여 적절한 에이전트로 요청을 분기",
+    "alt_ko": "라우터 패턴 플로우차트: 사용자 → 프롬프트 → LLM 라우터 → 에이전트 N개 → 출력",
+    "source_page": 48
+  },
+  {
+    "id": "img-p51-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p51-0.mmd",
+    "caption_ko": "그림 1: 병렬화 예시 — 단일 입력이 병렬 에이전트로 분기되어 각각 출력을 생성",
+    "alt_ko": "병렬 에이전트 패턴 플로우차트: 입력 → 서브에이전트 1·2·3 → 출력 1·2·3",
+    "source_page": 51
+  },
+  {
+    "id": "img-p63-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p63-0.mmd",
+    "caption_ko": "그림 2: 병렬화 설계 패턴 — 프롬프트에서 여러 에이전트가 병렬로 실행되어 사용자에게 출력을 반환",
+    "alt_ko": "병렬화 설계 패턴 플로우차트",
+    "source_page": 63
+  },
+  {
+    "id": "img-p75-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p75-0.mmd",
+    "caption_ko": "그림 1: 반성(Reflection) 설계 패턴 — 에이전트가 자기 출력을 반성하여 개선",
+    "alt_ko": "자기 반성 패턴 플로우차트: 사용자 → 프롬프트 → 에이전트 → 반성 루프 → 출력",
+    "source_page": 75
+  },
+  {
+    "id": "img-p76-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p76-0.mmd",
+    "caption_ko": "그림 2: 반성 설계 패턴 — 생산자 에이전트와 비평 에이전트의 협업",
+    "alt_ko": "생산자-비평 반성 패턴 플로우차트: 프롬프트 → 생산자 에이전트 → 비평 에이전트 → 반성 → 출력",
+    "source_page": 76
+  },
+  {
+    "id": "img-p82-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p82-0.mmd",
+    "caption_ko": "그림 1: 도구 사용 패턴 — 에이전트가 메모리·DB·저장소·웹·검색 등 다양한 프록시 도구를 활용",
+    "alt_ko": "도구 사용 패턴 플로우차트: 사용자 → 프롬프트 → 에이전트 → 다중 도구 호출",
+    "source_page": 82
+  },
+  {
+    "id": "img-p98-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p98-0.mmd",
+    "caption_ko": "그림 2: 도구 사용 설계 패턴 — 에이전트가 도구와 상호작용하며 출력을 생성",
+    "alt_ko": "도구 사용 설계 패턴 플로우차트: 사용자 → 프롬프트 → 에이전트 ↔ 도구 → 출력",
+    "source_page": 98
+  },
+  {
+    "id": "img-p104-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p104-0.png",
+    "caption_ko": "그림 1: Google Deep Research 에이전트가 Google 검색 도구를 사용하기 위한 실행 계획을 생성하는 화면",
+    "alt_ko": "Google Deep Research 에이전트 실행 계획 생성 스크린샷",
+    "source_page": 104
+  },
+  {
+    "id": "img-p105-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p105-0.png",
+    "caption_ko": "Google Deep Research 에이전트가 유럽 VC 투자 분석을 위해 웹사이트를 조사하는 화면",
+    "alt_ko": "Deep Research 에이전트 웹 검색 진행 중 스크린샷",
+    "source_page": 105
+  },
+  {
+    "id": "img-p106-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p106-0.png",
+    "caption_ko": "그림 2: Deep Research 계획 실행 결과 — Google 검색을 통해 생성된 유럽 VC 투자 분석 보고서",
+    "alt_ko": "Deep Research 실행 결과 보고서 스크린샷",
+    "source_page": 106
+  },
+  {
+    "id": "img-p111-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p111-0.mmd",
+    "caption_ko": "계획 설계 패턴 — 에이전트가 여러 계획 옵션을 생성하고 최적 계획을 선택하여 실행",
+    "alt_ko": "계획 설계 패턴 플로우차트: 사용자 → 프롬프트 → 에이전트 ↔ 계획 목록 → 출력",
+    "source_page": 111
+  },
+  {
+    "id": "img-p115-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p115-0.mmd",
+    "caption_ko": "그림 1: 멀티 에이전트 시스템 예시 — 슈퍼바이저가 전문가 에이전트들을 계층적으로 조율",
+    "alt_ko": "멀티 에이전트 팀 계층 구조: 사용자 ↔ 슈퍼바이저 → 전문가 에이전트 → 하위 에이전트",
+    "source_page": 115
+  },
+  {
+    "id": "img-p118-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p118-0.png",
+    "caption_ko": "그림 2: 에이전트 상호작용 방식 — 단일 에이전트, 네트워크, 슈퍼바이저, 도구로서의 슈퍼바이저, 계층형, 커스텀",
+    "alt_ko": "멀티 에이전트 상호작용 6가지 유형 비교 다이어그램",
+    "source_page": 118
+  },
+  {
+    "id": "img-p130-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p130-0.mmd",
+    "caption_ko": "그림 3: 멀티 에이전트 설계 패턴 — 프롬프트가 에이전트 그룹으로 전달되어 협력 실행 후 출력 반환",
+    "alt_ko": "멀티 에이전트 설계 패턴 플로우차트",
+    "source_page": 130
+  },
+  {
+    "id": "img-p151-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p151-0.mmd",
+    "caption_ko": "그림 1: 메모리 관리 설계 패턴 — 에이전트가 메모리와 상호작용하며 출력을 생성",
+    "alt_ko": "메모리 관리 패턴 플로우차트: 사용자 → 프롬프트 → 에이전트 ↔ 메모리 → 출력",
+    "source_page": 151
+  },
+  {
+    "id": "img-p158-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p158-0.png",
+    "caption_ko": "그림 1: SICA의 자기 개선 — 과거 버전을 기반으로 학습하고 적응하는 메타 개선 아키텍처",
+    "alt_ko": "SICA 메타 개선 아키텍처: 에이전트 0·1·2가 순차적으로 진화하는 컬러 다이어그램",
+    "source_page": 158
+  },
+  {
+    "id": "img-p159-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p159-0.png",
+    "caption_ko": "에이전트 반복 횟수에 따른 유틸리티 변화 — 스마트 편집 도구, 코드 컨텍스트 요약, AST 심볼 탐색기 등 개선 사례",
+    "alt_ko": "에이전트 자기 개선 반복에 따른 유틸리티 향상 그래프",
+    "source_page": 159
+  },
+  {
+    "id": "img-p162-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p162-0.png",
+    "caption_ko": "그림 3: OpenEvolve 내부 아키텍처 — 컨트롤러 오케스트레이션이 프로그램 DB·LLM 앙상블·프롬프트 샘플러·평가 풀을 조율하는 진화 루프",
+    "alt_ko": "OpenEvolve 아키텍처 다이어그램 (컬러)",
+    "source_page": 162
+  },
+  {
+    "id": "img-p164-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p164-0.mmd",
+    "caption_ko": "그림 4: 학습 및 적응 설계 패턴 — 에이전트가 학습 내용을 활용하여 지속적으로 개선",
+    "alt_ko": "학습 및 적응 패턴 플로우차트: 사용자 → 프롬프트 → 에이전트 ↔ 학습 목록 → 출력",
+    "source_page": 164
+  },
+  {
+    "id": "img-p181-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p181-0.mmd",
+    "caption_ko": "그림 1: 모델 컨텍스트 프로토콜(MCP) — MCP 클라이언트 에이전트가 MCP 서버를 통해 도구·API·레거시 서비스·데이터 서비스·래퍼에 접근",
+    "alt_ko": "MCP 아키텍처 플로우차트: 에이전트(MCP 클라이언트) ↔ MCP 서버 ↔ 도구/API/서비스",
+    "source_page": 181
+  },
+  {
+    "id": "img-p191-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p191-0.mmd",
+    "caption_ko": "그림 1: 목표 설정 및 모니터링 예시 — 사용자 프롬프트로부터 코드를 생성하고 자기 검토 후 조건에 따라 출력 또는 재시도",
+    "alt_ko": "목표 설정 패턴 플로우차트: 사용자 → 프롬프트 → 코드 → 자기 검토+품질 체크리스트 → 조건 분기",
+    "source_page": 191
+  },
+  {
+    "id": "img-p194-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p194-0.mmd",
+    "caption_ko": "그림 2: 목표 설계 패턴 — 에이전트가 다중 목표를 참조하여 실행하고 출력을 반환",
+    "alt_ko": "목표 설계 패턴 플로우차트: 사용자 → 프롬프트 → 에이전트 ↔ 목표 목록 → 출력",
+    "source_page": 194
+  },
+  {
+    "id": "img-p197-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p197-0.mmd",
+    "caption_ko": "그림 1: AI 에이전트 예외 처리의 핵심 구성요소 — 오류 감지 → 오류 처리 → 복구 사이클",
+    "alt_ko": "예외 처리 3단계 플로우차트: 오류 감지 → 오류 처리 → 복구 → (반복)",
+    "source_page": 197
+  },
+  {
+    "id": "img-p202-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p202-0.mmd",
+    "caption_ko": "그림 2: 예외 처리 설계 패턴 — 에이전트 출력의 예외를 감지하고 재처리하는 피드백 루프",
+    "alt_ko": "예외 처리 패턴 플로우차트: 사용자 → 프롬프트 → 에이전트 → 예외 처리 → 재시도",
+    "source_page": 202
+  },
+  {
+    "id": "img-p211-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p211-0.mmd",
+    "caption_ko": "그림 1: 휴먼인더루프(Human-in-the-Loop) 설계 패턴 — 에이전트가 인간 피드백을 받아 응답을 개선",
+    "alt_ko": "휴먼인더루프 패턴 플로우차트: 사용자 → 프롬프트 → 에이전트 ↔ 인간 → 출력",
+    "source_page": 211
+  },
+  {
+    "id": "img-p215-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p215-0.mmd",
+    "caption_ko": "그림 1: RAG 핵심 개념 — 쿼리 임베딩과 외부 문서 청킹·임베딩을 벡터 DB에서 유사도 검색하여 응답 합성",
+    "alt_ko": "RAG 핵심 개념 플로우차트: 쿼리 → 임베딩 → 벡터 DB(청크 임베딩) + 외부 문서 → 응답 합성",
+    "source_page": 215
+  },
+  {
+    "id": "img-p218-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p218-0.mmd",
+    "caption_ko": "단순 RAG와 에이전틱 RAG 비교 — 벡터 검색 기반 단순 파이프라인 대 다중 소스 도구 선택 방식",
+    "alt_ko": "단순 RAG(쿼리 벡터 → 청크 → LLM)와 에이전틱 RAG(도구 선택 → 다중 소스 → LLM) 비교 플로우차트",
+    "source_page": 218
+  },
+  {
+    "id": "img-p227-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p227-0.mmd",
+    "caption_ko": "지식 검색 패턴 — 에이전트가 데이터베이스에서 정보를 검색하여 응답 생성",
+    "alt_ko": "지식 검색 패턴 플로우차트: 사용자 → 프롬프트 → 에이전트 ↔ 데이터베이스 → 출력",
+    "source_page": 227
+  },
+  {
+    "id": "img-p228-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p228-0.mmd",
+    "caption_ko": "그림 3: 지식 검색 패턴 — AI 에이전트가 웹 검색을 통해 정보를 수집하고 합성하여 출력 생성",
+    "alt_ko": "지식 검색 설계 패턴 플로우차트: 사용자 → 프롬프트 → 에이전트 ↔ 웹 검색 → 출력",
+    "source_page": 228
+  },
+  {
+    "id": "img-p237-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p237-0.png",
+    "caption_ko": "그림 1: A2A 프로토콜과 MCP 프로토콜 비교 — 에이전트 간 통신(A2A)과 모델-도구 통신(MCP)의 구조적 차이",
+    "alt_ko": "A2A 프로토콜과 MCP 비교 다이어그램 (컬러 2패널)",
+    "source_page": 237
+  },
+  {
+    "id": "img-p243-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p243-0.mmd",
+    "caption_ko": "그림 2: A2A 에이전트 간 통신 패턴 — 중앙 에이전트가 여러 서브 에이전트와 양방향 통신",
+    "alt_ko": "A2A 통신 패턴 플로우차트: 사용자 → 프롬프트 → 에이전트 ↔ 에이전트 N개 → 출력",
+    "source_page": 243
+  },
+  {
+    "id": "img-p257-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p257-0.png",
+    "caption_ko": "그림 1: OpenRouter 웹사이트 — LLM 통합 인터페이스로 다양한 모델에 접근하는 플랫폼",
+    "alt_ko": "OpenRouter 웹사이트 스크린샷",
+    "source_page": 257
+  },
+  {
+    "id": "img-p260-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p260-0.mmd",
+    "caption_ko": "그림 2: 리소스 인식 최적화 설계 패턴 — 에이전트가 예산 제약 내에서 작업을 수행",
+    "alt_ko": "리소스 인식 최적화 패턴 플로우차트: 사용자 → 프롬프트 → 에이전트 ↔ 예산 → 출력",
+    "source_page": 260
+  },
+  {
+    "id": "img-p264-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p264-0.mmd",
+    "caption_ko": "그림 1: 연쇄적 사고(CoT) — 입력에서 단계별 추론(A→B→…→Z)을 거쳐 최종 답변 도출",
+    "alt_ko": "CoT(연쇄적 사고) 플로우차트: 입력 → 추론 단계 A·B·...·Z → 답변",
+    "source_page": 264
+  },
+  {
+    "id": "img-p267-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p267-0.mmd",
+    "caption_ko": "그림 2: 사고의 나무(ToT) — 입력에서 여러 추론 경로가 분기되어 최적 경로를 선택해 답변 도출",
+    "alt_ko": "ToT(사고의 나무) 플로우차트: 입력 → 다중 분기 경로 → 최적 답변",
+    "source_page": 267
+  },
+  {
+    "id": "img-p272-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p272-0.png",
+    "caption_ko": "그림 3: ReAct(추론 및 행동) — 프롬프트에서 ReAct 루프를 통해 공개/비공개 지식 베이스를 조회하고 사고·행동·관찰을 반복하여 답변 생성",
+    "alt_ko": "ReAct(추론 및 행동) 패턴 컬러 다이어그램",
+    "source_page": 272
+  },
+  {
+    "id": "img-p274-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p274-0.png",
+    "caption_ko": "그림 4: MASS(멀티 에이전트 시스템 검색) 프레임워크 — 블록 수준 프롬프트 최적화, 워크플로우 토폴로지 최적화, 워크플로우 수준 프롬프트 최적화 3단계",
+    "alt_ko": "MASS 프레임워크 3단계 최적화 다이어그램",
+    "source_page": 274
+  },
+  {
+    "id": "img-p276-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p276-0.png",
+    "caption_ko": "그림 5: Google Deep Research 정보 수집 에이전트 — 전기차 장단점 비교 리서치 계획 화면",
+    "alt_ko": "Google Deep Research 리서치 계획 스크린샷",
+    "source_page": 276
+  },
+  {
+    "id": "img-p279-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p279-0.mmd",
+    "caption_ko": "그림 6: 다중 반성 단계를 포함한 DeepSearch 예시 — 질문 → 쿼리 생성 → 웹 검색 → 반성 루프 → 답변 생성",
+    "alt_ko": "DeepSearch 플로우차트: 질문 → 쿼리 생성 → 웹 검색 → 반성 → 충분 시 답변 생성",
+    "source_page": 279
+  },
+  {
+    "id": "img-p283-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p283-0.mmd",
+    "caption_ko": "그림 7: 추론 설계 패턴 — 에이전트가 사고(Thinking) 모듈과 상호작용하며 출력 생성",
+    "alt_ko": "추론 패턴 플로우차트: 사용자 → 프롬프트 → 에이전트 ↔ 사고 → 출력",
+    "source_page": 283
+  },
+  {
+    "id": "img-p304-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p304-0.mmd",
+    "caption_ko": "그림 1: 가드레일 설계 패턴 — 입력 검증·방어적 프롬프팅·출력 검증을 통해 안전한 응답 보장",
+    "alt_ko": "가드레일 패턴 플로우차트: 사용자 → 프롬프트 → 입력 검증 → 에이전트 → 출력 검증 → 사용자",
+    "source_page": 304
+  },
+  {
+    "id": "img-p306-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p306-0.png",
+    "caption_ko": "에이전트 성능 모니터링 및 평가 5단계 피라미드 — 명확한 목표 정의, 정량/정성 데이터 결합, 데이터 수집, 보상/인센티브, 피드백 제공",
+    "alt_ko": "에이전트 성능 모니터링 5단계 컬러 피라미드 인포그래픽",
+    "source_page": 306
+  },
+  {
+    "id": "img-p319-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p319-0.mmd",
+    "caption_ko": "그림 2: 에이전트 간 계약 실행 예시 — 계약 제출 → 평가 → 수정 또는 실행 → 작업 해결 → 납품물",
+    "alt_ko": "계약 실행 플로우차트: 계약 제출 → 계약 평가 → 계약 수정/실행 → 작업 해결 → 납품물",
+    "source_page": 319
+  },
+  {
+    "id": "img-p321-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p321-0.png",
+    "caption_ko": "그림 3: Google ADK 평가 지원 화면 — 에이전트 세션·이벤트·도구 호출 추적 인터페이스",
+    "alt_ko": "Google ADK 에이전트 평가 UI 스크린샷",
+    "source_page": 321
+  },
+  {
+    "id": "img-p322-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p322-0.mmd",
+    "caption_ko": "그림 4: 평가 및 모니터링 설계 패턴 — 에이전트 출력이 관찰자 메트릭을 통해 알람으로 연결되고 개선 피드백 루프 형성",
+    "alt_ko": "평가 및 모니터링 패턴 플로우차트: 사용자 → 프롬프트 → 에이전트 → 출력 + 관찰자 메트릭 → 알람 → 피드백",
+    "source_page": 322
+  },
+  {
+    "id": "img-p333-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p333-0.mmd",
+    "caption_ko": "그림 1: 우선순위 지정 설계 패턴 — 에이전트가 우선순위 목록을 참조하여 작업을 수행",
+    "alt_ko": "우선순위 패턴 플로우차트: 사용자 → 프롬프트 → 에이전트 ↔ 우선순위 목록 → 출력",
+    "source_page": 333
+  },
+  {
+    "id": "img-p337-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p337-0.png",
+    "caption_ko": "그림 1: AI 공동 과학자 개요 — 과학자가 연구 목표를 지정하면 슈퍼바이저·생성·검토·순위·진화·근접·메타 검토 에이전트가 협력하여 연구 아이디어 토너먼트를 수행",
+    "alt_ko": "AI 공동 과학자 멀티 에이전트 아키텍처 다이어그램",
+    "source_page": 337
+  },
+  {
+    "id": "img-p346-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p346-0.mmd",
+    "caption_ko": "그림 2: 탐색 및 발견 설계 패턴 — 에이전트가 비평 에이전트와 협력하여 가설(HP)을 탐색하고 출력 생성",
+    "alt_ko": "탐색 및 발견 패턴 플로우차트: 사용자 → 프롬프트 → 에이전트 ↔ 비평 에이전트 + 가설 목록 → 출력",
+    "source_page": 346
+  },
+  {
+    "id": "img-p371-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p371-0.png",
+    "caption_ko": "그림 1: Google Gem 사용 예시 — ADK 코드 리뷰어 Gem 설정 및 지식 베이스 구성 화면",
+    "alt_ko": "Google Gemini Gem 설정 스크린샷 (ADK 코드 리뷰어)",
+    "source_page": 371
+  },
+  {
+    "id": "img-p379-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p379-0.mmd",
+    "caption_ko": "그림 1: 에이전트와 웹 브라우저 간 상호작용 — 에이전트가 웹 브라우저를 도구로 활용",
+    "alt_ko": "에이전트-웹 브라우저 상호작용 다이어그램",
+    "source_page": 379
+  },
+  {
+    "id": "img-p394-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p394-0.png",
+    "caption_ko": "그림 1: Google Cloud Console에서 AgentSpace에 액세스하는 방법 — 앱 유형 선택 화면",
+    "alt_ko": "Google Cloud Console AgentSpace 앱 유형 선택 스크린샷",
+    "source_page": 394
+  },
+  {
+    "id": "img-p394-1",
+    "type": "png",
+    "asset_path": "assets/images/img-p394-1.png",
+    "caption_ko": "그림 1: Google Cloud Console에서 AgentSpace에 액세스 — 액션 추가 및 서비스 연결 화면",
+    "alt_ko": "Google Cloud Console AgentSpace 액션 추가 스크린샷",
+    "source_page": 394
+  },
+  {
+    "id": "img-p395-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p395-0.png",
+    "caption_ko": "그림 3: Google 사전 조립된 프롬프트 갤러리 — 다양한 프롬프트 템플릿 목록",
+    "alt_ko": "Google AgentSpace 프롬프트 갤러리 스크린샷",
+    "source_page": 395
+  },
+  {
+    "id": "img-p396-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p396-0.png",
+    "caption_ko": "그림 4: 에이전트 프롬프트 커스터마이징 화면 — 작성 보조 에이전트 프롬프트 생성 폼",
+    "alt_ko": "에이전트 프롬프트 커스터마이징 스크린샷",
+    "source_page": 396
+  },
+  {
+    "id": "img-p397-0",
+    "type": "png",
+    "asset_path": "assets/images/img-p397-0.png",
+    "caption_ko": "그림 5: AgentSpace 고급 기능 — AI Applications 구성 화면 (지식 그래프 설정)",
+    "alt_ko": "AgentSpace 고급 기능 설정 스크린샷",
+    "source_page": 397
+  },
+  {
+    "id": "img-p397-1",
+    "type": "png",
+    "asset_path": "assets/images/img-p397-1.png",
+    "caption_ko": "그림 5: AgentSpace 고급 기능 — Google Agentspace 검색 인터페이스",
+    "alt_ko": "Google Agentspace 검색 UI 스크린샷",
+    "source_page": 397
+  },
+  {
+    "id": "img-p408-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p408-0.mmd",
+    "caption_ko": "그림 1: 코딩 전문가 에이전트 구성 — 스캐폴더·테스트·문서화·최적화·슈퍼바이저 에이전트가 협력하여 프로젝트 코드베이스에 기여",
+    "alt_ko": "코딩 전문가 에이전트 파이프라인 플로우차트",
+    "source_page": 408
+  },
+  {
+    "id": "img-p414-0",
+    "type": "mermaid",
+    "asset_path": "assets/diagrams/img-p414-0.mmd",
+    "caption_ko": "그림 1: 코딩 전문가 에이전트 구성 (중복) — 스캐폴더·테스트·문서화·최적화·슈퍼바이저 에이전트가 협력하여 프로젝트 코드베이스에 기여",
+    "alt_ko": "코딩 전문가 에이전트 파이프라인 플로우차트 (부록 G 중복 수록본)",
+    "source_page": 414
+  }
+]
