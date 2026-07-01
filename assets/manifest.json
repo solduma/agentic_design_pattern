@@ -1,0 +1,1665 @@
+{
+  "_schema_notes": {
+    "para_count": "Text blocks separated by >=1 blank line, EXCLUDING code blocks (W3-H6)",
+    "token_count": "Pure-text tokens (code removed) via tiktoken cl100k_base (W3-H6)",
+    "total_tokens": "All tokens including code via tiktoken cl100k_base",
+    "code_ratio": "code_tokens / total_tokens; code_tokens = total_tokens - token_count",
+    "footnote_count": "Heuristic footnote paragraph count (W6 completeness gate)",
+    "status": "ok | MISSING | DUPLICATE",
+    "disposition": "translate | keep-english | omit-with-notice (only 'index' may be omit-with-notice)",
+    "tokenizer": "tiktoken cl100k_base (fixed, W3-H7)"
+  },
+  "pdf_total_pages": 482,
+  "empirical_section_count": 36,
+  "image_count": 65,
+  "sections": [
+    {
+      "id": "foreword",
+      "title": "Foreword",
+      "page_range": [
+        7,
+        9
+      ],
+      "checksum": "e94a591ec0a8dc51918ef59bf68b4187",
+      "para_count": 21,
+      "token_count": 1782,
+      "total_tokens": 1782,
+      "code_ratio": 0.0,
+      "footnote_count": 0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "foreword"
+    },
+    {
+      "id": "preface",
+      "title": "Preface",
+      "page_range": [
+        10,
+        13
+      ],
+      "checksum": "83c5760cda1cf9ca0a92a5931b933d5d",
+      "para_count": 4,
+      "token_count": 1840,
+      "total_tokens": 1840,
+      "code_ratio": 0.0,
+      "footnote_count": 0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "preface"
+    },
+    {
+      "id": "frameworks-intro",
+      "title": "Frameworks Introduction",
+      "page_range": [
+        14,
+        22
+      ],
+      "checksum": "6af455bb5537241ebe04a1db0da36493",
+      "para_count": 14,
+      "token_count": 3466,
+      "total_tokens": 3466,
+      "code_ratio": 0.0,
+      "footnote_count": 0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "frameworks-intro"
+    },
+    {
+      "id": "ch01",
+      "title": "Chapter 1: Prompt Chaining",
+      "page_range": [
+        23,
+        35
+      ],
+      "checksum": "15b91f44cf49ccfc81e6b1d262ef46a3",
+      "para_count": 25,
+      "token_count": 5391,
+      "total_tokens": 5494,
+      "code_ratio": 0.0187,
+      "footnote_count": 7,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "ch01"
+    },
+    {
+      "id": "ch02",
+      "title": "Chapter 2: Routing",
+      "page_range": [
+        36,
+        49
+      ],
+      "checksum": "08d09eb78ac0fbde4597c23087324ae5",
+      "para_count": 48,
+      "token_count": 4545,
+      "total_tokens": 5595,
+      "code_ratio": 0.1877,
+      "footnote_count": 0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "ch02"
+    },
+    {
+      "id": "ch03",
+      "title": "Chapter 3: Parallelization",
+      "page_range": [
+        50,
+        64
+      ],
+      "checksum": "5602e5d15f04402874b7c676b71ab06a",
+      "para_count": 52,
+      "token_count": 4969,
+      "total_tokens": 5523,
+      "code_ratio": 0.1003,
+      "footnote_count": 7,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "ch03"
+    },
+    {
+      "id": "ch04",
+      "title": "Chapter 4: Reflection",
+      "page_range": [
+        65,
+        78
+      ],
+      "checksum": "56a8fd7d395904ccffcc74dd6fde6935",
+      "para_count": 38,
+      "token_count": 4494,
+      "total_tokens": 5100,
+      "code_ratio": 0.1188,
+      "footnote_count": 16,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "ch04"
+    },
+    {
+      "id": "ch05",
+      "title": "Chapter 5: Tool Use (Function Calling)",
+      "page_range": [
+        79,
+        99
+      ],
+      "checksum": "588f340f1cb47df4ab0660b9c27e978e",
+      "para_count": 81,
+      "token_count": 7133,
+      "total_tokens": 8425,
+      "code_ratio": 0.1534,
+      "footnote_count": 7,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "ch05"
+    },
+    {
+      "id": "ch06",
+      "title": "Chapter 6: Planning",
+      "page_range": [
+        100,
+        112
+      ],
+      "checksum": "15a82c07903fa26c29c0ebed0edd02fd",
+      "para_count": 49,
+      "token_count": 4109,
+      "total_tokens": 4597,
+      "code_ratio": 0.1062,
+      "footnote_count": 1,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "ch06"
+    },
+    {
+      "id": "ch07",
+      "title": "Chapter 7: Multi-Agent Collaboration",
+      "page_range": [
+        113,
+        131
+      ],
+      "checksum": "de925728a01d9b60addcccdce0eff5e4",
+      "para_count": 66,
+      "token_count": 5791,
+      "total_tokens": 6734,
+      "code_ratio": 0.14,
+      "footnote_count": 6,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "ch07"
+    },
+    {
+      "id": "ch08",
+      "title": "Chapter 8: Memory Management",
+      "page_range": [
+        132,
+        153
+      ],
+      "checksum": "0104a23f725b45ddfaa719f5629cbd74",
+      "para_count": 101,
+      "token_count": 7539,
+      "total_tokens": 8279,
+      "code_ratio": 0.0894,
+      "footnote_count": 0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "ch08"
+    },
+    {
+      "id": "ch09",
+      "title": "Chapter 9: Learning and Adaptation",
+      "page_range": [
+        154,
+        166
+      ],
+      "checksum": "cedc80c8a53c3ed02542c33916fc9ec5",
+      "para_count": 26,
+      "token_count": 4684,
+      "total_tokens": 4719,
+      "code_ratio": 0.0074,
+      "footnote_count": 0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "ch09"
+    },
+    {
+      "id": "ch10",
+      "title": "Chapter 10: Model Context Protocol",
+      "page_range": [
+        167,
+        182
+      ],
+      "checksum": "edbded95b02f0d879a959e271cd88038",
+      "para_count": 45,
+      "token_count": 6123,
+      "total_tokens": 6694,
+      "code_ratio": 0.0853,
+      "footnote_count": 0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "ch10"
+    },
+    {
+      "id": "ch11",
+      "title": "Chapter 11: Goal Setting and Monitoring",
+      "page_range": [
+        183,
+        195
+      ],
+      "checksum": "b78b47c5d9629bf0e125549b8a5a8915",
+      "para_count": 61,
+      "token_count": 4298,
+      "total_tokens": 4663,
+      "code_ratio": 0.0783,
+      "footnote_count": 0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "ch11"
+    },
+    {
+      "id": "ch12",
+      "title": "Chapter 12: Exception Handling",
+      "page_range": [
+        196,
+        203
+      ],
+      "checksum": "3b46edd1d763325fed55dd6ca7f13f06",
+      "para_count": 19,
+      "token_count": 2698,
+      "total_tokens": 2770,
+      "code_ratio": 0.026,
+      "footnote_count": 0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "ch12"
+    },
+    {
+      "id": "ch13",
+      "title": "Chapter 13: Human-in-the-Loop",
+      "page_range": [
+        204,
+        212
+      ],
+      "checksum": "da9010e62d4afb2054fb7d3860078d9e",
+      "para_count": 24,
+      "token_count": 3521,
+      "total_tokens": 3766,
+      "code_ratio": 0.0651,
+      "footnote_count": 4,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "ch13"
+    },
+    {
+      "id": "ch14",
+      "title": "Chapter 14: Knowledge Retrieval (RAG)",
+      "page_range": [
+        213,
+        230
+      ],
+      "checksum": "1a57bc5704a806a6409320d872ff2de1",
+      "para_count": 60,
+      "token_count": 6526,
+      "total_tokens": 6797,
+      "code_ratio": 0.0399,
+      "footnote_count": 0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "ch14"
+    },
+    {
+      "id": "ch15",
+      "title": "Chapter 15: Inter-Agent Communication",
+      "page_range": [
+        231,
+        245
+      ],
+      "checksum": "912e210f643ea710348bd906c82cb711",
+      "para_count": 36,
+      "token_count": 4245,
+      "total_tokens": 5421,
+      "code_ratio": 0.2169,
+      "footnote_count": 0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "ch15"
+    },
+    {
+      "id": "ch16",
+      "title": "Chapter 16: Resource-Aware Optimization",
+      "page_range": [
+        246,
+        261
+      ],
+      "checksum": "c60337605f7c4516bdc06c350439d15d",
+      "para_count": 52,
+      "token_count": 5050,
+      "total_tokens": 5729,
+      "code_ratio": 0.1185,
+      "footnote_count": 0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "ch16"
+    },
+    {
+      "id": "ch17",
+      "title": "Chapter 17: Reasoning Techniques",
+      "page_range": [
+        262,
+        285
+      ],
+      "checksum": "d62515738048bda5dcd3c0499890db0e",
+      "para_count": 72,
+      "token_count": 9249,
+      "total_tokens": 9366,
+      "code_ratio": 0.0125,
+      "footnote_count": 15,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "ch17"
+    },
+    {
+      "id": "ch18",
+      "title": "Chapter 18: Guardrails/Safety Patterns",
+      "page_range": [
+        286,
+        305
+      ],
+      "checksum": "d2d2ac8a62d10be42d6d747d8b148a9d",
+      "para_count": 79,
+      "token_count": 7437,
+      "total_tokens": 8688,
+      "code_ratio": 0.144,
+      "footnote_count": 14,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "ch18"
+    },
+    {
+      "id": "ch19",
+      "title": "Chapter 19: Evaluation and Monitoring",
+      "page_range": [
+        306,
+        324
+      ],
+      "checksum": "8d1dbf6ec83577c1f8f73b927118cb95",
+      "para_count": 54,
+      "token_count": 6824,
+      "total_tokens": 7360,
+      "code_ratio": 0.0728,
+      "footnote_count": 5,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "ch19"
+    },
+    {
+      "id": "ch20",
+      "title": "Chapter 20: Prioritization",
+      "page_range": [
+        325,
+        334
+      ],
+      "checksum": "6aaaf529cee4a715bf9409d2dcbbc7a3",
+      "para_count": 43,
+      "token_count": 3004,
+      "total_tokens": 4012,
+      "code_ratio": 0.2512,
+      "footnote_count": 4,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "ch20"
+    },
+    {
+      "id": "ch21",
+      "title": "Chapter 21: Exploration and Discovery",
+      "page_range": [
+        335,
+        348
+      ],
+      "checksum": "83430d2e988996da3de832233f8fb48d",
+      "para_count": 30,
+      "token_count": 4703,
+      "total_tokens": 5574,
+      "code_ratio": 0.1563,
+      "footnote_count": 0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "ch21"
+    },
+    {
+      "id": "appendix-a",
+      "title": "Appendix A: Advanced Prompting Techniques",
+      "page_range": [
+        349,
+        377
+      ],
+      "checksum": "6796c0194eebd831fdca2a2823c8d967",
+      "para_count": 45,
+      "token_count": 12301,
+      "total_tokens": 12521,
+      "code_ratio": 0.0176,
+      "footnote_count": 1,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "appendix-a"
+    },
+    {
+      "id": "appendix-b",
+      "title": "Appendix B: AI Agentic Interactions",
+      "page_range": [
+        378,
+        384
+      ],
+      "checksum": "810e39db0f61a6727f66dc63fa659a21",
+      "para_count": 10,
+      "token_count": 3181,
+      "total_tokens": 3181,
+      "code_ratio": 0.0,
+      "footnote_count": 0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "appendix-b"
+    },
+    {
+      "id": "appendix-c",
+      "title": "Appendix C: Quick Overview of Agentic Frameworks",
+      "page_range": [
+        385,
+        392
+      ],
+      "checksum": "1727df28ebea9b6b5578abe9df306119",
+      "para_count": 23,
+      "token_count": 3161,
+      "total_tokens": 3326,
+      "code_ratio": 0.0496,
+      "footnote_count": 0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "appendix-c"
+    },
+    {
+      "id": "appendix-d",
+      "title": "Appendix D: Building an Agent with ADK",
+      "page_range": [
+        393,
+        398
+      ],
+      "checksum": "baca2147c816b7cc63d58f37b60f67c6",
+      "para_count": 19,
+      "token_count": 879,
+      "total_tokens": 879,
+      "code_ratio": 0.0,
+      "footnote_count": 0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "appendix-d"
+    },
+    {
+      "id": "appendix-e",
+      "title": "Appendix E: AI Agents on the CLI",
+      "page_range": [
+        399,
+        403
+      ],
+      "checksum": "138a0deb386c1492b63ebe4b9a154566",
+      "para_count": 7,
+      "token_count": 2260,
+      "total_tokens": 2260,
+      "code_ratio": 0.0,
+      "footnote_count": 0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "appendix-e"
+    },
+    {
+      "id": "appendix-f",
+      "title": "Appendix F",
+      "page_range": [
+        null,
+        null
+      ],
+      "checksum": "",
+      "para_count": 0,
+      "token_count": 0,
+      "total_tokens": 0,
+      "code_ratio": 0.0,
+      "footnote_count": 0,
+      "status": "MISSING",
+      "disposition": "translate",
+      "anchor_slug": "appendix-f"
+    },
+    {
+      "id": "appendix-g",
+      "title": "Appendix G: Coding Agents",
+      "page_range": [
+        404,
+        415
+      ],
+      "checksum": "6b2a45af0fdb89f6055852c4516f5e3b",
+      "para_count": 8,
+      "token_count": 2771,
+      "total_tokens": 2771,
+      "code_ratio": 0.0,
+      "footnote_count": 0,
+      "status": "DUPLICATE",
+      "disposition": "translate",
+      "anchor_slug": "appendix-g",
+      "duplicate_delta_bytes": 0,
+      "duplicate_info": {
+        "md5_first": "6b2a45af0fdb89f6055852c4516f5e3b",
+        "md5_second": "6b2a45af0fdb89f6055852c4516f5e3b",
+        "diff_lines_sample": [],
+        "adopted": "first"
+      }
+    },
+    {
+      "id": "conclusion",
+      "title": "Conclusion",
+      "page_range": [
+        416,
+        420
+      ],
+      "checksum": "7291bdb43056e67f614b85a51c7a04d8",
+      "para_count": 6,
+      "token_count": 2472,
+      "total_tokens": 2472,
+      "code_ratio": 0.0,
+      "footnote_count": 0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "conclusion"
+    },
+    {
+      "id": "glossary",
+      "title": "Glossary",
+      "page_range": [
+        421,
+        436
+      ],
+      "checksum": "0023c05f7893028ec4f1c7a210aa2381",
+      "para_count": 33,
+      "token_count": 1822,
+      "total_tokens": 1822,
+      "code_ratio": 0.0,
+      "footnote_count": 0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "glossary"
+    },
+    {
+      "id": "index",
+      "title": "Index of Terms",
+      "page_range": [
+        437,
+        444
+      ],
+      "checksum": "0e47a855c427afdb5766534b8e46bbe5",
+      "para_count": 10,
+      "token_count": 4174,
+      "total_tokens": 4174,
+      "code_ratio": 0.0,
+      "footnote_count": 0,
+      "status": "ok",
+      "disposition": "omit-with-notice",
+      "anchor_slug": "index"
+    },
+    {
+      "id": "gemini-transcript",
+      "title": "Gemini Reasoning Transcript (FAQ sub-page)",
+      "page_range": [
+        445,
+        448
+      ],
+      "checksum": "74c5ec4effdec016377e6f1daf743a4c",
+      "para_count": 6,
+      "token_count": 1428,
+      "total_tokens": 1428,
+      "code_ratio": 0.0,
+      "footnote_count": 2,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "gemini-transcript"
+    },
+    {
+      "id": "faq",
+      "title": "Frequently Asked Questions",
+      "page_range": [
+        477,
+        482
+      ],
+      "checksum": "cd41972680af82902dffcef6524f9bab",
+      "para_count": 6,
+      "token_count": 3399,
+      "total_tokens": 3399,
+      "code_ratio": 0.0,
+      "footnote_count": 1,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "faq"
+    }
+  ],
+  "images": [
+    {
+      "id": "img-p2-0",
+      "page": 2,
+      "page_idx": 0,
+      "section_id": null,
+      "caption": "",
+      "filename": "img-p2-0.png",
+      "width": 2048,
+      "height": 2048
+    },
+    {
+      "id": "img-p14-0",
+      "page": 14,
+      "page_idx": 0,
+      "section_id": "frameworks-intro",
+      "caption": "",
+      "filename": "img-p14-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p15-0",
+      "page": 15,
+      "page_idx": 0,
+      "section_id": "frameworks-intro",
+      "caption": "Fig.1: Agentic AI functions as an intelligent assistant, continuously learning through",
+      "filename": "img-p15-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p18-0",
+      "page": 18,
+      "page_idx": 0,
+      "section_id": "frameworks-intro",
+      "caption": "Fig. 3: Various instances demonstrating the spectrum of agent complexity.",
+      "filename": "img-p18-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p20-0",
+      "page": 20,
+      "page_idx": 0,
+      "section_id": "frameworks-intro",
+      "caption": "Fig. 4: Five hypotheses about the future of agents",
+      "filename": "img-p20-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p31-0",
+      "page": 31,
+      "page_idx": 0,
+      "section_id": "ch01",
+      "caption": "Fig.1: Context Engineering is the discipline of building a rich, comprehensive",
+      "filename": "img-p31-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p34-0",
+      "page": 34,
+      "page_idx": 0,
+      "section_id": "ch01",
+      "caption": "Fig. 2: Prompt Chaining Pattern: Agents receive a series of prompts from the user, with",
+      "filename": "img-p34-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p48-0",
+      "page": 48,
+      "page_idx": 0,
+      "section_id": "ch02",
+      "caption": "Fig.1: Router pattern, using an LLM as a Router",
+      "filename": "img-p48-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p51-0",
+      "page": 51,
+      "page_idx": 0,
+      "section_id": "ch03",
+      "caption": "Fig.1. Example of parallelization with sub-agents",
+      "filename": "img-p51-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p63-0",
+      "page": 63,
+      "page_idx": 0,
+      "section_id": "ch03",
+      "caption": "Fig.2: Parallelization design pattern",
+      "filename": "img-p63-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p75-0",
+      "page": 75,
+      "page_idx": 0,
+      "section_id": "ch04",
+      "caption": "Fig. 1: Reflection design pattern, self-reflection",
+      "filename": "img-p75-0.png",
+      "width": 2048,
+      "height": 1422
+    },
+    {
+      "id": "img-p76-0",
+      "page": 76,
+      "page_idx": 0,
+      "section_id": "ch04",
+      "caption": "Fig.2: Reflection design pattern, producer and critique agent",
+      "filename": "img-p76-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p82-0",
+      "page": 82,
+      "page_idx": 0,
+      "section_id": "ch05",
+      "caption": "Fig.1: Some examples of an Agent using Tools",
+      "filename": "img-p82-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p98-0",
+      "page": 98,
+      "page_idx": 0,
+      "section_id": "ch05",
+      "caption": "Fig.2: Tool use design pattern",
+      "filename": "img-p98-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p104-0",
+      "page": 104,
+      "page_idx": 0,
+      "section_id": "ch06",
+      "caption": "Fig. 1: Google Deep Research agent generating an execution plan for using Google",
+      "filename": "img-p104-0.png",
+      "width": 1270,
+      "height": 1252
+    },
+    {
+      "id": "img-p105-0",
+      "page": 105,
+      "page_idx": 0,
+      "section_id": "ch06",
+      "caption": "",
+      "filename": "img-p105-0.png",
+      "width": 1976,
+      "height": 1708
+    },
+    {
+      "id": "img-p106-0",
+      "page": 106,
+      "page_idx": 0,
+      "section_id": "ch06",
+      "caption": "Fig. 2: An example of Deep Research plan being executed, resulting in Google Search",
+      "filename": "img-p106-0.png",
+      "width": 1948,
+      "height": 1688
+    },
+    {
+      "id": "img-p111-0",
+      "page": 111,
+      "page_idx": 0,
+      "section_id": "ch06",
+      "caption": "",
+      "filename": "img-p111-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p115-0",
+      "page": 115,
+      "page_idx": 0,
+      "section_id": "ch07",
+      "caption": "Fig.1: Example of multi-agent system",
+      "filename": "img-p115-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p118-0",
+      "page": 118,
+      "page_idx": 0,
+      "section_id": "ch07",
+      "caption": "Fig. 2: Agents communicate and interact in various ways.",
+      "filename": "img-p118-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p130-0",
+      "page": 130,
+      "page_idx": 0,
+      "section_id": "ch07",
+      "caption": "Fig.3: Multi-Agent design pattern",
+      "filename": "img-p130-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p151-0",
+      "page": 151,
+      "page_idx": 0,
+      "section_id": "ch08",
+      "caption": "Fig.1: Memory management design pattern",
+      "filename": "img-p151-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p158-0",
+      "page": 158,
+      "page_idx": 0,
+      "section_id": "ch09",
+      "caption": "Fig.1: SICA's self-improvement, learning and adapting based on its past versions",
+      "filename": "img-p158-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p159-0",
+      "page": 159,
+      "page_idx": 0,
+      "section_id": "ch09",
+      "caption": "",
+      "filename": "img-p159-0.png",
+      "width": 1130,
+      "height": 624
+    },
+    {
+      "id": "img-p162-0",
+      "page": 162,
+      "page_idx": 0,
+      "section_id": "ch09",
+      "caption": "Fig. 3: The OpenEvolve internal architecture is managed by a controller. This controlle",
+      "filename": "img-p162-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p164-0",
+      "page": 164,
+      "page_idx": 0,
+      "section_id": "ch09",
+      "caption": "Fig.4: Learning and adapting pattern",
+      "filename": "img-p164-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p181-0",
+      "page": 181,
+      "page_idx": 0,
+      "section_id": "ch10",
+      "caption": "Fig.1: Model Context protocol",
+      "filename": "img-p181-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p191-0",
+      "page": 191,
+      "page_idx": 0,
+      "section_id": "ch11",
+      "caption": "Fig.1: Goal Setting and Monitor example",
+      "filename": "img-p191-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p194-0",
+      "page": 194,
+      "page_idx": 0,
+      "section_id": "ch11",
+      "caption": "Fig.2: Goal design patterns",
+      "filename": "img-p194-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p197-0",
+      "page": 197,
+      "page_idx": 0,
+      "section_id": "ch12",
+      "caption": "Fig.1: Key components of exception handling and recovery for AI agents",
+      "filename": "img-p197-0.png",
+      "width": 1802,
+      "height": 1248
+    },
+    {
+      "id": "img-p202-0",
+      "page": 202,
+      "page_idx": 0,
+      "section_id": "ch12",
+      "caption": "Fig.2: Exception handling pattern",
+      "filename": "img-p202-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p211-0",
+      "page": 211,
+      "page_idx": 0,
+      "section_id": "ch13",
+      "caption": "Fig.1: Human in the loop design pattern",
+      "filename": "img-p211-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p215-0",
+      "page": 215,
+      "page_idx": 0,
+      "section_id": "ch14",
+      "caption": "Fig.1: RAG Core Concepts: Chunking, Embeddings, and Vector Database",
+      "filename": "img-p215-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p218-0",
+      "page": 218,
+      "page_idx": 0,
+      "section_id": "ch14",
+      "caption": "",
+      "filename": "img-p218-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p227-0",
+      "page": 227,
+      "page_idx": 0,
+      "section_id": "ch14",
+      "caption": "",
+      "filename": "img-p227-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p228-0",
+      "page": 228,
+      "page_idx": 0,
+      "section_id": "ch14",
+      "caption": "Fig. 3: Knowledge Retrieval pattern: an AI agent to find and synthesize information",
+      "filename": "img-p228-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p237-0",
+      "page": 237,
+      "page_idx": 0,
+      "section_id": "ch15",
+      "caption": "Fig.1: Comparison A2A and MCP Protocols",
+      "filename": "img-p237-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p243-0",
+      "page": 243,
+      "page_idx": 0,
+      "section_id": "ch15",
+      "caption": "Fig.2: A2A inter-agent communication pattern",
+      "filename": "img-p243-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p257-0",
+      "page": 257,
+      "page_idx": 0,
+      "section_id": "ch16",
+      "caption": "Fig. 1: OpenRouter Web site (https://openrouter.ai/)",
+      "filename": "img-p257-0.png",
+      "width": 1946,
+      "height": 1034
+    },
+    {
+      "id": "img-p260-0",
+      "page": 260,
+      "page_idx": 0,
+      "section_id": "ch16",
+      "caption": "Fig. 2: Resource-Aware Optimization Design Pattern",
+      "filename": "img-p260-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p264-0",
+      "page": 264,
+      "page_idx": 0,
+      "section_id": "ch17",
+      "caption": "Fig. 1: CoT prompt alongside the detailed, step-by-step response generated by the agent",
+      "filename": "img-p264-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p267-0",
+      "page": 267,
+      "page_idx": 0,
+      "section_id": "ch17",
+      "caption": "Fig.2: Example of Tree of Thoughts",
+      "filename": "img-p267-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p272-0",
+      "page": 272,
+      "page_idx": 0,
+      "section_id": "ch17",
+      "caption": "Fig.3: Reasoning and Act",
+      "filename": "img-p272-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p274-0",
+      "page": 274,
+      "page_idx": 0,
+      "section_id": "ch17",
+      "caption": "Fig. 4: (Courtesy of the Authors): The Multi-Agent System Search (MASS) Framework",
+      "filename": "img-p274-0.png",
+      "width": 1356,
+      "height": 542
+    },
+    {
+      "id": "img-p276-0",
+      "page": 276,
+      "page_idx": 0,
+      "section_id": "ch17",
+      "caption": "Fig. 5: Google Deep Research for Information Gathering",
+      "filename": "img-p276-0.png",
+      "width": 1314,
+      "height": 1402
+    },
+    {
+      "id": "img-p279-0",
+      "page": 279,
+      "page_idx": 0,
+      "section_id": "ch17",
+      "caption": "Fig. 6: (Courtesy of authors) Example of DeepSearch with multiple Reflection steps",
+      "filename": "img-p279-0.png",
+      "width": 959,
+      "height": 1474
+    },
+    {
+      "id": "img-p283-0",
+      "page": 283,
+      "page_idx": 0,
+      "section_id": "ch17",
+      "caption": "Fig. 7: Reasoning design pattern",
+      "filename": "img-p283-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p304-0",
+      "page": 304,
+      "page_idx": 0,
+      "section_id": "ch18",
+      "caption": "Fig. 1: Guardrail design pattern",
+      "filename": "img-p304-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p306-0",
+      "page": 306,
+      "page_idx": 0,
+      "section_id": "ch19",
+      "caption": "",
+      "filename": "img-p306-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p319-0",
+      "page": 319,
+      "page_idx": 0,
+      "section_id": "ch19",
+      "caption": "Fig. 2: Contract execution example among agents",
+      "filename": "img-p319-0.png",
+      "width": 2048,
+      "height": 1804
+    },
+    {
+      "id": "img-p321-0",
+      "page": 321,
+      "page_idx": 0,
+      "section_id": "ch19",
+      "caption": "Fig.3: Evaluation Support for Google ADK",
+      "filename": "img-p321-0.png",
+      "width": 2048,
+      "height": 1125
+    },
+    {
+      "id": "img-p322-0",
+      "page": 322,
+      "page_idx": 0,
+      "section_id": "ch19",
+      "caption": "Fig.4: Evaluation and Monitoring design pattern",
+      "filename": "img-p322-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p333-0",
+      "page": 333,
+      "page_idx": 0,
+      "section_id": "ch20",
+      "caption": "Fig.1: Prioritization Design pattern",
+      "filename": "img-p333-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p337-0",
+      "page": 337,
+      "page_idx": 0,
+      "section_id": "ch21",
+      "caption": "Fig. 1: (Courtesy of the Authors) AI Co-Scientist: Ideation to Validation",
+      "filename": "img-p337-0.png",
+      "width": 2048,
+      "height": 1240
+    },
+    {
+      "id": "img-p346-0",
+      "page": 346,
+      "page_idx": 0,
+      "section_id": "ch21",
+      "caption": "Fig.2: Exploration and Discovery design pattern",
+      "filename": "img-p346-0.png",
+      "width": 2048,
+      "height": 1445
+    },
+    {
+      "id": "img-p371-0",
+      "page": 371,
+      "page_idx": 0,
+      "section_id": "appendix-a",
+      "caption": "Fig.1: Example of Google Gem usage.",
+      "filename": "img-p371-0.png",
+      "width": 2048,
+      "height": 1623
+    },
+    {
+      "id": "img-p379-0",
+      "page": 379,
+      "page_idx": 0,
+      "section_id": "appendix-b",
+      "caption": "Fig.1: Interaction between and Agent and the Web Browser",
+      "filename": "img-p379-0.png",
+      "width": 2048,
+      "height": 809
+    },
+    {
+      "id": "img-p394-0",
+      "page": 394,
+      "page_idx": 0,
+      "section_id": "appendix-d",
+      "caption": "Fig. 1:  How to use Google Cloud Console to access AgentSpace",
+      "filename": "img-p394-0.png",
+      "width": 1212,
+      "height": 888
+    },
+    {
+      "id": "img-p394-1",
+      "page": 394,
+      "page_idx": 1,
+      "section_id": "appendix-d",
+      "caption": "Fig. 1:  How to use Google Cloud Console to access AgentSpace",
+      "filename": "img-p394-1.png",
+      "width": 1944,
+      "height": 1596
+    },
+    {
+      "id": "img-p395-0",
+      "page": 395,
+      "page_idx": 0,
+      "section_id": "appendix-d",
+      "caption": "Fig.3: Google's Gallery of Pre-assembled  prompts",
+      "filename": "img-p395-0.png",
+      "width": 2048,
+      "height": 1722
+    },
+    {
+      "id": "img-p396-0",
+      "page": 396,
+      "page_idx": 0,
+      "section_id": "appendix-d",
+      "caption": "Fig.4: Customizing the Agent's Prompt",
+      "filename": "img-p396-0.png",
+      "width": 1160,
+      "height": 1316
+    },
+    {
+      "id": "img-p397-0",
+      "page": 397,
+      "page_idx": 0,
+      "section_id": "appendix-d",
+      "caption": "Fig. 5: AgentSpace advanced capabilities",
+      "filename": "img-p397-0.png",
+      "width": 2018,
+      "height": 870
+    },
+    {
+      "id": "img-p397-1",
+      "page": 397,
+      "page_idx": 1,
+      "section_id": "appendix-d",
+      "caption": "Fig. 5: AgentSpace advanced capabilities",
+      "filename": "img-p397-1.png",
+      "width": 1622,
+      "height": 832
+    },
+    {
+      "id": "img-p408-0",
+      "page": 408,
+      "page_idx": 0,
+      "section_id": "appendix-g",
+      "caption": "Fig. 1:  Coding Specialist Examples",
+      "filename": "img-p408-0.png",
+      "width": 2048,
+      "height": 2048
+    },
+    {
+      "id": "img-p414-0",
+      "page": 414,
+      "page_idx": 0,
+      "section_id": "appendix-g",
+      "caption": "Fig. 1:  Coding Specialist Examples",
+      "filename": "img-p414-0.png",
+      "width": 2048,
+      "height": 2048
+    }
+  ],
+  "xref_registry": [
+    {
+      "type": "section",
+      "id": "foreword",
+      "title": "Foreword",
+      "anchor_slug": "foreword",
+      "page_range": [
+        7,
+        9
+      ]
+    },
+    {
+      "type": "section",
+      "id": "preface",
+      "title": "Preface",
+      "anchor_slug": "preface",
+      "page_range": [
+        10,
+        13
+      ]
+    },
+    {
+      "type": "section",
+      "id": "frameworks-intro",
+      "title": "Frameworks Introduction",
+      "anchor_slug": "frameworks-intro",
+      "page_range": [
+        14,
+        22
+      ]
+    },
+    {
+      "type": "section",
+      "id": "ch01",
+      "title": "Chapter 1: Prompt Chaining",
+      "anchor_slug": "ch01",
+      "page_range": [
+        23,
+        35
+      ]
+    },
+    {
+      "type": "section",
+      "id": "ch02",
+      "title": "Chapter 2: Routing",
+      "anchor_slug": "ch02",
+      "page_range": [
+        36,
+        49
+      ]
+    },
+    {
+      "type": "section",
+      "id": "ch03",
+      "title": "Chapter 3: Parallelization",
+      "anchor_slug": "ch03",
+      "page_range": [
+        50,
+        64
+      ]
+    },
+    {
+      "type": "section",
+      "id": "ch04",
+      "title": "Chapter 4: Reflection",
+      "anchor_slug": "ch04",
+      "page_range": [
+        65,
+        78
+      ]
+    },
+    {
+      "type": "section",
+      "id": "ch05",
+      "title": "Chapter 5: Tool Use (Function Calling)",
+      "anchor_slug": "ch05",
+      "page_range": [
+        79,
+        99
+      ]
+    },
+    {
+      "type": "section",
+      "id": "ch06",
+      "title": "Chapter 6: Planning",
+      "anchor_slug": "ch06",
+      "page_range": [
+        100,
+        112
+      ]
+    },
+    {
+      "type": "section",
+      "id": "ch07",
+      "title": "Chapter 7: Multi-Agent Collaboration",
+      "anchor_slug": "ch07",
+      "page_range": [
+        113,
+        131
+      ]
+    },
+    {
+      "type": "section",
+      "id": "ch08",
+      "title": "Chapter 8: Memory Management",
+      "anchor_slug": "ch08",
+      "page_range": [
+        132,
+        153
+      ]
+    },
+    {
+      "type": "section",
+      "id": "ch09",
+      "title": "Chapter 9: Learning and Adaptation",
+      "anchor_slug": "ch09",
+      "page_range": [
+        154,
+        166
+      ]
+    },
+    {
+      "type": "section",
+      "id": "ch10",
+      "title": "Chapter 10: Model Context Protocol",
+      "anchor_slug": "ch10",
+      "page_range": [
+        167,
+        182
+      ]
+    },
+    {
+      "type": "section",
+      "id": "ch11",
+      "title": "Chapter 11: Goal Setting and Monitoring",
+      "anchor_slug": "ch11",
+      "page_range": [
+        183,
+        195
+      ]
+    },
+    {
+      "type": "section",
+      "id": "ch12",
+      "title": "Chapter 12: Exception Handling",
+      "anchor_slug": "ch12",
+      "page_range": [
+        196,
+        203
+      ]
+    },
+    {
+      "type": "section",
+      "id": "ch13",
+      "title": "Chapter 13: Human-in-the-Loop",
+      "anchor_slug": "ch13",
+      "page_range": [
+        204,
+        212
+      ]
+    },
+    {
+      "type": "section",
+      "id": "ch14",
+      "title": "Chapter 14: Knowledge Retrieval (RAG)",
+      "anchor_slug": "ch14",
+      "page_range": [
+        213,
+        230
+      ]
+    },
+    {
+      "type": "section",
+      "id": "ch15",
+      "title": "Chapter 15: Inter-Agent Communication",
+      "anchor_slug": "ch15",
+      "page_range": [
+        231,
+        245
+      ]
+    },
+    {
+      "type": "section",
+      "id": "ch16",
+      "title": "Chapter 16: Resource-Aware Optimization",
+      "anchor_slug": "ch16",
+      "page_range": [
+        246,
+        261
+      ]
+    },
+    {
+      "type": "section",
+      "id": "ch17",
+      "title": "Chapter 17: Reasoning Techniques",
+      "anchor_slug": "ch17",
+      "page_range": [
+        262,
+        285
+      ]
+    },
+    {
+      "type": "section",
+      "id": "ch18",
+      "title": "Chapter 18: Guardrails/Safety Patterns",
+      "anchor_slug": "ch18",
+      "page_range": [
+        286,
+        305
+      ]
+    },
+    {
+      "type": "section",
+      "id": "ch19",
+      "title": "Chapter 19: Evaluation and Monitoring",
+      "anchor_slug": "ch19",
+      "page_range": [
+        306,
+        324
+      ]
+    },
+    {
+      "type": "section",
+      "id": "ch20",
+      "title": "Chapter 20: Prioritization",
+      "anchor_slug": "ch20",
+      "page_range": [
+        325,
+        334
+      ]
+    },
+    {
+      "type": "section",
+      "id": "ch21",
+      "title": "Chapter 21: Exploration and Discovery",
+      "anchor_slug": "ch21",
+      "page_range": [
+        335,
+        348
+      ]
+    },
+    {
+      "type": "section",
+      "id": "appendix-a",
+      "title": "Appendix A: Advanced Prompting Techniques",
+      "anchor_slug": "appendix-a",
+      "page_range": [
+        349,
+        377
+      ]
+    },
+    {
+      "type": "section",
+      "id": "appendix-b",
+      "title": "Appendix B: AI Agentic Interactions",
+      "anchor_slug": "appendix-b",
+      "page_range": [
+        378,
+        384
+      ]
+    },
+    {
+      "type": "section",
+      "id": "appendix-c",
+      "title": "Appendix C: Quick Overview of Agentic Frameworks",
+      "anchor_slug": "appendix-c",
+      "page_range": [
+        385,
+        392
+      ]
+    },
+    {
+      "type": "section",
+      "id": "appendix-d",
+      "title": "Appendix D: Building an Agent with ADK",
+      "anchor_slug": "appendix-d",
+      "page_range": [
+        393,
+        398
+      ]
+    },
+    {
+      "type": "section",
+      "id": "appendix-e",
+      "title": "Appendix E: AI Agents on the CLI",
+      "anchor_slug": "appendix-e",
+      "page_range": [
+        399,
+        403
+      ]
+    },
+    {
+      "type": "section",
+      "id": "appendix-f",
+      "title": "Appendix F",
+      "anchor_slug": "appendix-f",
+      "page_range": [
+        null,
+        null
+      ]
+    },
+    {
+      "type": "section",
+      "id": "appendix-g",
+      "title": "Appendix G: Coding Agents",
+      "anchor_slug": "appendix-g",
+      "page_range": [
+        404,
+        415
+      ]
+    },
+    {
+      "type": "section",
+      "id": "conclusion",
+      "title": "Conclusion",
+      "anchor_slug": "conclusion",
+      "page_range": [
+        416,
+        420
+      ]
+    },
+    {
+      "type": "section",
+      "id": "glossary",
+      "title": "Glossary",
+      "anchor_slug": "glossary",
+      "page_range": [
+        421,
+        436
+      ]
+    },
+    {
+      "type": "section",
+      "id": "index",
+      "title": "Index of Terms",
+      "anchor_slug": "index",
+      "page_range": [
+        437,
+        444
+      ]
+    },
+    {
+      "type": "section",
+      "id": "gemini-transcript",
+      "title": "Gemini Reasoning Transcript (FAQ sub-page)",
+      "anchor_slug": "gemini-transcript",
+      "page_range": [
+        445,
+        448
+      ]
+    },
+    {
+      "type": "section",
+      "id": "faq",
+      "title": "Frequently Asked Questions",
+      "anchor_slug": "faq",
+      "page_range": [
+        477,
+        482
+      ]
+    }
+  ],
+  "appendix_g_duplicate": {
+    "first_occurrence_pages": [
+      404,
+      409
+    ],
+    "second_occurrence_pages": [
+      410,
+      415
+    ],
+    "md5_first": "6b2a45af0fdb89f6055852c4516f5e3b",
+    "md5_second": "6b2a45af0fdb89f6055852c4516f5e3b",
+    "diff_lines_sample": [],
+    "adopted": "first",
+    "delta_bytes": 0
+  }
+}

@@ -1,0 +1,320 @@
+=== SECTION: Index of Terms (pages 437–444) ===
+
+Index of Terms 
+ 
+This index of terms was generated using Gemini Pro 2.5. The prompt and reasoning steps are 
+included at the end to demonstrate the time-saving benefits and for educational purposes. 
+A 
+●​ A/B Testing - Chapter 3: Parallelization 
+●​ Action Selection - Chapter 20: Prioritization 
+●​ Adaptation - Chapter 9: Learning and Adaptation 
+●​ Adaptive Task Allocation - Chapter 16: Resource-Aware Optimization 
+●​ Adaptive Tool Use & Selection - Chapter 16: Resource-Aware Optimization 
+●​ Agent - What makes an AI system an Agent? 
+●​ Agent-Computer Interfaces (ACIs) - Appendix B 
+●​ Agent-Driven Economy - What makes an AI system an Agent? 
+●​ Agent as a Tool - Chapter 7: Multi-Agent Collaboration 
+●​ Agent Cards - Chapter 15: Inter-Agent Communication (A2A) 
+●​ Agent Development Kit (ADK) - Chapter 2: Routing, Chapter 3: Parallelization, Chapter 
+4: Reflection, Chapter 5: Tool Use, Chapter 7: Multi-Agent Collaboration, Chapter 8: 
+Memory Management, Chapter 12: Exception Handling and Recovery, Chapter 13: 
+Human-in-the-Loop, Chapter 15: Inter-Agent Communication (A2A), Chapter 16: 
+Resource-Aware Optimization, Chapter 19: Evaluation and Monitoring, Appendix C 
+●​ Agent Discovery - Chapter 15: Inter-Agent Communication (A2A) 
+●​ Agent Trajectories - Chapter 19: Evaluation and Monitoring 
+●​ Agentic Design Patterns - Introduction 
+●​ Agentic RAG - Chapter 14: Knowledge Retrieval (RAG) 
+●​ Agentic Systems - Introduction 
+●​ AI Co-scientist - Chapter 21: Exploration and Discovery 
+●​ Alignment - Glossary 
+●​ AlphaEvolve - Chapter 9: Learning and Adaptation 
+●​ Analogies - Appendix A 
+●​ Anomaly Detection - Chapter 19: Evaluation and Monitoring 
+●​ Anthropic's Claude 4 Series - Appendix B 
+●​ Anthropic's Computer Use - Appendix B 
+●​ API Interaction - Chapter 10: Model Context Protocol (MCP) 
+●​ Artifacts - Chapter 15: Inter-Agent Communication (A2A) 
+●​ Asynchronous Polling - Chapter 15: Inter-Agent Communication (A2A) 
+●​ Audit Logs - Chapter 15: Inter-Agent Communication (A2A) 
+●​ Automated Metrics - Chapter 19: Evaluation and Monitoring 
+●​ Automatic Prompt Engineering (APE) - Appendix A 
+●​ Autonomy - Introduction 
+●​ A2A (Agent-to-Agent) - Chapter 15: Inter-Agent Communication (A2A) 
+17 
+
+B 
+●​ Behavioral Constraints - Chapter 18: Guardrails/Safety Patterns 
+●​ Browser Use - Appendix B 
+C 
+●​ Callbacks - Chapter 18: Guardrails/Safety Patterns 
+●​ Causal Language Modeling (CLM) - Glossary 
+●​ Chain of Debates (CoD) - Chapter 17: Reasoning Techniques 
+●​ Chain-of-Thought (CoT) - Chapter 17: Reasoning Techniques, Appendix A 
+●​ Chatbots - Chapter 8: Memory Management 
+●​ ChatMessageHistory - Chapter 8: Memory Management 
+●​ Checkpoint and Rollback - Chapter 18: Guardrails/Safety Patterns 
+●​ Chunking - Chapter 14: Knowledge Retrieval (RAG) 
+●​ Clarity and Specificity - Appendix A 
+●​ Client Agent - Chapter 15: Inter-Agent Communication (A2A) 
+●​ Code Generation - Chapter 1: Prompt Chaining, Chapter 4: Reflection 
+●​ Code Prompting - Appendix A 
+●​ CoD (Chain of Debates) - Chapter 17: Reasoning Techniques 
+●​ CoT (Chain of Thought) - Chapter 17: Reasoning Techniques, Appendix A 
+●​ Collaboration - Chapter 7: Multi-Agent Collaboration 
+●​ Compliance - Chapter 19: Evaluation and Monitoring 
+●​ Conciseness - Appendix A 
+●​ Content Generation - Chapter 1: Prompt Chaining, Chapter 4: Reflection 
+●​ Context Engineering - Chapter 1: Prompt Chaining 
+●​ Context Window - Glossary 
+●​ Contextual Pruning & Summarization - Chapter 16: Resource-Aware Optimization 
+●​ Contextual Prompting - Appendix A 
+●​ Contractor Model - Chapter 19: Evaluation and Monitoring 
+●​ ConversationBufferMemory - Chapter 8: Memory Management 
+●​ Conversational Agents - Chapter 1: Prompt Chaining, Chapter 4: Reflection 
+●​ Cost-Sensitive Exploration - Chapter 16: Resource-Aware Optimization 
+●​ CrewAI - Chapter 3: Parallelization, Chapter 5: Tool Use, Chapter 6: Planning, Chapter 
+7: Multi-Agent Collaboration, Chapter 18: Guardrails/Safety Patterns, Appendix C 
+●​ Critique Agent - Chapter 16: Resource-Aware Optimization 
+●​ Critique Model - Glossary 
+●​ Customer Support - Chapter 13: Human-in-the-Loop 
+D 
+●​ Data Extraction - Chapter 1: Prompt Chaining 
+●​ Data Labeling - Chapter 13: Human-in-the-Loop 
+●​ Database Integration - Chapter 10: Model Context Protocol (MCP) 
+●​ DatabaseSessionService - Chapter 8: Memory Management 
+18 
+
+●​ Debate and Consensus - Chapter 7: Multi-Agent Collaboration 
+●​ Decision Augmentation - Chapter 13: Human-in-the-Loop 
+●​ Decomposition - Appendix A 
+●​ Deep Research - Chapter 6: Planning, Chapter 17: Reasoning Techniques, Glossary 
+●​ Delimiters - Appendix A 
+●​ Denoising Objectives - Glossary 
+●​ Dependencies - Chapter 20: Prioritization 
+●​ Diffusion Models - Glossary 
+●​ Direct Preference Optimization (DPO) - Chapter 9: Learning and Adaptation 
+●​ Discoverability - Chapter 10: Model Context Protocol (MCP) 
+●​ Drift Detection - Chapter 19: Evaluation and Monitoring 
+●​ Dynamic Model Switching - Chapter 16: Resource-Aware Optimization 
+●​ Dynamic Re-prioritization - Chapter 20: Prioritization 
+E 
+●​ Embeddings - Chapter 14: Knowledge Retrieval (RAG) 
+●​ Embodiment - What makes an AI system an Agent? 
+●​ Energy-Efficient Deployment - Chapter 16: Resource-Aware Optimization 
+●​ Episodic Memory - Chapter 8: Memory Management 
+●​ Error Detection - Chapter 12: Exception Handling and Recovery 
+●​ Error Handling - Chapter 12: Exception Handling and Recovery 
+●​ Escalation Policies - Chapter 13: Human-in-the-Loop 
+●​ Evaluation - Chapter 19: Evaluation and Monitoring 
+●​ Exception Handling - Chapter 12: Exception Handling and Recovery 
+●​ Expert Teams - Chapter 7: Multi-Agent Collaboration 
+●​ Exploration and Discovery - Chapter 21: Exploration and Discovery 
+●​ External Moderation APIs - Chapter 18: Guardrails/Safety Patterns 
+F 
+●​ Factored Cognition - Appendix A 
+●​ FastMCP - Chapter 10: Model Context Protocol (MCP) 
+●​ Fault Tolerance - Chapter 18: Guardrails/Safety Patterns 
+●​ Few-Shot Learning - Chapter 9: Learning and Adaptation 
+●​ Few-Shot Prompting - Appendix A 
+●​ Fine-tuning - Glossary 
+●​ Formalized Contract - Chapter 19: Evaluation and Monitoring 
+●​ Function Calling - Chapter 5: Tool Use, Appendix A 
+G 
+●​ Gemini Live - Appendix B 
+●​ Gems - Appendix A 
+●​ Generative Media Orchestration - Chapter 10: Model Context Protocol (MCP) 
+19 
+
+●​ Goal Setting - Chapter 11: Goal Setting and Monitoring 
+●​ GoD (Graph of Debates) - Chapter 17: Reasoning Techniques 
+●​ Google Agent Development Kit (ADK) - Chapter 2: Routing, Chapter 3: Parallelization, 
+Chapter 4: Reflection, Chapter 5: Tool Use, Chapter 7: Multi-Agent Collaboration, 
+Chapter 8: Memory Management, Chapter 12: Exception Handling and Recovery, 
+Chapter 13: Human-in-the-Loop, Chapter 15: Inter-Agent Communication (A2A), Chapter 
+16: Resource-Aware Optimization, Chapter 19: Evaluation and Monitoring, Appendix C 
+●​ Google Co-Scientist - Chapter 21: Exploration and Discovery 
+●​ Google DeepResearch - Chapter 6: Planning 
+●​ Google Project Mariner - Appendix B 
+●​ Graceful Degradation - Chapter 12: Exception Handling and Recovery, Chapter 16: 
+Resource-Aware Optimization 
+●​ Graph of Debates (GoD) - Chapter 17: Reasoning Techniques 
+●​ Grounding - Glossary 
+●​ Guardrails - Chapter 18: Guardrails/Safety Patterns 
+H 
+●​ Haystack - Appendix C 
+●​ Hierarchical Decomposition - Chapter 19: Evaluation and Monitoring 
+●​ Hierarchical Structures - Chapter 7: Multi-Agent Collaboration 
+●​ HITL (Human-in-the-Loop) - Chapter 13: Human-in-the-Loop 
+●​ Human-in-the-Loop (HITL) - Chapter 13: Human-in-the-Loop 
+●​ Human-on-the-loop - Chapter 13: Human-in-the-Loop 
+●​ Human Oversight - Chapter 13: Human-in-the-Loop, Chapter 18: Guardrails/Safety 
+Patterns 
+I 
+●​ In-Context Learning - Glossary 
+●​ InMemoryMemoryService - Chapter 8: Memory Management 
+●​ InMemorySessionService - Chapter 8: Memory Management 
+●​ Input Validation/Sanitization - Chapter 18: Guardrails/Safety Patterns 
+●​ Instructions Over Constraints - Appendix A 
+●​ Inter-Agent Communication (A2A) - Chapter 15: Inter-Agent Communication (A2A) 
+●​ Intervention and Correction - Chapter 13: Human-in-the-Loop 
+●​ IoT Device Control - Chapter 10: Model Context Protocol (MCP) 
+●​ Iterative Prompting / Refinement - Appendix A 
+J 
+●​ Jailbreaking - Chapter 18: Guardrails/Safety Patterns 
+K 
+●​ Kahneman-Tversky Optimization (KTO) - Glossary 
+20 
+
+●​ Knowledge Retrieval (RAG) - Chapter 14: Knowledge Retrieval (RAG) 
+L 
+●​ LangChain - Chapter 1: Prompt Chaining, Chapter 2: Routing, Chapter 3: Parallelization, 
+Chapter 4: Reflection, Chapter 5: Tool Use, Chapter 8: Memory Management, Chapter 
+20: Prioritization, Appendix C 
+●​ LangGraph - Chapter 1: Prompt Chaining, Chapter 2: Routing, Chapter 3: Parallelization, 
+Chapter 4: Reflection, Chapter 5: Tool Use, Chapter 8: Memory Management, Appendix 
+C 
+●​ Latency Monitoring - Chapter 19: Evaluation and Monitoring 
+●​ Learned Resource Allocation Policies - Chapter 16: Resource-Aware Optimization 
+●​ Learning and Adaptation - Chapter 9: Learning and Adaptation 
+●​ LLM-as-a-Judge - Chapter 19: Evaluation and Monitoring 
+●​ LlamaIndex - Appendix C 
+●​ LoRA (Low-Rank Adaptation) - Glossary 
+●​ Low-Rank Adaptation (LoRA) - Glossary 
+M 
+●​ Mamba - Glossary 
+●​ Masked Language Modeling (MLM) - Glossary 
+●​ MASS (Multi-Agent System Search) - Chapter 17: Reasoning Techniques 
+●​ MCP (Model Context Protocol) - Chapter 10: Model Context Protocol (MCP) 
+●​ Memory Management - Chapter 8: Memory Management 
+●​ Memory-Based Learning - Chapter 9: Learning and Adaptation 
+●​ MetaGPT - Appendix C 
+●​ Microsoft AutoGen - Appendix C 
+●​ Mixture of Experts (MoE) - Glossary 
+●​ Model Context Protocol (MCP) - Chapter 10: Model Context Protocol (MCP) 
+●​ Modularity - Chapter 18: Guardrails/Safety Patterns 
+●​ Monitoring - Chapter 11: Goal Setting and Monitoring, Chapter 19: Evaluation and 
+Monitoring 
+●​ Multi-Agent Collaboration - Chapter 7: Multi-Agent Collaboration 
+●​ Multi-Agent System Search (MASS) - Chapter 17: Reasoning Techniques 
+●​ Multimodality - Glossary 
+●​ Multimodal Prompting - Appendix A 
+N 
+●​ Negative Examples - Appendix A 
+●​ Next Sentence Prediction (NSP) - Glossary 
+O 
+●​ Observability - Chapter 18: Guardrails/Safety Patterns 
+21 
+
+●​ One-Shot Prompting - Appendix A 
+●​ Online Learning - Chapter 9: Learning and Adaptation 
+●​ OpenAI Deep Research API - Chapter 6: Planning 
+●​ OpenEvolve - Chapter 9: Learning and Adaptation 
+●​ OpenRouter - Chapter 16: Resource-Aware Optimization 
+●​ Output Filtering/Post-processing - Chapter 18: Guardrails/Safety Patterns 
+P 
+●​ PAL (Program-Aided Language Models) - Chapter 17: Reasoning Techniques 
+●​ Parallelization - Chapter 3: Parallelization 
+●​ Parallelization & Distributed Computing Awareness - Chapter 16: Resource-Aware 
+Optimization 
+●​ Parameter-Efficient Fine-Tuning (PEFT) - Glossary 
+●​ PEFT (Parameter-Efficient Fine-Tuning) - Glossary 
+●​ Performance Tracking - Chapter 19: Evaluation and Monitoring 
+●​ Persona Pattern - Appendix A 
+●​ Personalization - What makes an AI system an Agent? 
+●​ Planning - Chapter 6: Planning, Glossary 
+●​ Prioritization - Chapter 20: Prioritization 
+●​ Principle of Least Privilege - Chapter 18: Guardrails/Safety Patterns 
+●​ Proactive Resource Prediction - Chapter 16: Resource-Aware Optimization 
+●​ Procedural Memory - Chapter 8: Memory Management 
+●​ Program-Aided Language Models (PAL) - Chapter 17: Reasoning Techniques 
+●​ Project Astra - Appendix B 
+●​ Prompt - Glossary 
+●​ Prompt Chaining - Chapter 1: Prompt Chaining 
+●​ Prompt Engineering - Appendix A 
+●​ Proximal Policy Optimization (PPO) - Chapter 9: Learning and Adaptation 
+●​ Push Notifications - Chapter 15: Inter-Agent Communication (A2A) 
+Q 
+●​ QLoRA - Glossary 
+●​ Quality-Focused Iterative Execution - Chapter 19: Evaluation and Monitoring 
+R 
+●​ RAG (Retrieval-Augmented Generation) - Chapter 8: Memory Management, Chapter 14: 
+Knowledge Retrieval (RAG), Appendix A 
+●​ ReAct (Reason and Act) - Chapter 17: Reasoning Techniques, Appendix A, Glossary 
+●​ Reasoning - Chapter 17: Reasoning Techniques 
+●​ Reasoning-Based Information Extraction - Chapter 10: Model Context Protocol (MCP) 
+●​ Recovery - Chapter 12: Exception Handling and Recovery 
+●​ Recurrent Neural Network (RNN) - Glossary 
+22 
+
+●​ Reflection - Chapter 4: Reflection 
+●​ Reinforcement Learning - Chapter 9: Learning and Adaptation 
+●​ Reinforcement Learning from Human Feedback (RLHF) - Glossary 
+●​ Reinforcement Learning with Verifiable Rewards (RLVR) - Chapter 17: Reasoning 
+Techniques 
+●​ Remote Agent - Chapter 15: Inter-Agent Communication (A2A) 
+●​ Request/Response (Polling) - Chapter 15: Inter-Agent Communication (A2A) 
+●​ Resource-Aware Optimization - Chapter 16: Resource-Aware Optimization 
+●​ Retrieval-Augmented Generation (RAG) - Chapter 8: Memory Management, Chapter 14: 
+Knowledge Retrieval (RAG), Appendix A 
+●​ RLHF (Reinforcement Learning from Human Feedback) - Glossary 
+●​ RLVR (Reinforcement Learning with Verifiable Rewards) - Chapter 17: Reasoning 
+Techniques 
+●​ RNN (Recurrent Neural Network) - Glossary 
+●​ Role Prompting - Appendix A 
+●​ Router Agent - Chapter 16: Resource-Aware Optimization 
+●​ Routing - Chapter 2: Routing 
+S 
+●​ Safety - Chapter 18: Guardrails/Safety Patterns 
+●​ Scaling Inference Law - Chapter 17: Reasoning Techniques 
+●​ Scheduling - Chapter 20: Prioritization 
+●​ Self-Consistency - Appendix A 
+●​ Self-Correction - Chapter 4: Reflection, Chapter 17: Reasoning Techniques 
+●​ Self-Improving Coding Agent (SICA) - Chapter 9: Learning and Adaptation 
+●​ Self-Refinement - Chapter 17: Reasoning Techniques 
+●​ Semantic Kernel - Appendix C 
+●​ Semantic Memory - Chapter 8: Memory Management 
+●​ Semantic Similarity - Chapter 14: Knowledge Retrieval (RAG) 
+●​ Separation of Concerns - Chapter 18: Guardrails/Safety Patterns 
+●​ Sequential Handoffs - Chapter 7: Multi-Agent Collaboration 
+●​ Server-Sent Events (SSE) - Chapter 15: Inter-Agent Communication (A2A) 
+●​ Session - Chapter 8: Memory Management 
+●​ SICA (Self-Improving Coding Agent) - Chapter 9: Learning and Adaptation 
+●​ SMART Goals - Chapter 11: Goal Setting and Monitoring 
+●​ State - Chapter 8: Memory Management 
+●​ State Rollback - Chapter 12: Exception Handling and Recovery 
+●​ Step-Back Prompting - Appendix A 
+●​ Streaming Updates - Chapter 15: Inter-Agent Communication (A2A) 
+●​ Structured Logging - Chapter 18: Guardrails/Safety Patterns 
+●​ Structured Output - Chapter 1: Prompt Chaining, Appendix A 
+●​ SuperAGI - Appendix C 
+●​ Supervised Fine-Tuning (SFT) - Glossary 
+●​ Supervised Learning - Chapter 9: Learning and Adaptation 
+23 
+
+●​ System Prompting - Appendix A 
+T 
+●​ Task Evaluation - Chapter 20: Prioritization 
+●​ Text Similarity - Chapter 14: Knowledge Retrieval (RAG) 
+●​ Token Usage - Chapter 19: Evaluation and Monitoring 
+●​ Tool Use - Chapter 5: Tool Use, Appendix A 
+●​ Tool Use Restrictions - Chapter 18: Guardrails/Safety Patterns 
+●​ ToT (Tree of Thoughts) - Chapter 17: Reasoning Techniques, Appendix A, Glossary 
+●​ Transformers - Glossary 
+●​ Tree of Thoughts (ToT) - Chapter 17: Reasoning Techniques, Appendix A, Glossary 
+U 
+●​ Unsupervised Learning - Chapter 9: Learning and Adaptation 
+●​ User Persona - Appendix A 
+V 
+●​ Validation - Chapter 3: Parallelization 
+●​ Vector Search - Chapter 14: Knowledge Retrieval (RAG) 
+●​ VertexAiRagMemoryService - Chapter 8: Memory Management 
+●​ VertexAiSessionService - Chapter 8: Memory Management 
+●​ Vibe Coding - Appendix B 
+●​ Visual Perception - Appendix B 
+W 
+●​ Webhooks - Chapter 15: Inter-Agent Communication (A2A) 
+Z 
+●​ Zero-Shot Learning - Chapter 9: Learning and Adaptation 
+●​ Zero-Shot Prompting - Appendix A 
+ 
+24 
