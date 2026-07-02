@@ -82,7 +82,7 @@
   },
   {
     "en": "Recurrent Neural Network (RNN)",
-    "ko": "순환 신경망(RNN)",
+    "ko": "순환 신경망",
     "first_chapter": "Glossary",
     "aliases": [
       "RNN",
@@ -94,7 +94,7 @@
   },
   {
     "en": "Mixture of Experts (MoE)",
-    "ko": "전문가 혼합(MoE)",
+    "ko": "전문가 혼합",
     "first_chapter": "Glossary",
     "aliases": [
       "MoE",
@@ -137,7 +137,7 @@
   },
   {
     "en": "Fine-tuning",
-    "ko": "파인튜닝(fine-tuning)",
+    "ko": "파인튜닝",
     "first_chapter": "Glossary",
     "aliases": [
       "Fine-tuning",
@@ -152,7 +152,7 @@
   },
   {
     "en": "Alignment",
-    "ko": "정렬(Alignment)",
+    "ko": "정렬",
     "first_chapter": "Glossary",
     "aliases": [
       "AI 정렬",
@@ -164,7 +164,7 @@
   },
   {
     "en": "Causal Language Modeling (CLM)",
-    "ko": "인과적 언어 모델링(CLM)",
+    "ko": "인과적 언어 모델링",
     "first_chapter": "Glossary",
     "aliases": [
       "CLM",
@@ -176,7 +176,7 @@
   },
   {
     "en": "Masked Language Modeling (MLM)",
-    "ko": "마스크드 언어 모델링(MLM)",
+    "ko": "마스크드 언어 모델링",
     "first_chapter": "Glossary",
     "aliases": [
       "MLM",
@@ -188,7 +188,7 @@
   },
   {
     "en": "Supervised Fine-Tuning (SFT)",
-    "ko": "지도 파인튜닝(SFT)",
+    "ko": "지도 파인튜닝",
     "first_chapter": "Glossary",
     "aliases": [
       "SFT",
@@ -200,7 +200,7 @@
   },
   {
     "en": "Reinforcement Learning from Human Feedback (RLHF)",
-    "ko": "인간 피드백 강화학습(RLHF)",
+    "ko": "인간 피드백 강화학습",
     "first_chapter": "Glossary",
     "aliases": [
       "RLHF",
@@ -212,7 +212,7 @@
   },
   {
     "en": "Direct Preference Optimization (DPO)",
-    "ko": "직접 선호 최적화(DPO)",
+    "ko": "직접 선호 최적화",
     "first_chapter": "Chapter 9",
     "aliases": [
       "DPO"
@@ -223,7 +223,7 @@
   },
   {
     "en": "Kahneman-Tversky Optimization (KTO)",
-    "ko": "카너먼-트버스키 최적화(KTO)",
+    "ko": "카너먼-트버스키 최적화",
     "first_chapter": "Glossary",
     "aliases": [
       "KTO"
@@ -246,7 +246,7 @@
   },
   {
     "en": "Chain of Thought (CoT)",
-    "ko": "연쇄 사고(Chain of Thought)",
+    "ko": "연쇄 사고",
     "first_chapter": "Chapter 17",
     "aliases": [
       "CoT",
@@ -259,7 +259,7 @@
   },
   {
     "en": "Tree of Thoughts (ToT)",
-    "ko": "사고의 나무(Tree of Thoughts)",
+    "ko": "사고의 나무",
     "first_chapter": "Chapter 17",
     "aliases": [
       "ToT",
@@ -342,7 +342,7 @@
   },
   {
     "en": "Retrieval-Augmented Generation (RAG)",
-    "ko": "검색 증강 생성(RAG)",
+    "ko": "검색 증강 생성",
     "first_chapter": "Chapter 14",
     "aliases": [
       "RAG",
@@ -402,7 +402,7 @@
   },
   {
     "en": "Prompt Chaining",
-    "ko": "프롬프트 체이닝(prompt chaining)",
+    "ko": "프롬프트 체이닝",
     "first_chapter": "Chapter 1",
     "aliases": [
       "프롬프트 연쇄"
@@ -443,7 +443,7 @@
   },
   {
     "en": "Tool Use",
-    "ko": "툴 사용(tool use)",
+    "ko": "툴 사용",
     "first_chapter": "Chapter 5",
     "aliases": [
       "도구 사용",
@@ -484,7 +484,7 @@
   },
   {
     "en": "Model Context Protocol (MCP)",
-    "ko": "모델 컨텍스트 프로토콜(MCP)",
+    "ko": "모델 컨텍스트 프로토콜",
     "first_chapter": "Chapter 10",
     "aliases": [
       "MCP"
@@ -515,7 +515,7 @@
   },
   {
     "en": "Human-in-the-Loop (HITL)",
-    "ko": "인간 참여 루프(Human-in-the-Loop)",
+    "ko": "인간 참여",
     "first_chapter": "Chapter 13",
     "aliases": [
       "HITL",
@@ -526,7 +526,7 @@
   },
   {
     "en": "Knowledge Retrieval (RAG)",
-    "ko": "지식 검색(RAG)",
+    "ko": "지식 검색",
     "first_chapter": "Chapter 14",
     "aliases": [
       "지식 검색"
@@ -536,7 +536,7 @@
   },
   {
     "en": "Inter-Agent Communication (A2A)",
-    "ko": "에이전트 간 통신(A2A)",
+    "ko": "에이전트 간 통신",
     "first_chapter": "Chapter 15",
     "aliases": [
       "A2A",
@@ -608,7 +608,7 @@
   },
   {
     "en": "Embedding",
-    "ko": "임베딩(embedding)",
+    "ko": "임베딩",
     "first_chapter": "Chapter 14",
     "aliases": [
       "Embedding",
@@ -679,7 +679,7 @@
   },
   {
     "en": "Agent Development Kit (ADK)",
-    "ko": "에이전트 개발 키트(ADK)",
+    "ko": "에이전트 개발 키트",
     "first_chapter": "Chapter 2",
     "aliases": [
       "ADK",
@@ -995,7 +995,7 @@
   },
   {
     "en": "Chain of Debates (CoD)",
-    "ko": "토론 연쇄(CoD)",
+    "ko": "토론 연쇄",
     "first_chapter": "Chapter 17",
     "aliases": [
       "CoD"
@@ -1005,7 +1005,7 @@
   },
   {
     "en": "Graph of Debates (GoD)",
-    "ko": "토론 그래프(GoD)",
+    "ko": "토론 그래프",
     "first_chapter": "Chapter 17",
     "aliases": [
       "GoD"
@@ -1015,7 +1015,7 @@
   },
   {
     "en": "Multi-Agent System Search (MASS)",
-    "ko": "멀티 에이전트 시스템 탐색(MASS)",
+    "ko": "멀티 에이전트 시스템 탐색",
     "first_chapter": "Chapter 17",
     "aliases": [
       "MASS"
@@ -1025,7 +1025,7 @@
   },
   {
     "en": "Reinforcement Learning with Verifiable Rewards (RLVR)",
-    "ko": "검증 가능한 보상 강화학습(RLVR)",
+    "ko": "검증 가능한 보상 강화학습",
     "first_chapter": "Chapter 17",
     "aliases": [
       "RLVR"
@@ -1229,7 +1229,7 @@
   },
   {
     "en": "Proximal Policy Optimization (PPO)",
-    "ko": "근위 정책 최적화(PPO)",
+    "ko": "근위 정책 최적화",
     "first_chapter": "Chapter 9",
     "aliases": [
       "PPO"
@@ -1239,7 +1239,7 @@
   },
   {
     "en": "Agent-Computer Interfaces (ACIs)",
-    "ko": "에이전트-컴퓨터 인터페이스(ACI)",
+    "ko": "에이전트-컴퓨터 인터페이스",
     "first_chapter": "Appendix B",
     "aliases": [
       "ACI"
@@ -1268,7 +1268,7 @@
   },
   {
     "en": "Next Sentence Prediction (NSP)",
-    "ko": "다음 문장 예측(NSP)",
+    "ko": "다음 문장 예측",
     "first_chapter": "Glossary",
     "aliases": [
       "NSP"
@@ -1279,7 +1279,7 @@
   },
   {
     "en": "Parameter-Efficient Fine-Tuning (PEFT)",
-    "ko": "파라미터 효율적 파인튜닝(PEFT)",
+    "ko": "파라미터 효율적 파인튜닝",
     "first_chapter": "Glossary",
     "aliases": [
       "PEFT"

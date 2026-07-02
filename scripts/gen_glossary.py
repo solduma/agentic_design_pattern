@@ -20,7 +20,7 @@ from pathlib import Path
 
 WORKTREE = Path(__file__).parent.parent
 TERMS_JSON = WORKTREE / "terms.json"
-DEFAULT_OUTPUT = WORKTREE / "docs" / "glossary.mdx"
+DEFAULT_OUTPUT = WORKTREE / "site" / "docs" / "back" / "glossary.mdx"
 
 
 def load_terms(path: Path) -> list[dict]:
@@ -114,7 +114,9 @@ def generate_mdx(terms: list[dict]) -> str:
 
     # Term entries by letter group
     for letter in sorted(groups.keys()):
-        lines.append(f"## {letter} {{#{letter.lower()}}}")
+        # Docusaurus auto-slugs "## A" to anchor "#a", matching the nav links.
+        # Explicit "{#id}" syntax breaks MDX 3 acorn parsing, so we omit it.
+        lines.append(f"## {letter}")
         lines.append("")
 
         for t in groups[letter]:
