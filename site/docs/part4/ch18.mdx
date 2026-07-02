@@ -1,5 +1,5 @@
 ---
-title: "18장 — 가드레일/안전성 패턴"
+title: "18장 — Guardrail / 안전성 패턴"
 sidebar_position: 18
 ---
 
@@ -15,7 +15,7 @@ import { KeyPoints, Diagram, CrossRef } from '@site/src/components';
   ]}
 />
 
-# 18장: 가드레일/안전성 패턴
+# 18장: Guardrail / 안전성 패턴
 
 가드레일(Guardrails)은 안전성 패턴(safety patterns)이라고도 불리며, 지능형 에이전트가 안전하고 윤리적으로, 의도한 대로 동작하도록 보장하는 핵심 메커니즘입니다. 특히 에이전트가 더욱 자율적으로 발전하고 중요 시스템에 통합될수록 그 중요성이 커집니다. 가드레일은 보호 계층으로 기능하여 에이전트의 행동과 출력이 유해하거나, 편향되거나, 무관련하거나, 바람직하지 않은 방향으로 흘러가지 않도록 안내합니다. 이러한 가드레일은 다양한 단계에서 구현할 수 있습니다. 악의적인 콘텐츠를 필터링하는 입력 검증/정제(Input Validation/Sanitization), 독성이나 편향을 분석하는 출력 필터링(Output Filtering)/후처리(Post-processing), 직접적인 지시를 통한 행동 제약(Behavioral Constraints, 프롬프트 수준), 에이전트 역량을 제한하는 툴 사용 제한(Tool Use Restrictions), 콘텐츠 조절(Content Moderation)을 위한 외부 검열 API(External Moderation APIs), 그리고 "루프 내 인간 개입(Human-in-the-Loop)" 메커니즘을 통한 인간 감독/개입(Human Oversight/Intervention)이 그 예입니다.
 
