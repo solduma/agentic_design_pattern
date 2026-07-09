@@ -1,0 +1,41 @@
+=== SECTION: 결론: 새로운 인터페이스로서의 의도 / Conclusion: Intent as the new Interface (pages 47-48) ===
+
+Conclusion: Intent as the new Interface
+The transition from syntax to intent is not a future prediction - it's a present reality. 
+Developers are already spending more time describing what they want than specifying how 
+to build it. The SDLC is already being compressed, restructured, and reimagined around AI 
+capabilities. The question is not whether this transformation will happen, but how effectively 
+individual developers, teams, and organizations will navigate it.
+The framework we've presented in this paper - the spectrum from vibe coding to agentic 
+engineering, the conductor-to-orchestrator model of developer roles, the taxonomy of 
+ambient, workflow, and autonomous agents, and the factory model of software production 
+- provides a set of mental models for making sense of a rapidly evolving landscape. These 
+models will remain useful even as the specific tools and capabilities evolve.
+Three principles stand out as durable:
+1.	 Structure scales, vibes don't. Vibe coding is a valid approach for exploration, 
+prototyping, and personal projects. But for software that organizations depend on, the 
+discipline of agentic engineering - specifications, tests, guardrails, and human oversight 
+of architecture - is not optional. The gap between "it seems to work" and "it works 
+correctly under all conditions" is where production outages, security vulnerabilities, and 
+maintenance nightmares live.
+2.	 AI amplifies your engineering culture. Organizations with strong testing practices, clear 
+architectural standards, and healthy code review processes get dramatically more value 
+from AI-assisted development than those without. AI is a force multiplier - and it multiplies 
+both your strengths and your weaknesses.
+
+3.	 The human role is evolving, not diminishing. The builders who understand architecture, 
+can define precise specifications, evaluate output critically, and design effective systems 
+of constraints and feedback loops are more valuable than ever. The skills that matter are 
+shifting from implementation to judgment, from writing code to designing the systems that 
+produce code.
+We're at the beginning of a transformation that will reshape not just how software is built, 
+but what kind of software is possible to build. Smaller teams will be able to tackle larger 
+problems. Individual developers will be able to build and maintain systems that previously 
+required entire departments. The barrier to creating software will continue to fall, opening the 
+practice of software development to a broader population.
+The teams that thrive will be those that embrace AI as a powerful tool while maintaining the 
+engineering discipline that has always been the foundation of reliable software. They'll be the 
+ones who understand that the future of software engineering isn't about choosing between 
+human expertise and AI capability - it's about designing systems where both contribute their 
+unique strengths.
+Generation is solved. Verification, judgment, and direction are the new craft.

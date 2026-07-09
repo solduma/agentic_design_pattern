@@ -1,0 +1,85 @@
+=== SECTION: 어디서부터 시작할 것인가 / Where to start (pages 43-46) ===
+
+Where to start 
+The shift from syntax to intent is not a future state. It is the work in front of us today. Whether 
+reading this as an individual builder or as a leader thinking about how a team or organisation 
+adopts these tools, the same underlying principle holds: AI amplifies the engineering culture 
+it lands in. The practices below translate that principle into action.
+For individual developers
+1.	 Set up an AGENTS.md (or equivalent) for the project. Pick the convention that matches 
+the coding agent of choice. Start with ten lines: stack, conventions, hard rules, workflow. 
+Add a rule every time the agent does something it should not do again.
+2.	 Install a set of skills for your coding agents (like Agents CLI) to build, evaluate, deploy 
+and optimize agents.
+3.	 Pick one repetitive workflow and make it the first agent. A research workflow, a code 
+review process, a recurring report, a piece of content produced regularly. Use a coding 
+agent for the prototype, and graduate it to a production agent through Agents CLI when it 
+earns its keep. Building one agent end to end teaches more than reading about a hundred.
+4.	 Write the tests and evals before generating the code. Together they are the contract 
+with the AI. A well-written test and eval suite communicates intent more precisely than 
+any natural-language prompt, and turns AI-assisted development from vibe coding into 
+agentic engineering.
+5.	 Review every line the agent produces that is going to ship. Be skeptical of anything 
+that looks clever. Check imports for real packages. Verify that error handling covers 
+realistic failure modes. Code that the team does not understand becomes debugging cost 
+the team cannot afford.
+
+6.	 Maintain your developer skills. AI handles the routine so the developer can focus on 
+the challenging. That arrangement only works if the foundational skills, debugging, system 
+design, intuition for performance and correctness, stay sharp. Treat AI as a way to apply 
+expertise at a greater scale, not as a substitute for it. Regular practice with complex 
+debugging, code review of AI output, and architecture discussions stay essential to 
+growing as an engineer.
+For engineering leaders
+1.	 Make context engineering a first-class engineering practice on the team. Treat 
+AGENTS.md, system prompts, eval suites, and skill libraries as code: reviewed in pull 
+requests, versioned with the project, owned by named engineers. Without this discipline, 
+the harness drifts and agent behaviour becomes irreproducible across the team.
+2.	 Set the bar at the eval, not the demo. A working demo proves an agent can succeed 
+once. A passing eval suite proves it succeeds reliably. But an eval without a clear rubric 
+measures nothing. Define what you are scoring: task success, tool use quality, trajectory 
+compliance, hallucination, and response quality. Require eval coverage with explicit 
+rubrics as a precondition for any agent shipping into a shared workflow, the same way test 
+coverage gates a service deployment.
+3.	 Re-shape code review for AI-generated code. AI-generated code requires the 
+same or greater scrutiny than human-written code, with extra attention to hallucinated 
+dependencies, inadequate error handling, and subtle correctness gaps that look right 
+at a glance. Train reviewers on the failure modes of generated code, and tune review 
+checklists accordingly.
+
+4.	 Distinguish prototyping work from production work in team norms. Vibe coding is the 
+right speed for exploration. Agentic engineering is the right discipline for production. Make 
+the boundary explicit: which projects, which branches, which environments warrant which 
+mode of working. Teams that keep this distinction blurry produce prototypes that ship 
+by accident.
+5.	 Invest in the harness components as a shared team asset. Reusable system 
+prompts, skill libraries, MCP server connections, and evaluation harnesses compound 
+across projects. Treat them as infrastructure: documented, maintained, and improved 
+deliberately. The teams that compound the most value from AI-assisted development are 
+the ones that build their harness once and refine it many times.
+For organizations
+1.	 Treat AI-assisted development as an engineering investment, not a productivity 
+feature. The teams seeing the largest gains pair AI tooling with eval coverage, 
+observability, and clear architectural standards. Rolling out a coding agent without that 
+scaffolding produces speed without quality, which compounds into technical debt faster 
+than any team can pay it down.
+2.	 Invest in the production substrate before scale. A vibe-coded prototype on a laptop 
+is not a production system. What graduates one to the other is the operations discipline 
+around it: trajectory and final-response evals run in CI, traces of every agent run, scoped 
+permissions per agent, and security review tuned to the failure modes of generated code. 
+Build this substrate before the first production agent ships, not after.
+3.	 Adopt open standards for tools and inter-agent communication. Model Context 
+Protocol (MCP) for tool access and Agent2Agent (A2A) for cross-agent delegation are 
+converging into the connective tissue of multi-agent systems. Choosing them now keeps 
+the option to mix vendors and frameworks open, and avoids re-platforming later.
+
+4.	 Plan for hybrid teams of humans and agents, not human-only or agent-only 
+workflows. The strongest production results in the past year come from architectures 
+where humans set direction, agents do the implementation, and clear handoff protocols 
+govern the boundary. Code review processes, on-call rotations, and team structures all 
+need to evolve to reflect that agents are now participants, not just tools.
+5.	 Reframe hiring and skill development around judgment, not just implementation. 
+As implementation becomes faster and more automated, the bottleneck shifts to 
+specification, evaluation, architectural judgment, and review. Hire and develop for those 
+skills deliberately. The most valuable engineers in the next several years will be the ones 
+who can direct agents well, not the ones who can write the most code.

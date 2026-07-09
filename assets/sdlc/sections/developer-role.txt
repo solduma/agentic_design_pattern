@@ -1,0 +1,68 @@
+=== SECTION: 진화하는 개발자의 역할: 지휘자와 오케스트레이터 / The developer's evolving role: (pages 31-35) ===
+
+The developer's evolving role: 
+conductors and orchestrators
+As AI takes over more of the implementation work, the developer's role is transforming in 
+ways that are both exciting and disorienting. We find it useful to think of two modes that 
+developers move between fluidly: conductor and orchestrator.12
+
+ 
+ 
+ 
+ 
+Figure 8: Conductor vs. Orchestrator (Two modes of working with AI Agents)
+The conductor: hands-on, real-time direction
+In conductor mode, a developer works in real-time with an AI pair-programmer. They're in 
+the IDE, watching code appear, guiding the AI with prompts and corrections, and maintaining 
+fine-grained control over what gets written. The AI is a powerful instrument, but the 
+developer is actively directing every movement.
+
+This mode is typical when working on complex logic, debugging tricky issues, or working in 
+unfamiliar codebases where the developer needs to understand each change as it's made. 
+Tools like GitHub Copilot, Google's Gemini Code Assist, Cursor, and Windsurf primarily 
+support this mode through inline completions, chat interfaces, and edit-in-place capabilities.
+The conductor mode is natural for developers who come from traditional engineering 
+backgrounds. It preserves the sense of understanding and control that many engineers value. 
+The risk is that it can also become a bottleneck - if the developer is personally directing every 
+keystroke, the throughput improvement from AI is limited.
+The orchestrator: async, multi-agent delegation
+In orchestrator mode, the developer operates at a higher level of abstraction. They 
+define goals, assign them to agents, and review results - but they're not watching code 
+appear line by line. Agents may be working in the background, in parallel, on different 
+parts of a codebase. The developer checks in periodically, reviews output, and provides 
+course corrections.
+This mode is typical for well-defined tasks like bug fixes, feature implementations against 
+established patterns, codebase migrations, and test generation. Tools like Google's Jules, 
+GitHub Copilot's agent mode, Cursor's background agents, and Claude Code support this 
+mode through async task execution, often working in sandboxed environments with full 
+access to the repository, build tools, and test suites.13
+The orchestrator mode requires a different skill set. Instead of deep expertise in syntax and 
+language idioms, it demands strong skills in:
+•	 Specification: Defining tasks precisely enough that an agent can execute them 
+without ambiguity
+
+•	 Decomposition: Breaking large tasks into appropriately sized units for agent execution
+•	 Evaluation: Quickly assessing whether agent output meets quality standards
+•	 System design: Designing the constraints, tests, and feedback loops that keep 
+agents productive
+The 80% problem
+A persistent challenge in AI-assisted development is what we call the 80% problem: AI agents 
+can rapidly generate approximately 80% of the code for a feature, but the remaining 20% 
+- the edge cases, error handling, integration points, and subtle correctness requirements - 
+demands deep contextual knowledge that current models often lack.14
+The nature of AI errors has evolved from simple syntax mistakes to more insidious conceptual 
+failures: wrong assumptions about business logic, failure to seek clarification on ambiguous 
+requirements, missing edge cases, and architectural decisions that create subtle long-term 
+maintenance burdens. These errors are harder to detect precisely because the code "looks 
+right" and may even pass basic tests.
+The developers who navigate this challenge most effectively adopt a specific posture: they 
+use AI for what it's good at (rapid implementation of well-specified tasks) while reserving 
+their own attention for what AI struggles with (ambiguous requirements, architectural trade-
+offs, and correctness verification). They don't try to be faster by accepting everything the AI 
+produces. They try to be faster by focusing their expertise where it matters most.
+
+Navigating this 80% problem effectively requires applying the right tool to the right phase 
+of work. A developer operating as a 'Conductor' needs a different set of tools than one 
+operating as an 'Orchestrator'. To understand how to map these operational modes to 
+your daily workflow, we must categorise the current landscape of AI agents based on their 
+autonomy and integration.

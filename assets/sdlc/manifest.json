@@ -1,0 +1,358 @@
+{
+  "_schema_notes": {
+    "para_count": "Text blocks separated by >=1 blank line, EXCLUDING code blocks",
+    "token_count": "Pure-text tokens (code removed) via tiktoken cl100k_base",
+    "code_ratio": "code_tokens / total_tokens",
+    "tokenizer": "tiktoken cl100k_base"
+  },
+  "source_pdf": "pdf/ai_sdlc.pdf",
+  "title": "The New SDLC With Vibe Coding",
+  "authors": [
+    "Addy Osmani",
+    "Shubham Saboo",
+    "Sokratis Kartakis"
+  ],
+  "publisher": "Google",
+  "date": "May 2026",
+  "pdf_total_pages": 51,
+  "section_count": 11,
+  "figure_count": 10,
+  "sections": [
+    {
+      "id": "introduction",
+      "title_ko": "서론",
+      "title_en": "Introduction",
+      "page_range": [
+        6,
+        9
+      ],
+      "checksum": "dd2f1180537a4fc6895dfcab84a74bda",
+      "para_count": 4,
+      "token_count": 754,
+      "total_tokens": 754,
+      "code_ratio": 0.0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "introduction"
+    },
+    {
+      "id": "syntax-to-intent",
+      "title_ko": "구문에서 의도로: 에이전트와 바이브 코딩",
+      "title_en": "The shift from syntax to intent",
+      "page_range": [
+        10,
+        15
+      ],
+      "checksum": "22423c730cd05d9ce033baa195e61887",
+      "para_count": 8,
+      "token_count": 1250,
+      "total_tokens": 1250,
+      "code_ratio": 0.0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "syntax-to-intent"
+    },
+    {
+      "id": "context-engineering",
+      "title_ko": "컨텍스트 엔지니어링: 진짜 핵심 역량",
+      "title_en": "Context engineering: the real skill",
+      "page_range": [
+        15,
+        19
+      ],
+      "checksum": "eb270381aa8311e6023949bae97b8147",
+      "para_count": 5,
+      "token_count": 975,
+      "total_tokens": 975,
+      "code_ratio": 0.0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "context-engineering"
+    },
+    {
+      "id": "new-sdlc",
+      "title_ko": "새로운 소프트웨어 개발 수명주기",
+      "title_en": "The new software development life cycle",
+      "page_range": [
+        19,
+        26
+      ],
+      "checksum": "da4c40a5d5854c1b318f281990ebf124",
+      "para_count": 9,
+      "token_count": 1615,
+      "total_tokens": 1615,
+      "code_ratio": 0.0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "new-sdlc"
+    },
+    {
+      "id": "harness-engineering",
+      "title_ko": "하네스 엔지니어링: 모델을 둘러싼 것",
+      "title_en": "Harness Engineering: What surrounds",
+      "page_range": [
+        26,
+        31
+      ],
+      "checksum": "f066cbc9f9801a45920905a8432c322e",
+      "para_count": 6,
+      "token_count": 1314,
+      "total_tokens": 1314,
+      "code_ratio": 0.0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "harness-engineering"
+    },
+    {
+      "id": "developer-role",
+      "title_ko": "진화하는 개발자의 역할: 지휘자와 오케스트레이터",
+      "title_en": "The developer's evolving role:",
+      "page_range": [
+        31,
+        35
+      ],
+      "checksum": "441d7d712703c80243c3e25e22d72ed1",
+      "para_count": 5,
+      "token_count": 882,
+      "total_tokens": 882,
+      "code_ratio": 0.0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "developer-role"
+    },
+    {
+      "id": "coding-agents",
+      "title_ko": "실무에서의 코딩 에이전트",
+      "title_en": "Coding agents in practice",
+      "page_range": [
+        35,
+        39
+      ],
+      "checksum": "12b04bbc6bac8d392a161aa041cd23d0",
+      "para_count": 6,
+      "token_count": 1445,
+      "total_tokens": 1445,
+      "code_ratio": 0.0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "coding-agents"
+    },
+    {
+      "id": "economics",
+      "title_ko": "AI 개발의 경제학",
+      "title_en": "The Economics of AI Development",
+      "page_range": [
+        39,
+        42
+      ],
+      "checksum": "447b0b11c4f2bc9c93b5b2043c25a1bf",
+      "para_count": 4,
+      "token_count": 886,
+      "total_tokens": 886,
+      "code_ratio": 0.0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "economics"
+    },
+    {
+      "id": "where-to-start",
+      "title_ko": "어디서부터 시작할 것인가",
+      "title_en": "Where to start",
+      "page_range": [
+        43,
+        46
+      ],
+      "checksum": "d85db0e2c1d939c6424591da1fb83b83",
+      "para_count": 4,
+      "token_count": 1252,
+      "total_tokens": 1252,
+      "code_ratio": 0.0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "where-to-start"
+    },
+    {
+      "id": "conclusion",
+      "title_ko": "결론: 새로운 인터페이스로서의 의도",
+      "title_en": "Conclusion: Intent as the new Interface",
+      "page_range": [
+        47,
+        48
+      ],
+      "checksum": "3611a36bf5dcc18950e2abe1041ea720",
+      "para_count": 2,
+      "token_count": 572,
+      "total_tokens": 572,
+      "code_ratio": 0.0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "conclusion"
+    },
+    {
+      "id": "endnotes",
+      "title_ko": "미주",
+      "title_en": "Endnotes",
+      "page_range": [
+        49,
+        51
+      ],
+      "checksum": "0de98549d72261d09af18c2c9fb83952",
+      "para_count": 3,
+      "token_count": 1505,
+      "total_tokens": 1505,
+      "code_ratio": 0.0,
+      "status": "ok",
+      "disposition": "translate",
+      "anchor_slug": "endnotes"
+    }
+  ],
+  "figures": [
+    {
+      "id": "fig-p8-0",
+      "page": 8,
+      "section_id": "introduction",
+      "caption_en": "Figure 1: From Autocomplete to Autonomy",
+      "filename": "fig-p8-0.png",
+      "width": 1959,
+      "height": 1141
+    },
+    {
+      "id": "fig-p10-0",
+      "page": 10,
+      "section_id": "syntax-to-intent",
+      "caption_en": "Figure 2: The Agent Loop - Perceive, plan, act, observe, iterate.",
+      "filename": "fig-p10-0.png",
+      "width": 1950,
+      "height": 1114
+    },
+    {
+      "id": "fig-p14-0",
+      "page": 14,
+      "section_id": "syntax-to-intent",
+      "caption_en": "Figure 3: The Vibe Coding to Agentic Engineering Spectrum",
+      "filename": "fig-p14-0.png",
+      "width": 1959,
+      "height": 945
+    },
+    {
+      "id": "fig-p17-0",
+      "page": 17,
+      "section_id": "context-engineering",
+      "caption_en": "Figure 4: Context Engineering — Static vs. Dynamic",
+      "filename": "fig-p17-0.png",
+      "width": 1953,
+      "height": 1016
+    },
+    {
+      "id": "fig-p20-0",
+      "page": 20,
+      "section_id": "new-sdlc",
+      "caption_en": "Figure 5: Traditional SDLC vs. AI-Driven SDLC",
+      "filename": "fig-p20-0.png",
+      "width": 1960,
+      "height": 992
+    },
+    {
+      "id": "fig-p25-0",
+      "page": 25,
+      "section_id": "new-sdlc",
+      "caption_en": "Figure 6: The Factory Model Developer designs the system -> agents produce the code -> tests verify",
+      "filename": "fig-p25-0.png",
+      "width": 1950,
+      "height": 1114
+    },
+    {
+      "id": "fig-p26-0",
+      "page": 26,
+      "section_id": "harness-engineering",
+      "caption_en": "",
+      "filename": "fig-p26-0.png",
+      "width": 796,
+      "height": 368
+    },
+    {
+      "id": "fig-p27-0",
+      "page": 27,
+      "section_id": "harness-engineering",
+      "caption_en": "Figure 7: Harness Anatomy | Agent = Model + Harness",
+      "filename": "fig-p27-0.png",
+      "width": 1952,
+      "height": 1313
+    },
+    {
+      "id": "fig-p32-0",
+      "page": 32,
+      "section_id": "developer-role",
+      "caption_en": "Figure 8: Conductor vs. Orchestrator (Two modes of working with AI Agents)",
+      "filename": "fig-p32-0.png",
+      "width": 1959,
+      "height": 1399
+    },
+    {
+      "id": "fig-p40-0",
+      "page": 40,
+      "section_id": "economics",
+      "caption_en": "Figure 9: The Economics of AI Development",
+      "filename": "fig-p40-0.png",
+      "width": 1959,
+      "height": 918
+    }
+  ],
+  "xref_registry": [
+    {
+      "id": "introduction",
+      "anchor_slug": "introduction",
+      "title": "서론"
+    },
+    {
+      "id": "syntax-to-intent",
+      "anchor_slug": "syntax-to-intent",
+      "title": "구문에서 의도로: 에이전트와 바이브 코딩"
+    },
+    {
+      "id": "context-engineering",
+      "anchor_slug": "context-engineering",
+      "title": "컨텍스트 엔지니어링: 진짜 핵심 역량"
+    },
+    {
+      "id": "new-sdlc",
+      "anchor_slug": "new-sdlc",
+      "title": "새로운 소프트웨어 개발 수명주기"
+    },
+    {
+      "id": "harness-engineering",
+      "anchor_slug": "harness-engineering",
+      "title": "하네스 엔지니어링: 모델을 둘러싼 것"
+    },
+    {
+      "id": "developer-role",
+      "anchor_slug": "developer-role",
+      "title": "진화하는 개발자의 역할: 지휘자와 오케스트레이터"
+    },
+    {
+      "id": "coding-agents",
+      "anchor_slug": "coding-agents",
+      "title": "실무에서의 코딩 에이전트"
+    },
+    {
+      "id": "economics",
+      "anchor_slug": "economics",
+      "title": "AI 개발의 경제학"
+    },
+    {
+      "id": "where-to-start",
+      "anchor_slug": "where-to-start",
+      "title": "어디서부터 시작할 것인가"
+    },
+    {
+      "id": "conclusion",
+      "anchor_slug": "conclusion",
+      "title": "결론: 새로운 인터페이스로서의 의도"
+    },
+    {
+      "id": "endnotes",
+      "anchor_slug": "endnotes",
+      "title": "미주"
+    }
+  ]
+}

@@ -43,6 +43,23 @@ const config = {
 
   themes: ['@docusaurus/theme-mermaid'],
 
+  // Second documentation set: "The New SDLC With Vibe Coding" (Google, May 2026).
+  // Separate docs instance — its own sidebar, terms, and /sdlc/ route — sharing
+  // one build and one Pagefind search index with the Agentic Design Patterns docs.
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'sdlc',
+        path: 'sdlc-docs',
+        routeBasePath: 'sdlc',
+        sidebarPath: './sidebars-sdlc.js',
+        editUrl:
+          'https://github.com/solduma/agentic_design_pattern/tree/main/site/',
+      },
+    ],
+  ],
+
   presets: [
     [
       'classic',
@@ -85,7 +102,14 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'mainSidebar',
             position: 'left',
-            label: '문서',
+            label: '에이전트 설계 패턴',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'sdlcSidebar',
+            docsPluginId: 'sdlc',
+            position: 'left',
+            label: 'The New SDLC',
           },
           {
             to: '/search',

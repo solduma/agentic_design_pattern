@@ -1,0 +1,75 @@
+=== SECTION: 컨텍스트 엔지니어링: 진짜 핵심 역량 / Context engineering: the real skill (pages 15-19) ===
+
+Context engineering: the real skill
+As the field has matured, a key insight has emerged: the quality of AI-generated code 
+depends less on the cleverness of your prompts and more on the quality of the context 
+provided. This realization has given rise to the concept of context engineering, the practice 
+of providing AI agents with rich, structured information about your codebase, architecture, 
+conventions, and intent.5
+Developers must consider six primary types of context:
+•	 Instructions: The agent's core role, goals, and operational boundaries.
+•	 Knowledge: Retrieved documents, architectural diagrams, and domain-specific data.
+•	 Memory: Short-term session logs (what just happened) and long-term persistent state 
+(what the project is).
+•	 Examples: Few-shot behavioral demonstrations and codebase reference patterns.
+•	 Tools: The precise definitions of the APIs, scripts, and external services the agent 
+can invoke.
+•	 Guardrails: Hard constraints, formatting rules, and safety validations.
+
+In AI code generation, context engineering involves carefully balancing which of these six 
+elements the agent possesses upfront versus what it can retrieve on demand. This creates a 
+critical separation between static and dynamic context.
+Static context is always loaded: system instructions, rule files (AGENTS.md, CLAUDE.md, 
+GEMINI.md), global memory, and persona definitions. It defines who the agent is and how 
+it behaves. Static context is expensive because every token is present in every interaction, 
+regardless of relevance.
+Dynamic context is loaded on demand: skill instructions triggered by task matching, tool 
+results retrieved during execution, documents fetched from RAG pipelines, and windowed 
+session history. Dynamic context is efficient because the agent pays the token cost only 
+when the information is needed.
+The design decision of what belongs in static context versus dynamic context is a genuine 
+engineering trade-off. Too much static context wastes tokens and dilutes signals. Too little 
+means the agent forgets critical rules. The best systems treat this boundary as a first-class 
+architectural decision, reviewed and versioned like any other configuration.
+
+ 
+ 
+Figure 4: Context Engineering — Static vs. Dynamic
+The most powerful pattern for managing dynamic context is Agent Skills: structured, 
+portable packages of procedural knowledge that the agent loads only when the task calls for 
+it. 
+Rather than embedding every piece of specialized knowledge into the agent's system 
+prompt, skills allow the agent to remain a lightweight generalist that flexes into specialist 
+roles on demand through progressive disclosure. The agent sees only lightweight metadata 
+at startup, loads full instructions when a task matches, and pulls deep reference material 
+only when explicitly needed. The result is that an agent can carry dozens of specialized 
+capabilities while paying the token cost for only the one it is actively using.
+
+Agent Skills have seen rapid adoption across major coding agents and enterprise platforms 
+because they solve four problems that have plagued AI agent development: 
+•	 Context rot from overloaded prompts
+•	 Absence of procedural memory for LLMs
+•	 Operational overhead of multi-agent architectures
+•	 Need for portability across tools and vendors
+This section introduced the core principles of context engineering: the six types of context 
+every agent needs, the trade-off between static and dynamic context, and Agent Skills as the 
+key pattern for managing that trade-off at scale. 
+The companion Day-3 paper in this series on Context Engineering: Sessions, Skills & Memory 
+takes each of these ideas further, covering how to design and manage sessions, write and 
+evaluate skills, build persistent memory across interactions, and optimize token economics 
+for production systems.
+The shift from "prompt engineering" to "context engineering" reflects a deeper truth about 
+working with AI. Models don't need cleverly worded instructions as much as they need the 
+same context that a skilled human developer would need to do good work. The question 
+isn't "how do I trick the AI into writing good code?" It's "what would a new team member 
+need to know to contribute effectively, and how do I encode that knowledge in a form the AI 
+can use?"
+Context engineering is the bridge between vibe coding and agentic engineering. It is also the 
+bridge between this section and the next one, where we look at the structure that surrounds 
+every model and makes it useful.
+
+By shifting our focus from writing syntax to engineering this context, the bottlenecks in 
+software creation fundamentally change. We are no longer waiting on human hands to type 
+boilerplate; we are waiting on human minds to define the boundaries. This necessitates a 
+complete reimagining of the traditional Software Development Life Cycle (SDLC), as the 
+systems we use to build software now dictate the speed at which it is delivered."

@@ -1,0 +1,104 @@
+=== SECTION: 실무에서의 코딩 에이전트 / Coding agents in practice (pages 35-39) ===
+
+Coding agents in practice
+A developer building an agent today does most of the work from a terminal, often in natural 
+language, often with another coding agent doing the typing. This is new. A year ago the same 
+task meant frameworks, SDKs, and cloud consoles. The patterns that have replaced them are 
+worth naming clearly, both for the developer who wants to use coding agents in their day, 
+and for the developer who wants to build agents of their own.
+Where coding agents fit in the 
+developer's day
+Coding agents show up in three places in everyday work. Most developers use all three 
+at once.
+In the editor: Inline completion that suggests the next line as the developer types. Chat 
+panels that explain or modify code in place. Whole-codebase awareness inside the IDE. This 
+is where most people first meet AI in coding, and where the work stays in flow. Examples 
+include GitHub Copilot, Cursor, Windsurf, JetBrains AI Assistant.
+
+In the terminal: Coding agents that the developer launches from the command line, hand 
+a goal to in plain language, and let work across the codebase. Full file system access, multi-
+file edits, the ability to run tools and tests and iterate based on results. This is where serious 
+vibe coding happens today. Examples include Antigravity CLI, Claude Code, Codex CLI, Open 
+Code, and Cline.
+In the background: Agents that take a task and run autonomously in cloud-hosted 
+sandboxes, often for hours, often producing a pull request as output. The developer 
+hands off and reviews it later. Examples include Google Jules, GitHub Copilot agent mode, 
+Cursor's background agents and Google’s specialized AlphaEvolve agent for designing 
+advanced algorithms.
+In practice, an editor agent helps when the developer is in the middle of writing code and 
+wants suggestions, quick edits, or explanations without leaving flow. A terminal agent fits 
+multi-file work, exploration of unfamiliar codebases, and tasks where the agent needs 
+to run code and react to what it observes. A background agent fits well-specified tasks 
+the developer can describe in a paragraph and walk away from, like fixing a known bug, 
+generating a test suite, or migrating code from one framework to another. The same 
+developer often uses all three in a single day.
+The right starting point depends on the task, not on which category sits highest on some 
+autonomy ladder.
+Vibe Coding Production-ready Agents
+Everything discussed so far has been about using coding agents to build software: writing 
+features, fixing bugs, generating tests, refactoring code. But what happens when the thing 
+you need to build is itself an agent?
+
+A customer support bot that handles refund requests. A research assistant that cross-
+references sources and produces grounded reports. An internal tool that monitors 
+compliance and flags anomalies. These are not tasks you solve with a coding agent in 
+your terminal. They are products that need their own tools, their own memory, their own 
+evaluation, and their own deployment infrastructure.
+The same terminal-based workflow that produces prototype scripts now reaches these 
+production agents. Building, evaluating, and deploying a real agent that runs at scale, with 
+persistent memory, governance, and observability, has moved from a framework and cloud 
+console task into something that happens in the same terminal, often by talking to the same 
+coding agent the developer was already using.
+This workflow matters when the builder needs an agent that runs reliably for real users: 
+persistent memory across sessions, scoped permissions on tools and data, eval coverage 
+that catches regressions before they ship, observability that traces what the agent actually 
+did. For one-off scripts or personal automation, a regular coding agent is enough; the agent 
+is the destination. For agents that serve real users at scale, the agent is the product, and it 
+needs the substrate underneath.
+Google's Agents CLI is built around this idea.¹⁴ It is a small command-line tool that bundles 
+a set of skills for building agents on Google Cloud, and crucially, it works with whichever 
+coding agent the developer prefers, Claude Code, Codex, or another. After a one-time 
+install, the coding agent gains seven new skills covering the full ADK lifecycle: scaffolding a 
+project, writing the agent code, evaluating it, deploying it to Agent Runtime, and wiring up 
+observability. The developer does not learn a new SDK. They describe what they want, and 
+the coding agent uses the skills to do the right thing at each step.
+ 
+
+Concretely, the entire build-evaluate-deploy loop looks like this:
+ 
+ 
+Snippet 1: Agents CLI Setup and Build.
+Behind that single instruction, the coding agent scaffolds a project from a template, writes 
+the ADK code, generates an evalset, runs it against the agent, deploys to Agent Runtime, and 
+reports back. For developers who prefer to drive directly, the same operations are available 
+as plain CLI commands (agents-cli create, agents-cli playground, agents-cli 
+eval, agents-cli deploy).
+Production agents used to require a separate stack and a separate workflow from 
+prototypes. Now the prototype that ran on the developer's laptop yesterday can become the 
+production agent serving real users today, without a rewrite.
+The same workflow scales from one agent to many. ADK provides graph-based workflows, 
+multi-agent workflows for building collaborative agents  and interaction mechanisms like 
+shared session state, LLM-driven delegation, and explicit invocation, that combine into 
+whatever multi-agent pattern fits the problem. 
+Coordination across agents happens through shared session state for simple cases, through 
+Model Context Protocol (MCP) for tool access, and through the Agent2Agent (A2A) protocol 
+for cross-agent delegation.¹⁵ Anthropic's engineering team published an experiment in early 
+2026 in which agent teams running on this kind of architecture built a working C compiler in 
+# One-time setup
+uvx google-agents-cli setup
+# Then in your coding agent:
+> Build a support agent that answers questions from our docs.
+> evaluate it on the FAQ dataset 
+> Deploy it to Agent Engine
+
+Rust over two weeks, with humans setting direction and reviewing output but not writing the 
+implementation.¹⁶ The bottleneck moved from writing the code to specifying what it should do 
+and verifying that the agents did it.
+For builders, the practical implication is simple. The same vibe coding workflow that produces 
+a script today produces a production agent tomorrow. The lifecycle, build, evaluate, deploy, 
+observe, refine, lives in one place. The path from idea to running agent has collapsed from 
+weeks to hours, and most of the work now happens in natural language.
+The practices that make this workflow production-grade at team scale, from spec-
+driven development and structured code review to guardrails, sandboxing, and zero-trust 
+development, are covered in the Day 5 companion paper: Spec-Driven Production Grade 
+Development in the Age of Vibe Coding.

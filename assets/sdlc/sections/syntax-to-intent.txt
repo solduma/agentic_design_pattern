@@ -1,0 +1,138 @@
+=== SECTION: 구문에서 의도로: 에이전트와 바이브 코딩 / The shift from syntax to intent (pages 10-15) ===
+
+The shift from syntax to intent
+Before we go further, we need a shared picture of what an agent is and what vibe coding 
+actually means. Both terms have accumulated enough meanings that they need to be 
+unpacked carefully.
+AI Agents: A Quick Refresher
+An AI agent is a software system that perceives a goal, plans steps to reach it, takes actions 
+through tools, observes the results, and iterates until the goal is met or it hits a stopping 
+condition. Where a chatbot produces a response and waits for the next prompt, an agent 
+runs its own loop. You give it a goal at the top, then it decides what to do next at each step.
+ 
+ 
+ 
+Figure 2: The Agent Loop - Perceive, plan, act, observe, iterate. 
+
+Every agent, however simple or sophisticated, is built from five parts. The November 2025 
+Introduction to Agents whitepaper covers each in depth.² For our purposes here, the 
+short version:
+•	 The model is the reasoning engine. It reads the current context, decides what should 
+happen next, and produces the next thought, the next tool call, or the next message.
+•	 Tools connect the model to the world. They include APIs the agent can call, code it can 
+execute, databases it can query, and other agents it can delegate to.
+•	 Memory is the state. It allows the agent to recall past interactions, retrieve project-
+specific rules, and retain context across sessions so it never starts from a blank slate.
+•	 Orchestration is the code that runs the loop. It assembles the context for each model 
+call, dispatches tool calls, captures their results, and decides whether to continue.
+•	 Deployment is what turns the prototype into a service: hosting, identity, observability, and 
+the production infrastructure the agent runs on.
+These four parts work together in a continuous loop: get the mission, scan the scene, think 
+it through, take action, observe and iterate. The loop is the beating heart of every agent. 
+Everything else in this paper, and everything in the rest of the course, is a variation on 
+this loop.
+What is vibe coding?
+In February 2025, Andrej Karpathy posted a description of a new way of programming that 
+resonated widely across the software engineering community. He described an approach 
+where you "fully give in to the vibes, embrace exponentials, and forget that the code even 
+
+exists." In this mode, a developer describes what they want in natural language, accepts the 
+AI's output, and when something breaks, copies the error message back into the prompt and 
+asks the AI to fix it.2
+The term went viral because it captured something real: many developers were already 
+working this way but hadn't had language for it. Within months, "vibe coding" became a 
+common descriptor for any AI-assisted development workflow, which created confusion. Is a 
+senior engineer using an AI assistant to implement a well-specified feature "vibe coding"? Is 
+a team using AI agents to execute a carefully planned architecture? The term was applied so 
+broadly it began to lose meaning.
+By early 2026, Karpathy himself acknowledged that the original framing was too narrow, 
+introducing the term "agentic engineering" to describe the more disciplined end of 
+the spectrum.4
+The spectrum: vibe coding to agentic engineering
+Rather than treating vibe coding and agentic engineering as a binary, we find it more useful 
+to think of them as endpoints on a spectrum. The key differentiator is not whether you use 
+AI. It's how much structure, verification, and human judgment surrounds the AI's output.
+
+Table 1: The Spectrum from Vibe Coding to Agentic Engineering
+Dimension
+Vibe Coding
+Structured AI-Assisted 
+Coding
+Agentic  
+Engineering
+Intent specification
+Casual natural 
+language prompts
+Detailed prompts 
+with examples 
+and constraints
+Formal specs, 
+architecture docs, 
+memory files
+Verification
+"Does it seem 
+to work?"
+Manual 
+testing, spot-checking
+Automated test 
+suites, CI/CD gates, 
+LM judges
+Codebase 
+understanding
+Minimal; developer 
+may not read the 
+generated code
+Selective review of 
+critical paths
+Comprehensive 
+review of architecture; 
+AI handles 
+implementation details
+Error handling
+Copy-paste error 
+messages back to 
+the AI
+Developer diagnoses 
+root cause, AI 
+implements fix
+Agents self-diagnose 
+within defined bounds; 
+humans handle 
+architectural issues
+Appropriate scope
+Prototypes, 
+scripts, personal 
+projects, hackathons
+Features within 
+established codebases
+Production systems,  
+team-scale 
+development
+Risk profile
+High; acceptable for 
+disposable code
+Moderate; human 
+judgment at 
+key checkpoints
+Low; systematic 
+verification at 
+every stage
+
+ 
+ 
+Figure 3: The Vibe Coding to Agentic Engineering Spectrum
+The single biggest differentiator between the two ends is how outputs get verified. In vibe 
+coding, verification is optional; the developer runs the code and checks if it seems right. In 
+agentic engineering, two mechanisms work together. Tests verify the deterministic parts of 
+the system: a function given this input produces that output. Evaluations, or evals, verify the 
+     Applied Tip: 
+ 
+The right position on this spectrum depends on the stakes. A weekend prototype 
+can be pure vibe coding. A production API handling financial transactions demands 
+agentic engineering. Most real work falls somewhere in between, and the skill is 
+knowing where to draw the line for each task.
+
+parts that are not deterministic: did the agent take the right trajectory of steps, choose the 
+right tools, and produce a final response that meets the quality bar. Tests are checked by 
+code; evals are checked by labelled datasets, scoring rubrics, and LM judges. Without both, 
+the practice is always vibe coding, regardless of how sophisticated the prompts are.
