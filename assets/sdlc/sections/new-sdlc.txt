@@ -1,0 +1,130 @@
+=== SECTION: 새로운 소프트웨어 개발 수명주기 / The new software development life cycle (pages 19-26) ===
+
+The new software development life cycle
+The traditional SDLC under pressure
+The software development life cycle has already been through one major transformation. 
+Over the past two decades, most enterprises moved from sequential waterfall processes to 
+iterative models: Agile sprints, continuous integration, DevOps pipelines, and rapid release 
+cycles. That shift shortened feedback loops, brought testing closer to development, and 
+made deployment a continuous process rather than a quarterly event.
+AI compresses this cycle dramatically, but unevenly: implementation that once took weeks 
+can now be done in hours, while requirements, architecture, and verification remain 
+stubbornly human-paced. The result is not a faster version of the old SDLC. It is a different 
+workflow, where the boundaries between phases blur, iteration cycles shorten from weeks 
+to minutes, and the developer's role shifts from primary implementor to system designer and 
+quality arbiter.
+
+ 
+ 
+ 
+Figure 5: Traditional SDLC vs. AI-Driven SDLC
+A note on pace of change: The phase-by-phase picture described above reflects the state 
+of AI-driven SDLC  as of mid-2026. It is shifting fast. Early signs suggest that the compression 
+will spread beyond implementation: teams are already experimenting with workflows where 
+developers go directly from specs to review, with AI agents handling implementation, testing, 
+and deployment in the background. The boundaries drawn in this section may look different 
+in 12 months. What will remain constant is human judgment, taste, and the skill to verify AI 
+output as the machines take on more of the implementation.
+
+How AI transforms each phase
+Requirements and planning
+Requirements is the phase where the gap between intent and implementation has historically 
+been widest. Translating business needs into technical specifications has been a manual, 
+error-prone process that creates a persistent gap between what stakeholders want and what 
+engineers build.
+Modern AI tools can participate directly in requirements refinement: generating user stories 
+from product briefs, identifying edge cases that humans miss, producing API schemas from 
+natural-language descriptions, and generating interactive prototypes from specification 
+documents. Agentic development environments allow developers to go from a description to 
+a working prototype in minutes, collapsing the requirements-to-prototype feedback loop to 
+near zero.
+Requirements stop being a document handed off between teams. They become 
+a conversation between humans and AI that produces specification and initial 
+implementation simultaneously.
+Design and architecture
+Architecture remains the most stubbornly human-centric phase of the SDLC, and for 
+good reason. Architectural decisions are fundamentally about trade-offs: consistency vs. 
+availability, complexity vs. flexibility, build vs. buy. These trade-offs depend on business 
+context, organisational constraints, and long-term strategic considerations that AI cannot 
+fully grasp.
+
+AI excels at implementing architectural decisions once they are made. Given a clear 
+architecture document, AI agents can scaffold entire applications, generate consistent 
+patterns across modules, and ensure that new code conforms to established conventions. 
+The developer's role shifts from writing boilerplate to making and documenting the structural 
+decisions that boilerplate implements.
+Implementation
+Modern coding agents can generate entire features from natural-language descriptions, 
+implement complex algorithms, and produce multi-file changes that work together correctly. 
+The productivity gains are real: industry surveys report 25 to 39% productivity improvements, 
+with some tasks seeing larger gains.⁷
+The picture is more nuanced than headline numbers suggest. A study by METR found that 
+experienced developers using AI assistants actually took 19% longer on certain tasks, largely 
+because of the time spent verifying, debugging, and correcting AI output.⁸ AI does not 
+eliminate implementation work so much as transform it from writing to reviewing, guiding, 
+and verifying.
+Testing and quality assurance
+Testing AI-generated code requires evaluating not just what the agent produced, but how 
+it got there. Output evaluation checks the final artifact: does the code compile, do the tests 
+pass? Trajectory evaluation checks the full sequence of tool calls and intermediate reasoning. 
+Both are necessary because a fluent output that skipped its verification steps is a more 
+dangerous failure than one with a visible error.
+
+AI also transforms test generation itself. Agents can produce test cases, including edge 
+cases and property-based tests, that humans might not think of. More importantly, tests and 
+evals become the primary mechanism for communicating intent to AI agents: a well-written 
+eval suite tells the AI what "correct" means and provides an automated way to verify it.
+These practices are most effective when wired into a continuous quality flywheel: evaluate 
+against a benchmark suite, diagnose failures by clustering root causes, optimize the prompts 
+or tools that caused them, verify fixes against a regression suite, and monitor production 
+traffic for new failure modes. Each cycle compounds.
+Code review and deployment
+The review process itself is being augmented, with AI serving as a first-pass reviewer that 
+can identify potential bugs, style violations, security vulnerabilities, and performance issues 
+before a human reviewer sees the code. This does not replace human review, since context-
+dependent decisions about design, maintainability, and strategic alignment still require 
+human judgment, but it significantly reduces the cognitive burden on reviewers.
+Deployment pipelines are becoming AI-aware as well. AI agents can monitor deployment 
+health, automatically roll back problematic releases, and predict deployment risks based 
+on the nature and scope of changes. Modern deployment platforms increasingly integrate 
+with AI-powered observability to create feedback loops between production behaviour and 
+development decisions.
+Day 5 in this series covers what changes for human reviewers when PR volume scales with 
+agent output — bundled summaries, conditional LGTM, agent-driven code-review skills.
+
+Maintenance and evolution
+Perhaps the most underestimated transformation is in maintenance. Legacy codebases 
+that were once impenetrable to new team members can now be navigated, understood, 
+and modified with AI assistance. An AI agent can read a codebase, understand its patterns, 
+identify the relevant files for a change, and implement modifications while respecting the 
+existing architecture.
+This has significant implications for technical debt. Code that was considered "too risky 
+to touch" because only its original authors understood it can now be safely refactored, 
+modernized, and extended. AI agents can systematically migrate codebases between 
+frameworks, update deprecated APIs, and modernize test suites - tasks that were previously 
+so tedious and risky that they simply never happened.
+The factory model: building the system that builds software
+The mental model that ties these transformations together is what we call the factory model. 
+In this model, the developer's primary output is not code - it's the system that produces 
+code. This system includes:8
+•	 Specifications and context that define what needs to be built
+•	 Agents that translate specifications into implementation
+•	 Tests and quality gates that verify correctness
+•	 Feedback loops that route failures back to agents for correction
+•	 Guardrails that constrain agents to safe, predictable behavior
+
+A factory manager does not assemble every widget by hand. They design the assembly line 
+and ensure quality control. The modern developer designs the development system and 
+ensures that its output meets the required standard. Success comes from giving agents 
+success criteria rather than step-by-step instructions, then letting them iterate.
+ 
+Figure 6: The Factory Model Developer designs the system -> agents produce the code -> tests verify 
+the output.
+This raises the question that drives the rest of this paper: what is the central machine in 
+the factory? What does the agent itself, the thing doing the work inside the assembly line, 
+actually look like?
+
+If the developer is the factory manager, the AI model is merely the raw engine on the factory 
+floor. An engine on its own cannot manufacture a car; it needs belts, gears, safety sensors, 
+and an assembly line. In the context of AI-assisted development, this surrounding machinery 
+is known as the Harness.

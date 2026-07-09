@@ -1,0 +1,274 @@
+[
+  {
+    "en": "vibe coding",
+    "ko": "바이브 코딩",
+    "first_chapter": "syntax-to-intent",
+    "aliases": ["바이브 코딩", "vibe coding"],
+    "definition_ko": "개발자가 자연어로 원하는 바를 기술하고 AI의 출력을 그대로 수용하며, 문제가 생기면 오류 메시지를 프롬프트에 다시 붙여 넣어 수정을 요청하는 방식의 개발. 검증이 선택적이며 스펙트럼의 캐주얼한 끝단에 해당합니다.",
+    "definition_en": "A style of development where a developer describes what they want in natural language, accepts the AI's output, and pastes error messages back into the prompt to fix issues. Verification is optional; it sits at the casual end of the spectrum."
+  },
+  {
+    "en": "agentic engineering",
+    "ko": "에이전틱 엔지니어링",
+    "first_chapter": "syntax-to-intent",
+    "aliases": ["에이전틱 엔지니어링", "agentic engineering"],
+    "definition_ko": "AI가 제약·테스트·피드백 루프로 신중히 설계된 시스템 안에서 강력한 구현 엔진으로 동작하고, 인간은 아키텍처·정확성·품질에 대한 감독을 유지하는 체계적 개발 방식. 스펙트럼의 규율 있는 끝단입니다.",
+    "definition_en": "A disciplined development approach where AI acts as a powerful implementation engine within carefully designed systems of constraints, tests, and feedback loops, while humans retain oversight over architecture, correctness, and quality."
+  },
+  {
+    "en": "harness",
+    "ko": "하네스",
+    "first_chapter": "harness-engineering",
+    "aliases": ["하네스", "harness"],
+    "definition_ko": "모델을 감싸 실제로 작업을 완수하게 만드는 발판(scaffolding). 프롬프트, 도구, 컨텍스트 정책, 훅, 샌드박스, 서브에이전트, 관측성 등 모델을 제외한 모든 것을 가리킵니다. Agent = Model + Harness.",
+    "definition_en": "The scaffolding wrapped around the model that lets it actually finish something: prompts, tools, context policies, hooks, sandboxes, sub-agents, and observability. Agent = Model + Harness."
+  },
+  {
+    "en": "context engineering",
+    "ko": "컨텍스트 엔지니어링",
+    "first_chapter": "context-engineering",
+    "aliases": ["컨텍스트 엔지니어링", "context engineering"],
+    "definition_ko": "AI 에이전트에게 코드베이스·아키텍처·규약·의도에 관한 풍부하고 구조화된 정보를 제공하는 실천. 프롬프트의 영리함보다 제공되는 컨텍스트의 품질이 AI 생성 코드의 품질을 좌우한다는 통찰에서 비롯됩니다.",
+    "definition_en": "The practice of providing AI agents with rich, structured information about your codebase, architecture, conventions, and intent — recognizing that context quality matters more than prompt cleverness."
+  },
+  {
+    "en": "SDLC",
+    "ko": "소프트웨어 개발 수명주기",
+    "first_chapter": "introduction",
+    "aliases": ["소프트웨어 개발 수명주기", "SDLC", "software development life cycle"],
+    "definition_ko": "요구사항 수집부터 배포·유지보수까지 소프트웨어를 만드는 전 과정을 아우르는 수명주기(Software Development Life Cycle). AI 역량에 의해 각 단계가 재편되고 있습니다.",
+    "definition_en": "The Software Development Life Cycle — the full process of building software from requirements gathering through deployment and maintenance, being reshaped by AI capabilities."
+  },
+  {
+    "en": "AI agent",
+    "ko": "AI 에이전트",
+    "first_chapter": "syntax-to-intent",
+    "aliases": ["AI 에이전트", "에이전트", "agent"],
+    "definition_ko": "목표를 인식하고, 도달하기 위한 단계를 계획하며, 도구를 통해 행동하고, 결과를 관찰하여 목표가 달성되거나 정지 조건에 도달할 때까지 반복하는 소프트웨어 시스템. 챗봇과 달리 스스로 루프를 실행합니다.",
+    "definition_en": "A software system that perceives a goal, plans steps to reach it, takes actions through tools, observes results, and iterates until the goal is met or a stopping condition is hit. Unlike a chatbot, it runs its own loop."
+  },
+  {
+    "en": "conductor",
+    "ko": "지휘자",
+    "first_chapter": "developer-role",
+    "aliases": ["지휘자", "conductor"],
+    "definition_ko": "개발자가 AI 페어 프로그래머와 실시간으로 협업하며 프롬프트와 수정으로 코드 작성을 세밀하게 지시하는 작업 모드. IDE 안에서 코드가 나타나는 것을 지켜보며 모든 움직임을 능동적으로 지휘합니다.",
+    "definition_en": "A working mode where the developer works in real-time with an AI pair-programmer, guiding it with prompts and corrections while maintaining fine-grained control over what gets written."
+  },
+  {
+    "en": "orchestrator",
+    "ko": "오케스트레이터",
+    "first_chapter": "developer-role",
+    "aliases": ["오케스트레이터", "orchestrator"],
+    "definition_ko": "개발자가 더 높은 추상화 수준에서 목표를 정의하고 에이전트에 할당한 뒤 결과를 검토하는 작업 모드. 여러 에이전트가 백그라운드에서 병렬로 작업하며, 개발자는 주기적으로 점검하고 방향을 교정합니다.",
+    "definition_en": "A working mode where the developer operates at a higher level of abstraction — defining goals, assigning them to agents, and reviewing results — while agents work in the background, often in parallel."
+  },
+  {
+    "en": "the factory model",
+    "ko": "공장 모델",
+    "first_chapter": "new-sdlc",
+    "aliases": ["공장 모델", "factory model"],
+    "definition_ko": "개발자의 주된 산출물이 코드가 아니라 코드를 생산하는 시스템이라는 멘탈 모델. 스펙·컨텍스트, 에이전트, 테스트·품질 게이트, 피드백 루프, 가드레일로 구성됩니다. 공장 관리자는 조립 라인을 설계하고 품질을 관리합니다.",
+    "definition_en": "A mental model where the developer's primary output is not code but the system that produces code — comprising specs, agents, tests/quality gates, feedback loops, and guardrails."
+  },
+  {
+    "en": "the 80% problem",
+    "ko": "80% 문제",
+    "first_chapter": "developer-role",
+    "aliases": ["80% 문제", "80% problem"],
+    "definition_ko": "AI 에이전트가 기능 코드의 약 80%는 빠르게 생성하지만, 나머지 20%(엣지 케이스, 오류 처리, 통합 지점, 미묘한 정확성 요구사항)는 현재 모델이 종종 갖추지 못한 깊은 맥락 지식을 요구한다는 지속적 난제.",
+    "definition_en": "The persistent challenge that AI agents can rapidly generate ~80% of a feature's code, but the remaining 20% — edge cases, error handling, integration points, subtle correctness — demands deep contextual knowledge current models often lack."
+  },
+  {
+    "en": "eval",
+    "ko": "평가",
+    "first_chapter": "syntax-to-intent",
+    "aliases": ["평가", "eval", "evaluation", "evals"],
+    "definition_ko": "결정론적이지 않은 부분을 검증하는 수단. 에이전트가 올바른 단계 경로를 밟고 적절한 도구를 선택했으며 품질 기준을 충족하는 최종 응답을 냈는지를 레이블링된 데이터셋·채점 루브릭·LM 심판으로 확인합니다.",
+    "definition_en": "Evaluations verify the non-deterministic parts: whether the agent took the right trajectory, chose the right tools, and produced a response meeting the quality bar — checked by labelled datasets, scoring rubrics, and LM judges."
+  },
+  {
+    "en": "test",
+    "ko": "테스트",
+    "first_chapter": "syntax-to-intent",
+    "aliases": ["테스트", "test", "tests"],
+    "definition_ko": "시스템의 결정론적 부분을 검증하는 수단. 주어진 입력에 대해 함수가 특정 출력을 내는지를 코드로 확인합니다.",
+    "definition_en": "Tests verify the deterministic parts of the system: that a function given a specific input produces the expected output. Checked by code."
+  },
+  {
+    "en": "Agent Skills",
+    "ko": "에이전트 스킬",
+    "first_chapter": "context-engineering",
+    "aliases": ["에이전트 스킬", "스킬", "Agent Skills", "skills"],
+    "definition_ko": "에이전트가 작업이 필요할 때만 로드하는 구조화되고 이식 가능한 절차적 지식 패키지. 점진적 공개(progressive disclosure)를 통해 경량 제너럴리스트 에이전트가 필요 시 전문가 역할로 유연하게 전환하게 합니다.",
+    "definition_en": "Structured, portable packages of procedural knowledge that the agent loads only when the task calls for it, letting a lightweight generalist agent flex into specialist roles via progressive disclosure."
+  },
+  {
+    "en": "static context",
+    "ko": "정적 컨텍스트",
+    "first_chapter": "context-engineering",
+    "aliases": ["정적 컨텍스트", "static context"],
+    "definition_ko": "항상 로드되는 컨텍스트. 시스템 지시, 규칙 파일(AGENTS.md, CLAUDE.md, GEMINI.md), 전역 메모리, 페르소나 정의를 포함합니다. 모든 상호작용에 존재하므로 토큰 비용이 큽니다.",
+    "definition_en": "Context that is always loaded: system instructions, rule files (AGENTS.md, CLAUDE.md, GEMINI.md), global memory, and persona definitions. Expensive because every token is present in every interaction."
+  },
+  {
+    "en": "dynamic context",
+    "ko": "동적 컨텍스트",
+    "first_chapter": "context-engineering",
+    "aliases": ["동적 컨텍스트", "dynamic context"],
+    "definition_ko": "필요할 때 로드되는 컨텍스트. 작업 매칭으로 트리거되는 스킬 지시, 실행 중 검색된 도구 결과, RAG 파이프라인이 가져온 문서, 윈도우 세션 히스토리 등. 정보가 필요할 때만 토큰 비용을 지불하므로 효율적입니다.",
+    "definition_en": "Context loaded on demand: skill instructions triggered by task matching, tool results retrieved during execution, documents fetched from RAG pipelines, and windowed session history. Efficient because you pay the token cost only when needed."
+  },
+  {
+    "en": "Model Context Protocol",
+    "ko": "모델 컨텍스트 프로토콜",
+    "first_chapter": "coding-agents",
+    "aliases": ["모델 컨텍스트 프로토콜", "MCP", "Model Context Protocol"],
+    "definition_ko": "에이전트가 도구에 접근하기 위한 개방형 표준 프로토콜(Model Context Protocol). 멀티 에이전트 시스템의 연결 조직으로 수렴하고 있습니다.",
+    "definition_en": "An open standard protocol for tool access by agents (Model Context Protocol), converging into the connective tissue of multi-agent systems."
+  },
+  {
+    "en": "Agent2Agent protocol",
+    "ko": "에이전트 간 프로토콜",
+    "first_chapter": "coding-agents",
+    "aliases": ["에이전트 간 프로토콜", "A2A", "Agent2Agent", "Agent2Agent protocol"],
+    "definition_ko": "에이전트 간 위임을 위한 개방형 표준 프로토콜(Agent2Agent, A2A). 서로 다른 에이전트 사이의 협업과 작업 위임을 담당합니다.",
+    "definition_en": "An open standard protocol for cross-agent delegation (Agent2Agent, A2A), handling collaboration and task hand-off between different agents."
+  },
+  {
+    "en": "Agent Development Kit",
+    "ko": "에이전트 개발 키트",
+    "first_chapter": "coding-agents",
+    "aliases": ["에이전트 개발 키트", "ADK", "Agent Development Kit"],
+    "definition_ko": "Google의 에이전트 개발 키트(Agent Development Kit). 그래프 기반 워크플로우, 멀티 에이전트 워크플로우, 공유 세션 상태·LLM 기반 위임·명시적 호출 같은 상호작용 메커니즘을 제공합니다.",
+    "definition_en": "Google's Agent Development Kit, providing graph-based workflows, multi-agent workflows, and interaction mechanisms like shared session state, LLM-driven delegation, and explicit invocation."
+  },
+  {
+    "en": "CapEx",
+    "ko": "자본적 지출",
+    "first_chapter": "economics",
+    "aliases": ["자본적 지출", "CapEx", "Capital Expenditure"],
+    "definition_ko": "무언가를 구축하기 위한 선행 투자(Capital Expenditure). 에이전틱 엔지니어링에서는 API 스키마 설계, 결정론적 테스트 스위트 구축, 에이전트 컨텍스트 구조화 등이 이에 해당합니다.",
+    "definition_en": "Capital Expenditure — the upfront investment to build something. In agentic engineering this includes designing API schemas, building deterministic test suites, and structuring the agent's context."
+  },
+  {
+    "en": "OpEx",
+    "ko": "운영 지출",
+    "first_chapter": "economics",
+    "aliases": ["운영 지출", "OpEx", "Operational Expenditure"],
+    "definition_ko": "구축한 것을 운영·수정·유지보수하는 지속 비용(Operational Expenditure). AI 시대에는 토큰 경제(token economy)에 크게 좌우됩니다.",
+    "definition_en": "Operational Expenditure — the ongoing cost to run, fix, and maintain what you built. In the AI era it is heavily dictated by the token economy."
+  },
+  {
+    "en": "Total Cost of Ownership",
+    "ko": "총소유비용",
+    "first_chapter": "economics",
+    "aliases": ["총소유비용", "TCO", "Total Cost of Ownership"],
+    "definition_ko": "엔지니어링 리더에게 개발 속도보다 중요한 지표인 총소유비용(Total Cost of Ownership). 구축·운영·유지보수의 전체 비용을 자본적 지출과 운영 지출로 나누어 봅니다.",
+    "definition_en": "Total Cost of Ownership — a metric more critical to engineering leaders than raw velocity, splitting the full cost of building, running, and maintaining across CapEx and OpEx."
+  },
+  {
+    "en": "token economy",
+    "ko": "토큰 경제",
+    "first_chapter": "economics",
+    "aliases": ["토큰 경제", "token economy"],
+    "definition_ko": "LLM이 보내는 모든 정보(토큰)에 비용을 부과하는 경제 구조. 운영 지출(OpEx)이 토큰 소비량에 크게 좌우되므로, 컨텍스트 엔지니어링은 기술이자 재무 전략이 됩니다.",
+    "definition_en": "The economic structure where LLMs charge for every piece of information (token) sent to them. Since OpEx is heavily dictated by token consumption, context engineering becomes both a technical skill and a financial strategy."
+  },
+  {
+    "en": "intelligent model routing",
+    "ko": "지능형 모델 라우팅",
+    "first_chapter": "economics",
+    "aliases": ["지능형 모델 라우팅", "intelligent model routing", "model routing"],
+    "definition_ko": "복잡한 작업에는 크고 진보된 모델을, 결정론적이고 저복잡도인 작업에는 더 작고 빠르며 저렴한 모델을 자동으로 배정하는 기법. 다중 모델 생태계를 조율해 품질을 유지하며 운영 토큰 비용을 낮춥니다.",
+    "definition_en": "Automatically routing complex tasks to large, advanced models and deterministic, lower-complexity tasks to smaller, faster, cheaper models — orchestrating a multi-model ecosystem to maintain quality while driving down operational token cost."
+  },
+  {
+    "en": "guardrails",
+    "ko": "가드레일",
+    "first_chapter": "harness-engineering",
+    "aliases": ["가드레일", "guardrails"],
+    "definition_ko": "특정 수명주기 지점(도구 호출 전, 파일 편집 후, 커밋 전 등)에서 실행되는 결정론적 코드. 에이전트가 절대 잊어서는 안 되지만 자주 잊는 것들을 강제하는 자리입니다. 훅(hooks)이라고도 합니다.",
+    "definition_en": "Deterministic code that runs at specific lifecycle points (before a tool call, after a file edit, before a commit). The place for things the agent should never forget but often does. Also called hooks."
+  },
+  {
+    "en": "hooks",
+    "ko": "훅",
+    "first_chapter": "harness-engineering",
+    "aliases": ["훅", "hooks", "hook"],
+    "definition_ko": "특정 수명주기 지점에서 자동 실행되는 결정론적 코드. 예를 들어 에이전트가 하드코딩된 비밀번호를 푸시하려 하면 커밋을 차단합니다. 가드레일과 함께 하네스의 안전 장치를 이룹니다.",
+    "definition_en": "Deterministic code that runs automatically at specific lifecycle points — for example, blocking a commit if the agent tries to push a hard-coded password. Together with guardrails, they form the harness's safety mechanisms."
+  },
+  {
+    "en": "observability",
+    "ko": "관측성",
+    "first_chapter": "harness-engineering",
+    "aliases": ["관측성", "observability"],
+    "definition_ko": "로그, 트레이스, 평가, 비용·지연 계측. 관측성이 없으면 에이전트가 잘하고 있는지 조용히 드리프트하고 있는지 알 방법이 없습니다.",
+    "definition_en": "Logs, traces, evaluations, cost and latency metering. Without observability, there is no way to tell whether the agent is doing well or quietly drifting."
+  },
+  {
+    "en": "sandbox",
+    "ko": "샌드박스",
+    "first_chapter": "harness-engineering",
+    "aliases": ["샌드박스", "sandbox", "sandboxes"],
+    "definition_ko": "에이전트의 코드가 실제로 실행되는 격리된 환경. 무엇에 접근할 수 있고 무엇에 도달할 수 없는지를 규정합니다.",
+    "definition_en": "The isolated execution environment where the agent's code actually runs, defining what it has access to and what it cannot reach."
+  },
+  {
+    "en": "orchestration logic",
+    "ko": "오케스트레이션 로직",
+    "first_chapter": "harness-engineering",
+    "aliases": ["오케스트레이션 로직", "orchestration logic", "orchestration"],
+    "definition_ko": "루프를 실행하는 코드. 각 모델 호출을 위한 컨텍스트를 조립하고, 도구 호출을 디스패치하며, 결과를 포착하고, 계속할지 결정합니다. 서브에이전트 생성·모델 라우팅·전문가 간 핸드오프를 담당합니다.",
+    "definition_en": "The code that runs the loop: assembling context for each model call, dispatching tool calls, capturing their results, and deciding whether to continue. It also handles sub-agent spawning, model routing, and hand-offs between specialists."
+  },
+  {
+    "en": "AGENTS.md",
+    "ko": "AGENTS.md",
+    "first_chapter": "context-engineering",
+    "aliases": ["AGENTS.md"],
+    "definition_ko": "에이전트가 누구이고 무엇을 지키며 무엇을 금지하는지를 정의하는 규칙 파일. 정적 컨텍스트의 핵심 구성 요소이며, 코드처럼 리뷰·버전 관리되어야 합니다. CLAUDE.md, GEMINI.md도 같은 역할을 합니다.",
+    "definition_en": "A rule file defining who the agent is, what it cares about, and what it is forbidden from doing. A core component of static context that should be reviewed and versioned like code. CLAUDE.md and GEMINI.md serve the same role."
+  },
+  {
+    "en": "output evaluation",
+    "ko": "출력 평가",
+    "first_chapter": "new-sdlc",
+    "aliases": ["출력 평가", "output evaluation", "output eval"],
+    "definition_ko": "최종 산출물을 확인하는 평가. 코드가 컴파일되는지, 테스트가 통과하는지를 검사합니다.",
+    "definition_en": "Evaluation that checks the final artifact: does the code compile, do the tests pass?"
+  },
+  {
+    "en": "trajectory evaluation",
+    "ko": "경로 평가",
+    "first_chapter": "new-sdlc",
+    "aliases": ["경로 평가", "trajectory evaluation", "trajectory eval"],
+    "definition_ko": "도구 호출과 중간 추론의 전체 시퀀스를 확인하는 평가. 검증 단계를 건너뛴 유창한 출력은 눈에 보이는 오류보다 더 위험하기 때문에 필요합니다.",
+    "definition_en": "Evaluation that checks the full sequence of tool calls and intermediate reasoning. Necessary because a fluent output that skipped its verification steps is more dangerous than one with a visible error."
+  },
+  {
+    "en": "quality flywheel",
+    "ko": "품질 플라이휠",
+    "first_chapter": "new-sdlc",
+    "aliases": ["품질 플라이휠", "quality flywheel"],
+    "definition_ko": "벤치마크 스위트로 평가하고, 근본 원인을 군집화해 실패를 진단하고, 원인이 된 프롬프트·도구를 최적화하고, 회귀 스위트로 수정을 검증하고, 프로덕션 트래픽을 모니터링하는 지속적 품질 순환. 매 주기가 복리로 쌓입니다.",
+    "definition_en": "A continuous quality cycle: evaluate against a benchmark suite, diagnose failures by clustering root causes, optimize the prompts or tools that caused them, verify fixes against a regression suite, and monitor production traffic. Each cycle compounds."
+  },
+  {
+    "en": "context rot",
+    "ko": "컨텍스트 부패",
+    "first_chapter": "context-engineering",
+    "aliases": ["컨텍스트 부패", "context rot"],
+    "definition_ko": "과부하된 프롬프트로 인해 컨텍스트가 노이즈로 가득 차 신호가 희석되고 에이전트 성능이 저하되는 현상.",
+    "definition_en": "Degradation of agent performance caused by overloaded prompts, where context becomes stuffed with noise and signal is diluted."
+  },
+  {
+    "en": "progressive disclosure",
+    "ko": "점진적 공개",
+    "first_chapter": "context-engineering",
+    "aliases": ["점진적 공개", "progressive disclosure"],
+    "definition_ko": "에이전트가 시작 시에는 경량 메타데이터만 보고, 작업이 매칭될 때 전체 지시를 로드하며, 명시적으로 필요할 때만 심층 참조 자료를 가져오는 방식. 에이전트 스킬의 핵심 동작 원리입니다.",
+    "definition_en": "The mechanism where an agent sees only lightweight metadata at startup, loads full instructions when a task matches, and pulls deep reference material only when explicitly needed — the core operating principle of Agent Skills."
+  }
+]

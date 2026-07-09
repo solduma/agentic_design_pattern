@@ -1,0 +1,66 @@
+=== SECTION: AI 개발의 경제학 / The Economics of AI Development (pages 39-42) ===
+
+The Economics of AI Development
+When evaluating the impact of AI on the software development life cycle, the conversation 
+often begins and ends with developer velocity: how fast can we write code? However, for 
+engineering leaders, the more critical metric is the Total Cost of Ownership (TCO).
+To understand the true cost of AI-assisted development, we must look at how different 
+workflows shift the financial and operational burdens between Capital Expenditure (CapEx)—
+the upfront investment to build something—and Operational Expenditure (OpEx)—the 
+ongoing cost to run, fix, and maintain it. Crucially, in the AI era, OpEx is heavily dictated by 
+the token economy.
+
+ 
+ 
+Figure 9: The Economics of AI Development
+The Hidden Debt of Vibe Coding (Low CapEx, High OpEx)
+At first glance, vibe coding appears incredibly cost-effective. The barrier to entry is 
+essentially zero: a standard monthly subscription to an AI assistant and a few casual prompts. 
+The CapEx is negligible because the developer relies entirely on the model's baseline 
+capabilities rather than investing time in system design.
+However, the economics of vibe coding hide a massive, compounding OpEx burden:
+•	 The Token Burn Rate: Every interaction with a Large Language Model (LLM) incurs a 
+cost based on input and output tokens. In vibe coding, developers often dump massive, 
+unstructured files into the context window and repeatedly ask the model to fix its own 
+unverified mistakes. This creates an expensive "prompting loop" that burns through API 
+tokens with low first-pass success rates.
+
+•	 Maintenance Tax: Code written through ad-hoc prompting often lacks structural 
+consistency. When a bug arises six months later, human engineers must spend days 
+reverse-engineering unstructured, AI-generated "spaghetti" code.
+•	 Security Remediation: Without an automated evaluation harness, the rapid generation 
+of code leads to the rapid generation of vulnerabilities. The cost of fixing a security flaw in 
+production is exponentially higher than catching it during the design phase.
+The Investment of Agentic Engineering (High CapEx, 
+Low OpEx)
+Agentic engineering flips this economic model. It requires a deliberate, upfront investment of 
+engineering time and resources before a single line of production code is generated.
+The CapEx in agentic engineering includes designing API schemas, building deterministic 
+test suites, and, most importantly, structuring the agent's context. While this upfront cost 
+is higher, the marginal cost of shipping and maintaining a feature drops dramatically. The AI 
+operates within a strictly governed "factory," meaning its output is structurally sound, pre-
+tested, and aligned with company standards.
+Context Engineering as a Financial Lever
+In the token economy, context engineering is not just a technical skill—it is a financial 
+strategy. LLMs charge for every piece of information you send them. Passing an entire 
+100,000-token repository into every prompt is financially unviable at scale.
+
+Effective context engineering ensures the model receives a dense, high-signal payload (such 
+as a precise AGENTS.md file and architectural guardrails) rather than a sprawling, noisy one. 
+By providing the right context upfront, developers dramatically increase the agent's first-
+pass success rate, avoiding the costly trial-and-error loops that plague vibe coding.
+Scaling Efficiency via Dynamic Context and Skills
+To truly optimize OpEx, advanced agentic engineering relies on dynamic context through 
+the use of "skills" or tool calling (such as Model Context Protocol servers) which we cover in 
+detail in day-3 paper.
+Intelligent Model Routing 
+Furthermore, agentic engineering allows for intelligent model routing. In a vibe coding 
+workflow, a developer typically relies on a single, massive frontier model for every 
+interaction—paying premium token prices just to ask the AI to fix a typo or generate a basic 
+unit test.
+A well-designed factory model avoids this waste. It uses large, advanced models for highly 
+complex tasks (Requirements, Architecture, and initial Implementation) but automatically 
+routes deterministic, lower-complexity tasks (Test Generation, Code Review, and CI/CD 
+monitoring) to smaller, faster, and significantly cheaper models. By orchestrating a multi-
+model ecosystem, engineering teams can maintain peak output quality while systematically 
+driving down the operational token cost.

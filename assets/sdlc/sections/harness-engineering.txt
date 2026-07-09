@@ -1,0 +1,94 @@
+=== SECTION: 하네스 엔지니어링: 모델을 둘러싼 것 / Harness Engineering: What surrounds (pages 26-31) ===
+
+Harness Engineering: What surrounds 
+the model 
+There is a temptation, when builders start working with AI agents, to treat the model as the 
+system. A new model comes out, the agent gets smarter. An older model and the agent gets 
+worse. The model becomes the explanation for everything good and bad.
+That intuition is wrong, and it leads to the wrong investments. The model is one input into a 
+running agent. Everything else, the prompts, the tools, the context policies, the hooks, the 
+sandboxes, the sub-agents, the observability, is the harness: the scaffolding wrapped around 
+the model that lets it actually finish something.¹¹
+A useful equation:
+
+A raw model is not an agent. It becomes one once a harness gives it state, tool execution, 
+feedback loops, and enforceable constraints. The behaviour developers experience when 
+working with Claude Code, Cursor, Codex, Antigravity, Aider, or Cline is dominated by what 
+the harness does, not just by which model is underneath.
+Figure 7: Harness Anatomy | Agent = Model + Harness
+
+What's in the harness
+Concretely, a harness includes:
+•	 Instructions and Rule Files: The text that defines who the agent is, what it cares about, 
+and what it is forbidden from doing. This includes AGENTS.md, CLAUDE.md, GEMINI.md, 
+skill files, and sub-agent prompts.
+•	 Tools: The functions, MCP servers, and APIs the agent can call, plus the prose around 
+them that tells the model when and how to call them.
+•	 Sandboxes and execution environments: Where the agent's code actually runs, what it 
+has access to, what it cannot reach.
+•	 Orchestration logic: Sub-agent spawning, model routing, hand-offs between specialists, 
+and the rules that govern when each one fires.
+•	 Guardrails or Hooks: Deterministic code that runs at specific lifecycle points: before a 
+tool call, after a file edit, before a commit. Hooks are the place for things the agent should 
+never forget but often does.
+•	 Observability: Logs, traces, evaluations, cost and latency metering. Without 
+observability, there is no way to tell whether the agent is doing well or quietly drifting.
+If that sounds like a lot of surface area, it is. And it is the team's surface area, not the 
+model provider's.
+
+Harness in SDLC
+While the model itself determines how to accomplish a task, the harness is the scaffolding 
+that provides access to the tools, sandboxes, and orchestration needed to execute it. 
+Therefore, this harness must be present in every phase where an AI agent operates.
+Here is how the harness actively operates across the different phases of the new SDLC:
+1. Requirements, Planning, & Architecture (Configuring 
+the Harness)
+This is where the harness is configured and calibrated. Before the AI writes any production 
+code, the developer must set up the agent's environment.
+•	 Harness Configuration: Providing the Instructions and Rule Files (e.g., creating the 
+AGENTS.md and defining architectural constraints) that the harness will load and make 
+available to the model.
+•	 The Action: The developer defines the tools the agent will have access to (like specific 
+APIs or database schemas) and sets the fundamental rules the agent cannot break.
+2. Implementation (Running the Harness)
+During active coding, the harness acts as the boundary that keeps the AI model focused, 
+secure, and productive.
+•	 Harness Components Used: Sandboxes, Execution Environments, and Tools.
+
+•	 The Action: As the model generates code, it executes it within the harness's isolated 
+sandbox. If the model needs to read a file or search the web, it uses the tools provided 
+by the harness.
+3. Testing & QA (The Feedback Loop)
+Testing in an agentic workflow relies heavily on the harness to facilitate 
+autonomous self-correction.
+•	 Harness Components Used: Orchestration Logic and Guardrails.
+•	 The Action: When the agent writes a function, the harness provides the execution 
+environment (such as a sandboxed terminal) that allows the automated tests to be 
+executed. If a test fails, the orchestration logic captures the error output from that 
+environment and routes it back to the model, asking it to try again. The harness is what 
+creates this automated 'think -> act -> observe' loop."
+4. Code Review, Deployment, & Maintenance (Observing 
+the Harness)
+Even after the code is written, the harness ensures the agent behaves safely in live or 
+near-live environments.
+•	 Harness Components Used: Hooks and Observability.
+•	 The Action: The harness runs deterministic hooks (e.g., blocking a commit if the agent 
+tries to push a hard-coded password). Furthermore, the observability layer tracks token 
+costs, latency, and agent drift, allowing human engineers to audit exactly why an agent 
+made a specific deployment decision.
+
+The transition from 'vibe coding' to 'agentic engineering' is not simply about the tools you 
+use—a developer can vibe code or apply agentic engineering using the exact same agent. 
+Instead, it is defined by how deliberately you configure and apply the harness. Vibe coding 
+relies on minimal or implicit scaffolding aimed purely at rapid implementation. Agentic 
+engineering relies on clear, extensive harness abstractions that guide the AI from the very 
+first planning document all the way through to production monitoring.
+The impact of this deliberate configuration is highly measurable. Public benchmarks make the 
+size of the harness effect concrete. On Terminal Bench 2.0, one team moved a coding agent 
+from outside the Top 30 to the Top 5 by changing only the harness, with no model change at 
+all. A separate study at LangChain raised a coding agent's score on the same benchmark by 
+13.7 points by tweaking only the system prompt, tools, and middleware around a fixed model.
+The everyday version of this observation is crucial for teams adopting AI across the SDLC: 
+when an agent does something wrong, the first instinct is to blame the model. More often, 
+the failure traces back to a missing tool, a vague rule, an absent guardrail, or a context 
+window stuffed with noise. Most agent failures, examined honestly, are configuration failures.
