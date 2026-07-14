@@ -1,0 +1,844 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>분석 Agent — 에이전트 아키텍처 (마스터 + 전문 에이전트)</title>
+    <style>
+      :root {
+        --bg: #f7f7fb;
+        --card: #ffffff;
+        --fg: #1a1a24;
+        --muted: #6b6b85;
+        --primary: #5257e6;
+        --accent: #158066;
+        --amber: #a25f0d;
+        --pink: #c22e57;
+        --blue: #17789f;
+        --border: rgba(20, 20, 40, 0.1);
+        --code: #f0f0f6;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+          "Apple SD Gothic Neo", "Noto Sans KR", Inter, sans-serif;
+        line-height: 1.75;
+        font-size: 16px;
+      }
+      .wrap { max-width: 920px; margin: 0 auto; padding: 48px 24px 96px; }
+      header.title {
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 28px;
+        margin-bottom: 12px;
+      }
+      h1 { font-size: 30px; letter-spacing: -0.02em; margin: 0 0 8px; }
+      h2 {
+        font-size: 23px;
+        letter-spacing: -0.01em;
+        margin: 56px 0 8px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border);
+      }
+      h3 { font-size: 18px; margin: 32px 0 6px; color: #3a3a52; }
+      h4 {
+        font-size: 15px;
+        margin: 22px 0 4px;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      p { margin: 10px 0; }
+      .lede { color: #3a3a52; font-size: 17px; }
+      .muted { color: var(--muted); }
+      code, .mono {
+        font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+      }
+      code {
+        background: var(--code);
+        padding: 1px 6px;
+        border-radius: 5px;
+        font-size: 0.86em;
+        color: #3d3d80;
+      }
+      pre {
+        background: var(--code);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 16px 18px;
+        overflow-x: auto;
+        font-size: 13.5px;
+        line-height: 1.5;
+      }
+      pre code { background: none; padding: 0; }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 22px 24px;
+        margin: 22px 0;
+      }
+      .analogy {
+        border-left: 3px solid var(--amber);
+        background: rgba(217, 135, 38, 0.09);
+        border-radius: 0 10px 10px 0;
+        padding: 14px 18px;
+        margin: 18px 0;
+      }
+      .analogy .tag {
+        color: var(--amber);
+        font-weight: 600;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .tech {
+        border-left: 3px solid var(--primary);
+        background: rgba(82, 87, 230, 0.07);
+        border-radius: 0 10px 10px 0;
+        padding: 14px 18px;
+        margin: 18px 0;
+      }
+      .tech .tag {
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      figure.fig {
+        width: 100%;
+        margin: 26px 0;
+        padding: 18px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+      }
+      figure.fig svg {
+        display: block;
+        width: 100%;
+        max-width: none;
+        height: auto;
+        overflow: visible;
+      }
+      figure.fig figcaption {
+        color: var(--muted);
+        font-size: 13px;
+        margin-top: 12px;
+        line-height: 1.6;
+      }
+      figure.fig figcaption b { color: #3a3a52; }
+      .fig svg text {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+          "Apple SD Gothic Neo", "Noto Sans KR", Inter, sans-serif;
+      }
+      .fig svg .mono {
+        font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+      }
+      ol.steps { counter-reset: s; list-style: none; padding-left: 0; margin: 18px 0; }
+      ol.steps > li {
+        counter-increment: s;
+        position: relative;
+        padding: 14px 0 14px 56px;
+        border-bottom: 1px solid var(--border);
+      }
+      ol.steps > li:last-child { border-bottom: none; }
+      ol.steps > li::before {
+        content: counter(s);
+        position: absolute;
+        left: 0;
+        top: 12px;
+        width: 34px;
+        height: 34px;
+        border-radius: 9px;
+        background: var(--primary);
+        color: #fff;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 15px;
+      }
+      ol.steps > li b { color: #1a1a24; }
+      table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 14.5px; }
+      th, td {
+        text-align: left;
+        padding: 9px 12px;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+      }
+      th {
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .toc { columns: 2; column-gap: 28px; font-size: 14.5px; }
+      .toc a { color: #5257e6; text-decoration: none; }
+      .toc a:hover { text-decoration: underline; }
+      .small { font-size: 13.5px; }
+      .term {
+        border-bottom: 1px dashed var(--accent);
+        color: #1a1a24;
+        cursor: help;
+        position: relative;
+        outline: none;
+      }
+      .term::after {
+        content: attr(data-tip);
+        position: absolute;
+        left: 50%;
+        bottom: calc(100% + 10px);
+        transform: translateX(-50%);
+        width: max-content;
+        max-width: 320px;
+        white-space: normal;
+        background: #ffffff;
+        color: #1a1a24;
+        border: 1px solid var(--accent);
+        border-radius: 9px;
+        padding: 10px 13px;
+        font-size: 13px;
+        line-height: 1.6;
+        font-weight: 400;
+        box-shadow: 0 10px 28px rgba(20, 20, 40, 0.18);
+        z-index: 20;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.12s ease, transform 0.12s ease;
+        pointer-events: none;
+      }
+      .term:hover::after, .term:focus::after {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(-2px);
+      }
+      .hint { color: var(--muted); font-size: 12.5px; }
+      .fileref {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--accent);
+        background: rgba(31, 168, 133, 0.1);
+        border: 1px solid rgba(31, 168, 133, 0.28);
+        border-radius: 6px;
+        padding: 2px 8px;
+        display: inline-block;
+        margin: 2px 0;
+      }
+      .pill {
+        display: inline-block;
+        padding: 2px 9px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        background: rgba(82, 87, 230, 0.12);
+        color: #5257e6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="title">
+        <h1>마스터 에이전트와 전문 에이전트</h1>
+        <p class="hint">
+          💡 점선 밑줄 용어에 마우스를 올리면 쉬운 설명이 나옵니다. 각 절의
+          <span class="fileref">파일:줄</span> 표기는 실제 코드 위치입니다.
+        </p>
+      </header>
+
+      <div class="card">
+        <h4 style="margin-top: 0">목차</h4>
+        <div class="toc">
+          <a href="#big">1. 큰 그림</a><br />
+          <a href="#router">2. 마스터 라우터 — 분야 판별</a><br />
+          <a href="#loop">3. 공통 상태 머신 (계획→실행)</a><br />
+          &nbsp;&nbsp;&nbsp;└ <a href="#force_tool_explain">3a. force_tool — 도구 강제 실행 방식</a><br />
+          <a href="#specialists">4. 일곱 전문 에이전트</a><br />
+          <a href="#tools">5. 도구와 산출물(artifact)</a><br />
+          &nbsp;&nbsp;&nbsp;└ <a href="#libref">5a. library_ref — 다시 고칠 수 있는 손잡이</a><br />
+          <a href="#subpipes">6. 독립 하위 파이프라인 (서비스·라우트 직접 호출)</a><br />
+          <a href="#stream">7. 스트리밍과 지속성</a><br />
+          <a href="#summary">8. 정리</a>
+        </div>
+      </div>
+
+      <p class="lede">
+        "새 분석"에 평범한 한국어로 질문을 던지면, <b>마스터 라우터</b>가 그 질문이
+        어느 분야인지 판별해 <b>일곱 전문 에이전트</b> 중 하나에게, 또는 어디에도 해당 안 되면 <b>범용 에이전트</b>에게 넘기거나, 여러
+        분야에 걸치면 <b>사용자에게 되묻고(clarify)</b> 선택을 기다립니다. 어느 경로든 동일한 <b>공통 상태 머신(실행 루프)</b>가 도구를 부르고 결과를 돌려줍니다.
+      </p>
+
+      <h2 id="big">1. 큰 그림</h2>
+      <p class="lede">
+        "새 분석" 화면에 질문을 입력하면 한 번의 요청이
+        <span class="fileref">POST /chat/ask</span>로 들어옵니다. 그 뒤엔 네 개의
+        역할이 순서대로 맞물립니다.
+      </p>
+      <div class="analogy">
+        <span class="tag">비유</span>
+        <p>
+          큰 병원의 <b>접수 데스크</b>를 떠올리세요. 환자(질문)가 오면 접수
+          담당(<b>마스터 라우터</b>)이 증상을 듣고 어느 <b>전문의</b>에게 보낼지
+          정합니다. 애매하면 "내과일까요, 외과일까요?"라고 되묻고(사람이 고르는
+          <b>HITL(Human-in-the-Loop, 사람 개입)</b>), 아예 맞는 과가 없을 때만 <b>종합의(범용 에이전트)</b>가 직접 봅니다.
+          어느 진료실이든 <b>문진 → 처치 → 경과 관찰 → 반복</b>이라는 같은 절차를
+          따릅니다.
+        </p>
+      </div>
+      <figure class="fig" id="fig-flow">
+        <svg
+          viewBox="0 0 640 300"
+          role="img"
+          aria-label="요청 흐름: 라우터에서 전문가, 실행 루프, 답변 스트리밍까지"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <marker id="af-g" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0 0 L6 3 L0 6 z" fill="#6b6b85" />
+            </marker>
+            <marker id="af-pnk" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0 0 L6 3 L0 6 z" fill="#c22e57" />
+            </marker>
+          </defs>
+          <rect width="640" height="300" fill="#ffffff" rx="14" />
+
+          <!-- entry -->
+          <rect x="16" y="120" width="104" height="46" rx="8" fill="#f0f0f6" stroke="#5257e6" stroke-width="1.3" />
+          <text x="68" y="139" text-anchor="middle" fill="#5257e6" font-size="10" font-weight="700">새 분석 질문</text>
+          <text x="68" y="153" text-anchor="middle" fill="#6b6b85" font-size="8">POST /chat/ask</text>
+          <line x1="120" y1="143" x2="152" y2="143" stroke="#6b6b85" stroke-width="1.3" marker-end="url(#af-g)" />
+
+          <!-- router -->
+          <rect x="152" y="118" width="118" height="56" rx="8" fill="#f0f0f6" stroke="#5257e6" stroke-width="1.6" />
+          <text x="211" y="136" text-anchor="middle" fill="#1a1a24" font-size="10" font-weight="700">마스터 라우터</text>
+          <text x="211" y="149" text-anchor="middle" fill="#6b6b85" font-size="8">route_specialist</text>
+          <text x="211" y="160" text-anchor="middle" fill="#6b6b85" font-size="8">LLM 1회 · 분야 판별</text>
+
+          <!-- ambiguous -> clarify (up) -->
+          <line x1="211" y1="118" x2="211" y2="90" stroke="#c22e57" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#af-pnk)" />
+          <rect x="140" y="66" width="142" height="24" rx="7" fill="#fbeaef" stroke="#c22e57" stroke-width="1.1" />
+          <text x="211" y="81" text-anchor="middle" fill="#c22e57" font-size="8.5" font-weight="700">애매하면 clarify(되묻기)</text>
+
+          <!-- confident -> specialist -->
+          <line x1="270" y1="143" x2="302" y2="143" stroke="#6b6b85" stroke-width="1.3" marker-end="url(#af-g)" />
+          <rect x="302" y="106" width="150" height="74" rx="8" fill="#f0f0f6" stroke="rgba(20,20,40,0.18)" stroke-width="1.1" />
+          <text x="377" y="128" text-anchor="middle" fill="#1a1a24" font-size="10" font-weight="700">전문/범용 에이전트</text>
+          <text x="377" y="143" text-anchor="middle" fill="#6b6b85" font-size="8">도구 호출 루프 실행</text>
+          <text x="377" y="158" text-anchor="middle" fill="#6b6b85" font-size="8">scoped tools + prompt</text>
+
+          <!-- to answer -->
+          <line x1="452" y1="143" x2="516" y2="143" stroke="#158066" stroke-width="1.4" marker-end="url(#af-g)" />
+          <rect x="516" y="120" width="110" height="46" rx="8" fill="#e7f6f1" stroke="#158066" stroke-width="1.3" />
+          <text x="571" y="139" text-anchor="middle" fill="#158066" font-size="9" font-weight="700">답변</text>
+          <text x="571" y="151" text-anchor="middle" fill="#6b6b85" font-size="8">SSE(서버→클라이언트</text>
+          <text x="571" y="158" text-anchor="middle" fill="#6b6b85" font-size="8">실시간 스트림, 7절)</text>
+
+          <!-- streaming note bottom -->
+          <rect x="16" y="212" width="610" height="34" rx="8" fill="#eef0fb" stroke="#5257e6" stroke-width="1" />
+          <text x="321" y="225" text-anchor="middle" fill="#5257e6" font-size="9" font-weight="600">토큰·산출물·상태가 SSE(Server-Sent Events)로 실시간 전송 · 대화 상태는 Postgres 체크포인트로 지속</text>
+          <text x="321" y="238" text-anchor="middle" fill="#6b6b85" font-size="8">스트림 모드(업데이트·커스텀) · Postgres 체크포인터 (자세한 내용은 7절 참조)</text>
+        </svg>
+        <figcaption>
+          <b>요청 흐름.</b> 질문이 <b>마스터 라우터</b>로 들어가 분야가 확정되면
+          <b>전문가(또는 범용)</b>가 <b>도구 실행 루프</b>(3절에서 자세히 설명)를 돌며 도구를 부르고,
+          결과는 답변으로 나갑니다. 판별이 애매하면
+          위쪽의 <b>clarify</b> 경로로 사용자에게 되묻습니다.
+          "scoped tools"는 각 전문가에게 허용된 도구 부분집합을 의미합니다 — 4절 참조.
+        </figcaption>
+      </figure>
+      <table>
+        <tr>
+          <th>역할</th>
+          <th>하는 일</th>
+          <th>코드 위치</th>
+        </tr>
+        <tr>
+          <td><b>마스터 라우터</b></td>
+          <td>
+            질문을 읽고 <em>단 한 번의 LLM 호출</em>로 분야를 판별. 확신하면 한
+            전문가에게, 애매하면 사용자에게 되묻고, 어디에도 안 맞으면 범용으로.
+          </td>
+          <td><span class="fileref">graph.py:230 route_specialist</span></td>
+        </tr>
+        <tr>
+          <td><b>전문 에이전트 ×7</b></td>
+          <td>
+            chart · eda · dataanalysis · report · dashboard · workflow · query.
+            각자 <b>자기 도구만</b> 보이므로 남의 분야 일을 아예 못 합니다.
+          </td>
+          <td><span class="fileref">specialists.py:66 SPECIALISTS</span></td>
+        </tr>
+        <tr>
+          <td><b>범용 에이전트</b></td>
+          <td>딱 맞는 전문가 키가 하나도 없을 때의 만능 대체자.</td>
+          <td><span class="fileref">graph.py:20 SYSTEM_PROMPT</span></td>
+        </tr>
+        <tr>
+          <td><b>공통 상태 머신</b></td>
+          <td>
+            모든 에이전트가 공유하는 도구 실행 루프 (<a href="#loop">3절에서 자세히</a>).
+          </td>
+          <td><span class="fileref">graph.py:68 build_agent</span></td>
+        </tr>
+      </table>
+      <p class="small muted">산출물(artifact)과 <code>artifact_id</code>에 대해서는 <a href="#tools">5절</a>에서 다룹니다.</p>
+      <p>여기서 설명한 흐름은 채팅 분석 경로입니다. 그 외에도 공통 상태 머신과 별개로 동작하는 세 가지 독립 <span class="term" data-tip="Python 기반 상태 머신 프레임워크. 노드(함수)와 엣지(조건 분기)를 그래프로 정의하고, 각 스텝 상태를 자동으로 누적·체크포인트합니다.">LangGraph</span> 파이프라인이 있습니다 — 자세한 내용은 <a href="#subpipes">6절</a>에서 설명합니다.</p>
+
+      <h2 id="router">2. 마스터 라우터 — 분야 판별</h2>
+      <p>
+        라우터는 무겁지 않습니다. 도구도, 루프도 없이
+        <b>한 번의 LLM 호출</b>로 질문을 분류하는
+        <span class="fileref">route_specialist (graph.py:230)</span> 함수입니다.
+        시스템 프롬프트
+        <span class="fileref">_ROUTER_SYSTEM (graph.py:174)</span>에 few-shot
+        예시가 들어 있어, 모델은 <b>전문가 키만</b> (소문자, 설명 없이) 답합니다.
+      </p>
+      <ol class="steps">
+        <li>
+          <b>질문 도착.</b> <span class="fileref">domain</span> 필드가 비어
+          있으면(<code>None</code>) "새 분석" 진입으로 보고 라우터를 돌립니다. 화면
+          전용 어시스턴트가 이미 분야를 지정했으면 라우터는
+          <b>건너뜁니다</b> (<span class="fileref">routes_chat.py:104-105</span>).
+        </li>
+        <li>
+          <b>분류.</b> 모델이 키를 한 개 답하면 확신 → 그 전문가로. 두 개 이상을 답하면
+          <em>진짜로 애매</em>하다는 뜻입니다
+          (<span class="fileref">RouteResult.ambiguous, graph.py:210</span>).
+        </li>
+        <li>
+          <b>되묻기(HITL).</b> 애매하면 사용자 턴을 저장한 뒤
+          <b>clarify</b> SSE(Server-Sent Events, 서버→클라이언트 실시간 전송 — <a href="#stream">7절</a>) 이벤트 하나만 보내고 종료합니다. 클라이언트는 같은
+          질문을 <code>clarified=True</code>와 고른 분야로 다시 보냅니다(턴은 중복
+          저장되지 않음, <span class="fileref">routes_chat.py:107-128</span>).
+        </li>
+        <li>
+          <b>대체.</b> 알려진 키가 하나도 없으면
+          <span class="fileref">GENERAL_KEY="general" (specialists.py:154)</span> —
+          모든 도구를 쥔 범용 에이전트로 떨어집니다 (라우터에서 import: <span class="fileref">graph.py:243</span>).
+        </li>
+      </ol>
+      <div class="tech">
+        <span class="tag">왜 되묻나</span>
+        <p>
+          라우터가 애매할 때 <b>추측하지 않고 사람에게 묻는 것</b>은 의도된
+          설계입니다. 예: "revenue와 units의 상관관계 분석" 같은 질문은
+          <b>eda</b>와 <b>dataanalysis</b> 둘 다에 맞아, 라우터가 두 후보를 돌려주고
+          화면이 사용자에게 고르게 합니다. 헛다리를 짚느니 한 번 묻는 편이 낫다는
+          원칙입니다.
+        </p>
+      </div>
+
+      <h2 id="loop">3. 공통 상태 머신 (계획 → 실행)</h2>
+      <p>
+        핵심 통찰은 하나입니다 — <b>그래프 모양은 하나뿐</b>이고, "전문가"란 그
+        그래프에
+        <span
+          class="term"
+          data-tip="에이전트가 볼 수 있는 도구를 그 분야 것만 남기고, 시스템 프롬프트도 그 분야로 좁히는 것. 도구 수가 적을수록 LLM이 올바른 도구를 더 정확히 고릅니다."
+          >좁은 시야</span
+        >를 씌운 <em>같은 그래프의 한 단면</em>일 뿐입니다
+        (<span class="fileref">graph.py:56 _scope</span>).
+      </p>
+      <p>
+        전문가든 범용이든 도는 그래프는 똑같습니다. <b><span class="term" data-tip="Python 기반 상태 머신 프레임워크. 노드(함수)와 엣지(조건 분기)를 그래프로 정의하고, 각 스텝 상태를 자동으로 누적·체크포인트합니다.">LangGraph</span></b>로 만든 두
+        노드짜리 상태 머신 — <b>공통 상태 머신</b> — 입니다 (<span class="fileref">build_agent, graph.py:68</span>):
+        <b>plan</b>(다음에 뭘 할지 결정)과 <b>execute</b>(도구 실행). 진입점은
+        plan이고 (<span class="fileref">graph.py:168</span>), plan이 도구 호출을
+        내면 execute로, 아니면 <code>END</code>로 갑니다.
+        execute 노드가 실행한 결과를 <b>관찰(observation)</b>이라 하며, 이것이 messages에 쌓여 다음 plan에 입력됩니다.
+        그래프는 <b>AgentDeps</b>(<span class="fileref">deps.py:25</span>) 의존성 묶음을 주입받아 실행됩니다 — DB·벡터DB·큐 등 외부 시스템 접근 통로이며, <a href="#agentdeps">5절의 AgentDeps</a>에서 자세히 설명합니다.
+      </p>
+
+      <p>그래프는 각 스텝마다 <code>AgentState</code>(<span class="fileref">state.py:13–28</span>)를 공유합니다 — <code>principal · thread_id · messages · artifacts · next_tool · answer</code> 필드로 구성됩니다.</p>
+      <figure class="fig" id="fig-loop">
+        <svg
+          viewBox="0 0 640 250"
+          role="img"
+          aria-label="plan-execute 상태 머신"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <marker id="al-g" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0 0 L6 3 L0 6 z" fill="#6b6b85" />
+            </marker>
+            <marker id="al-grn" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0 0 L6 3 L0 6 z" fill="#158066" />
+            </marker>
+          </defs>
+          <rect width="640" height="250" fill="#ffffff" rx="14" />
+
+          <!-- entry dot -->
+          <circle cx="40" cy="96" r="4" fill="#5257e6" />
+          <text x="40" y="112" text-anchor="middle" fill="#6b6b85" font-size="8">시작</text>
+          <line x1="44" y1="96" x2="94" y2="96" stroke="#6b6b85" stroke-width="1.3" marker-end="url(#al-g)" />
+
+          <!-- plan node -->
+          <rect x="94" y="72" width="150" height="52" rx="8" fill="#eef0fb" stroke="#5257e6" stroke-width="1.6" />
+          <text x="169" y="90" text-anchor="middle" fill="#5257e6" font-size="11" font-weight="700">plan</text>
+          <text x="169" y="104" text-anchor="middle" fill="#6b6b85" font-size="8">LLM 스트리밍 1회</text>
+          <text x="169" y="115" text-anchor="middle" fill="#6b6b85" font-size="8">도구 호출? or 최종답변?</text>
+
+          <!-- plan -> execute (has tool_calls) -->
+          <line x1="244" y1="96" x2="328" y2="96" stroke="#6b6b85" stroke-width="1.3" marker-end="url(#al-g)" />
+          <rect x="245" y="72" width="80" height="20" rx="5" fill="#ffffff" />
+          <text x="285" y="84" text-anchor="middle" fill="#6b6b85" font-size="8">tool_calls 있음</text>
+
+          <!-- execute node -->
+          <rect x="328" y="72" width="150" height="52" rx="8" fill="#e7f6f1" stroke="#158066" stroke-width="1.6" />
+          <text x="403" y="90" text-anchor="middle" fill="#158066" font-size="11" font-weight="700">execute</text>
+          <text x="403" y="104" text-anchor="middle" fill="#6b6b85" font-size="8">도구 실행 · 관찰 수집</text>
+          <text x="403" y="115" text-anchor="middle" fill="#6b6b85" font-size="8">에러도 관찰로 되먹임</text>
+
+          <!-- execute -> plan (loop back, below) -->
+          <path d="M403,124 L403,168 L169,168 L169,124" fill="none" stroke="#158066" stroke-width="1.4" marker-end="url(#al-grn)" />
+          <rect x="238" y="155" width="96" height="20" rx="5" fill="#ffffff" />
+          <text x="286" y="167" text-anchor="middle" fill="#158066" font-size="8" font-weight="600">관찰 → 재계획 ↻</text>
+
+          <!-- plan -> END (no tool_calls) -->
+          <line x1="169" y1="72" x2="169" y2="44" stroke="#6b6b85" stroke-width="1.3" marker-end="url(#al-g)" />
+          <rect x="122" y="51" width="94" height="20" rx="5" fill="#ffffff" />
+          <text x="169" y="63" text-anchor="middle" fill="#6b6b85" font-size="8">tool_calls 없음</text>
+          <rect x="120" y="20" width="98" height="24" rx="7" fill="#f0f0f6" stroke="rgba(20,20,40,0.2)" stroke-width="1.1" />
+          <text x="169" y="35" text-anchor="middle" fill="#1a1a24" font-size="9" font-weight="700">END · 최종 답변</text>
+
+          <!-- state fields -->
+          <rect x="16" y="196" width="608" height="38" rx="8" fill="#f0f0f6" stroke="rgba(20,20,40,0.14)" stroke-width="1" />
+          <text x="26" y="212" fill="#3a3a52" font-size="9" font-weight="700">AgentState:</text>
+          <text x="100" y="212" fill="#6b6b85" font-size="8.5" class="mono">principal · thread_id · messages(append) · artifacts(append) · next_tool · answer</text>
+          <text x="26" y="226" fill="#6b6b85" font-size="8">messages·artifacts는 누적(append) 리듀서 · next_tool이 plan→execute 라우팅을 결정 (state.py:13-28)</text>
+        </svg>
+        <figcaption>
+          <b>plan → execute → plan</b> 루프. plan이 도구 호출을 내면 execute가
+          실행해 <b>관찰(observation)</b>을 붙이고 다시 plan으로 돌아갑니다. 도구
+          호출이 없으면 <code>END</code>에서 최종 답변으로 끝납니다. 도구가
+          실패해도 예외를 삼켜 <b>관찰로 되먹여</b> 모델이 스스로 고치게 합니다 —
+          이것이 에이전트가 스스로 오류를 수정하는 방식입니다
+          (<span class="fileref">graph.py:155</span>).
+          라우터 단계의 되묻기(HITL) 경로는 이 그래프 바깥에서 일어납니다 — 1절 그림 참조.
+          <code>artifacts(append)</code> — 산출물(artifact)에 대해서는 <a href="#tools">5절</a>에서 다룹니다.
+        </figcaption>
+      </figure>
+      <p>
+        <b>plan 노드</b>는 한 번의 스트리밍 호출로 두 역할을 겸합니다
+        (<span class="fileref">graph.py:75-126</span>): 최종 답변일 땐 토큰을
+        실시간으로 흘려보내고, 도구 호출일 땐 그 조각을 모아 조립합니다. 도구 호출도
+        내용도 없는 빈 응답이 나오면 <code>chat()</code>로 한 번 재시도합니다
+        (<span class="fileref">graph.py:121</span>).
+      </p>
+
+      <h3 id="force_tool_explain">3a. force_tool — 도구 강제 실행 방식</h3>
+      <p>
+        <span
+          class="term"
+          data-tip="첫 계획 단계에서 tool_choice='required'로 LLM이 반드시 도구를 부르게 강제하는 플래그. 차트·EDA·리포트 등 결과물을 생성하는 전문가가 산문만 뱉고 끝내는 것을 막습니다."
+          >force_tool</span
+        >이 <code>True</code>인 전문가(chart·eda·dataanalysis·report·dashboard·workflow)는
+        plan 노드의 <b>첫</b> 실행 — 아직 도구 관찰(<code>tool</code> 역할 메시지)이 없는 상태 — 에서
+        <code>tool_choice="required"</code>로 LLM을 호출해 반드시 도구를 부르게 합니다
+        (<span class="fileref">graph.py:94-104</span>). 도구 호출이 오면 즉시 <code>next_tool="execute"</code>로 설정하고 스트리밍을 건너뜁니다.
+        모델이 도구 호출을 무시하면 일반 스트리밍 경로로 폴백됩니다.
+      </p>
+      <p>
+        이 강제 구동이 루프와 맞물리는 방식: 첫 plan이 <code>execute</code>로 분기되면 observe 결과가 <code>messages</code>에 누적되고,
+        다음 plan 실행 시에는 이미 도구 관찰이 존재하므로 <code>tool_choice</code> 강제가 풀려 자유 선택 모드로 전환됩니다.
+        그래서 확인 문장 같은 자연어 응답은 두 번째 이후 plan에서 정상적으로 스트리밍됩니다.
+      </p>
+      <p>
+        <b>query만 예외</b>로 <code>force_tool=False</code>입니다
+        (<span class="fileref">specialists.py:132-138</span>). 스키마 조회 → SQL
+        실행으로 <em>여러 도구를 정당하게 연쇄</em>하거나, 산출물 없이 설명만 할
+        수도 있어서 첫 발을 강제하면 오히려 틀리기 때문입니다.
+      </p>
+
+      <h2 id="specialists">4. 일곱 전문 에이전트와 범용 에이전트</h2>
+      <p class="small muted">
+        각 전문가는 위의 <a href="#loop">3절</a>에서 정의한 <b>plan→execute 루프</b>와 <a href="#force_tool_explain">3a절</a>의 <code>force_tool</code> 플래그를 그대로 재사용합니다.
+      </p>
+      <p>
+        전문가 하나는 그저
+        <b>(시스템 프롬프트 + 도구 부분집합 + 라우터가 읽는 한 줄 설명)</b>입니다
+        (<span class="fileref">Specialist dataclass, specialists.py:25</span>).
+        같은 <b>공통 상태 머신</b>을 그대로 재사용하고, 분야마다 프롬프트와
+        <b>보이는 도구</b>만 바꿉니다. 그래서 chart 전문가는 데이터분석 도구를
+        <em>물리적으로 호출할 수 없습니다</em> — 그 도구가 목록에 없으니까요.
+      </p>
+      <p class="small muted">
+        <code>edit_artifact</code> — 모든 전문가에게 자동으로 추가되는 편집 도구 (<span class="fileref">_spec(), specialists.py:54, :61</span>). artifact — 에이전트가 생성하는 저장 가능한 결과물, 고유 artifact_id를 가짐 — 에 대한 자세한 패턴은 <a href="#tools">5절</a> 참조.
+      </p>
+      <p class="small muted">아래 표는 일곱 전문가와 편의상 범용 에이전트를 함께 나열합니다. 범용은 어느 전문가 키도 매칭되지 않을 때 사용되는 별도 분류입니다.</p>
+      <table>
+        <tr>
+          <th>전문가</th>
+          <th>도구</th>
+        </tr>
+        <tr>
+          <td><b style="color:#40c0f0">chart</b></td>
+          <td><code>schema_retriever</code>, <code>run_sql</code>, <code>build_chart</code></td>
+        </tr>
+        <tr>
+          <td><b style="color:#f0a040">eda</b></td>
+          <td><code>run_eda</code>, <code>profile_dataset</code></td>
+        </tr>
+        <tr>
+          <td><b style="color:#3ec6a0">dataanalysis</b></td>
+          <td><code>run_data_analysis</code></td>
+        </tr>
+        <tr>
+          <td><b style="color:#6267f0">report</b></td>
+          <td><code>build_report</code></td>
+        </tr>
+        <tr>
+          <td><b style="color:#5257e6">dashboard</b></td>
+          <td><code>build_dashboard_artifact</code>, <code>build_dashboard</code></td>
+        </tr>
+        <tr>
+          <td><b style="color:#c22e57">workflow</b></td>
+          <td><code>build_workflow</code></td>
+        </tr>
+        <tr>
+          <td><b style="color:#158066">query</b></td>
+          <td><code>schema_retriever</code>, <code>run_sql</code>, <code>text2sql</code>, <code>open_connection</code>, <code>doc_search</code> <span class="small muted">(force_tool: False — query는 여러 도구를 자유롭게 연쇄하거나 산출물 없이 설명만 할 수 있어 첫 실행을 강제하지 않음. 3a절 참조)</span></td>
+        </tr>
+        <tr>
+          <td><b>general</b></td>
+          <td>모든 도구 (제한 없음)</td>
+        </tr>
+      </table>
+      <div class="analogy">
+        <span class="tag">비유</span>
+        <p>
+          전문가에게 도구 부분집합만 쥐여 주는 건, 요리사에게 <b>자기 코스 재료만</b>
+          담긴 도마를 주는 것과 같습니다. 파티시에 도마에는 생선이 없으니 실수로
+          생선 요리를 시작할 수가 없습니다 — 실수의 여지 자체를 없앤 설계입니다.
+        </p>
+      </div>
+
+      <h2 id="tools">5. 도구와 산출물(artifact)</h2>
+      <div class="tech">
+        <span class="tag">도구 개요</span>
+        <p>
+          5절에서는 3절의 execute 노드가 호출하는 도구들과, 에이전트가 <b><span class="term" data-tip="에이전트가 생성하는 차트·보고서·대시보드 등 저장 가능한 결과물. 고유 artifact_id를 가지며 이후 편집·참조에 사용됩니다.">산출물(artifact)</span></b>을 생성·편집하는 구체적인 패턴을 살펴봅니다. 도구는 총 13개(<span class="fileref">TOOL_SCHEMAS, tools.py:25</span>; 디스패치 표 <span class="fileref">TOOL_FNS, tools.py:767-781</span>)이며 크게 세 부류로 나뉩니다. <code>artifact_id</code>와 <code>edit_artifact</code>의 동작은 아래 5a에서 설명합니다.
+        </p>
+      </div>
+      <table>
+        <tr><th>부류</th><th>도구</th><th>하는 일</th></tr>
+        <tr>
+          <td><b>탐색·조회</b></td>
+          <td><code>schema_retriever</code>, <code>run_sql</code>, <code>open_connection</code>, <code>doc_search</code>, <code>profile_dataset</code></td>
+          <td>스키마 하이브리드 검색, 읽기 전용 SQL 실행(ODBC 또는 기본 웨어하우스), 문서 KB 검색, 업로드 파일 EDA.</td>
+        </tr>
+        <tr>
+          <td><b>빌더</b></td>
+          <td><code>build_chart</code>, <code>run_eda</code>, <code>run_data_analysis</code>, <code>build_report</code>, <code>build_dashboard_artifact</code>, <code>build_workflow</code>, <code>build_dashboard</code></td>
+          <td>스펙을 생성·검증하고 저장 (아래 5a 참조). (<code>build_dashboard</code>만 1급 대시보드 엔티티)</td>
+        </tr>
+        <tr>
+          <td><b>편집</b></td>
+          <td><code>edit_artifact</code></td>
+          <td>이미 있는 라이브러리 아티팩트를 자연어로 제자리 수정 (<code>LibraryBuilderService.nl_edit</code>).</td>
+        </tr>
+      </table>
+      <div class="tech">
+        <span class="tag">비동기 도구</span>
+        <p>
+          <code>run_eda</code>·<code>run_data_analysis</code>는 작업을 Celery 큐에 넣고
+          <span class="fileref">_await_job() (tools.py:719)</span>가 0.5초마다,
+          최대 60초까지 폴링합니다. 마감까지 안 끝나면
+          <code>status="running"</code>과 <code>job_id</code>를 담은
+          <b>running 참조</b>를 돌려줘 클라이언트가 이어서 폴링합니다.
+          <code>profile_dataset</code>은 ydata 기반 전체 HTML EDA 작업을 Celery 큐에 넣고, 폴링은 별도 메커니즘에 맡깁니다.
+        </p>
+      </div>
+      <h3 id="libref">library_ref — "다시 고칠 수 있는 손잡이"</h3>
+      <p>
+        빌더 도구가 반환하는 <code>Artifact</code> 객체는 <code>kind</code>(결과물 유형)와 <code>payload</code>(세부 데이터)의 두 필드로 구성됩니다.
+        빌더가 결과를 저장한 뒤에는
+        <span class="fileref">_library_ref() (tools.py:444-459)</span>로
+        <b>이미 저장된</b> 아티팩트를
+        <code>Artifact(kind=ArtifactKind.LIBRARY_REF, payload={artifact_type, artifact_id, name, status, spec})</code>로
+        감싸 돌려줍니다. 여기 담긴 <code>artifact_id</code>가 이후
+        <code>edit_artifact</code>로 <b>같은 결과를 제자리에서 고치게</b> 하는
+        손잡이입니다. 그래서 "그 차트 선 그래프로 바꿔줘"는 새로 만들지 않고 그
+        id를 집어 편집합니다.
+      </p>
+      <div class="tech" id="agentdeps">
+        <span class="tag">AgentDeps — 외부 시스템 접근 통로</span>
+        <p>
+          도구는 <b>AgentDeps</b>(<span class="fileref">deps.py:25</span>)를 통해서만 외부 시스템에 접근합니다.
+          AgentDeps는 도구가 DB·벡터DB·큐 등 외부 시스템에 접근하는 유일한 통로로, 테스트 시 가짜 구현으로 교체할 수 있습니다:
+          <code>llm · query · vector · blob · queue · dashboards · sandbox · artifacts</code> (필수) · <code>odbc · profiler · text2sql · run_store</code> (Optional).
+          예컨대 <code>run_sql</code>은 <code>odbc</code> 핸들이 제공되면 ODBC 커넥터로, 없으면 기본 웨어하우스 엔진으로 읽기 전용 SQL을 실행합니다.
+        </p>
+      </div>
+      <h2 id="subpipes">6. 독립 하위 파이프라인 (서비스·라우트 직접 호출)</h2>
+      <p>
+        공통 상태 머신(3절) <em>안의</em> 도구와 별개로, 그 자체가 <b>독립된 LangGraph</b>인
+        세 하위 파이프라인이 있습니다. 각자 자기 진입 함수로 컴파일되며, 감독 에이전트가 아니라 해당 서비스/라우트에서 직접 호출됩니다.
+      </p>
+      <p>
+        이 파이프라인들이 감독 에이전트 도구로 흡수되지 않고 독립된 이유는 세 가지입니다.
+        첫째, 채팅이 아닌 별도 진입점(데이터프렙 화면, 소스 등록 API 등)에서도 직접 호출됩니다.
+        둘째, 각자 고유한 검증·자기수정 루프(EXPLAIN 재시도 / repair ≤3 / reflect)를 가지며, 이 다단계 반복을 단일 도구 호출 안에 넣기엔 구조적으로 맞지 않습니다.
+        셋째, 에이전트 레이어보다 먼저 만들어진 독립 서비스로서 자체 그래프 컴파일·체크포인트를 유지합니다.
+      </p>
+      <p class="small muted">아래 그림은 세 파이프라인의 노드 구조를 나란히 보여줍니다.</p>
+      <figure class="fig" id="fig-subpipes">
+        <svg
+          viewBox="0 0 640 250"
+          role="img"
+          aria-label="세 하위 파이프라인의 그래프 모양"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <marker id="as-g" markerWidth="7" markerHeight="7" refX="5.5" refY="3" orient="auto">
+              <path d="M0 0 L5.5 3 L0 6 z" fill="#6b6b85" />
+            </marker>
+          </defs>
+          <rect width="640" height="250" fill="#ffffff" rx="14" />
+
+          <!-- lane 1: text2sql -->
+          <rect x="14" y="14" width="150" height="24" rx="6" fill="#e7f6f1" stroke="#158066" stroke-width="1.1" />
+          <text x="89" y="28" text-anchor="middle" fill="#158066" font-size="9.5" font-weight="700">text2sql</text>
+          <text x="14" y="52" fill="#6b6b85" font-size="8">NL 질문 → 검증된 Trino SQL</text>
+          <g font-size="8" fill="#3a3a52">
+            <rect x="14" y="58" width="150" height="22" rx="4" fill="#f0f0f6" stroke="rgba(20,20,40,0.14)" /><text x="89" y="71" text-anchor="middle">retrieve</text>
+            <rect x="14" y="82" width="150" height="22" rx="4" fill="#f0f0f6" stroke="rgba(20,20,40,0.14)" /><text x="89" y="95" text-anchor="middle">route (신뢰도 τ 기준 3구간)</text>
+            <rect x="14" y="106" width="150" height="22" rx="4" fill="#f0f0f6" stroke="rgba(20,20,40,0.14)" /><text x="89" y="119" text-anchor="middle">reuse | hybrid | generate</text>
+            <rect x="14" y="130" width="150" height="22" rx="4" fill="#f0f0f6" stroke="rgba(20,20,40,0.14)" /><text x="89" y="143" text-anchor="middle">validate (EXPLAIN 루프)</text>
+            <rect x="14" y="154" width="150" height="22" rx="4" fill="#f0f0f6" stroke="rgba(20,20,40,0.14)" /><text x="89" y="167" text-anchor="middle">explain</text>
+          </g>
+          <line x1="89" y1="80" x2="89" y2="82" stroke="#6b6b85" stroke-width="1" marker-end="url(#as-g)" />
+          <line x1="89" y1="104" x2="89" y2="106" stroke="#6b6b85" stroke-width="1" marker-end="url(#as-g)" />
+          <line x1="89" y1="128" x2="89" y2="130" stroke="#6b6b85" stroke-width="1" marker-end="url(#as-g)" />
+          <line x1="89" y1="152" x2="89" y2="154" stroke="#6b6b85" stroke-width="1" marker-end="url(#as-g)" />
+
+          <!-- lane 2: nl_graph -->
+          <rect x="245" y="14" width="150" height="24" rx="6" fill="#eef0fb" stroke="#5257e6" stroke-width="1.1" />
+          <text x="320" y="28" text-anchor="middle" fill="#5257e6" font-size="9.5" font-weight="700">nl_graph</text>
+          <text x="245" y="52" fill="#6b6b85" font-size="8">NL → 데이터프렙 GraphSpec DAG</text>
+          <g font-size="8" fill="#3a3a52">
+            <rect x="245" y="58" width="150" height="22" rx="4" fill="#f0f0f6" stroke="rgba(20,20,40,0.14)" /><text x="320" y="71" text-anchor="middle">pick_tables</text>
+            <rect x="245" y="82" width="150" height="22" rx="4" fill="#f0f0f6" stroke="rgba(20,20,40,0.14)" /><text x="320" y="95" text-anchor="middle">generate</text>
+            <rect x="245" y="106" width="150" height="22" rx="4" fill="#f0f0f6" stroke="rgba(20,20,40,0.14)" /><text x="320" y="119" text-anchor="middle">compile</text>
+            <rect x="245" y="130" width="150" height="22" rx="4" fill="#f0f0f6" stroke="rgba(20,20,40,0.14)" /><text x="320" y="143" text-anchor="middle">route</text>
+            <rect x="245" y="154" width="150" height="22" rx="4" fill="#f0f0f6" stroke="rgba(20,20,40,0.14)" /><text x="320" y="167" text-anchor="middle">repair → compile ↻ (≤3)</text>
+          </g>
+          <line x1="320" y1="80" x2="320" y2="82" stroke="#6b6b85" stroke-width="1" marker-end="url(#as-g)" />
+          <line x1="320" y1="104" x2="320" y2="106" stroke="#6b6b85" stroke-width="1" marker-end="url(#as-g)" />
+          <line x1="320" y1="128" x2="320" y2="130" stroke="#6b6b85" stroke-width="1" marker-end="url(#as-g)" />
+          <line x1="320" y1="152" x2="320" y2="154" stroke="#6b6b85" stroke-width="1" marker-end="url(#as-g)" />
+
+          <!-- lane 3: column_select -->
+          <rect x="476" y="14" width="150" height="24" rx="6" fill="#fbeaef" stroke="#c22e57" stroke-width="1.1" />
+          <text x="551" y="28" text-anchor="middle" fill="#c22e57" font-size="9.5" font-weight="700">column_select</text>
+          <text x="476" y="52" fill="#6b6b85" font-size="8">엔티티-값 색인 컬럼 판정</text>
+          <g font-size="8" fill="#3a3a52">
+            <rect x="476" y="58" width="150" height="22" rx="4" fill="#f0f0f6" stroke="rgba(20,20,40,0.14)" /><text x="551" y="71" text-anchor="middle">survey</text>
+            <rect x="476" y="82" width="150" height="22" rx="4" fill="#f0f0f6" stroke="rgba(20,20,40,0.14)" /><text x="551" y="95" text-anchor="middle">profile</text>
+            <rect x="476" y="106" width="150" height="22" rx="4" fill="#f0f0f6" stroke="rgba(20,20,40,0.14)" /><text x="551" y="119" text-anchor="middle">classify</text>
+            <rect x="476" y="130" width="150" height="22" rx="4" fill="#f0f0f6" stroke="rgba(20,20,40,0.14)" /><text x="551" y="143" text-anchor="middle">reflect ↻</text>
+          </g>
+          <line x1="551" y1="80" x2="551" y2="82" stroke="#6b6b85" stroke-width="1" marker-end="url(#as-g)" />
+          <line x1="551" y1="104" x2="551" y2="106" stroke="#6b6b85" stroke-width="1" marker-end="url(#as-g)" />
+          <line x1="551" y1="128" x2="551" y2="130" stroke="#6b6b85" stroke-width="1" marker-end="url(#as-g)" />
+          <line x1="551" y1="152" x2="551" y2="162" stroke="#6b6b85" stroke-width="1" marker-end="url(#as-g)" />
+          <rect x="476" y="162" width="150" height="22" rx="4" fill="#f0f0f6" stroke="rgba(20,20,40,0.14)" />
+          <text x="551" y="175" text-anchor="middle" font-size="8" fill="#3a3a52">decide</text>
+
+          <rect x="14" y="196" width="612" height="38" rx="8" fill="#f0f0f6" stroke="rgba(20,20,40,0.14)" stroke-width="1" />
+          <text x="320" y="212" text-anchor="middle" fill="#3a3a52" font-size="9" font-weight="600">셋 다 "생성 → 검증/반영 → 바운드 루프" 형태 · 결정론 단계와 LLM 단계를 섞어 안전장치를 둠</text>
+          <text x="320" y="226" text-anchor="middle" fill="#6b6b85" font-size="8">text2sql/graph.py:130 · nl_graph/graph.py:164 · column_select/graph.py:90</text>
+        </svg>
+        <figcaption>
+          <b>세 하위 파이프라인.</b> <b>text2sql</b>는 질문을 검증된 SQL로,
+          <b>nl_graph</b>는 데이터프렙 노드 DAG로, <b>column_select</b>는 색인할
+          엔티티-값 컬럼 판정으로(검색 필터에 쓸 컬럼 — 예: 지역명, 제품 카테고리 — 을 자동으로 식별합니다).
+          모두 <em>바운드된 자기수정 루프</em>(EXPLAIN
+          재시도 / repair ≤3 / reflect)를 갖습니다.
+        </figcaption>
+      </figure>
+      <h3>text2sql</h3>
+      <p>
+        자연어 질문을 검증된 Trino SQL로 변환합니다. 5절의 도구 목록에 없는 이유는 routes_text2sql.py / Text2SQL 서비스가 독립 파이프라인으로 직접 호출하기 때문입니다
+        (<span class="fileref">text2sql/graph.py:130 build_text2sql_graph</span>).
+        라우터는 스키마 매칭 신뢰도 τ(0–1 스코어)를 기준으로 높음(기존 SQL 재사용) · 중간(하이브리드 생성) · 낮음(완전 생성) 세 경로로 분기합니다.
+      </p>
+      <h3>nl_graph</h3>
+      <p>
+        데이터프렙 화면은 NL 입력을 받아 <b>DataPrep GraphSpec DAG</b> — 데이터 변환 노드와 엣지를 JSON으로 기술한 명세 — 를 생성합니다.
+        pick_tables → generate → compile → route → repair(≤3회) 순서로 진행하며, repair 루프는 compile 단계의 검증 오류를 LLM이 수정하는 자기수정 구조입니다
+        (<span class="fileref">nl_graph/graph.py:164 build_nl_graph_agent</span>).
+      </p>
+      <h3>column_select</h3>
+      <p>
+        데이터 소스 등록 시 자동 호출됩니다. 판정 결과는 검색 필터 UI의 드롭다운 항목으로 쓰입니다.
+        내부적으로 <b>reflect 루프</b>(최대 1회)를 돌며 초기 분류 결과를 재검토하고, 카디널리티가 500을 초과하는 컬럼은 하드캡으로 제외합니다.
+        최종 decide 노드가 색인 대상 컬럼 목록을 확정합니다
+        (<span class="fileref">column_select/graph.py:90</span>).
+      </p>
+
+      <h2 id="stream">7. 스트리밍과 지속성</h2>
+      <p>
+        답변은 버퍼링 없이 <b>SSE(Server-Sent Events)</b>로 흐릅니다
+        (<span class="fileref">EventSourceResponse, routes_chat.py:179-244</span>).
+        공통 상태 머신을 <code>stream_mode=["updates","custom"]</code> 두 모드로 동시에
+        구독합니다 (<span class="fileref">routes_chat.py:198</span>):
+      </p>
+      <ul>
+        <li>
+          <b>custom</b> — plan 노드가 밀어내는 <code>answer_token</code> 조각 →
+          <code>answer(token)</code> 이벤트(토큰 단위 실시간 답변).
+        </li>
+        <li>
+          <b>updates</b> — 노드 상태 diff → 산출물마다 <code>artifact</code>,
+          노드 전환마다 <code>status</code> 이벤트.
+        </li>
+      </ul>
+      <p class="small muted">
+        전체 이벤트: <code>routed · clarify · answer(token) · artifact · status · done · error</code>.
+        <code>routed</code>는 화면 상단에 "→ 차트 전문가" 같은 표시를 그릴 때 쓰입니다.
+        <code>done</code>은 그래프 정상 종료 시 마지막으로 전송되고,
+        <code>error</code>는 복구 불가 예외 발생 시 전송됩니다.
+      </p>
+      <h3>대화 상태는 Postgres에 지속</h3>
+      <p>
+        LangGraph 대화 상태는
+        <span class="fileref">PostgresCheckpointer (adapters/checkpoint/postgres_checkpointer.py:19)</span>가
+        <code>AsyncPostgresSaver</code>(<code>psycopg_pool.AsyncConnectionPool</code>, autocommit=True, row_factory=dict_row, prepare_threshold=0)로 저장합니다. 팩토리가 앱
+        시작 시 <span class="fileref">Container.open_checkpointer() (factory.py:444)</span>로
+        열고, <span class="fileref">checkpointer_saver 프로퍼티 (factory.py:469)</span>를
+        <code>build_agent</code>에 넘깁니다
+        (<span class="fileref">routes_chat.py:131</span>). 체크포인트 키는 부서·유저·스레드로
+        스코프됩니다:
+        <code class="mono">{department}:{user_id}:{thread_id}</code>
+        (<span class="fileref">routes_chat.py:135</span>). 서버가 재시작돼도 대화가
+        이어지고, 체크포인트가 없으면 채팅 이력을 미리 불러와 메웁니다.
+      </p>
+      <div class="analogy">
+        <span class="tag">비유</span>
+        <p>
+          체크포인터는 게임의 <b>자동 저장</b>과 같습니다. 매 턴 상태를 디스크에
+          적어 두니, 서버가 껐다 켜져도 방금 하던 대화의 <em>그 자리</em>에서
+          정확히 이어집니다.
+        </p>
+      </div>
+
+      <h2 id="summary">8. 정리</h2>
+      <p>
+        질문이 <b>POST /chat/ask</b>로 들어오면 마스터 라우터가 분야를 판별해 전문가(또는 범용) 에이전트를 선택합니다.
+        선택된 에이전트는 공통 상태 머신의 <b>plan → execute</b> 루프를 돌며 도구를 호출하고 산출물을 생성하며,
+        그 결과는 SSE 스트림으로 토큰 단위로 클라이언트에 전달되고 Postgres 체크포인터가 대화 상태를 지속합니다.
+        채팅 흐름과 별개로, text2sql · nl_graph · column_select 세 하위 파이프라인은 해당 서비스에서 직접 호출됩니다(6절).
+      </p>
+      <p class="small muted">
+        이 문서는 에이전트 <b>오케스트레이션</b>에 집중합니다. 포트/어댑터, 동기·비동기,
+        인프라(Postgres·Redis·Weaviate·DuckDB·Trino) 구조는
+        <b>시스템 아키텍처</b> 문서를 참고하세요.
+      </p>
+    </div>
+  </body>
+</html>

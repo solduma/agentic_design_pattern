@@ -1,0 +1,817 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>분석 Agent — 시스템 아키텍처 (육각형 · 동기/비동기 · 인프라)</title>
+    <style>
+      :root {
+        --bg: #f7f7fb;
+        --card: #ffffff;
+        --fg: #1a1a24;
+        --muted: #6b6b85;
+        --primary: #5257e6;
+        --accent: #158066;
+        --amber: #a25f0d;
+        --pink: #c22e57;
+        --blue: #17789f;
+        --border: rgba(20, 20, 40, 0.1);
+        --code: #f0f0f6;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+          "Apple SD Gothic Neo", "Noto Sans KR", Inter, sans-serif;
+        line-height: 1.75;
+        font-size: 16px;
+      }
+      .wrap { max-width: 920px; margin: 0 auto; padding: 48px 24px 96px; }
+      header.title {
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 28px;
+        margin-bottom: 12px;
+      }
+      h1 { font-size: 30px; letter-spacing: -0.02em; margin: 0 0 8px; }
+      h2 {
+        font-size: 23px;
+        letter-spacing: -0.01em;
+        margin: 56px 0 8px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border);
+      }
+      h3 { font-size: 18px; margin: 32px 0 6px; color: #3a3a52; }
+      h4 {
+        font-size: 15px;
+        margin: 22px 0 4px;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      p { margin: 10px 0; }
+      .lede { color: #3a3a52; font-size: 17px; }
+      .muted { color: var(--muted); }
+      code, .mono {
+        font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+      }
+      code {
+        background: var(--code);
+        padding: 1px 6px;
+        border-radius: 5px;
+        font-size: 0.86em;
+        color: #3d3d80;
+      }
+      pre {
+        background: var(--code);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 16px 18px;
+        overflow-x: auto;
+        font-size: 13.5px;
+        line-height: 1.5;
+      }
+      pre code { background: none; padding: 0; }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 22px 24px;
+        margin: 22px 0;
+      }
+      .analogy {
+        border-left: 3px solid var(--amber);
+        background: rgba(217, 135, 38, 0.09);
+        border-radius: 0 10px 10px 0;
+        padding: 14px 18px;
+        margin: 18px 0;
+      }
+      .analogy .tag {
+        color: var(--amber);
+        font-weight: 600;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .tech {
+        border-left: 3px solid var(--primary);
+        background: rgba(82, 87, 230, 0.07);
+        border-radius: 0 10px 10px 0;
+        padding: 14px 18px;
+        margin: 18px 0;
+      }
+      .tech .tag {
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      figure.fig {
+        width: 100%;
+        margin: 26px 0;
+        padding: 18px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+      }
+      figure.fig svg {
+        display: block;
+        width: 100%;
+        max-width: none;
+        height: auto;
+        overflow: visible;
+      }
+      figure.fig figcaption {
+        color: var(--muted);
+        font-size: 13px;
+        margin-top: 12px;
+        line-height: 1.6;
+      }
+      figure.fig figcaption b { color: #3a3a52; }
+      .fig svg text {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+          "Apple SD Gothic Neo", "Noto Sans KR", Inter, sans-serif;
+      }
+      .fig svg .mono {
+        font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+      }
+      ol.steps { counter-reset: s; list-style: none; padding-left: 0; margin: 18px 0; }
+      ol.steps > li {
+        counter-increment: s;
+        position: relative;
+        padding: 14px 0 14px 56px;
+        border-bottom: 1px solid var(--border);
+      }
+      ol.steps > li:last-child { border-bottom: none; }
+      ol.steps > li::before {
+        content: counter(s);
+        position: absolute;
+        left: 0;
+        top: 12px;
+        width: 34px;
+        height: 34px;
+        border-radius: 9px;
+        background: var(--primary);
+        color: #fff;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 15px;
+      }
+      ol.steps > li b { color: #1a1a24; }
+      table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 14.5px; }
+      th, td {
+        text-align: left;
+        padding: 9px 12px;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+      }
+      th {
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .toc { columns: 2; column-gap: 28px; font-size: 14.5px; }
+      .toc a { color: #5257e6; text-decoration: none; }
+      .toc a:hover { text-decoration: underline; }
+      .small { font-size: 13.5px; }
+      .term {
+        border-bottom: 1px dashed var(--accent);
+        color: #1a1a24;
+        cursor: help;
+        position: relative;
+        outline: none;
+      }
+      .term::after {
+        content: attr(data-tip);
+        position: absolute;
+        left: 50%;
+        bottom: calc(100% + 10px);
+        transform: translateX(-50%);
+        width: max-content;
+        max-width: 320px;
+        white-space: normal;
+        background: #ffffff;
+        color: #1a1a24;
+        border: 1px solid var(--accent);
+        border-radius: 9px;
+        padding: 10px 13px;
+        font-size: 13px;
+        line-height: 1.6;
+        font-weight: 400;
+        box-shadow: 0 10px 28px rgba(20, 20, 40, 0.18);
+        z-index: 20;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.12s ease, transform 0.12s ease;
+        pointer-events: none;
+      }
+      .term:hover::after, .term:focus::after {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(-2px);
+      }
+      .hint { color: var(--muted); font-size: 12.5px; }
+      .fileref {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        color: var(--accent);
+        background: rgba(31, 168, 133, 0.1);
+        border: 1px solid rgba(31, 168, 133, 0.28);
+        border-radius: 6px;
+        padding: 2px 8px;
+        display: inline-block;
+        margin: 2px 0;
+      }
+      .pill {
+        display: inline-block;
+        padding: 2px 9px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        background: rgba(82, 87, 230, 0.12);
+        color: #5257e6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="title">
+        <h1>시스템 아키텍처 — 육각형 · 동기/비동기 · 인프라</h1>
+        <p class="lede">
+          이 플랫폼은 <b>Next.js 프런트엔드</b>와 <b>FastAPI 백엔드</b>로 이루어지고, 브라우저 요청은 Next.js 프록시를 거쳐 FastAPI로 전달됩니다.
+          백엔드는 <b>육각형(포트&amp;어댑터) 아키텍처</b>를 따릅니다. 핵심 규칙은
+          단순합니다 — <b>코어는 순수하고, 기술은 어댑터에 가둡니다.</b> 빠른 응답은
+          <b>비동기</b>로 흘리고, 무거운 계산은 <b>Celery 워커</b>(비동기 작업 큐 프레임워크 — 브로커·워커·Beat 스케줄러로 구성, §6 참고)로 밀어냅니다.
+          이 문서는 코어 구조(§1-3) → 인프라(§4) → 요청 흐름(§5) → 실행 모델(§6) → 설정(§7) 순으로 아키텍처를 쌓아 설명합니다.
+        </p>
+        <p class="hint">
+          💡 점선 밑줄 용어에 마우스를 올리면 설명이 나옵니다.
+          <span class="fileref">파일:줄</span> 표기는 실제 코드 위치입니다.
+        </p>
+      </header>
+
+      <div class="card">
+        <h4 style="margin-top: 0">목차</h4>
+        <div class="toc">
+          <a href="#hex">1. 육각형 아키텍처 (포트 &amp; 어댑터)</a><br />
+          <a href="#ports">2. 포트 — 기술 경계</a><br />
+          <a href="#container">3. 조립 루트 (Container · ResourceManager)</a><br />
+          <a href="#infra">4. 인프라 여섯 기둥</a><br />
+          <a href="#bff">5. 요청 생애주기 (BFF · 신원)</a><br />
+          <a href="#async">6. 동기 · 비동기 · Beat — 세 가지 실행 경로</a><br />
+          <a href="#config">7. 설정과 환경</a>
+        </div>
+      </div>
+
+      <h2 id="hex">1. 육각형 아키텍처 (포트 &amp; 어댑터)</h2>
+      <div class="analogy">
+        <span class="tag">비유</span>
+        <p>
+          코어를 <b>노트북 본체</b>라고 생각하세요. 본체는 USB-C 단자(=<b>포트</b>)의
+          <em>모양</em>만 압니다. 그 단자에 충전기를 꽂든 모니터를 꽂든(=<b>어댑터</b>)
+          본체 회로는 바뀌지 않습니다. 여기서도 코어는 "LLM은 이런 함수를 가진다"는
+          <b>규격</b>만 알고, 실제로 OpenAI든 Ollama든 꽂는 일은 어댑터가 합니다.
+        </p>
+      </div>
+      <p>
+        백엔드의 핵심 설계 원칙은 <b>육각형(포트&amp;어댑터) 아키텍처</b>입니다. 코어(<span class="fileref">api/app/core/</span>)는 순수 파이썬만 사용하며 벤더 SDK를 모릅니다. 모든 외부 기술(LLM, 웨어하우스, 벡터 DB 등)은 ABC 포트를 통해서만 코어와 대화하고, 실제 구현은 어댑터가 맡습니다. 이 경계가 어떻게 강제되는지는 아래에서 설명합니다.
+      </p>
+      <p>
+        이 구조 위에서 LangGraph 기반 에이전트가 동작하며, 포트를 통해 LLM·쿼리엔진 등을 호출합니다 (상세: §2 및 에이전트 아키텍처 문서).
+      </p>
+      <p class="small muted">
+        참고로 브라우저는 FastAPI를 직접 부르지 않습니다. Next.js 서버가 <b>BFF(Backend-for-Frontend) 프록시</b> 역할을 맡아 신원 헤더를 붙여 FastAPI로 전달합니다. 자세한 흐름은 §5에서 다룹니다.
+      </p>
+      <p>
+        코어(<span class="fileref">api/app/core/</span>)는 세 겹입니다:
+        <b>domain</b>(순수 데이터) · <b>ports</b>(ABC 인터페이스) ·
+        <b>services</b>(포트만 써서 오케스트레이션). 이 경계는
+        <span class="fileref">import-linter</span>(파이썬 import 경계 검사 도구) 계약으로 <em>강제</em>됩니다.
+      </p>
+      <table>
+        <colgroup>
+          <col style="width: 14%" />
+          <col style="width: 56%" />
+          <col style="width: 30%" />
+        </colgroup>
+        <tr><th>겹</th><th>무엇</th><th>규칙</th></tr>
+        <tr>
+          <td><b>domain</b></td>
+          <td>
+            <span class="fileref">domain.py</span> — <code>Principal</code>(사용자 신원 토큰 — user_id·department·email·is_admin·roles를 담는 dataclass. 모든 접근 스코프의 뿌리 (상세 §5)),
+            <code>Artifact</code>, <code>LibraryArtifact</code>,
+            <code>GraphSpec</code>, <code>WorkflowGraph</code>, <code>WorkflowRun</code> 등 순수 dataclass/enum.
+            <span class="small muted">GraphSpec — CTE DAG 컴파일 입력; WorkflowGraph — 워크플로우 아티팩트의 노드 DAG(쿼리·Python·대시보드·리포트 스텝을 엣지로 연결한 순수 dataclass → 에이전트 아키텍처 문서).</span>
+          </td>
+          <td>벤더 타입이 절대 등장하지 않음.</td>
+        </tr>
+        <tr>
+          <td><b>ports</b></td>
+          <td><span class="fileref">core/ports/*.py</span> — 모든 바깥 기술의 ABC.</td>
+          <td>구현이 아니라 <em>규격</em>만.</td>
+        </tr>
+        <tr>
+          <td><b>services</b></td>
+          <td>오케스트레이션 로직.</td>
+          <td>포트만 호출 · 어댑터를 모름.</td>
+        </tr>
+      </table>
+      <p>이 세 겹의 경계는 코드 레벨에서 다음과 같이 강제됩니다.</p>
+      <div class="tech">
+        <span class="tag">import-linter 계약</span>
+        <p>
+          <span class="fileref">api/app/.importlinter</span>가 두 계약을 강제합니다.
+          <b>① core-is-pure</b>: <code>app.core</code>는
+          <code>app.adapters·app.config·app.main</code>을 import할 수 없음. 모든
+          포트는 생성자 주입으로 받음. <b>② sdks-confined-to-adapters</b>:
+          <code>app.core</code>는 <code>openai·trino·weaviate·sqlalchemy·redis·rq·boto3·duckdb·docker·jose</code>를
+          import할 수 없음. 단 <b>LangGraph는 일부러 제외</b> — 위에서 소개한 대로 에이전트 그래프에서
+          코어의 1급 의존성으로 직접 씁니다.
+        </p>
+      </div>
+
+      <figure class="fig" id="fig-hex">
+        <img
+          src="img/hexagonal-architecture.png"
+          alt="육각형 코어와 포트, 어댑터: 코어(domain·ports·services)를 가운데 두고, 왼쪽에 코어를 구동하는 어댑터(HeaderTrust 신원·Next.js BFF·FastAPI 라우트), 오른쪽에 코어가 부리는 어댑터(OpenAI/Ollama LLM·Trino/DuckDB·Weaviate·Postgres·Redis·S3/MinIO·비동기 큐)가 연결된 그림."
+          style="display:block;width:100%;height:auto;border-radius:10px;"
+        />
+        <figcaption>
+          <b>육각형.</b> 코어는 가운데, <b>포트</b>는 그 테두리의 규격입니다. 왼쪽은
+          코어를 <em>구동</em>하는 어댑터(신원·BFF·라우트), 오른쪽은 코어가
+          <em>부리는</em> 어댑터(LLM·웨어하우스·벡터·리포·캐시·블롭·큐)입니다. 무엇을
+          꽂을지는 오직 <b>조립 루트(Container, §3에서 상세 설명)</b>가 압니다.<br/>
+          <small>* <b>BFF(Backend-for-Frontend)</b>: 서버측 프록시로 신원 헤더를 붙여 FastAPI로 전달하는 Next.js 라우트. §5에서 상세 설명.</small>
+        </figcaption>
+      </figure>
+      <p>어느 어댑터를 어느 포트에 연결할지 결정하는 역할은 조립 루트(<b>Container</b>)가 담당하며, §3에서 상세히 다룹니다. 이렇게 코어가 포트라는 경계로 기술과 대화하는 구조를 확인했습니다. §2에서는 각 포트가 어떤 기술 경계를 정의하는지 구체적으로 살펴봅니다.</p>
+
+      <h2 id="ports">2. 포트 — 기술 경계</h2>
+      <p>
+        코어가 외부 기술과 교류하는 모든 지점은 ABC 포트로 정의됩니다
+        (<span class="fileref">core/ports/</span>). 아래 포트들이 각 기술 경계를 명시합니다.
+      </p>
+      <table>
+        <tr><th>포트</th><th>역할</th></tr>
+        <tr><td><code>LLMClient</code> <span class="fileref">llm.py:8</span></td><td>비동기 <code>chat()</code>·<code>stream()</code>. OpenAI 호환 dict만 오가고 SDK 타입은 경계를 넘지 않음.</td></tr>
+        <tr><td><code>QueryEngine</code> <span class="fileref">query.py:14</span></td><td>읽기 전용 웨어하우스: <code>list_catalogs·get_schema·run_query·explain·distinct_values</code>. DDL 거부·행 제한.</td></tr>
+        <tr><td><code>VectorStore</code> <span class="fileref">vector.py:9</span></td><td><code>upsert·search·hybrid_search(dense+BM25)·delete</code>. 부서 스코프.</td></tr>
+        <tr><td><code>BlobStore</code> <span class="fileref">blob.py:6</span></td><td><code>put·get·presign_get·list_keys</code>.</td></tr>
+        <tr><td><code>TaskQueue</code> <span class="fileref">queue.py:7</span></td><td><code>enqueue(job,payload)→job_id</code>, <code>status(job_id)→{state, result?, error?}</code>.</td></tr>
+        <tr><td><code>SessionStore·Cache·PubSub</code> <span class="fileref">cache.py:10/43/64</span></td><td>세션(슬라이딩 TTL+절대 마감) · KV 캐시 · 팬아웃 pub/sub.</td></tr>
+        <tr><td><code>Profiler</code> <span class="fileref">profiler.py:18</span></td><td>자동 <span class="term" data-tip="탐색적 데이터 분석(Exploratory Data Analysis) — 데이터 분포·결측·상관관계 등을 자동으로 요약하는 작업.">EDA</span>: <code>profile(bytes)→ProfileReport(HTML+summary+structured); read_columns</code>.</td></tr>
+        <tr><td><code>IdentityProvider</code> <span class="fileref">identity.py:13</span></td><td>게이트웨이 헤더 → <code>Principal</code>.</td></tr>
+        <tr><td><code>CodeRunner</code> <span class="fileref">sandbox.py:16</span></td><td>LLM 생성 파이썬 격리 실행: CPU/메모리/시간 제한, 실행 후 파기.</td></tr>
+        <tr><td><code>SemanticLayer</code> <span class="fileref">semantic.py:28</span></td><td><em>결정론적</em> MetricRequest→SQL 컴파일(LLM 아님). 범위 밖이면 LLM 생성 경로로 폴백.</td></tr>
+        <tr><td><code>PiiDetector</code> <span class="fileref">pii.py:42</span></td><td><code>classify_column→PiiVerdict</code>(safe/pii/uncertain). 엔티티-값 색인 전 컬럼 선별.</td></tr>
+      </table>
+      <p class="small muted">
+        추가 포트는 <code>core/ports/</code> docstring 참고 (SQL 분석 · 커넥터 · 리포 계열 포함).
+      </p>
+      <h3>포트 → 어댑터 매핑 (일부)</h3>
+      <table>
+        <tr><th>포트</th><th>어댑터 후보</th></tr>
+        <tr><td><code>LLMClient</code></td><td><code>OpenAICompatibleLLM</code> · <code>OllamaCloudLLM</code> · <code>MasterRouter</code>(provider:model 접두로 분기)</td></tr>
+        <tr><td><code>QueryEngine</code></td><td><code>TrinoQueryEngine</code> · <code>DuckDBQueryEngine</code>(<code>derived/{dept}/*.parquet</code> 읽음)</td></tr>
+        <tr><td><code>VectorStore</code></td><td><code>WeaviateVectorStore</code> (v4 SDK는 동기 → <code>asyncio.to_thread</code>로 감쌈)</td></tr>
+        <tr><td><code>TaskQueue</code></td><td><code>CeleryTaskQueue</code> · <code>rq_queue.py</code> · <code>inline_queue.py</code>(테스트)</td></tr>
+        <tr><td><code>IdentityProvider</code></td><td><code>HeaderTrustIdentity</code> · <code>jwt_identity.py</code> — <code>hmac.compare_digest</code>로 <code>x-gateway-secret</code> 검증 후 헤더에서 <code>Principal</code> 추출. (검증 전체 흐름은 §5 참고)</td></tr>
+        <tr><td><code>BlobStore</code></td><td><code>S3BlobStore</code> · <code>LocalBlobStore</code></td></tr>
+        <tr><td>Postgres 리포 묶음</td><td><code>adapters/repo/*.py</code> — <b>하나의</b> SQLAlchemy <code>async_sessionmaker</code>를 공유</td></tr>
+        <tr><td>Redis 세트</td><td><code>cache/redis_store.py</code> — Session·Cache·PubSub가 <b>하나의</b> Redis 클라이언트 공유</td></tr>
+      </table>
+      <p>어느 어댑터를 어느 포트에 꽂는지를 결정하는 것이 다음 §3의 조립 루트(Container)입니다.</p>
+
+      <h2 id="container">3. 조립 루트 (Container · ResourceManager)</h2>
+      <p>
+        <span class="fileref">api/app/config/factory.py</span>의
+        <b>Container</b>(line 387)는 <em>유일하게</em> "어느 어댑터가 어느 포트인지"
+        아는 곳입니다. <code>@lru_cache get_container()</code>(line 701)로 프로세스당
+        하나만 만들어지며, FastAPI 핸들러에는 <code>Depends(container)</code>(<span class="fileref">api/app/api/deps.py:10</span>)로 주입됩니다.
+        모든 포트를 공개 속성으로 들고 있으며
+        <code>Settings</code>의 어댑터 선택자 필드(<code>llm_adapter</code>, <code>query_adapter</code>, <code>vector_adapter</code>, <code>blob_adapter</code>, <code>queue_adapter</code>, <code>identity_adapter</code>)에 따라 지연 생성합니다(값 전체는 §7 참고).
+        벤더 SDK는 해당 분기 <em>안에서만</em> import해, 안 쓰는 SDK는 설치조차 필요
+        없습니다.
+      </p>
+      <ul>
+        <li>
+          <b>서비스 싱글턴.</b> <code>@_cached_service</code>(line 369)가 각 서비스를
+          Container당 한 번만 만들어 재사용 — 한 요청에서 같은 서비스를 수십 번 불러도
+          중복 할당이 없습니다.
+        </li>
+        <li>
+          <b>ResourceManager</b> (<span class="fileref">api/app/config/resources.py:30</span>):
+          <code>sql_engine(url)</code>은 DSN당 <code>AsyncEngine</code> 하나,
+          <code>redis(url, decode_responses)</code>는 (url, decode_responses) 쌍당 클라이언트 하나를
+          공유합니다. <code>@lru_cache get_resources()</code>(line 107)가 싱글턴이라
+          <em>테스트와 팩토리가 같은 풀</em>을 씁니다.
+        </li>
+        <li>
+          <b>생애 종료.</b> <code>Container.aclose()</code>(<span class="fileref">config/factory.py:456-466</span>)가 체크포인터 풀,
+          ES httpx 클라이언트, <code>resources.close_all()</code>(모든 엔진 dispose +
+          Redis 종료)를 정리합니다. FastAPI <code>lifespan</code> finally에서 호출
+          (<span class="fileref">main.py:40</span>).
+        </li>
+      </ul>
+      <p>이제 Container가 연결하는 외부 시스템 여섯 가지를 §4에서 살펴봅니다.</p>
+
+      <h2 id="infra">4. 인프라 여섯 기둥</h2>
+
+      <p>
+        §3에서 Container가 어댑터를 포트에 주입하는 방식을 확인했습니다. 이제 어댑터가 실제로 연결하는 외부 시스템 여섯 가지를 정의합니다. 각각은 어댑터를 통해서만 코어와 대화합니다.
+      </p>
+      <figure class="fig" id="fig-infra">
+        <svg
+          viewBox="0 0 640 388"
+          role="img"
+          aria-label="인프라의 여섯 기둥 — 플랫폼을 떠받치는 여섯 외부 시스템"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect width="640" height="388" fill="#ffffff" rx="14" />
+
+          <!-- entablature: the platform the pillars hold up -->
+          <rect x="28" y="16" width="584" height="44" rx="8" fill="#eef0fb" stroke="#5257e6" stroke-width="1.6" />
+          <text x="320" y="37" text-anchor="middle" fill="#5257e6" font-size="11.5" font-weight="700">FastAPI / 워커 프로세스</text>
+          <text x="320" y="51" text-anchor="middle" fill="#6b6b85" font-size="8.5">여섯 기둥 위에 서서, 오직 포트로만 각 기둥과 대화</text>
+
+          <!-- six pillars: capital → fluted shaft → base, standing on a shared stylobate -->
+          <!-- pillar 1: PostgreSQL (blue) -->
+          <rect x="34" y="60" width="92" height="12" rx="3" fill="#e2f0f7" stroke="#17789f" stroke-width="1.3" />
+          <polygon points="34,72 126,72 120,82 40,82" fill="#e2f0f7" stroke="#17789f" stroke-width="1.3" />
+          <rect x="40" y="82" width="80" height="188" fill="#e2f0f7" stroke="#17789f" stroke-width="1.4" />
+          <line x1="60" y1="90" x2="60" y2="262" stroke="#17789f" stroke-width="0.8" opacity="0.32" />
+          <line x1="80" y1="90" x2="80" y2="262" stroke="#17789f" stroke-width="0.8" opacity="0.32" />
+          <line x1="100" y1="90" x2="100" y2="262" stroke="#17789f" stroke-width="0.8" opacity="0.32" />
+          <polygon points="40,270 120,270 126,280 34,280" fill="#e2f0f7" stroke="#17789f" stroke-width="1.3" />
+          <rect x="34" y="280" width="92" height="14" rx="3" fill="#e2f0f7" stroke="#17789f" stroke-width="1.3" />
+          <text x="80" y="112" text-anchor="middle" fill="#17789f" font-size="9" font-weight="700">PostgreSQL</text>
+          <text x="80" y="135" text-anchor="middle" fill="#6b6b85" font-size="8">원본 기록</text>
+          <text x="80" y="147" text-anchor="middle" fill="#6b6b85" font-size="8">결과·체크포인트</text>
+
+          <!-- pillar 2: Redis (pink) -->
+          <rect x="130" y="60" width="92" height="12" rx="3" fill="#fbeaef" stroke="#c22e57" stroke-width="1.3" />
+          <polygon points="130,72 222,72 216,82 136,82" fill="#fbeaef" stroke="#c22e57" stroke-width="1.3" />
+          <rect x="136" y="82" width="80" height="188" fill="#fbeaef" stroke="#c22e57" stroke-width="1.4" />
+          <line x1="156" y1="90" x2="156" y2="262" stroke="#c22e57" stroke-width="0.8" opacity="0.32" />
+          <line x1="176" y1="90" x2="176" y2="262" stroke="#c22e57" stroke-width="0.8" opacity="0.32" />
+          <line x1="196" y1="90" x2="196" y2="262" stroke="#c22e57" stroke-width="0.8" opacity="0.32" />
+          <polygon points="136,270 216,270 222,280 130,280" fill="#fbeaef" stroke="#c22e57" stroke-width="1.3" />
+          <rect x="130" y="280" width="92" height="14" rx="3" fill="#fbeaef" stroke="#c22e57" stroke-width="1.3" />
+          <text x="176" y="112" text-anchor="middle" fill="#c22e57" font-size="9.5" font-weight="700">Redis</text>
+          <text x="176" y="135" text-anchor="middle" fill="#6b6b85" font-size="8">브로커·세션</text>
+          <text x="176" y="147" text-anchor="middle" fill="#6b6b85" font-size="8">캐시·pubsub</text>
+
+          <!-- pillar 3: Weaviate (green) -->
+          <rect x="226" y="60" width="92" height="12" rx="3" fill="#e7f6f1" stroke="#158066" stroke-width="1.3" />
+          <polygon points="226,72 318,72 312,82 232,82" fill="#e7f6f1" stroke="#158066" stroke-width="1.3" />
+          <rect x="232" y="82" width="80" height="188" fill="#e7f6f1" stroke="#158066" stroke-width="1.4" />
+          <line x1="252" y1="90" x2="252" y2="262" stroke="#158066" stroke-width="0.8" opacity="0.32" />
+          <line x1="272" y1="90" x2="272" y2="262" stroke="#158066" stroke-width="0.8" opacity="0.32" />
+          <line x1="292" y1="90" x2="292" y2="262" stroke="#158066" stroke-width="0.8" opacity="0.32" />
+          <polygon points="232,270 312,270 318,280 226,280" fill="#e7f6f1" stroke="#158066" stroke-width="1.3" />
+          <rect x="226" y="280" width="92" height="14" rx="3" fill="#e7f6f1" stroke="#158066" stroke-width="1.3" />
+          <text x="272" y="112" text-anchor="middle" fill="#158066" font-size="9" font-weight="700">Weaviate</text>
+          <text x="272" y="135" text-anchor="middle" fill="#6b6b85" font-size="8">벡터 검색</text>
+          <text x="272" y="147" text-anchor="middle" fill="#6b6b85" font-size="8">4 컬렉션</text>
+
+          <!-- pillar 4: Trino (amber) -->
+          <rect x="322" y="60" width="92" height="12" rx="3" fill="#fbf1e3" stroke="#a25f0d" stroke-width="1.3" />
+          <polygon points="322,72 414,72 408,82 328,82" fill="#fbf1e3" stroke="#a25f0d" stroke-width="1.3" />
+          <rect x="328" y="82" width="80" height="188" fill="#fbf1e3" stroke="#a25f0d" stroke-width="1.4" />
+          <line x1="348" y1="90" x2="348" y2="262" stroke="#a25f0d" stroke-width="0.8" opacity="0.32" />
+          <line x1="368" y1="90" x2="368" y2="262" stroke="#a25f0d" stroke-width="0.8" opacity="0.32" />
+          <line x1="388" y1="90" x2="388" y2="262" stroke="#a25f0d" stroke-width="0.8" opacity="0.32" />
+          <polygon points="328,270 408,270 414,280 322,280" fill="#fbf1e3" stroke="#a25f0d" stroke-width="1.3" />
+          <rect x="322" y="280" width="92" height="14" rx="3" fill="#fbf1e3" stroke="#a25f0d" stroke-width="1.3" />
+          <text x="368" y="112" text-anchor="middle" fill="#a25f0d" font-size="9.5" font-weight="700">Trino</text>
+          <text x="368" y="135" text-anchor="middle" fill="#6b6b85" font-size="8">주 웨어하우스</text>
+          <text x="368" y="147" text-anchor="middle" fill="#6b6b85" font-size="8">부서 격리</text>
+
+          <!-- pillar 5: DuckDB (amber) -->
+          <rect x="418" y="60" width="92" height="12" rx="3" fill="#fbf1e3" stroke="#a25f0d" stroke-width="1.3" />
+          <polygon points="418,72 510,72 504,82 424,82" fill="#fbf1e3" stroke="#a25f0d" stroke-width="1.3" />
+          <rect x="424" y="82" width="80" height="188" fill="#fbf1e3" stroke="#a25f0d" stroke-width="1.4" />
+          <line x1="444" y1="90" x2="444" y2="262" stroke="#a25f0d" stroke-width="0.8" opacity="0.32" />
+          <line x1="464" y1="90" x2="464" y2="262" stroke="#a25f0d" stroke-width="0.8" opacity="0.32" />
+          <line x1="484" y1="90" x2="484" y2="262" stroke="#a25f0d" stroke-width="0.8" opacity="0.32" />
+          <polygon points="424,270 504,270 510,280 418,280" fill="#fbf1e3" stroke="#a25f0d" stroke-width="1.3" />
+          <rect x="418" y="280" width="92" height="14" rx="3" fill="#fbf1e3" stroke="#a25f0d" stroke-width="1.3" />
+          <text x="464" y="112" text-anchor="middle" fill="#a25f0d" font-size="9" font-weight="700">DuckDB</text>
+          <text x="464" y="135" text-anchor="middle" fill="#6b6b85" font-size="8">업로드용</text>
+          <text x="464" y="147" text-anchor="middle" fill="#6b6b85" font-size="8">인프로세스</text>
+
+          <!-- pillar 6: S3 / MinIO (neutral) -->
+          <rect x="514" y="60" width="92" height="12" rx="3" fill="#f0f0f6" stroke="#5a5a70" stroke-width="1.3" />
+          <polygon points="514,72 606,72 600,82 520,82" fill="#f0f0f6" stroke="#5a5a70" stroke-width="1.3" />
+          <rect x="520" y="82" width="80" height="188" fill="#f0f0f6" stroke="#5a5a70" stroke-width="1.4" />
+          <line x1="540" y1="90" x2="540" y2="262" stroke="#5a5a70" stroke-width="0.8" opacity="0.32" />
+          <line x1="560" y1="90" x2="560" y2="262" stroke="#5a5a70" stroke-width="0.8" opacity="0.32" />
+          <line x1="580" y1="90" x2="580" y2="262" stroke="#5a5a70" stroke-width="0.8" opacity="0.32" />
+          <polygon points="520,270 600,270 606,280 514,280" fill="#f0f0f6" stroke="#5a5a70" stroke-width="1.3" />
+          <rect x="514" y="280" width="92" height="14" rx="3" fill="#f0f0f6" stroke="#5a5a70" stroke-width="1.3" />
+          <text x="560" y="112" text-anchor="middle" fill="#3a3a52" font-size="9" font-weight="700">S3 / MinIO</text>
+          <text x="560" y="135" text-anchor="middle" fill="#6b6b85" font-size="8">블롭 저장</text>
+          <text x="560" y="147" text-anchor="middle" fill="#6b6b85" font-size="8">파생 parquet</text>
+
+          <!-- stylobate: the shared floor all six pillars stand on -->
+          <rect x="28" y="296" width="584" height="10" rx="3" fill="#e6e6ef" stroke="rgba(20,20,40,0.16)" stroke-width="1" />
+
+          <!-- foundation note -->
+          <rect x="28" y="318" width="584" height="54" rx="8" fill="#f0f0f6" stroke="rgba(20,20,40,0.14)" stroke-width="1" />
+          <text x="44" y="339" fill="#3a3a52" font-size="9" font-weight="700">테넌시:</text>
+          <text x="102" y="339" fill="#6b6b85" font-size="8.5">모든 데이터 접근은 principal.department로 스코프 → 부서 간 완전 격리</text>
+          <text x="44" y="359" fill="#3a3a52" font-size="9" font-weight="700">풀 공유:</text>
+          <text x="102" y="359" fill="#6b6b85" font-size="8.5">ResourceManager가 DSN당 SQLAlchemy 엔진 1개 · (url, decode_responses)당 Redis 1개를 공유</text>
+        </svg>
+        <figcaption>
+          <b>인프라의 여섯 기둥.</b> 여섯 외부 시스템이 <b>FastAPI/워커</b> 플랫폼을
+          떠받치는 기둥입니다. API/워커는 오직 포트로만 각 기둥과 대화하고, 어댑터가
+          실제 연결을 맡습니다. 모든 접근은 부서 단위로 격리되고(공유 바닥돌), 커넥션
+          풀은 <b>ResourceManager</b>가 프로세스 전역에서 공유합니다.
+        </figcaption>
+      </figure>
+
+      <table>
+        <tr><th>구성요소</th><th>역할</th></tr>
+        <tr>
+          <td><b style="color:#17789f">PostgreSQL</b></td>
+          <td>
+            <span class="term" data-tip="어떤 값의 '진짜 원본'을 보관하는 곳. 다른 사본이 틀리면 여기서 다시 맞춥니다.">원본 기록</span>:
+            스레드·메시지·아티팩트·대시보드·코퍼스·시맨틱 모델·워크플로우 실행 등. Celery 결과 백엔드(<code>db+postgresql://</code>) 및 LangGraph 체크포인터(<code>AsyncPostgresSaver</code>) 역할도 겸함 — 상세 §6.
+          </td>
+        </tr>
+        <tr>
+          <td><b style="color:#158066">Weaviate</b></td>
+          <td>벡터 검색, 4개 컬렉션: <code>schema_catalog · query_corpus · semantic_catalog · entity_values</code>. 서버측 <code>text2vec-transformers</code>로 임베딩.</td>
+        </tr>
+        <tr>
+          <td><b style="color:#a25f0d">DuckDB</b></td>
+          <td>업로드 데이터용 <b>인프로세스·일시적</b> QueryEngine — <code>derived/{dept}/*.parquet</code>를 매번 새 <code>:memory:</code> 연결로 읽음(공유 상태 없음). 확장 자동로드·자동설치 비활성(SSRF 방어).</td>
+        </tr>
+        <tr>
+          <td><b style="color:#c22e57">Redis</b></td>
+          <td>세션 스토어(슬라이딩 TTL+절대 마감) + KV 캐시 + pub/sub + Celery 비동기 작업 브로커. 세 캐시 포트가 <b>클라이언트 하나</b>를 공유.</td>
+        </tr>
+        <tr>
+          <td><b style="color:#a25f0d">Trino</b></td>
+          <td>주 분석 웨어하우스 페더레이션. 카탈로그 위 SQL, 부서 격리(<code>user=principal.user_id</code>), 60s/1GB 세션 제한.</td>
+        </tr>
+        <tr>
+          <td><b>S3/MinIO</b></td>
+          <td>블롭: 업로드·EDA HTML·파생 parquet·생성 아티팩트. <code>s3_bucket=analytics-artifacts</code>.</td>
+        </tr>
+      </table>
+      <p>여섯 기둥의 역할을 확인했으니, §5에서는 브라우저 요청이 Principal로 변환되는 4단계 흐름을 먼저 살펴봅니다.</p>
+      <h2 id="bff">5. 요청 생애주기 (BFF · 신원)</h2>
+      <p>브라우저는 FastAPI를 직접 부르지 않습니다.
+        <span class="fileref">web/src/app/api/</span>의 Next.js 라우트가
+        <b>BFF(Backend-for-Frontend) 프록시</b>로 서서, 서버측에서 신원 헤더를 붙여
+        FastAPI로 전달합니다 (<span class="fileref">_proxy.ts</span>).
+      </p>
+      <p>
+        프로덕션에서는 외부 API 게이트웨이(예: AWS API GW, Kong)가 Next.js 앞에 서서 사용자 신원 헤더(<code>X-User-Id</code> 등)를 주입합니다.
+        개발 환경에서는 이 게이트웨이 없이 BFF가 직접 헤더를 붙입니다.
+      </p>
+      <figure class="fig" id="fig-bff">
+        <svg viewBox="0 0 780 170" role="img" aria-label="BFF 요청 흐름" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="bff-g" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0 0 L6 3 L0 6 z" fill="#6b6b85" />
+            </marker>
+          </defs>
+          <rect width="780" height="170" fill="#ffffff" rx="14" />
+          <!-- prod-only external gateway (dashed) -->
+          <rect x="16" y="50" width="118" height="52" rx="7" fill="#fffbe6" stroke="#a25f0d" stroke-width="1.2" stroke-dasharray="4 3" />
+          <text x="75" y="65" text-anchor="middle" fill="#a25f0d" font-size="9" font-weight="700">외부 게이트웨이</text>
+          <text x="75" y="78" text-anchor="middle" fill="#6b6b85" font-size="8">(prod · AWS GW/Kong)</text>
+          <text x="75" y="96" text-anchor="middle" fill="#a25f0d" font-size="8" font-style="italic">dev 환경에서는 생략</text>
+          <line x1="134" y1="68" x2="158" y2="68" stroke="#a25f0d" stroke-width="1.1" stroke-dasharray="4 3" marker-end="url(#bff-g)" />
+          <!-- browser -->
+          <rect x="160" y="50" width="100" height="36" rx="7" fill="#f0f0f6" stroke="#5257e6" stroke-width="1.2" />
+          <text x="210" y="65" text-anchor="middle" fill="#5257e6" font-size="9" font-weight="700">브라우저</text>
+          <text x="210" y="78" text-anchor="middle" fill="#6b6b85" font-size="8">aa_session 쿠키</text>
+          <line x1="260" y1="68" x2="284" y2="68" stroke="#6b6b85" stroke-width="1.2" marker-end="url(#bff-g)" />
+          <rect x="286" y="50" width="130" height="36" rx="7" fill="#f0f0f6" stroke="#a25f0d" stroke-width="1.2" />
+          <text x="351" y="65" text-anchor="middle" fill="#a25f0d" font-size="9" font-weight="700">Next.js BFF</text>
+          <text x="351" y="78" text-anchor="middle" fill="#6b6b85" font-size="8">backendHeaders() 신원 부착</text>
+          <line x1="416" y1="68" x2="450" y2="68" stroke="#6b6b85" stroke-width="1.2" marker-end="url(#bff-g)" />
+          <rect x="452" y="50" width="130" height="36" rx="7" fill="#eef0fb" stroke="#5257e6" stroke-width="1.2" />
+          <text x="517" y="65" text-anchor="middle" fill="#5257e6" font-size="9" font-weight="700">FastAPI</text>
+          <text x="517" y="78" text-anchor="middle" fill="#6b6b85" font-size="8">current_principal 검증</text>
+          <line x1="582" y1="68" x2="616" y2="68" stroke="#6b6b85" stroke-width="1.2" marker-end="url(#bff-g)" />
+          <rect x="618" y="50" width="138" height="36" rx="7" fill="#e7f6f1" stroke="#158066" stroke-width="1.2" />
+          <text x="687" y="65" text-anchor="middle" fill="#158066" font-size="9" font-weight="700">Principal</text>
+          <text x="687" y="78" text-anchor="middle" fill="#6b6b85" font-size="8">department 스코프 적용</text>
+          <!-- annotation connector lines -->
+          <line x1="351" y1="86" x2="351" y2="120" stroke="#6b6b85" stroke-width="0.7" stroke-dasharray="2 2" />
+          <rect x="297" y="120" width="108" height="14" rx="4" fill="#f0f0f6" stroke="rgba(20,20,40,0.15)" stroke-width="0.8" />
+          <text x="351" y="130" text-anchor="middle" fill="#6b6b85" font-size="8">X-Gateway-Secret</text>
+          <line x1="490" y1="86" x2="490" y2="120" stroke="#6b6b85" stroke-width="0.7" stroke-dasharray="2 2" />
+          <rect x="430" y="120" width="120" height="14" rx="4" fill="#f0f0f6" stroke="rgba(20,20,40,0.15)" stroke-width="0.8" />
+          <text x="490" y="130" text-anchor="middle" fill="#6b6b85" font-size="8">hmac.compare_digest</text>
+        </svg>
+        <figcaption>
+          <b>요청 흐름.</b> 프로덕션에서는 외부 게이트웨이(점선)가 브라우저 앞에 서서 신원 헤더를 주입합니다. 개발 환경에서는 이 단계 없이 브라우저 → Next.js BFF(신원 헤더 부착) → FastAPI(시크릿 검증) →
+          Principal(department 스코프 적용) 순으로 최대 4단계 (개발 환경에서는 3단계)를 거칩니다.
+        </figcaption>
+      </figure>
+      <ol class="steps">
+        <li>
+          <b>외부 게이트웨이 (프로덕션 전용).</b> AWS API GW·Kong 등 외부 게이트웨이가 브라우저 앞에 서서
+          인증된 사용자 신원 헤더(<code>X-User-Id</code>, <code>X-Department</code>, <code>X-User-Email</code>)를 주입합니다.
+          개발 환경에서는 이 단계가 생략되고 BFF가 직접 헤더를 붙입니다.
+        </li>
+        <li>
+          <b>Next.js BFF — 신원 부착.</b> <span class="fileref">web/src/lib/identity.ts backendHeaders() 26-73</span>가
+          항상 <code>X-Gateway-Secret</code>을 붙입니다. 세션 쿠키
+          <code>aa_session</code>이 있으면 그대로 전달. 게이트웨이 신원 헤더
+          (<code>X-User-Id·X-Department·X-User-Email</code>)는 <em>인바운드 요청이
+          맞는 x-gateway-secret을 지녔을 때만</em> 전달 — 브라우저가 위조할 수 없게.
+          세션이 없고 prod가 아닐 경우 <code>DEV_USER_ID</code> 등 환경 변수 폴백을 사용합니다(환경 변수 구성은 §7 참고).
+          <details><summary class="small muted">프록시 헬퍼 상세 (_proxy.ts)</summary>
+          <p class="small muted" style="margin:6px 0 0">용도별 다섯 가지 헬퍼: <code>proxyGet</code>(25s), <code>proxyJson</code>(에이전트 루프용 <code>LLM_TIMEOUT_MS=120000</code>), <code>proxyAuth</code>(Set-Cookie 전달), <code>proxyForm</code>(멀티파트), <code>proxyDelete</code>. 스트리밍 <code>/chat/ask</code>는 자체 핸들러로 흘립니다.</p>
+          </details>
+        </li>
+        <li>
+          <b>FastAPI 백엔드 검증.</b> <span class="fileref">api/app/api/deps.py:14-37</span>는
+          세션 쿠키(Redis)를 먼저 보고, 없으면 <code>IdentityProvider.resolve()</code>를 호출합니다.
+          실제 시크릿 검증(<code>hmac.compare_digest</code>)은 <code>HeaderTrustIdentity</code> 어댑터
+          (<span class="fileref">header_trust.py</span>) 구현체에서 <code>x-gateway-secret</code>
+          헤더에 대해 수행합니다.
+        </li>
+        <li>
+          <b>테넌시 경계.</b> 결과는 <code>Principal</code>(<code>user_id·department·email|None·is_admin·roles[]</code>).
+          <b>모든 데이터 접근은 <code>department</code>로 스코프</b>됩니다 — 부서 간
+          격리의 뿌리입니다.
+        </li>
+      </ol>
+      <p>브라우저 요청이 Principal로 변환되는 4단계 흐름을 확인했으니, §6에서는 그 요청이 어떤 실행 경로를 타는지 살펴봅니다.</p>
+
+      <h2 id="async">6. 동기 · 비동기 · Beat — 세 가지 실행 경로</h2>
+      <p>
+        모든 FastAPI 핸들러는 <code>async def</code>입니다. 문제는 —
+        Weaviate v4 SDK, DuckDB, Trino 클라이언트, Celery 결과 백엔드처럼
+        <b>블로킹</b> I/O가 있다는 점. 이들은 전부
+        <span
+          class="term"
+          data-tip="블로킹 함수를 별도 스레드에서 돌려, 그동안 이벤트 루프가 다른 요청을 계속 처리하게 하는 asyncio 유틸리티."
+          ><code>asyncio.to_thread</code></span
+        >로 감싸 이벤트 루프를 막지 않습니다.
+      </p>
+      <p>
+        진짜 무거운 계산(EDA 프로파일링(<code>eda_report</code>), 문서 인덱싱(<code>index_documents</code>), 파일 수집(<code>ingest_file</code>) 등)은 요청 안에서 하지 않고
+        <b>Celery 워커</b>로 밀어냅니다. 에이전트 그래프 실행(<code>run_workflow</code>)도 Celery 워커로 오프로드되며, LangGraph 체크포인터(그래프 상태를 단계마다 Postgres에 저장해 재개·디버깅을 지원)가 그 안에서 돌아갑니다. <b>Celery Beat</b>는 cron처럼 60초마다
+        <code>scheduler_tick</code> 잡을 자동 투입하는 세 번째 실행 경로입니다.
+      </p>
+      <p class="small muted">
+        등록된 잡 전체: <code>eda_report·eda_analyze·data_analyze·ingest_file·index_documents·ingest_corpus·sync_schema·run_workflow·scheduler_tick</code>
+        (<span class="fileref">jobs/registry.py</span>). Celery 태스크는 동기 <code>module.run(payload)</code>를 직접 호출하고
+        (<span class="fileref">jobs/celery_app.py:89</span>), 각 모듈의 <code>run()</code>이 내부에서 <code>asyncio.run(run_async(payload))</code>로 비동기 본체를 돌립니다.
+      </p>
+
+      <figure class="fig" id="fig-async">
+        <svg
+          viewBox="0 0 640 330"
+          role="img"
+          aria-label="동기 요청 경로와 비동기 작업 경로"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <marker id="sy-g" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0 0 L6 3 L0 6 z" fill="#6b6b85" />
+            </marker>
+            <marker id="sy-b" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0 0 L6 3 L0 6 z" fill="#17789f" />
+            </marker>
+          </defs>
+          <rect width="640" height="330" fill="#ffffff" rx="14" />
+
+          <!-- top: sync path -->
+          <rect x="16" y="16" width="200" height="18" rx="9" fill="#e7f6f1" stroke="#158066" stroke-width="1" />
+          <text x="116" y="29" text-anchor="middle" fill="#158066" font-size="10" font-weight="700">① 동기 요청 (빠른 응답)</text>
+          <rect x="16" y="42" width="110" height="40" rx="7" fill="#f0f0f6" stroke="#5257e6" stroke-width="1.2" />
+          <text x="71" y="60" text-anchor="middle" fill="#5257e6" font-size="9" font-weight="700">FastAPI 핸들러</text>
+          <text x="71" y="73" text-anchor="middle" fill="#6b6b85" font-size="8">async def</text>
+          <line x1="126" y1="62" x2="152" y2="62" stroke="#6b6b85" stroke-width="1.2" marker-end="url(#sy-g)" />
+          <rect x="154" y="42" width="120" height="40" rx="7" fill="#f0f0f6" stroke="rgba(20,20,40,0.16)" />
+          <text x="214" y="58" text-anchor="middle" fill="#1a1a24" font-size="9" font-weight="600">포트 호출</text>
+          <text x="214" y="71" text-anchor="middle" fill="#6b6b85" font-size="8">블로킹 SDK는 to_thread</text>
+          <line x1="274" y1="62" x2="300" y2="62" stroke="#6b6b85" stroke-width="1.2" marker-end="url(#sy-g)" />
+          <rect x="302" y="42" width="120" height="40" rx="7" fill="#f0f0f6" stroke="#a25f0d" stroke-width="1.1" />
+          <text x="362" y="58" text-anchor="middle" fill="#a25f0d" font-size="9" font-weight="600">Trino/DuckDB/…</text>
+          <text x="362" y="71" text-anchor="middle" fill="#6b6b85" font-size="8">동기 I/O</text>
+          <line x1="422" y1="62" x2="448" y2="62" stroke="#158066" stroke-width="1.3" marker-end="url(#sy-g)" />
+          <rect x="450" y="42" width="110" height="40" rx="7" fill="#e7f6f1" stroke="#158066" stroke-width="1.2" />
+          <text x="505" y="66" text-anchor="middle" fill="#158066" font-size="9" font-weight="700">응답</text>
+
+          <!-- bottom: async path -->
+          <rect x="16" y="118" width="220" height="18" rx="9" fill="#e2f0f7" stroke="#17789f" stroke-width="1" />
+          <text x="126" y="131" text-anchor="middle" fill="#17789f" font-size="10" font-weight="700">② 비동기 작업 (무거운 계산)</text>
+          <rect x="16" y="144" width="110" height="42" rx="7" fill="#f0f0f6" stroke="#5257e6" stroke-width="1.2" />
+          <text x="71" y="162" text-anchor="middle" fill="#5257e6" font-size="9" font-weight="700">핸들러</text>
+          <text x="71" y="175" text-anchor="middle" fill="#6b6b85" font-size="8">enqueue(job)</text>
+          <line x1="126" y1="165" x2="152" y2="165" stroke="#17789f" stroke-width="1.2" marker-end="url(#sy-b)" />
+          <rect x="154" y="144" width="96" height="42" rx="7" fill="#fbeaef" stroke="#c22e57" stroke-width="1.1" />
+          <text x="202" y="162" text-anchor="middle" fill="#c22e57" font-size="9" font-weight="700">Redis 브로커</text>
+          <text x="202" y="175" text-anchor="middle" fill="#6b6b85" font-size="8">send_task(name)</text>
+          <line x1="250" y1="165" x2="276" y2="165" stroke="#17789f" stroke-width="1.2" marker-end="url(#sy-b)" />
+          <rect x="278" y="144" width="120" height="42" rx="7" fill="#f0f0f6" stroke="#5257e6" stroke-width="1.2" />
+          <text x="338" y="158" text-anchor="middle" fill="#1a1a24" font-size="9" font-weight="700">Celery 워커</text>
+          <text x="338" y="169" text-anchor="middle" fill="#6b6b85" font-size="8">run_async(payload)</text>
+          <text x="338" y="180" text-anchor="middle" fill="#6b6b85" font-size="8">LangGraph 그래프 포함</text>
+          <line x1="398" y1="165" x2="424" y2="165" stroke="#17789f" stroke-width="1.2" marker-end="url(#sy-b)" />
+          <rect x="426" y="144" width="134" height="42" rx="7" fill="#e2f0f7" stroke="#17789f" stroke-width="1.2" />
+          <text x="493" y="162" text-anchor="middle" fill="#17789f" font-size="9" font-weight="700">결과 → Postgres</text>
+          <text x="493" y="175" text-anchor="middle" fill="#6b6b85" font-size="8">db+postgresql://</text>
+
+          <!-- poll back -->
+          <path d="M71,186 L71,214 L493,214 L493,186" fill="none" stroke="#17789f" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#sy-b)" />
+          <rect x="177" y="204" width="280" height="18" rx="5" fill="#ffffff" />
+          <text x="317" y="217" text-anchor="middle" fill="#17789f" font-size="8" font-weight="600">status(job_id) 폴링 · queued→started→finished / failed</text>
+
+          <!-- ③ Beat path -->
+          <rect x="16" y="230" width="220" height="14" rx="7" fill="#f3effe" stroke="#5257e6" stroke-width="0.9" />
+          <text x="126" y="241" text-anchor="middle" fill="#5257e6" font-size="8.5" font-weight="700">③ Celery Beat (스케줄러)</text>
+          <rect x="16" y="248" width="96" height="30" rx="6" fill="#f3effe" stroke="#5257e6" stroke-width="1" />
+          <text x="64" y="261" text-anchor="middle" fill="#5257e6" font-size="8" font-weight="700">Beat 스케줄러</text>
+          <text x="64" y="272" text-anchor="middle" fill="#6b6b85" font-size="8">60s 주기</text>
+          <polyline points="112,263 240,263 240,165" fill="none" stroke="#5257e6" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#sy-b)" />
+          <rect x="70" y="216" width="95" height="12" rx="3" fill="#ffffff" />
+          <text x="130" y="226" text-anchor="middle" fill="#5257e6" font-size="8">scheduler_tick</text>
+
+          <rect x="16" y="290" width="608" height="28" rx="8" fill="#f0f0f6" stroke="rgba(20,20,40,0.14)" stroke-width="1" />
+          <text x="320" y="307" text-anchor="middle" fill="#6b6b85" font-size="8.5">broker=Redis · 결과 백엔드=Postgres · Beat가 scheduler_tick을 60초마다 실행</text>
+        </svg>
+        <figcaption>
+          <b>두 경로 + Beat 스케줄러.</b> ① 빠른 요청은 async 핸들러가 포트를 호출하고 블로킹 SDK만
+          <code>to_thread</code>로 감싸 곧장 응답합니다. ② 무거운 작업은
+          <b>enqueue → Redis 브로커 → Celery 워커 → 결과 Postgres</b>로 흐르고,
+          클라이언트는 <code>status(job_id)</code>를 폴링합니다. ③ <b>Celery Beat</b>는 cron처럼
+          60초마다 <code>scheduler_tick</code> 잡을 Redis 브로커에 직접 투입하는 세 번째 경로입니다.
+        </figcaption>
+      </figure>
+      <div class="tech">
+        <span class="tag">한 Postgres, 세 역할</span>
+        <p>
+          같은 Postgres가 <b>원본 기록</b>(SQLAlchemy 풀), <b>Celery 결과 백엔드</b>(<code>db+postgresql://</code>),
+          <b>LangGraph 체크포인트</b>(<code>AsyncPostgresSaver</code>, 별도 psycopg3 풀, 자체 관리 테이블)라는 세 역할을
+          겸합니다. 물리적으로 한 DB, 논리적으로 분리된 세 쓰임입니다.
+        </p>
+      </div>
+      <p>이 신원 검증과 실행 경로에서 사용하는 설정 값들을 §7에서 정리합니다.</p>
+
+      <h2 id="config">7. 설정과 환경</h2>
+      <p>
+        <span class="fileref">api/app/config/settings.py Settings</span>는
+        <code>.env</code> + <code>.env.secrets</code>를 읽고(실제 프로세스 env가
+        최우선), <code>app_env="dev"</code> 기본값을 둡니다. 어댑터 선택은
+        아래 문자열 필드로 합니다.
+      </p>
+      <table>
+        <tr><th>필드</th><th>설명</th><th>허용 값(예)</th></tr>
+        <tr><td><code>llm_adapter</code></td><td>LLM 클라이언트</td><td><code>openai_compatible</code> · <code>ollama</code> · <code>router</code></td></tr>
+        <tr><td><code>query_adapter</code></td><td>쿼리 엔진</td><td><code>trino</code> · <code>duckdb</code></td></tr>
+        <tr><td><code>vector_adapter</code></td><td>벡터 스토어</td><td><code>weaviate</code></td></tr>
+        <tr><td><code>blob_adapter</code></td><td>블롭 스토어</td><td><code>s3</code> · <code>local</code></td></tr>
+        <tr><td><code>queue_adapter</code></td><td>태스크 큐</td><td><code>celery</code> · <code>rq</code> · <code>inline</code></td></tr>
+        <tr><td><code>identity_adapter</code></td><td>신원 공급자</td><td><code>header_trust</code> · <code>jwt</code></td></tr>
+      </table>
+      <div class="tech">
+        <span class="tag">프로덕션 안전장치</span>
+        <p>
+          <code>_enforce_prod_secrets</code> 검증기(<span class="fileref">settings.py:276-309</span>)는 prod류 환경에서 다음 세 조건 중 하나라도 해당하면 <b>기동을 실패</b>시킵니다:
+          ① <code>gateway_trust_secret</code>이 <code>""·"change-me"·"dev-gateway-secret"</code> 중 하나,
+          ② <code>secrets_key</code>가 빈 값,
+          ③ 평문 전송 — 브로커 <code>REDIS_URL</code>이 <code>rediss://</code>가 아니거나 <code>DATABASE_URL</code>에 <code>sslmode=require</code>(또는 <code>verify-ca</code>/<code>verify-full</code>)가 없는 경우.
+          서비스 메시처럼 앱 레벨 TLS가 불필요하면 <code>INSECURE_TRANSPORT_OK=true</code>로 ③을 비활성화합니다.
+          <code>_resolve_cookie_secure</code>는 prod에서 쿠키를 자동으로 secure로
+          만듭니다. 파이썬 코드에는 <em>APP_ENV로 파일을 바꾸는 분기가 없습니다</em> —
+          <code>app_env</code>는 파일 선택이 아니라 <b>동작 검증기</b>를 제어합니다.
+        </p>
+      </div>
+      <div class="tech">
+        <span class="tag">Celery 운영 설정 참고</span>
+        <p class="small muted">
+          실제 운영에서 참고할 Celery 설정 (<span class="fileref">jobs/celery_app.py</span>):
+          <code>task_track_started=True·task_acks_late=True·task_reject_on_worker_lost=True</code>(워커 프로세스 예기치 않은 종료 시 재큐잉),
+          soft 600s / hard 660s, 결과 7일 보관.
+          프리포크 자식 재사용으로 EDA/프로파일링 후 메모리 회수: <code>worker_max_tasks_per_child=20</code> · <code>worker_max_memory_per_child=512000</code>KB(~500MB, 둘 다 Settings로 조정).
+          k8s pod에서는 <code>CELERY_CONCURRENCY</code> env로 prefork 동시성을 고정하세요 — 미설정 시 Celery가 노드 전체 CPU 수를 쓰다 OOM될 수 있습니다 (<span class="fileref">worker/entrypoint.sh:34</span>).
+          잡 목록은 §6 참고.
+        </p>
+      </div>
+      <hr />
+      <p class="small muted">
+        이 문서에서 다루지 않은 에이전트 오케스트레이션(마스터 라우터·전문가·plan/execute 루프·도구)은
+        <span class="fileref">docs/agent-architecture.html</span>(<b>에이전트 아키텍처</b> 문서, 예정)을 참고하세요.
+      </p>
+    </div>
+  </body>
+</html>
